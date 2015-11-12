@@ -1,0 +1,26 @@
+﻿{
+    "common": {
+        "name":                     "template",
+        "version":                  "0.2.0",
+        "title":                    {
+			"en": "ioBroker template Adapter",
+			"de": "ioBroker Template Adapter",
+			"ru": "ioBroker Template драйвер как образец"
+		},
+        "desc":                     "Javascript/Node.js based template adapter",
+        "platform":                 "Javascript/Node.js",
+        "mode":                     "daemon",
+        "icon":                     "template.png",
+		"extIcon":      			"https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
+		"readme":       			"https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
+		"loglevel":                 "info",
+        "type":                     "common adapters"
+    },
+    "native": {
+        "test1": true,
+        "test2": 42
+    },
+    "objects": [
+
+    ]
+}
