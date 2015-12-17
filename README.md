@@ -9,7 +9,8 @@ This adapter is a template for creation of own adapter.
   or clone git repository ```git clone https://github.com/ioBroker/ioBroker.template.git```
 
 - download required npm packets. Write in ioBroker.template directory:
-  npm install
+
+  ```npm install```
   
 - set name of this template. Call
   
@@ -17,9 +18,9 @@ This adapter is a template for creation of own adapter.
   
   *mynewname* must be **lower** case and with no spaces.
  
-- rename directory from *ioBroker.template* to *ioBroker.mynewname*
+- rename directory from *ioBroker.template* to *iobroker.mynewname*
 
-- to use this template you should copy it into *iobroker/node_modules* directory
+- to use this template you should copy it into *.../iobroker/node_modules* directory
 
 - create your adapter:
 
@@ -27,7 +28,7 @@ This adapter is a template for creation of own adapter.
   
   [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
 
-- change version: edit package.json and then call ```grunt p``` in your widget directory.
+- change version: edit package.json and then call ```grunt p``` in your adapter directory.
   
 - share it with community
 
