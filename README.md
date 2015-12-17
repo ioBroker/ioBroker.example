@@ -18,7 +18,7 @@ This adapter is a template for creation of own adapter.
   
   *mynewname* must be **lower** case and with no spaces.
  
-- rename directory from *ioBroker.template* to *iobroker.mynewname*
+- rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
 
 - to use this template you should copy it into *.../iobroker/node_modules* directory
 
