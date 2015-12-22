@@ -110,6 +110,14 @@ module.exports = function (grunt) {
                                  srcDir + 'admin/index.html'
                         ],
                         dest:    srcDir + 'admin'
+                    },
+                    {
+                        expand:  true,
+                        flatten: true,
+                        src: [
+                                 srcDir + 'www/index.html'
+                        ],
+                        dest:    srcDir + 'www'
                     }
                 ]
             }
