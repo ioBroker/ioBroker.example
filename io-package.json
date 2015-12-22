@@ -4,9 +4,9 @@
         "version":                  "0.4.0",
         "title":                    "Javascript/Node.js based template adapter",
         "desc":                     {
-		"en": "ioBroker template Adapter",
-		"de": "ioBroker Template Adapter",
-		"ru": "ioBroker Template драйвер как образец"
+ 			"en": "ioBroker template Adapter",
+			"de": "ioBroker Template Adapter",
+			"ru": "ioBroker Template драйвер как образец"
 	},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
