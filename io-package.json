@@ -6,7 +6,7 @@
         "desc":                     {
  			"en": "ioBroker jeelink Adapter",
 			"de": "ioBroker jeelink Adapter",
-			"ru": "ioBroker jeelink драйвер как образец"
+			"ru": "ioBroker jeelink драйвер"
 	},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
