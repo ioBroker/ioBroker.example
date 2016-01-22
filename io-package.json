@@ -1,20 +1,20 @@
 ﻿{
     "common": {
-        "name":                     "template",
-        "version":                  "0.4.0",
-        "title":                    "Javascript/Node.js based template adapter",
+        "name":                     "jeelink",
+        "version":                  "0.0.1",
+        "title":                    "Javascript/Node.js based jeelink adapter",
         "desc":                     {
- 			"en": "ioBroker template Adapter",
-			"de": "ioBroker Template Adapter",
-			"ru": "ioBroker Template драйвер как образец"
+ 			"en": "ioBroker jeelink Adapter",
+			"de": "ioBroker jeelink Adapter",
+			"ru": "ioBroker jeelink драйвер как образец"
 	},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
         "icon":                     "template.png",
-		"extIcon":          "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
-		"readme":           "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
-		"loglevel":         "info",
-        "type":                     "common adapters"
+		"extIcon":          "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
+		"readme":           "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
+		"loglevel":         "debug",
+        "type":                     "hardware"
     },
     "native": {
         "test1": true,
