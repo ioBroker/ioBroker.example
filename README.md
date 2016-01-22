@@ -20,13 +20,13 @@ It includes both code running within iobroker and as vis widget. If you only pla
   
   *mynewname* must be **lower** case and with no spaces.
 
-  If grunt is not availible, install grunt globally:
+  If grunt is not available, install grunt globally:
   
   ```npm install -g grunt-cli```
  
 4. rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
 
-5. to use this template you should copy it into *.../iobroker/node_modules* directory
+5. to use this template you should copy it into *.../iobroker/node_modules* directory and then create an instance for it with iobroker.admin
 
 6. create your adapter:
 
