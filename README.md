@@ -1,44 +1,8 @@
 ![Logo](admin/template.png)
-# ioBroker.template
+# ioBroker.jeelink
 =================
 
-This adapter is a template for creation of own adapter.
-
-##Steps 
-- download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.template/archive/master.zip```
-  or clone git repository ```git clone https://github.com/ioBroker/ioBroker.template.git```
-
-- download required npm packets. Write in ioBroker.template directory:
-
-  ```npm install```
-  
-- set name of this template. Call
-  
-  ```grunt rename --name=mynewname --email=email@mail.com --author="Author Name"```
-  
-  *mynewname* must be **lower** case and with no spaces.
- 
-- rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
-
-- to use this template you should copy it into *.../iobroker/node_modules* directory
-
-- create your adapter:
-
-  [Adapter-Development-Documentation](https://github.com/ioBroker/ioBroker/wiki/Adapter-Development-Documentation),
-  
-  [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
-
-- change version: edit package.json and then call ```grunt p``` in your adapter directory.
-  
-- share it with community
-
-## Changelog
-
-#### 0.4.0
-* (bluefox) fix errors with grunt
-
-#### 0.2.0
-* (bluefox) initial release
+This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
 
 ## License
 The MIT License (MIT)
