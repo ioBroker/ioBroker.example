@@ -10,11 +10,12 @@
 	},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
+        "main": 	   	    "main.js",
         "icon":                     "template.png",
-		"extIcon":          "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
-		"readme":           "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
-		"loglevel":         "debug",
-        "type":                     "hardware"
+	"extIcon":          		"https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
+	"readme":           		"https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
+	"loglevel":		        "debug"
+
     },
     "native": {
         "test1": true,
