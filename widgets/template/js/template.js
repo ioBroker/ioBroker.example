@@ -1,7 +1,7 @@
-﻿/*
+/*
     ioBroker.vis template Widget-Set
 
-    version: "0.0.1"
+    version: "0.5.0"
 
     Copyright 10.2015-2016 @@Author@@<@@email@@>
 
@@ -30,7 +30,7 @@ $.extend(true, systemDictionary, {
 
 // this code can be placed directly in template.html
 vis.binds.template = {
-    version: "0.0.1",
+    version: "0.5.0",
     showVersion: function () {
         if (vis.binds.template.version) {
             console.log('Version template: ' + vis.binds.template.version);

@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 
     var srcDir    = __dirname + '/';
     var pkg       = grunt.file.readJSON('package.json');
+    var adaptName = pkg.name.substring('iobroker.'.length);
     var iopackage = grunt.file.readJSON('io-package.json');
     var version   = (pkg && pkg.version) ? pkg.version : iopackage.common.version;
     var newname   = grunt.option('name');
@@ -81,9 +82,17 @@ module.exports = function (grunt) {
                         expand:  true,
                         flatten: true,
                         src:     [
-                                srcDir + 'widgets/' + pkg.name.substring('iobroker.vis-'.length) + '.html'
+                                 srcDir + 'widgets/' + adaptName + '.html'
                         ],
                         dest:    srcDir + 'widgets'
+                    },
+                    {
+                        expand:  true,
+                        flatten: true,
+                        src:     [
+                                 srcDir + 'widgets/' + adaptName + '/js/' + adaptName + '.js'
+                        ],
+                        dest:    srcDir + 'widgets/' + adaptName + '/js/'
                     }
                 ]
             },
