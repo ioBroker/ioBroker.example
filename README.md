@@ -2,37 +2,59 @@
 # ioBroker.template
 =================
 
-This adapter is a template for creation of own adapter.
+This adapter is a template for the creation of an ioBroker adapter. You do not need it at least that you plan developing your own adapter.
+
+It includes both code running within iobroker and as vis widget. If you only plan to create a vis widget then you should use the [iobroker.vis-template](https://github.com/ioBroker/ioBroker.vis-template) instead.
 
 ##Steps 
-- download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.template/archive/master.zip```
+1. download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.template/archive/master.zip```
   or clone git repository ```git clone https://github.com/ioBroker/ioBroker.template.git```
 
-- download required npm packets. Write in ioBroker.template directory:
+2. download required npm packets. Write in ioBroker.template directory:
 
   ```npm install```
   
-- set name of this template. Call
+3. set name of this template. Call
   
   ```grunt rename --name=mynewname --email=email@mail.com --author="Author Name"```
   
   *mynewname* must be **lower** case and with no spaces.
+
+  If grunt is not availible, install grunt globally:
+  
+  ```npm install -g grunt-cli```
  
-- rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
+4. rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
 
-- to use this template you should copy it into *.../iobroker/node_modules* directory
+5. to use this template you should copy it into *.../iobroker/node_modules* directory
 
-- create your adapter:
+6. create your adapter:
 
-  [Adapter-Development-Documentation](https://github.com/ioBroker/ioBroker/wiki/Adapter-Development-Documentation),
+  * you might want to start with main.js (code running within iobroker) and admin/index.html (the adapter settings page).
+
+  * [Adapter-Development-Documentation](https://github.com/ioBroker/ioBroker/wiki/Adapter-Development-Documentation),
   
-  [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
-
-- change version: edit package.json and then call ```grunt p``` in your adapter directory.
+  * [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
   
-- share it with community
+  * [Write and debug vis widgets](https://github.com/ioBroker/ioBroker/wiki/How-to-debug-vis-and-to-write-own-widget-set)
+  
+  * files under the www folders are made available under http://&lt;iobrokerIP&gt;:8082/&lt;adapter-name&gt;/
+    * for this to work the iobroker.vis adapter has to be installed
+    * delete this folder if you do not plan to export any files this way
+    * call ```iobroker upload <adapter-name>``` after you change files in the www folder to get the new files uploaded to vis
+  * the widget folder contains an example of a vis widget
+    * you might want to start with *widget/<adapter-name>.html* and *widget/js/<adapter-name>.js*
+    * call ```iobroker visdebug <adapter-name>``` to enable debugging and upload widget to "vis". (This works only from V0.7.15 of js-controller)
+    * If you do not plan to export any widget then delete the whole widget folder and remove the ```"restartAdapters": ["vis"]``` statement from *io-package.json*
+
+7. change version: edit package.json and then call ```grunt p``` in your adapter directory.
+  
+8. share it with the community
 
 ## Changelog
+
+### 0.5.0
+  (vegetto) include vis widget
 
 #### 0.4.0
 * (bluefox) fix errors with grunt
