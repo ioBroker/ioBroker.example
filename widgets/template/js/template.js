@@ -1,5 +1,5 @@
 /*
-    ioBroker.vis template Widget-Set
+    ioBroker.template Widget-Set
 
     version: "0.5.0"
 
