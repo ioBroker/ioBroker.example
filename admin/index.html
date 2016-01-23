@@ -6,18 +6,6 @@
 <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 <script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
 
-
-<!-- optional: use jqGrid
-<link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/>
-<script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script>
-<script type="text/javascript" src="../../lib/js/jqGrid/i18n/grid.locale-all.js"></script>
--->
-
-<!-- optional: use multiselect
-<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/>
-<script type="text/javascript" src="../../lib/js/jquery.multiselect-1.13.min.js"></script>
--->
-
 <!-- these two file always have to be included -->
 <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 <script type="text/javascript" src="../../js/translate.js"></script>
@@ -29,7 +17,7 @@
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-        "template adapter settings": {"de": "Beispiel", "ru": "Пример"},
+        "jeelink adapter settings": {"de": "jeelink Adapter Einstellung", "ru": "Настройки jeelink Драйвера"},
         "test1":                    {"en": "Test 1", "de": "Test 1", "ru": "Тест 1"},
         "test2":                    {"en": "Test 2", "de": "Test 2", "ru": "Тест 2"},
         "on save adapter restarts with new config immediately": {
@@ -77,8 +65,25 @@
 
     <table><tr>
         <td><img src="template.png"/></td>
-        <td><h3 class="translate">template adapter settings</h3></td>
+        <td><h3 class="translate">jeelink adapter settings</h3></td>
     </tr></table>
+    
+    "serialport": "/dev/ttyUSB0",
+    "baudrate":   57600
+
+
+    <table>
+        <tr>
+            <td class="translate">Serial port</td>
+            <td><input type="text" id="serialport" class="value"/></td>
+        </tr>
+        <tr>
+            <td class="translate">Baud rate</td>
+            <td><input type="text" id="baudrate"   class="value" size="5"/></td>
+        </tr>
+        <tr>
+    </table>
+    
     <p>
         <span class="translate">test1</span> <input class="value" id="test1"/><br>
         <span class="translate">test2</span> <input class="value" id="test2"/><br>
