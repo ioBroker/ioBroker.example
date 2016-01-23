@@ -11,7 +11,7 @@
         "type":			"hardware",
         "icon":                 "template.png",
 	"extIcon":          	"https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
-	"readme":           	"https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
+	"readme":           	"https://github.com/foxthefox/ioBroker.jeelink/master/README.md",
 	"loglevel":		"debug",
 	"enable":		"true"
 
