@@ -2,6 +2,9 @@
 # ioBroker.jeelink
 =================
 
+ALPHA status
+
+
 This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
 The jeelink can be used with the preloaded software (rfmdemo).
 
