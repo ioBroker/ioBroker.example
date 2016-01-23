@@ -40,5 +40,6 @@
   "bugs": {
     "url": "https://github.com/foxthefox/ioBroker.jeelink/issues"
   },
+  "main": "jeelink.js",
   "readmeFilename": "README.md"
 }
