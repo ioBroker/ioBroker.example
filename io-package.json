@@ -7,7 +7,7 @@
         "platform":             "Javascript/Node.js",
         "mode":                 "daemon",
         "license": 	   	"MIT",
-        "keywords":		"jeelink",
+        "keywords":		["jeelink", "openenergy", "RFM"],
         "type":			"hardware",
         "icon":                 "template.png",
 	"extIcon":          	"https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
