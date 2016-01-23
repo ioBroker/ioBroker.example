@@ -3,6 +3,18 @@
 =================
 
 This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
+The jeelink can be used with the preloaded software (rfmdemo).
+
+Installation:
+
+npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
+
+Settings:
+
+
+Configuration:
+
+
 
 ## License
 The MIT License (MIT)
