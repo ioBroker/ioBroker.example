@@ -2,7 +2,7 @@
     "common": {
         "name":                 "jeelink",
         "version":              "0.0.1",
-        "title":                "Javascript/Node.js based jeelink adapter",
+        "title":                "jeelink adapter",
         "desc":                 "ioBroker jeelink Adapter",
         "platform":             "Javascript/Node.js",
         "mode":                 "daemon",
