@@ -74,6 +74,14 @@ function main() {
      *
      */
 
+
+    var options = {
+        serialport:     adapter.config.serialport || '/dev/ttyUSB0',
+        baudrate:       adapter.config.baudrate   || 57600,
+    };
+
+    rfm = new rfm(options);
+
     adapter.setObject('testVariable', {
         type: 'state',
         common: {
