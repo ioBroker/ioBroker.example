@@ -99,7 +99,11 @@ function main() {
       }
     });
 
-
+   serialPort.on("data", function (data) {
+        sys.puts("here: "+data);
+    });
+    
+    
  //   rfm = new rfm(options);
 
     adapter.setObject('testVariable', {
