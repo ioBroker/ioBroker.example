@@ -1,4 +1,4 @@
-![Logo](admin/template.png)
+![Logo](admin/jeelab_logo.png)
 # ioBroker.jeelink
 =================
 
