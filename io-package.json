@@ -9,8 +9,8 @@
         "license": 	   	"MIT",
         "keywords":		["jeelink", "openenergy", "RFM", "emonTH"],
         "type":			"hardware",
-        "icon":                 "template.png",
-	"extIcon":          	"https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/template.png",
+        "icon":                 "jeelab_logo.png",
+	"extIcon":          	"https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
 	"readme":           	"https://github.com/foxthefox/ioBroker.jeelink/master/README.md",
 	"loglevel":		"debug"
 
