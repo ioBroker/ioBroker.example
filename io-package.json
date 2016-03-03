@@ -18,104 +18,23 @@
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate":   57600,
-        "test1": true,
-        "test2": 42
+        "sensors": {
+            "19": {
+            	"room": ["Balkon"],
+                "stype":  ["emonTH"]
+            },
+            "21": {
+                "room": ["Bad unten"],
+                "ltype":  ["waterMote"]
+            },
+            "22": {
+                "room": ["Bad oben"],
+                "ltype":  ["waterMote"]
+            }
     },
     
     "objects": [
-    	        {
-            "_id": "_design/jeelink",
-            "language": "javascript",
-            "views": {
-                "listDevices": {
-                    "map": "function(doc) {\n  if (doc._id.match(/^jeelink\\.[0-9]+\\.\\*?[A-Za-z0-9_-]+(\\.[0-9]+)?$/)) {\n   emit(doc._id, {ADDRESS:(doc.native?doc.native.ADDRESS:''),VERSION:(doc.native?doc.native.VERSION:'')});\n  }\n}"
-                },
-                "paramsetDescription": {
-                    "map": "function(doc) {\n  if (doc._id.match(/^jeelink\\.meta/) && doc.meta.type === 'paramsetDescription') {\n   emit(doc._id, doc);\n  }\n}"
-                }
-            }
-
-        },
-        {
-            "_id": "jeelink.meta.roles",
-            "parent": "jeelink",
-            "type": "meta",
-            "meta": {
-                "type": "roles",
-                "adapter": "jeelink"
-            },
-            "common": {
-
-            },
-            "native": {
-                "dpNAME": {
-                    "ACTUAL_TEMPERATURE":           "value.temperature",                	
-                    "BATTERY_STATE":                "value.voltage",
-                    "TEMPERATURE":                  "value.temperature",
-                    "HUMIDITY":                     "value.humidity",
-                    "COLDWATER1":                   "value.cw1",
-                    "COLDWATER2":                   "value.cw2",
-                    "WARMWATER1":                   "value.ww1",
-                    "WARMWATER2":           	    "value.ww2"
-                }
-            }
-        },
-        {
-            "_id": "jeelink.VALUES.emonTH.1",
-            "type": "meta",
-            "meta": {
-                "adapter": "jeelink",
-                "type": "paramsetDescription"
-            },
-            "common": {},
-            "native": {
-                "ACTUAL_TEMPERATURE": {
-                    "CONTROL": "HEATING_CONTROL.TEMPERATURE",
-                    "DEFAULT": 0,
-                    "FLAGS": 1,
-                    "ID": "ACTUAL_TEMPERATURE",
-                    "MAX": 50,
-                    "MIN": -50,
-                    "TYPE": "FLOAT",
-                    "UNIT": "°C"
-                },
-                "BATTERY_STATE": {
-                    "CONTROL": "NONE",
-                    "DEFAULT": 0,
-                    "FLAGS": 1,
-                    "ID": "BATTERY_STATE",
-                    "MAX": 4.6,
-                    "MIN": 1.5,
-                    "TYPE": "FLOAT",
-                    "UNIT": "V"
-                },
-                "HUMIDITY": {
-                    "CONTROL": "HEATING_CONTROL.HUMIDITY",
-                    "DEFAULT": 0,
-                    "FLAGS": 1,
-                    "ID": "HUMIDITY",
-                    "MAX": 99.9,
-                    "MIN": 0.1,
-                    "TYPE": "FLOAT",
-                    "UNIT": "%"
-                }
-
-            }
-        }
-
-    	
     	],
     "instanceObjects": [
-        {
-            "_id": "updated",
-            "type": "state",
-            "common": {
-                "name": "Some new devices added",
-                "type": "boolean",
-                "read":  true,
-                "write": true
-
-            }
-        }    	
     	]
 }
