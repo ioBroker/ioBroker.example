@@ -60,7 +60,6 @@ function main() {
 
     var obj = adapter.config.sensors;
     for (var anz in obj){
-        adapter.log.info("anz : " + anz);
         if(obj[anz].stype=="emonTH") {
             adapter.setObject('emonTH_' + anz, {
                 type: 'channel',
