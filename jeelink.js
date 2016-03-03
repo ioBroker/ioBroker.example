@@ -61,7 +61,7 @@ function main() {
     var obj = adapter.config.sensors;
     for (var anz in obj){
         adapter.log.info("anz : " + anz);
-        if(obj.stype==="emonTH") {
+        if(obj[anz].stype=="emonTH") {
             adapter.setObject('emonTH_' + anz, {
                 type: 'channel',
                 common: {
@@ -119,7 +119,7 @@ function main() {
                 },
                 native: {}
             });
-        }else if(obj.stype==="waterMote"){
+        }else if(obj[anz].stype=="waterMote"){
             adapter.setObject('waterMote_' + anz, {
                 type: 'channel',
                 common: {
@@ -226,7 +226,7 @@ function main() {
 
                 var tmp = data.split(' ');
                 if(tmp[0]==='OK'){
-                    if(tmp[2]==='19'){
+                    if(tmp[2]=='19'){
                         //we are expecting data in form \"OK nodeid data1 data2 etc
                         var tmpp=tmp.splice(3,8);
                         adapter.log.info('splice:'+tmpp);
@@ -238,9 +238,9 @@ function main() {
                         adapter.log.info('Voltage: ' + (buf.readInt16LE(6))/10);
                         adapter.setState('emonTH_'+ id +'.batt', {val: (buf.readInt16LE(6))/10, ack: true});
                     }
-                    else if(tmp[2]==='21' || tmp[2]==='22'){
+                    else if(tmp[2]=='21' || tmp[2]=='22'){
                         //we are expecting data in form \"OK nodeid data1 data2 etc
-                        var tmpp=tmp.splice(3,8);
+                        var tmpp=tmp.splice(3,12);
                         adapter.log.info('splice:'+tmpp);
                         var buf = new Buffer(tmpp);
                         adapter.log.info('cw_mom:'+ (buf.readInt16LE(0))/10);
