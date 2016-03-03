@@ -232,11 +232,11 @@ function main() {
                         adapter.log.info('splice:'+tmpp);
                         var buf = new Buffer(tmpp);
                         adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
-                        adapter.setState('emonTH_'+ id +'.temp', {val: (buf.readInt16LE(0))/10, ack: true});
+                        adapter.setState('emonTH_'+ tmp[2] +'.temp', {val: (buf.readInt16LE(0))/10, ack: true});
                         adapter.log.info('Humidty: ' + (buf.readInt16LE(4))/10);
-                        adapter.setState('emonTH_'+ id +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
+                        adapter.setState('emonTH_'+ tmp[2] +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
                         adapter.log.info('Voltage: ' + (buf.readInt16LE(6))/10);
-                        adapter.setState('emonTH_'+ id +'.batt', {val: (buf.readInt16LE(6))/10, ack: true});
+                        adapter.setState('emonTH_'+ tmp[2] +'.batt', {val: (buf.readInt16LE(6))/10, ack: true});
                     }
                     else if(tmp[2]=='21' || tmp[2]=='22'){
                         //we are expecting data in form \"OK nodeid data1 data2 etc
@@ -244,15 +244,15 @@ function main() {
                         adapter.log.info('splice:'+tmpp);
                         var buf = new Buffer(tmpp);
                         adapter.log.info('cw_mom:'+ (buf.readInt16LE(0))/10);
-                        adapter.setState('waterMote_'+ id +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
+                        adapter.setState('waterMote_'+ tmp[2] +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
                         adapter.log.info('cw counter: ' + (buf.readInt16LE(4))/10);
-                        adapter.setState('waterMote_'+ id +'.cw_cum', {val: (buf.readInt16LE(4))/10, ack: true});
+                        adapter.setState('waterMote_'+ tmp[2] +'.cw_cum', {val: (buf.readInt16LE(4))/10, ack: true});
                         adapter.log.info('ww_mom:'+ (buf.readInt16LE(6))/10);
-                        adapter.setState('waterMote_'+ id +'.ww_mom', {val: (buf.readInt16LE(6))/10, ack: true});
+                        adapter.setState('waterMote_'+ tmp[2] +'.ww_mom', {val: (buf.readInt16LE(6))/10, ack: true});
                         adapter.log.info('ww counter: ' + (buf.readInt16LE(8))/10);
-                        adapter.setState('waterMote_'+ id +'.ww_cum', {val: (buf.readInt16LE(8))/10, ack: true});
+                        adapter.setState('waterMote_'+ tmp[2] +'.ww_cum', {val: (buf.readInt16LE(8))/10, ack: true});
                         adapter.log.info('Voltage: ' + (buf.readInt16LE(10))/10);
-                        adapter.setState('waterMote_'+ id +'.batt', {val: (buf.readInt16LE(10))/10, ack: true});
+                        adapter.setState('waterMote_'+ tmp[2] +'.batt', {val: (buf.readInt16LE(10))/10, ack: true});
                     }
                 }
             });
