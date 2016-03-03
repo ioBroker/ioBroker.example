@@ -254,7 +254,6 @@ function main() {
                         adapter.log.info('Voltage: ' + (buf.readInt16LE(10))/10);
                         adapter.setState('waterMote_'+ id +'.batt', {val: (buf.readInt16LE(10))/10, ack: true});
                     }
-                    }
                 }
             });
         }
