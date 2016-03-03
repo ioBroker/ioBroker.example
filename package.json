@@ -20,7 +20,7 @@
     "url": "https://github.com/foxthefox/ioBroker.jeelink"
   },
   "dependencies": {
-    "serialport": "^2.0.3"
+    "serialport": "2.0.3"
   },
   "devDependencies": {
       "grunt": "^0.4.5",
