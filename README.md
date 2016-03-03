@@ -10,14 +10,14 @@ Installation:
 npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
 
 Settings:
-USB port of JeelinkAdapter usually /dev/ttyACME
-Serial Speed usually 57600 Baud
+- USB port of JeelinkAdapter usually /dev/ttyACME
+- Serial Speed usually 57600 Baud
 
 Configuration:
-in io-package.json
-define sensor adress
-define the room
-deine the type of sensor
+to be done in io-package.json
+- define sensor address
+- define the room
+- define the type of sensor
 
 TODO:
 
