@@ -35,7 +35,7 @@
                 "room": [
                     "Bad unten"
                 ],
-                "ltype": [
+                "stype": [
                     "waterMote"
                 ]
             },
@@ -43,7 +43,7 @@
                 "room": [
                     "Bad oben"
                 ],
-                "ltype": [
+                "stype": [
                     "waterMote"
                 ]
             }
