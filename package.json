@@ -1,7 +1,7 @@
 {
-  "name": "iobroker.template",
+  "name": "iobroker.xs1",
   "version": "0.5.0",
-  "description": "ioBroker template Adapter",
+  "description": "ioBroker EZcontrol XS1 Adapter",
   "author": {
     "name": "@@Author@@",
     "email": "@@email@@"
@@ -12,17 +12,18 @@
       "email": "@@email@@"
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.template",
+  "homepage": "https://github.com/frankjoke/ioBroker.xs1",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "template",
+    "XS1",
+    "EZcontrol",
     "Smart Home",
     "home automation"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.template"
+    "url": "https://github.com/frankjoke/ioBroker.xs1"
   },
   "dependencies": {
   },

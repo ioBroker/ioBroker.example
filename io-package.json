@@ -1,27 +1,27 @@
 {
     "common": {
-        "name":                     "template",
-        "version":                  "0.5.0",
+        "name":                     "XS1",
+        "version":                  "0.1.0",
         "title":                    "Javascript/Node.js based template adapter",
         "desc":                     {
- 			             "en": "ioBroker template Adapter",
- 			             "de": "ioBroker Template Adapter",
- 			             "ru": "ioBroker Template драйвер как образец"
+ 			             "en": "ioBroker EZcontrol XS1 Adapter",
+ 			             "de": "ioBroker EZcontrol XS1 Adapter",
+ 			             "ru": "ioBroker EZcontrol XS1 драйвер как образец"
 	},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
-        "icon":                     "template.png",
+        "icon":                     "EZcontrol.png",
         "enabled":                  true,
-	"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
-	"keywords":                 ["template", "vis", "GUI", "graphical", "scada"],
-        "readme":                   "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
+	"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.xs1/master/admin/template.png",
+	"keywords":                 ["EZcontrol","XS1", "vis", "GUI", "graphical", "scada"],
+        "readme":                   "https://github.com/ioBroker/ioBroker.xs1/blob/master/README.md",
 	"loglevel":                 "info",
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
     },
     "native": {
-        "test1": true,
-        "test2": 42
+//        "test1": true,
+//        "test2": 42
     },
     "objects": [
 
