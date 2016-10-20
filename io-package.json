@@ -2,20 +2,32 @@
     "common": {
         "name":                     "template",
         "version":                  "0.5.0",
+	    "news": {
+			"0.5.0": {
+			  "en": "beta version",
+			  "de": "Betaversion",
+			  "ru": "Бета версия"
+			},
+			"0.0.1": {
+			  "en": "initial adapter",
+			  "de": "Initiale Version",
+			  "ru": "Первоначальный адаптер"
+			}
+		},
         "title":                    "Javascript/Node.js based template adapter",
         "desc":                     {
- 			             "en": "ioBroker template Adapter",
- 			             "de": "ioBroker Template Adapter",
- 			             "ru": "ioBroker Template драйвер как образец"
-	},
+				 "en": "ioBroker template Adapter",
+				 "de": "ioBroker Template Adapter",
+				 "ru": "ioBroker Template драйвер как образец"
+		},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
         "icon":                     "template.png",
         "enabled":                  true,
-	"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
-	"keywords":                 ["template", "vis", "GUI", "graphical", "scada"],
+		"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
+		"keywords":                 ["template", "vis", "GUI", "graphical", "scada"],
         "readme":                   "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
-	"loglevel":                 "info",
+		"loglevel":                 "info",
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
     },
