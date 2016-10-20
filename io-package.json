@@ -2,6 +2,18 @@
     "common": {
         "name":                     "template",
         "version":                  "0.5.0",
+	    "news": {
+        "0.5.0": {
+          "en": "beta version",
+          "de": "Betaversion",
+          "ru": "Бета версия"
+        },
+	"0.0.1": {
+	  "en": "initial adapter",
+	  "de": "Anfangsadapter",
+	  "ru": "Первоначальный адаптер"
+	}
+	},
         "title":                    "Javascript/Node.js based template adapter",
         "desc":                     {
  			             "en": "ioBroker template Adapter",
