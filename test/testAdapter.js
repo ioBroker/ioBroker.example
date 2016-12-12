@@ -98,6 +98,9 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
     });
 
+/*
+    ENABLE THIS WHEN ADAPTER RUNS IN DEAMON MODE TO CHECK THAT IT HAS STARTED SUCCESSFULLY
+*/
     it('Test ' + adapterShortName + ' adapter: Check if adapter started', function (done) {
         this.timeout(60000);
         checkConnectionOfAdapter(function (res) {
@@ -115,73 +118,16 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                 });
         });
     });
+/**/
 
-    // We expect ERROR as last Notify necause no nut is running there
-    it('Test ' + adapterShortName + ' adapter: test initial state as ERROR', function (done) {
-        this.timeout(25000);
-
-        setTimeout(function() {
-            states.getState('nut.0.status.last_notify', function (err, state) {
-                if (err) console.error(err);
-                expect(state).to.exist;
-                if (!state) {
-                    console.error('state "status.last_notify" not set');
-                }
-                else {
-                    console.log('check status.last_notify ... ' + state.val);
-                    expect(state.val).to.exist;
-                    expect(state.val).to.be.equal('ERROR');
-                }
-                states.getState('nut.0.status.severity', function (err, state) {
-                    if (err) console.error(err);
-                    expect(state).to.exist;
-                    if (!state) {
-                        console.error('state "status.severity" not set');
-                    }
-                    else {
-                        console.log('check status.severity ... ' + state.val);
-                    }
-                    expect(state.val).to.exist;
-                    expect(state.val).to.be.equal(4);
-                    done();
-                });
-            });
-        }, 10000);
+/*
+    PUT YOUR OWN TESTS HERE USING
+    it('Testname', function ( done) {
+        ...
     });
 
-    it('Test ' + adapterShortName + ' adapter: send notify Message and receive answer', function (done) {
-        this.timeout(25000);
-        var now = new Date().getTime();
-
-        console.log('send notify with "COMMBAD" to adapter ...');
-        sendTo('nut.0', 'notify', {notifytype: 'COMMBAD', upsname: 'nutName@127.0.0.1'});
-        setTimeout(function() {
-            states.getState('nut.0.status.last_notify', function (err, state) {
-                if (err) console.error(err);
-                expect(state).to.exist;
-                if (!state) {
-                    console.error('state "status.last_notify" not set');
-                }
-                else {
-                    console.log('check status.last_notify ... ' + state.val);
-                }
-                expect(state.val).to.be.equal('COMMBAD');
-                states.getState('nut.0.status.severity', function (err, state) {
-                    if (err) console.error(err);
-                    expect(state).to.exist;
-                    if (!state) {
-                        console.error('state "status.severity" not set');
-                    }
-                    else {
-                        console.log('check status.severity ... ' + state.val);
-                    }
-                    expect(state.val).to.exist;
-                    expect(state.val).to.be.equal(4);
-                    done();
-                });
-            });
-        }, 2000);
-    });
+    You can also use "sendTo" method to send messages to the started adapter
+*/
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
