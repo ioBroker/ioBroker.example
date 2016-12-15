@@ -83,7 +83,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            config.native.fileName   = __dirname + '/lib/commands.txt';
+            config.native.serialport = '/dev/ttyS';
 
             setup.setAdapterConfig(config.common, config.native);
 

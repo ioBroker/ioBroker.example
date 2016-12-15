@@ -49,7 +49,7 @@ adapter.on('stateChange', function (id, state) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
-        adapter.log.info('entered ready');
+    adapter.log.info('entered ready');
     main();
 });
 
