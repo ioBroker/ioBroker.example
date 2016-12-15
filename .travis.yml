@@ -11,8 +11,7 @@ node_js:
 
 matrix:
   allow_failures:
-    - os: osx
-      node_js: "6"
+    - node_js: "6"
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
