@@ -13,6 +13,10 @@ platform:
   - x86
   - x64
 
+matrix:
+  allow_failures:
+    - nodejs_version: 6
+
 clone_folder: c:\projects\%APPVEYOR_PROJECT_NAME%
 # Install scripts. (runs after repo cloning)
 install:
