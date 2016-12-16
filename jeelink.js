@@ -4,11 +4,7 @@
 
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort; // localize object constructor
-var sp = new SerialPort("/dev/ttyUSB0", {
-    baudrate:57600,
-    parser: serialport.parsers.readline('\r\n')
-});
-
+var sp = null;
 
 // you have to require the utils module and call adapter function
 var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
@@ -49,7 +45,7 @@ adapter.on('stateChange', function (id, state) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
-        adapter.log.info('entered ready');
+    adapter.log.info('entered ready');
     main();
 });
 
@@ -210,11 +206,10 @@ function main() {
     }
 
     var options = {
-        serialport:     adapter.config.serialport || '/dev/ttyUSB0',
-        baudrate:       adapter.config.baudrate   || 57600,
+        baudrate:   adapter.config.baudrate   || 57600,
+        parser:     serialport.parsers.readline('\r\n')
     };
-
-    sp.open(function (error) {
+    sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
         } else {
