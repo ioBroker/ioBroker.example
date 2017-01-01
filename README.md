@@ -5,25 +5,25 @@
 This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
 The jeelink can be used with the preloaded software (rfmdemo).
 
-Installation:
+##Installation:
 
 npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
 
-Settings:
+##Settings:
 - USB port of JeelinkAdapter usually /dev/ttyACME
 - Serial Speed usually 57600 Baud
 
-Configuration:
+##Configuration:
 to be done in io-package.json
 - define sensor address
 - define the room
 - define the type of sensor
 
-TODO:
+##TODO:
+other sensor types
 
-
-Changelog:
-0.0.1
+##Changelog:
+###0.0.1
 working with 3 sensors
 
 
