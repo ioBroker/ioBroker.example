@@ -45,8 +45,7 @@
   },
   "main": "jeelink.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha test/testAdapter.js && node node_modules/mocha/bin/mocha test/testPackageFiles.js"
-    }
+    "test": "node node_modules/mocha/bin/mocha"
   },
   "readmeFilename": "README.md"
 }
