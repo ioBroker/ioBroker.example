@@ -12,7 +12,7 @@ The jeelink can be used with the preloaded software (rfmdemo).
 
 ##Installation:
 released version
-* npm install iobroker.jeelink
+* npm install iobroker.jeelink (on raspberry it might help to use npm install --unsafe-perm iobroker.jeelink, because serialport package must be built on unsupported arm-hw)
 
 or the actual version from github
 * npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
