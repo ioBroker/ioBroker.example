@@ -6,6 +6,11 @@
 <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 <script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/>
+<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/>
+<script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jqGrid/grid.locale-all.js"></script>
+
 <!-- these two file always have to be included -->
 <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 <script type="text/javascript" src="../../js/translate.js"></script>
@@ -14,34 +19,107 @@
 
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
+        var sensors = [];
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-        "jeelink adapter settings": {"de": "jeelink Adapter Einstellung", "ru": "Настройки jeelink Драйвера"},
-
+        "jeelink adapter settings": {
+            "en": "jeelink adapter settings",       
+            "de": "jeelink Adapter Einstellung",   
+            "ru": "Настройки jeelink Драйвера"
+            },
+        "name":{
+            "en": "Name",                          
+            "de": "Name",                           
+            "ru": "Имя сенсора"
+            },
+        "sid":{
+            "en": "Sensor ID",                     
+            "de": "Sensor ID",                      
+            "ru": "ID сенсора"
+            },
+        "stype":{
+            "en": "Sensor type",                   
+            "de": "Sensortyp",                      
+            "ru": "Typ сенсора"
+            },
+        "jeelink USB adapter settings": {
+            "en": "jeelink USB adapter settings",       
+            "de": "jeelink USB Einstellung",   
+            "ru": "Настройки jeelink USB"
+            },
+        "serialport":{
+            "en": "serial port",
+            "de": "USB port",                       
+            "ru": "USB port"
+            },
+        "baudrate":{
+            "en": "baudrate",                       
+            "de": "Baudrate",                       
+            "ru": "baudrate"
+            },
+        "Sensor configuration":     {
+            "en": "Sensor configuration",          
+            "de": "Sensorkonfiguration",            
+            "ru": "config сенсора"
+            },
         "on save adapter restarts with new config immediately": {
+            "en": "on save adapter restarts with new config immediately",
             "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
             "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
         }
     };
 
+    var sensorTypes = [
+        'emonTH',
+        'emonWater',
+        'LaCrosseTH29'
+        ];
+
+    function setValue(id, value, onChange) {
+        // example: select elements with id=key and class=value and insert value
+        if ($('#' + id + '.value').attr('type') == 'checkbox') {
+            $('#' + id + '.value').prop('checked', value).change(function() {
+                onChange();
+            });
+        } else {
+            $('#' + id + '.value').val(value).change(function() {
+                onChange();
+            }).keyup(function() {
+                // Chack that only numbers entered
+                if ($(this).hasClass('number')) {
+                    var val = $(this).val();
+                    if (val) {
+                        var newVal = '';
+                        for (var i = 0; i < val.length; i++) {
+                            if (val[i] >= '0' && val[i] <= '9') {
+                                newVal += val[i];
+                            }
+                        }
+
+                        if (val != newVal) $(this).val(newVal);
+                    }
+                }
+
+                onChange();
+            });
+        }
+    }
+
+
+
     // the function loadSettings has to exist ...
     function load(settings, onChange) {
-        // example: select elements with id=key and class=value and insert value
-        for (var key in settings) {
-            // example: select elements with id=key and class=value and insert value
-            if ($('#' + key + '.value').attr('type') == 'checkbox') {
-                $('#' + key + '.value').prop('checked', settings[key]).change(function () {
-					onChange();
-				});
-            } else {
-                $('#' + key + '.value').val(settings[key]).change(function () {
-					onChange();
-				}).keyup(function () {
-					$(this).trigger('change');
-				});
+            if (!settings) return;
+
+            sensors = settings.sensors || [];
+
+            for (var key in settings) {
+                setValue(key, settings[key], onChange);
             }
-        }
+
+            editTable('sensors', ['sid', 'stype', 'name'], sensors, 470);
+
         // Signal to admin, that no changes yet
         onChange(false);
     }
@@ -53,38 +131,49 @@
         var obj = {};
         $('.value').each(function () {
             var $this = $(this);
-            obj[$this.attr('id')] = $this.val();
+            if ($this.attr('type') === 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
         });
+
+        // Get edited table
+        obj.sensors = getTableResult('sensors', ['sid', 'stype', 'name']);
+        
         callback(obj);
     }
+
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->
 <div id="adapter-container">
 
-    <table><tr>
-        <td><img src="template.png"/></td>
-        <td><h3 class="translate">jeelink adapter settings</h3></td>
-    </tr></table>
+    <table>
+        <tr>
+            <td><img src="jeelab_logo.png"/></td>
+            <td><h3 class="translate">jeelink adapter Settings</h3></td>
+        </tr>
+    </table>
     
-    "serialport": "/dev/ttyUSB0 or /dev/ttyACME0",
-    "baudrate":   57600
-
-
+    <h4 class="translate">jeelink USB adapter settings</h4>
     <table>
         <tr>
             <td class="translate">Serial port</td>
-            <td><input type="text" id="serialport" class="value"/></td>
+            <td><input id="serialport" class="value"/></td><td><p>/dev/ttyUSB0 or /dev/ttyACME0</p></td>
         </tr>
         <tr>
             <td class="translate">Baud rate</td>
-            <td><input type="text" id="baudrate"   class="value" size="5"/></td>
+            <td><input id="baudrate"   class="value number" size="5"/></td> <td><p>usually  57600</p></td>
         </tr>
         <tr>
     </table>
     
 
     <p class="translate">on save adapter restarts with new config immediately</p>
+
+    <h4 class="translate">Sensor configuration</h4>
+    <table id="sensors"></table><div id="pager-sensors"></div>
 
 </div>
 
