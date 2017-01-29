@@ -63,10 +63,10 @@ adapter.on('ready', function () {
 
 
 function defineemonWater(id){
-    adapter.setObject('waterMote_' + id, {
+    adapter.setObject('emonWater_' + id, {
         type: 'channel',
         common: {
-            name: 'waterMote ' + id,
+            name: 'emonWater ' + id,
             role: 'sensor'
         },
         native: {
@@ -75,7 +75,7 @@ function defineemonWater(id){
     });
     adapter.log.info('RFM12B setting up object = emonWater' + id);
 
-    adapter.setObject('waterMote_' + id + '.cw_mom', {
+    adapter.setObject('emonWater_' + id + '.cw_mom', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -90,7 +90,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('waterMote_' + id + '.cw_cum', {
+    adapter.setObject('emonWater_' + id + '.cw_cum', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -105,7 +105,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('waterMote_' + id + '.ww_mom', {
+    adapter.setObject('emonWater_' + id + '.ww_mom', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -120,7 +120,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('waterMote_' + id + '.ww_cum', {
+    adapter.setObject('emonWater_' + id + '.ww_cum', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -135,7 +135,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('waterMote_' + id + '.batt', {
+    adapter.setObject('emonWater_' + id + '.batt', {
         type: 'state',
         common: {
             "name": "Battery",
@@ -154,22 +154,22 @@ function defineemonWater(id){
 
 
 
-function logemonTH(data){
+function logemonWater(data){
     var tmp = data.split(' ');
     //we are expecting data in form \"OK nodeid data1 data2 etc
     var tmpp=tmp.splice(3,12);
     adapter.log.info('splice:'+tmpp);
     var buf = new Buffer(tmpp);
     adapter.log.info('cw_mom:'+ (buf.readInt16LE(0))/10);
-    adapter.setState('waterMote_'+ tmp[2] +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
+    adapter.setState('emonWater_'+ tmp[2] +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
     adapter.log.info('cw counter: ' + (buf.readInt16LE(4))/10);
-    adapter.setState('waterMote_'+ tmp[2] +'.cw_cum', {val: (buf.readInt16LE(4))/10, ack: true});
+    adapter.setState('emonWater_'+ tmp[2] +'.cw_cum', {val: (buf.readInt16LE(4))/10, ack: true});
     adapter.log.info('ww_mom:'+ (buf.readInt16LE(6))/10);
-    adapter.setState('waterMote_'+ tmp[2] +'.ww_mom', {val: (buf.readInt16LE(6))/10, ack: true});
+    adapter.setState('emonWater_'+ tmp[2] +'.ww_mom', {val: (buf.readInt16LE(6))/10, ack: true});
     adapter.log.info('ww counter: ' + (buf.readInt16LE(8))/10);
-    adapter.setState('waterMote_'+ tmp[2] +'.ww_cum', {val: (buf.readInt16LE(8))/10, ack: true});
+    adapter.setState('emonWater_'+ tmp[2] +'.ww_cum', {val: (buf.readInt16LE(8))/10, ack: true});
     adapter.log.info('Voltage: ' + (buf.readInt16LE(10))/10);
-    adapter.setState('waterMote_'+ tmp[2] +'.batt', {val: (buf.readInt16LE(10))/10, ack: true});
+    adapter.setState('emonWater_'+ tmp[2] +'.batt', {val: (buf.readInt16LE(10))/10, ack: true});
 }      
 
 
