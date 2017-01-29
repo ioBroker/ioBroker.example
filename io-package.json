@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "title": "jeelink adapter",
         "desc": "ioBroker jeelink Adapter",
         "platform": "Javascript/Node.js",
@@ -22,35 +22,21 @@
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate": 57600,
-        "sensors": {
-            "19": {
-                "room": [
-                    "Balkon"
-                ],
-                "stype": [
-                    "emonTH"
-                ]
-            },
-            "21": {
-                "room": [
-                    "Bad unten"
-                ],
-                "stype": [
-                    "waterMote"
-                ]
-            },
-            "22": {
-                "room": [
-                    "Bad oben"
-                ],
-                "stype": [
-                    "waterMote"
-                ]
-            }
+        "sensors": [
+                {
+                    "sid": "19", 
+                    "stype": "emonTH",
+                    "name": "Balkon"
+                },
+                {
+                    "sid": "21", 
+                    "stype": "emonWater",
+                    "name": "Bad oben"
+                }
+            ]
         },
-        "objects": [
-        ],
-        "instanceObjects": [
-        ]
-    }
+    "objects": [
+    ],
+    "instanceObjects": [
+    ]
 }
