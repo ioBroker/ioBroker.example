@@ -154,7 +154,8 @@ function defineemonWater(id){
 
 
 
-function logemonWater(data, obj){
+function logemonWater(data){
+    var obj = adapter.config.sensors;
     var tmp = data.split(' ');
     //we are expecting data in form \"OK nodeid data1 data2 etc
     var tmpp=tmp.splice(3,12);
@@ -252,7 +253,8 @@ function defineemonTH(id){
     });
 }
 
-function logemonTH(data, obj){
+function logemonTH(data){
+    var obj = adapter.config.sensors;
     var tmp = data.split(' ');
     if(tmp[0]==='OK'){
         //we are expecting data in form \"OK nodeid data1 data2 etc
@@ -354,7 +356,8 @@ function defineLaCrosseDTH(id){
 }
 
 
-function logLaCrosseDTH(data, obj){
+function logLaCrosseDTH(data){
+    var obj = adapter.config.sensors;
     var tmp = data.split(' ');
     if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
         if(tmp[1]=='9'){                    // Für jeden Datensatz mit dem fixen Eintrag 9
@@ -420,21 +423,11 @@ function main() {
                 var tmp = data.split(' ');
                 if(tmp[0]==='OK'){
                     if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
-                       logLaCrosseDTH(data, obj);       //hier muss später noch mehr unterschieden werden, wenn andere Sensoren kommen           
+                       logLaCrosseDTH(data);                  
                     }
-                    else {  // Auswertung der Sendeadresse
-                        var arrayind=obj.sid.indexOf(tmp[2]);
-                        if (arrayind === -1) {
-                            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter config');
-                        }
-                        else {
-                            if (obj.stype[arrayind] === 'emonTH'){
-                            logemonTH(data, obj);
-                            }
-                            else if (obj.stype[arrayind] === 'emonWater'){
-                            logemonWater(data, obj);
-                            }
-                        }      
+                    else {  // da kein Zugriff auf adpter.config wir auf beide log der Datenstrom geschickt
+                            logemonTH(data);
+                            logemonWater(data);
                     }
                 }
 
