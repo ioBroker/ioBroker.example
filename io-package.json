@@ -24,7 +24,7 @@
         "baudrate": 57600,
          "sensors": [
                 {
-                    "sid": "19",
+                    "sid": "18",
                     "usid": "1",
                     "stype": "emonTH",
                     "name": "Balkon"
