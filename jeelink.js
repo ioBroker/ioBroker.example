@@ -51,7 +51,7 @@ adapter.on('ready', function () {
 
 function getConfigObjects(Obj, where, what){
     var foundObjects = [];
-    for (prop in Obj){
+    for (var prop in Obj){
         if (Obj[prop][where] === what){
             foundObjects.push(Obj[prop]);
         }
@@ -173,7 +173,7 @@ function logemonWater(data){
         if (array === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
         }
-        else if (array.stype !== 'emonTH'){
+        else if (array.stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
         else{
