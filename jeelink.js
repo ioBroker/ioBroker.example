@@ -173,7 +173,7 @@ function logemonWater(data){
         if (array === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
         }
-        else if (array.stype !== 'emonWater'){
+        else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
         else{
@@ -182,11 +182,11 @@ function logemonWater(data){
             adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
             adapter.log.info('ww counter: ' + (buf.readInt16LE(6))/10);
             adapter.log.info('Voltage: ' +    (buf.readInt16LE(8))/10);
-            adapter.setState('emonWater_'+ array.usid +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
-            adapter.setState('emonWater_'+ array.usid +'.cw_cum', {val: (buf.readInt16LE(2))/10, ack: true});
-            adapter.setState('emonWater_'+ array.usid +'.ww_mom', {val: (buf.readInt16LE(4))/10, ack: true});
-            adapter.setState('emonWater_'+ array.usid +'.ww_cum', {val: (buf.readInt16LE(6))/10, ack: true});
-            adapter.setState('emonWater_'+ array.usid +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.cw_cum', {val: (buf.readInt16LE(2))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.ww_mom', {val: (buf.readInt16LE(4))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.ww_cum', {val: (buf.readInt16LE(6))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
         }
     }
 }      
@@ -275,16 +275,16 @@ function logemonTH(data){
         if (array === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
         }
-        else if (array.stype !== 'emonTH'){
+        else if (array[0].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
         else{
             adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
             adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
             adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
-            adapter.setState('emonTH_'+ array.usid +'.temp',  {val: (buf.readInt16LE(0))/10, ack: true});
-            adapter.setState('emonTH_'+ array.usid +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
-            adapter.setState('emonTH_'+ array.usid +'.batt',  {val: (buf.readInt16LE(6))/10, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.temp',  {val: (buf.readInt16LE(0))/10, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.batt',  {val: (buf.readInt16LE(6))/10, ack: true});
         }
     }
 }
@@ -381,7 +381,7 @@ function logLaCrosseDTH(data){
             if (array === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
             }
-            else if (array.stype !==  'LaCrosseDTH'){
+            else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
             else{           
@@ -393,10 +393,10 @@ function logLaCrosseDTH(data){
                 adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(4) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosse_'+ array.usid +'.lowBatt', {val: ((buf.readIntLE(4) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array.usid +'.newBatt', {val: ((buf.readIntLE(1) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array.usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ array.usid +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(4) & 0x80) >> 7), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(1) & 0x80) >> 7), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
             }
         } 
     }
