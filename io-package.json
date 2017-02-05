@@ -22,15 +22,17 @@
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate": 57600,
-        "sensors": [
+         "sensors": [
                 {
-                    "sid": "19", 
+                    "sid": "18",
+                    "usid": "1",
                     "stype": "emonTH",
                     "name": "Balkon"
                 },
                 {
-                    "sid": "21", 
-                    "stype": "emonWater",
+                    "sid": "55",
+                    "usid": "2",
+                    "stype": "LaCrosseDTH",
                     "name": "Bad oben"
                 }
             ]
