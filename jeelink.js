@@ -158,25 +158,27 @@ function logemonWater(data){
     var obj = adapter.config.sensors;
     var tmp = data.split(' ');
     //we are expecting data in form \"OK nodeid data1 data2 etc
-    var tmpp=tmp.splice(3,12);
-    adapter.log.info('splice:'+tmpp);
-    var buf = new Buffer(tmpp);
-    adapter.log.info('cw_mom:'+ (buf.readInt16LE(0))/10);
-    adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
-    adapter.log.info('ww_mom:'+ (buf.readInt16LE(4))/10);
-    adapter.log.info('ww counter: ' + (buf.readInt16LE(6))/10);
-    adapter.log.info('Voltage: ' + (buf.readInt16LE(8))/10);
-    var arrayind=obj.sid.indexOf(tmp[2]);
-    if (arrayind === -1) {
-        adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter');
-    }
-    else{
-        var id=obj.usid[arrayind];
-        adapter.setState('emonWater_'+ id +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
-        adapter.setState('emonWater_'+ id +'.cw_cum', {val: (buf.readInt16LE(2))/10, ack: true});
-        adapter.setState('emonWater_'+ id +'.ww_mom', {val: (buf.readInt16LE(4))/10, ack: true});
-        adapter.setState('emonWater_'+ id +'.ww_cum', {val: (buf.readInt16LE(6))/10, ack: true});
-        adapter.setState('emonWater_'+ id +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
+    if(tmp[0]==='OK'){
+        var tmpp=tmp.splice(3,12);
+        adapter.log.info('splice:' + tmpp);
+        var buf = new Buffer(tmpp);
+        var arrayind=obj.indexOf(tmp[2]);
+        if (arrayind === -1) {
+            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
+        }
+        else{ 
+            adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
+            adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
+            adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
+            adapter.log.info('ww counter: ' + (buf.readInt16LE(6))/10);
+            adapter.log.info('Voltage: ' +    (buf.readInt16LE(8))/10);
+            var id=obj[arrayind].usid;
+            adapter.setState('emonWater_'+ id +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
+            adapter.setState('emonWater_'+ id +'.cw_cum', {val: (buf.readInt16LE(2))/10, ack: true});
+            adapter.setState('emonWater_'+ id +'.ww_mom', {val: (buf.readInt16LE(4))/10, ack: true});
+            adapter.setState('emonWater_'+ id +'.ww_cum', {val: (buf.readInt16LE(6))/10, ack: true});
+            adapter.setState('emonWater_'+ id +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
+        }
     }
 }      
 
@@ -256,26 +258,27 @@ function defineemonTH(id){
 function logemonTH(data){
     var obj = adapter.config.sensors;
     var tmp = data.split(' ');
+    //we are expecting data in form \"OK nodeid data1 data2 etc
     if(tmp[0]==='OK'){
-        //we are expecting data in form \"OK nodeid data1 data2 etc
         var tmpp=tmp.splice(3,8);
         adapter.log.info('splice:' + tmpp);
         var buf = new Buffer(tmpp);
-        adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
-        adapter.log.info('Humidty: ' + (buf.readInt16LE(4))/10);
-        adapter.log.info('Voltage: ' + (buf.readInt16LE(6))/10);
-        var arrayind=obj.sid.indexOf(tmp[2]);
+        var arrayind=obj.indexOf(tmp[2]);
         if (arrayind === -1) {
-            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter');
+            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
-        else{
-            var id=obj.usid[arrayind];
-            adapter.setState('emonTH_'+ id +'.temp', {val: (buf.readInt16LE(0))/10, ack: true});
+        else{  
+            adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
+            adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
+            adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
+            var id=obj[arrayind].usid;
+            adapter.setState('emonTH_'+ id +'.temp',  {val: (buf.readInt16LE(0))/10, ack: true});
             adapter.setState('emonTH_'+ id +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
-            adapter.setState('emonTH_'+ id +'.batt', {val: (buf.readInt16LE(6))/10, ack: true});
+            adapter.setState('emonTH_'+ id +'.batt',  {val: (buf.readInt16LE(6))/10, ack: true});
         }
     }
 }
+
 
 // OK 9 56 1   4   156 37   ID = 56 T: 18.0 H: 37 no NewBatt
 // OK 9 49 1   4   182 54   ID = 49 T: 20.6 H: 54 no NewBatt
@@ -365,26 +368,26 @@ function logLaCrosseDTH(data){
             var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
             var buf = new Buffer(tmpp);
-            adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
-            adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
-            adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
-            adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10));
-            adapter.log.debug('Humidty      : '+ (buf.readIntLE(4) & 0x7f));
-            adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(4) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
-            // Werte schreiben
-            // aus gesendeter ID die unique ID bestimmen
-            var arrayind=obj.sid.indexOf(buf.readIntLE(0));
+            var arrayind=obj.indexOf(buf.readIntLE(0));
             if (arrayind === -1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter');
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter LaCrosse');
             }
-            else{
-                var id=obj.usid[arrayind];
+            else{           
+                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
+                adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
+                adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10));
+                adapter.log.debug('Humidty      : '+ (buf.readIntLE(4) & 0x7f));
+                adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(4) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                var id=obj[arrayind].usid;
                 adapter.setState('LaCrosse_'+ id +'.lowBatt', {val: ((buf.readIntLE(4) & 0x80) >> 7), ack: true});
                 adapter.setState('LaCrosse_'+ id +'.newBatt', {val: ((buf.readIntLE(1) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ id +'.temp', {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ id +'.humid', {val: (buf.readIntLE(4) & 0x7f), ack: true});
+                adapter.setState('LaCrosse_'+ id +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                adapter.setState('LaCrosse_'+ id +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
             }
-        }
+        } 
     }
 }
 
@@ -425,7 +428,7 @@ function main() {
                     if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
                        logLaCrosseDTH(data);                  
                     }
-                    else {  // da kein Zugriff auf adpter.config wir auf beide log der Datenstrom geschickt
+                    else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
                             logemonTH(data);
                             logemonWater(data);
                     }
