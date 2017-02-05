@@ -164,9 +164,12 @@ function logemonWater(data){
         var buf = new Buffer(tmpp);
         var arrayind=obj.indexOf(tmp[2]);
         if (arrayind === -1) {
+            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter');
+        }
+        else if (obj[arrayind].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
-        else{ 
+        else{
             adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
             adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
             adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
@@ -265,9 +268,12 @@ function logemonTH(data){
         var buf = new Buffer(tmpp);
         var arrayind=obj.indexOf(tmp[2]);
         if (arrayind === -1) {
+            adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter');
+        }
+        else if (obj[arrayind].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
-        else{  
+        else{
             adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
             adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
             adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
@@ -370,7 +376,10 @@ function logLaCrosseDTH(data){
             var buf = new Buffer(tmpp);
             var arrayind=obj.indexOf(buf.readIntLE(0));
             if (arrayind === -1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter LaCrosse');
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter');
+            }
+            else if (obj[arrayind].stype !== 'LaCrosseDTH'){
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
             else{           
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
