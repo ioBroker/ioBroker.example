@@ -28,7 +28,7 @@ to be done in admin
 * setting the baudrate
 - define sensor address which is received on air
 - define unique sensors address within adapter (LaCrosse changes the on air address after battery change, so observe the log and adjust the sensor address after battery change)
-- define the type of sensor (as of now emonTH, emonWater, LaCrosseTH29)
+- define the type of sensor (as of now emonTH, emonWater, LaCrosseDTH)
 - define the room
 
 ##TODO:
