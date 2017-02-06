@@ -376,7 +376,6 @@ function logLaCrosseDTH(data){
             var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
             var buf = new Buffer(tmpp);
-            var arrayind=obj.indexOf(buf.readIntLE(0));
             var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));            
             if (array === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
