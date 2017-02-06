@@ -167,7 +167,7 @@ function logemonWater(data){
     //we are expecting data in form \"OK nodeid data1 data2 etc
     if(tmp[0]==='OK'){
         var tmpp=tmp.splice(3,12);
-        adapter.log.info('splice:' + tmpp);
+        adapter.log.debug('splice:' + tmpp);
         var buf = new Buffer(tmpp);
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array === 0 || array.length !== 1) {
@@ -269,7 +269,7 @@ function logemonTH(data){
     //we are expecting data in form \"OK nodeid data1 data2 etc
     if(tmp[0]==='OK'){
         var tmpp=tmp.splice(3,8);
-        adapter.log.info('splice:' + tmpp);
+        adapter.log.febug('splice:' + tmpp);
         var buf = new Buffer(tmpp);
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array === 0 || array.length !== 1) {
