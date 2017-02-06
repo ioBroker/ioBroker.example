@@ -150,7 +150,7 @@ function defineemonWater(id){
             "type": "number",
             "unit": "V",
             "min": 0,
-            "max": 4,
+            "max": 5,
             "read": true,
             "write": false,
             "role": "value.battery",
@@ -254,7 +254,7 @@ function defineemonTH(id){
             "type": "number",
             "unit": "V",
             "min": 0,
-            "max": 4,
+            "max": 5,
             "read": true,
             "write": false,
             "role": "value.battery",
@@ -377,13 +377,6 @@ function logLaCrosseDTH(data){
             adapter.log.debug('splice       : '+ tmpp);
             var buf = new Buffer(tmpp);
             var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
-adapter.log.debug('array result length: ' + array.length);
-adapter.log.debug('array0 : ' + JSON.stringify(array[0]));
-adapter.log.debug('array.config : ' + JSON.stringify(adapter.config.sensors));
-if (array.length !== 0) {adapter.log.debug('type von sid : ' + typeof(array[0].sid));}
-adapter.log.debug('type sensor id : ' + buf.readIntLE(0));
-adapter.log.debug('type sensor (id) : ' + (buf.readIntLE(0)));
-            
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
             }
