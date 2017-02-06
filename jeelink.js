@@ -52,7 +52,7 @@ adapter.on('ready', function () {
 function getConfigObjects(Obj, where, what){
     var foundObjects = [];
     for (var prop in Obj){
-        if (Obj[prop][where] === what){
+        if (Obj[prop][where] == what){
             foundObjects.push(Obj[prop]);
         }
     }
@@ -170,7 +170,7 @@ function logemonWater(data){
         adapter.log.debug('splice:' + tmpp);
         var buf = new Buffer(tmpp);
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
-        if (array === 0 || array.length !== 1) {
+        if (array.lenghth === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
         }
         else if (array[0].stype !== 'emonWater'){
@@ -269,10 +269,10 @@ function logemonTH(data){
     //we are expecting data in form \"OK nodeid data1 data2 etc
     if(tmp[0]==='OK'){
         var tmpp=tmp.splice(3,8);
-        adapter.log.febug('splice:' + tmpp);
+        adapter.log.debug('splice:' + tmpp);
         var buf = new Buffer(tmpp);
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
-        if (array === 0 || array.length !== 1) {
+        if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
         }
         else if (array[0].stype !== 'emonTH'){
@@ -376,8 +376,15 @@ function logLaCrosseDTH(data){
             var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
             var buf = new Buffer(tmpp);
-            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));            
-            if (array === 0 || array.length !== 1) {
+            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+adapter.log.debug('array result length: ' + array.length);
+adapter.log.debug('array0 : ' + JSON.stringify(array[0]));
+adapter.log.debug('array.config : ' + JSON.stringify(adapter.config.sensors));
+if (array.length !== 0) {adapter.log.debug('type von sid : ' + typeof(array[0].sid));}
+adapter.log.debug('type sensor id : ' + buf.readIntLE(0));
+adapter.log.debug('type sensor (id) : ' + (buf.readIntLE(0)));
+            
+            if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
             }
             else if (array[0].stype !==  'LaCrosseDTH'){
