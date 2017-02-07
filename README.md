@@ -26,8 +26,9 @@ or the actual version from github
 to be done in admin
 * deinition of the USB port
 * setting the baudrate
-- define sensor address
-- define the type of sensor (as of now emonTH, emonWater, LaCrosseTH29)
+- define sensor address which is received on air
+- define unique sensors address within adapter (LaCrosse changes the on air address after battery change, so observe the log and adjust the sensor address after battery change)
+- define the type of sensor (as of now emonTH, emonWater, LaCrosseDTH)
 - define the room
 
 ##TODO:
@@ -35,7 +36,9 @@ to be done in admin
 * put the sensor code in separate file
 
 ##Changelog:
-###0.0.2 ongoing
+###0.0.2
+* definition of unique sensor ID for iobroker datapoint
+* implementation of LaCrosseDTH
 * definition of sensors via admin
 
 ###0.0.1

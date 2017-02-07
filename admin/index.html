@@ -34,19 +34,29 @@
             "ru": "Имя сенсора"
             },
         "sid":{
-            "en": "Sensor ID",                     
-            "de": "Sensor ID",                      
-            "ru": "ID сенсора"
+            "en": "received Sensor ID",                     
+            "de": "empfangene Sensor ID",                      
+            "ru": "received ID сенсора"
             },
         "stype":{
             "en": "Sensor type",                   
             "de": "Sensortyp",                      
             "ru": "Typ сенсора"
             },
+        "usid":{
+            "en": "unique sensor id",
+            "de": "eineindeutige Sensor ID",
+            "ru": "unique ID сенсора"
+            },    
         "jeelink USB adapter settings": {
             "en": "jeelink USB adapter settings",       
             "de": "jeelink USB Einstellung",   
             "ru": "Настройки jeelink USB"
+            },            
+        "valid sensor types:": {
+            "en": "valid sensor types:",       
+            "de": "verfügbare Sensortypen:",   
+            "ru": "valid sensor types:"
             },
         "serialport":{
             "en": "serial port",
@@ -73,7 +83,7 @@
     var sensorTypes = [
         'emonTH',
         'emonWater',
-        'LaCrosseTH29'
+        'LaCrosseDTH'
         ];
 
     function setValue(id, value, onChange) {
@@ -118,7 +128,7 @@
                 setValue(key, settings[key], onChange);
             }
 
-            editTable('sensors', ['sid', 'stype', 'name'], sensors, 470);
+            editTable('sensors', ['usid','sid', 'stype', 'name'], sensors, 470);
 
         // Signal to admin, that no changes yet
         onChange(false);
@@ -139,7 +149,7 @@
         });
 
         // Get edited table
-        obj.sensors = getTableResult('sensors', ['sid', 'stype', 'name']);
+        obj.sensors = getTableResult('sensors', ['sid', 'stype', 'usid', 'name']);
         
         callback(obj);
     }
@@ -173,8 +183,11 @@
     <p class="translate">on save adapter restarts with new config immediately</p>
 
     <h4 class="translate">Sensor configuration</h4>
+    <p class="translate">valid sensor types:</p>
+    <p> emonTH, emonWater, LaCrosseDTH</p>  <!--solange es noch kein select in der Tabelle gibt -->
     <table id="sensors"></table><div id="pager-sensors"></div>
 
 </div>
 
 </html>
+
