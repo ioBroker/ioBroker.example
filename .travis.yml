@@ -9,9 +9,6 @@ node_js:
   - '4'
   - '6'
   - '7'
-matrix:
-  allow_failures:
-    - node_js: '6'
 before_install:
   - 'if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi'
   - 'if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc48; fi'
