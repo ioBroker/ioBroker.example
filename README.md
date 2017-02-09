@@ -36,6 +36,9 @@ to be done in admin
 * put the sensor code in separate file
 
 ##Changelog:
+###0.0.3 ongoing
+* pushing new sensor to config, then visible in admin/config page
+
 ###0.0.2
 * definition of unique sensor ID for iobroker datapoint
 * implementation of LaCrosseDTH
