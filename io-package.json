@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "title": "jeelink adapter",
         "desc": "ioBroker jeelink Adapter",
         "platform": "Javascript/Node.js",
@@ -11,6 +11,7 @@
             "jeelink",
             "openenergy",
             "RFM",
+            "LaCrosse",
             "emonTH"
         ],
         "type": "hardware",

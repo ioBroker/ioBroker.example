@@ -172,11 +172,12 @@ function logemonWater(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.lenghth === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
+            adapter.config.sensors.push([tmp[2],"nodef","emon???","room???"]);
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
-        else{
+        else if (array.usid !='nodef'){
             adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
             adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
             adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
