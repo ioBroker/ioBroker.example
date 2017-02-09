@@ -16,7 +16,7 @@
         "type": "hardware",
         "icon": "jeelab_logo.png",
         "extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
-        "readme": "https://github.com/foxthefox/ioBroker.jeelink/master/README.md",
+        "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
         "loglevel": "debug"
     },
     "native": {
