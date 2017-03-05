@@ -129,6 +129,18 @@
             }
 
             editTable('sensors', ['usid','sid', 'stype', 'name'], sensors, 470);
+            
+            socket.emit('subscribeObjects',  'system.adapter.jeelink.0.*');
+
+            socket.emit('getObject', 'system.adapter.jeelink.0', function (err, obj) {
+                console.log("got the following config : "+ JSON.stringify(obj.native.sensors));
+
+                        if (!err) {
+                            showMessage("obj.native.sensors is now : " +JSON.stringify(obj.native.sensors) );
+                        } else {
+                            showError(err);
+                        }
+                });  
 
         // Signal to admin, that no changes yet
         onChange(false);
