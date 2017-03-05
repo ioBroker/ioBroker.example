@@ -173,6 +173,7 @@ function logemonWater(data){
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
             adapter.config.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+            adapter.log.debug("adapter config is now : " + JSON.stringify(adapter.config.sensors)); //test
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
