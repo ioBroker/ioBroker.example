@@ -172,8 +172,21 @@ function logemonWater(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
-            adapter.config.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
-            adapter.log.debug("adapter config is now : " + JSON.stringify(adapter.config.sensors)); //test
+            adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+                if (err){
+                    adapter.log.error(err);
+                }
+                else {
+                    adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
+                    obj.native.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+                    adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                       if(err) {adapter.log.error(err);}
+                       else{
+                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
+                       } 
+                    });
+                }
+            });
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
@@ -276,11 +289,26 @@ function logemonTH(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
+            adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+                if (err){
+                    adapter.log.error(err);
+                }
+                else {
+                    adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
+                    obj.native.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+                    adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                       if(err) {adapter.log.error(err);}
+                       else{
+                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
+                       } 
+                    });
+                }
+            });
         }
         else if (array[0].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
-        else{
+        else if (array.usid !='nodef'){
             adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
             adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
             adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
@@ -381,11 +409,26 @@ function logLaCrosseDTH(data){
             var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+                adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+                    if (err){
+                        adapter.log.error(err);
+                    }
+                    else {
+                        adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
+                        obj.native.sensors.push({"sid": buf.readIntLE(0) ,"usid":"nodef","stype":"LaCrossse???","name":"room???"});
+                        adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                           if(err) {adapter.log.error(err);}
+                           else{
+                               adapter.log.info("new sensor ID = "+ buf.readIntLE(0) + "added to config, please see admin page of adapter for further configuration");
+                           } 
+                        });
+                    }
+                });
             }
             else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
-            else{           
+            else if (array.usid !='nodef'){           
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
                 adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
                 adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
