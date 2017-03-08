@@ -191,7 +191,7 @@ function logemonWater(data){
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
-        else if (array.usid !='nodef'){
+        else if (array[0].usid !='nodef'){
             adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
             adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
             adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
@@ -308,7 +308,7 @@ function logemonTH(data){
         else if (array[0].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
-        else if (array.usid !='nodef'){
+        else if (array[0].usid !='nodef'){
             adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
             adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
             adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
@@ -428,7 +428,7 @@ function logLaCrosseDTH(data){
             else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
-            else if (array.usid !='nodef'){           
+            else if (array[0].usid !='nodef'){           
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
                 adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
                 adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
