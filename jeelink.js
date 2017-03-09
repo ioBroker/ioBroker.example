@@ -172,6 +172,7 @@ function logemonWater(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
+            /**
             adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
                 if (err){
                     adapter.log.error(err);
@@ -187,6 +188,23 @@ function logemonWater(data){
                     });
                 }
             });
+            **/
+            adapter.getState('foundDevices', function(err,state){
+                if (err){
+                    adapter.log.error(err);
+                }
+                else {
+                    adapter.log.debug("found devices : " + JSON.stringify(state));
+                    state.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+                    adapter.setState('foundDevices', state, function(err){
+                       if(err) {adapter.log.error(err);}
+                       else{
+                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to foundDevices, please see admin page of adapter for further configuration");
+                       } 
+                    });
+                }
+            });
+            
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
