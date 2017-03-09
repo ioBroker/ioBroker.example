@@ -189,18 +189,20 @@ function logemonWater(data){
                 }
             });
             **/
-            adapter.getState('foundDevices', function(err,state){
+            adapter.getState('foundDevices.state', function(err,state){
                 if (err){
                     adapter.log.error(err);
                 }
                 else {
                     adapter.log.debug("found devices : " + JSON.stringify(state));
-                    state.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
-                    adapter.setState('foundDevices', state, function(err){
+                    var found = []; //alte Wert erstmal nicht übernehmen, damit nur ein neuer Sensor erscheint
+                    found.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+                    adapter.log.debug("found push = " + JSON.stringify(found));
+                        adapter.setState('foundDevices.state', {val: found, ack: true}, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
-                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to foundDevices, please see admin page of adapter for further configuration");
-                       } 
+                           adapter.log.info("new sensor ID = "+ tmp[2] + " added to foundDevices, please see admin page of adapter for further co$
+                       }
                     });
                 }
             });
