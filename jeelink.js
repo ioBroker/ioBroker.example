@@ -65,7 +65,7 @@ function getConfigObjects(Obj, where, what){
 // |  |  |   |   |   |----- [9]warm Water
 // |  |  |   |   |--------- [7]warm Water
 // |  |  |   |------------- [5]cold Water
-// |  |  |----------------- [3]cold Water 
+// |  |  |----------------- [3]cold Water
 // |  |-------------------- [2]Sensor ID
 // |----------------------- [0]fix "OK"
 
@@ -184,7 +184,7 @@ function logemonWater(data){
                        if(err) {adapter.log.error(err);}
                        else{
                            adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
-                       } 
+                       }
                     });
                 }
             });
@@ -201,12 +201,12 @@ function logemonWater(data){
                         adapter.setState('foundDevices.state', {val: found, ack: true}, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
-                           adapter.log.info("new sensor ID = "+ tmp[2] + " added to foundDevices, please see admin page of adapter for further co$
+                           adapter.log.info("new sensor ID = "+ tmp[2] + " added to foundDevices, please see admin page of adapter for further configuratiuon");
                        }
                     });
                 }
             });
-            
+
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
@@ -224,7 +224,7 @@ function logemonWater(data){
             adapter.setState('emonWater_'+ array[0].usid +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
         }
     }
-}      
+}
 
 
 
@@ -234,7 +234,7 @@ function logemonWater(data){
 // |  |   |   |    |    |------- [9]Battery Voltage
 // |  |   |   |    |------------ [7]DHT22 Humidity
 // |  |   |   |----------------- [5]DS18B20 Temperature
-// |  |   |--------------------- [3]DHT22 Temperature 
+// |  |   |--------------------- [3]DHT22 Temperature
 // |  |------------------------- [2]Sensor ID
 // |---------------------------- [0]fix "OK"
 
@@ -320,7 +320,7 @@ function logemonTH(data){
                        if(err) {adapter.log.error(err);}
                        else{
                            adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
-                       } 
+                       }
                     });
                 }
             });
@@ -352,9 +352,9 @@ function logemonTH(data){
 // |  |------------------- [1]fix "9"
 // |---------------------- [0]fix "OK"
 
-    
-    
-function defineLaCrosseDTH(id){    
+
+
+function defineLaCrosseDTH(id){
     adapter.setObject('LaCrosse_' + id, {
         type: 'channel',
         common: {
@@ -440,7 +440,7 @@ function logLaCrosseDTH(data){
                            if(err) {adapter.log.error(err);}
                            else{
                                adapter.log.info("new sensor ID = "+ buf.readIntLE(0) + "added to config, please see admin page of adapter for further configuration");
-                           } 
+                           }
                         });
                     }
                 });
@@ -448,7 +448,7 @@ function logLaCrosseDTH(data){
             else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
-            else if (array[0].usid !='nodef'){           
+            else if (array[0].usid !='nodef'){
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
                 adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
                 adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
@@ -462,7 +462,7 @@ function logLaCrosseDTH(data){
                 adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
                 adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
             }
-        } 
+        }
     }
 }
 
@@ -475,10 +475,10 @@ function main() {
     for (var anz in obj){
         if(obj[anz].stype=="emonTH") {
             defineemonTH(obj[anz].usid);
-        }else 
+        }else
         if(obj[anz].stype=="emonWater"){
             defineemonWater(obj[anz].usid);
-        }else 
+        }else
         if(obj[anz].stype=="LaCrosseDTH"){
             defineLaCrosseDTH(obj[anz].usid);
         }
@@ -488,7 +488,7 @@ function main() {
         baudrate:   adapter.config.baudrate   || 57600,
         parser:     serialport.parsers.readline('\r\n')
     };
-    
+
     sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
@@ -501,7 +501,7 @@ function main() {
                 var tmp = data.split(' ');
                 if(tmp[0]==='OK'){
                     if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
-                       logLaCrosseDTH(data);                  
+                       logLaCrosseDTH(data);
                     }
                     else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
                             logemonTH(data);
@@ -512,11 +512,10 @@ function main() {
             });
         }
     });
-    
+
 
     // in this template all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
 
 
 }
-
