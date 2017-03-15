@@ -180,7 +180,7 @@ function logemonWater(data){
                 else {
                     adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
                     obj.native.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
-                    adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                    adapter.setForeignObject('system.adapter.' + adapter.namespace, obj, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
                            adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
