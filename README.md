@@ -15,8 +15,9 @@ released version
 * npm install iobroker.jeelink 
 * on raspberry it might help to use: npm install --unsafe-perm iobroker.jeelink, because serialport package must be built on unsupported arm-hw
 
-or the actual version from github
+or the actual development version from github (when under testing, may not work!)
 * npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
+* npm install --unsafe-perm https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
 
 ## Settings:
 - USB port of JeelinkAdapter usually /dev/ttyACME
@@ -36,7 +37,7 @@ to be done in admin
 * put the sensor code in separate file
 * pushing new sensor to config, then visible in admin/config page
 
-##Changelog:
+## Changelog:
 
 ### 0.0.4
 * command to USB-stick for configuration
