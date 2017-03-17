@@ -34,10 +34,13 @@ to be done in admin
 ##TODO:
 * other sensor types
 * put the sensor code in separate file
+* better solution for new sensor handling, the adapter restarts after receiving new sensor
 
 ##Changelog:
-###0.0.3 ongoing
+
+###0.0.3
 * pushing new sensor to config, then visible in admin/config page
+* abs humidity and dewpoint calculation
 
 ###0.0.2
 * definition of unique sensor ID for iobroker datapoint
@@ -45,4 +48,4 @@ to be done in admin
 * definition of sensors via admin
 
 ###0.0.1
-working with 3 sensors
+* working with 3 sensors emon
