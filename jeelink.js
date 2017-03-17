@@ -173,7 +173,7 @@ function logemonWater(data){
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
             
-            // new sensor -> config (not nice, because auf adapter restart, but works)
+            /** new sensor -> config (not nice, because auf adapter restart, but works)
             adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                 if (err){
                     adapter.log.error(err);
@@ -189,6 +189,7 @@ function logemonWater(data){
                     });
                 }
             });
+            **/
             /** new sensor -> array in objects (push to state works but admin does not show the table) 
             adapter.getState('foundDevices.state', function(err,state){
                 if (err){
@@ -340,7 +341,7 @@ function logemonTH(data){
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
             
-            // new sensor -> config (not nice, because auf adapter restart, but works)
+            /** new sensor -> config (not nice, because auf adapter restart, but works)
             adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                 if (err){
                     adapter.log.error(err);
@@ -356,6 +357,7 @@ function logemonTH(data){
                     });
                 }
             });
+            **/
         }
         else if (array[0].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
@@ -499,7 +501,7 @@ function logLaCrosseDTH(data){
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
                 
-                // new sensor -> config (not nice, because auf adapter restart, but works)
+                /** new sensor -> config (not nice, because auf adapter restart, but works)
                 adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                     if (err){
                         adapter.log.error(err);
@@ -515,6 +517,7 @@ function logLaCrosseDTH(data){
                         });
                     }
                 });
+                **/
             }
             else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
