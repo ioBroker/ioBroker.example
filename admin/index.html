@@ -73,6 +73,16 @@
             "de": "Sensorkonfiguration",            
             "ru": "config сенсора"
             },
+         "command for stick setup":     {
+            "en": "command for USB-stick setup",          
+            "de": "Kommando an USB-Stick zur Konfiguration",            
+            "ru": "command for USB-stick setup"
+            },
+          "enable command":     {
+            "en": "enable command",          
+            "de": "Kommando verwenden",            
+            "ru": "enable command"
+            },
         "on save adapter restarts with new config immediately": {
             "en": "on save adapter restarts with new config immediately",
             "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
@@ -190,6 +200,19 @@
             <td><input id="baudrate"   class="value number" size="5"/></td> <td><p>usually  57600</p></td>
         </tr>
         <tr>
+            <td class="translate">command for stick setup</td>
+            <td><input id="command" class="value string" size="5" /></td>
+            <td>
+                <p>usually empty</p>
+            </td>
+        </tr>
+                <tr>
+            <td class="translate">enable command</td>
+            <td><input id="command_en" class="value" type="checkbox" /></td>
+            <td>
+                <p>usually empty</p>
+            </td>
+        </tr>
     </table>
     
 
