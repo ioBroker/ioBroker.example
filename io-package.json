@@ -28,13 +28,13 @@
                     "sid": "18",
                     "usid": "1",
                     "stype": "emonTH",
-                    "name": "Balkon"
+                    "name": "example emonTH"
                 },
                 {
                     "sid": "55",
                     "usid": "2",
                     "stype": "LaCrosseDTH",
-                    "name": "Bad oben"
+                    "name": "example LaCrosseDTH"
                 }
             ]
         },
