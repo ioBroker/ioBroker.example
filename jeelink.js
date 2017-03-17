@@ -60,9 +60,9 @@ function getConfigObjects(Obj, where, what){
 }
 function round(value, digits) //digits 1 for 1 digit after comma
 {
-	factor = Math.pow(10, digits);
-	x = Math.round(value*factor);
-	return x/factor;
+	var factor = Math.pow(10, digits);
+	value = Math.round(value*factor);
+	return value/factor;
 }
 
 
