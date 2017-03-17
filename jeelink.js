@@ -172,23 +172,24 @@ function logemonWater(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
-            /**
-            adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+            
+            // new sensor -> config (not nice, because auf adapter restart, but works)
+            adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                 if (err){
                     adapter.log.error(err);
                 }
                 else {
                     adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
-                    obj.native.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
+                    obj.native.sensors.push({"sid":tmp[2] , "usid":"nodef" , "stype":"emon???" , "name":"room???"});
                     adapter.setForeignObject('system.adapter.' + adapter.namespace, obj, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
-                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
+                           adapter.log.info("new sensor ID = " + tmp[2] + " added to config, please see admin page of adapter for further configuration");
                        }
                     });
                 }
             });
-            **/
+            /** new sensor -> array in objects (push to state works but admin does not show the table) 
             adapter.getState('foundDevices.state', function(err,state){
                 if (err){
                     adapter.log.error(err);
@@ -198,7 +199,7 @@ function logemonWater(data){
                     var found = []; //alte Wert erstmal nicht übernehmen, damit nur ein neuer Sensor erscheint
                     found.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
                     adapter.log.debug("found push = " + JSON.stringify(found));
-                        adapter.setState('foundDevices.state', {val: found, ack: true}, function(err){
+                    adapter.setState('foundDevices.state', {val: found, ack: true}, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
                            adapter.log.info("new sensor ID = "+ tmp[2] + " added to foundDevices, please see admin page of adapter for further configuratiuon");
@@ -206,12 +207,13 @@ function logemonWater(data){
                     });
                 }
             });
+            **/
 
         }
         else if (array[0].stype !== 'emonWater'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
-        else if (array[0].usid !='nodef'){
+        else if (array[0].usid != 'nodef'){
             adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
             adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
             adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
@@ -297,6 +299,34 @@ function defineemonTH(id){
         },
         native: {}
     });
+    adapter.setObject('emonTH_' + id + '.abshumid', {
+        type: 'state',
+        common: {
+            "name":     "abs Humidity",
+            "type":     "number",
+            "unit":     "g/m3",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+        },
+        native: {}
+    });
+    adapter.setObject('emonTH_' + id + '.dewpoint', {
+        type: 'state',
+        common: {
+            "name":     "Dewpoint",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+        },
+        native: {}
+    });
 }
 
 function logemonTH(data){
@@ -309,17 +339,19 @@ function logemonTH(data){
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
-            adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+            
+            // new sensor -> config (not nice, because auf adapter restart, but works)
+            adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                 if (err){
                     adapter.log.error(err);
                 }
                 else {
                     adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
-                    obj.native.sensors.push({"sid":tmp[2],"usid":"nodef","stype":"emon???","name":"room???"});
-                    adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                    obj.native.sensors.push({"sid":tmp[2] , "usid":"nodef" , "stype":"emon???" , "name":"room???"});
+                    adapter.setForeignObject('system.adapter.' + adapter.namespace, obj, function(err){
                        if(err) {adapter.log.error(err);}
                        else{
-                           adapter.log.info("new sensor ID = "+ tmp[2] + "added to config, please see admin page of adapter for further configuration");
+                           adapter.log.info("new sensor ID = " + tmp[2] + " added to config, please see admin page of adapter for further configuration");
                        }
                     });
                 }
@@ -328,13 +360,22 @@ function logemonTH(data){
         else if (array[0].stype !== 'emonTH'){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
-        else if (array[0].usid !='nodef'){
+        else if (array[0].usid != 'nodef'){
             adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
             adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
             adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
             adapter.setState('emonTH_'+ array[0].usid +'.temp',  {val: (buf.readInt16LE(0))/10, ack: true});
             adapter.setState('emonTH_'+ array[0].usid +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
             adapter.setState('emonTH_'+ array[0].usid +'.batt',  {val: (buf.readInt16LE(6))/10, ack: true});
+            //absolute Feuchte und Taupunkt
+            var temp = (buf.readInt16LE(0))/10;
+            var rel = (buf.readInt16LE(4))/10;
+            var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+            var v = Math.log(vappress/6.1078) * Math.LOG10E;
+            var dewp = (237.3 * v) / (7.5 - v);
+            var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+            adapter.setState('emonTH_'+ array[0].usid +'.abshumid',   {val: habs, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.dewpoint',   {val: dewp, ack: true});
         }
     }
 }
@@ -415,6 +456,34 @@ function defineLaCrosseDTH(id){
         },
         native: {}
     });
+    adapter.setObject('LaCrosse_' + id + '.abshumid', {
+        type: 'state',
+        common: {
+            "name":     "abs Humidity",
+            "type":     "number",
+            "unit":     "g/m3",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+        },
+        native: {}
+    });
+    adapter.setObject('LaCrosse_' + id + '.dewpoint', {
+        type: 'state',
+        common: {
+            "name":     "Dewpoint",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+        },
+        native: {}
+    });
 }
 
 
@@ -429,14 +498,16 @@ function logLaCrosseDTH(data){
             var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
-                adapter.getForeignObject('system.adapter.jeelink.0', function(err,obj){
+                
+                // new sensor -> config (not nice, because auf adapter restart, but works)
+                adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
                     if (err){
                         adapter.log.error(err);
                     }
                     else {
                         adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
-                        obj.native.sensors.push({"sid": buf.readIntLE(0) ,"usid":"nodef","stype":"LaCrossse???","name":"room???"});
-                        adapter.setForeignObject('system.adapter.jeelink.0', obj, function(err){
+                        obj.native.sensors.push({"sid": buf.readIntLE(0) , "usid":"nodef" , "stype":"LaCrosse???" , "name":"room???"});
+                        adapter.setForeignObject('system.adapter.' + adapter.namespace, obj, function(err){
                            if(err) {adapter.log.error(err);}
                            else{
                                adapter.log.info("new sensor ID = "+ buf.readIntLE(0) + "added to config, please see admin page of adapter for further configuration");
@@ -448,7 +519,7 @@ function logLaCrosseDTH(data){
             else if (array[0].stype !==  'LaCrosseDTH'){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
             }
-            else if (array[0].usid !='nodef'){
+            else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
                 adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
                 adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
@@ -461,6 +532,16 @@ function logLaCrosseDTH(data){
                 adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(1) & 0x80) >> 7), ack: true});
                 adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
                 adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
+                 //absolute Feuchte und Taupunkt
+                var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
+                var rel = (buf.readIntLE(4) & 0x7f);
+                var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+                var v = Math.log(vappress/6.1078) * Math.LOG10E;
+                var dewp = (237.3 * v) / (7.5 - v);
+                var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+                adapter.setState('LaCrosse_'+ array[0].usid +'.abshumid',   {val: habs, ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.dewpoint',   {val: dewp, ack: true});
+                
             }
         }
     }
