@@ -557,6 +557,16 @@ function logLaCrosseDTH(data){
     }
 }
 
+function write_cmd(command){
+
+            sp.write(command, function(err) {
+                if (err) {
+                    return adapter.log.debug('Error on write: ', err.message);
+                    }
+                adapter.log.debug('message to USB-stick written : ' + command);
+            });
+        }
+
 function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
@@ -601,6 +611,9 @@ function main() {
                 }
 
             });
+	    if (adapter.config.command_en) {
+                setTimeout(write_cmd(adapter.config.command) , 1500); //1,5s Verzögerung
+            }
         }
     });
 
