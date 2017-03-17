@@ -374,8 +374,8 @@ function logemonTH(data){
             var v = Math.log(vappress/6.1078) * Math.LOG10E;
             var dewp = (237.3 * v) / (7.5 - v);
             var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
-            adapter.setState('emonTH_'+ array[0].usid +'.abshumid',   {val: habs, ack: true});
-            adapter.setState('emonTH_'+ array[0].usid +'.dewpoint',   {val: dewp, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.abshumid',   {val: Math.round10(habs, -1), ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.dewpoint',   {val: Math.round10(dewp, -1), ack: true});
         }
     }
 }
@@ -539,8 +539,8 @@ function logLaCrosseDTH(data){
                 var v = Math.log(vappress/6.1078) * Math.LOG10E;
                 var dewp = (237.3 * v) / (7.5 - v);
                 var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
-                adapter.setState('LaCrosse_'+ array[0].usid +'.abshumid',   {val: habs, ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.dewpoint',   {val: dewp, ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.abshumid',   {val: Math.round10(habs, -1), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.dewpoint',   {val: Math.round10(dewp, -1), ack: true});
                 
             }
         }
