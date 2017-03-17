@@ -10,7 +10,7 @@
 This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
 The jeelink can be used with the preloaded software (rfmdemo).
 
-##Installation:
+## Installation:
 released version
 * npm install iobroker.jeelink 
 * on raspberry it might help to use: npm install --unsafe-perm iobroker.jeelink, because serialport package must be built on unsupported arm-hw
@@ -18,11 +18,11 @@ released version
 or the actual version from github
 * npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
 
-##Settings:
+## Settings:
 - USB port of JeelinkAdapter usually /dev/ttyACME
 - Serial Speed usually 57600 Baud
 
-##Configuration:
+## Configuration:
 to be done in admin
 * deinition of the USB port
 * setting the baudrate
@@ -31,23 +31,23 @@ to be done in admin
 - define the type of sensor (as of now emonTH, emonWater, LaCrosseDTH)
 - define the room
 
-##TODO:
+## TODO:
 * other sensor types
 * put the sensor code in separate file
-* better solution for new sensor handling, the adapter restarts after receiving new sensor
+* pushing new sensor to config, then visible in admin/config page
 
 ##Changelog:
 
-### for 0.0.4
-* pushing new sensor to config, then visible in admin/config page
+### 0.0.4
+* command to USB-stick for configuration
 
-###0.0.3
+### 0.0.3
 * abs humidity and dewpoint calculation
 
-###0.0.2
+### 0.0.2
 * definition of unique sensor ID for iobroker datapoint
 * implementation of LaCrosseDTH
 * definition of sensors via admin
 
-###0.0.1
+### 0.0.1
 * working with 3 sensors emon
