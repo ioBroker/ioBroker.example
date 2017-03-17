@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "title": "jeelink adapter",
         "desc": "ioBroker jeelink Adapter",
         "platform": "Javascript/Node.js",
@@ -23,6 +23,8 @@
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate": 57600,
+        "command": "",
+        "command_en": false,
          "sensors": [
                 {
                     "sid": "18",
