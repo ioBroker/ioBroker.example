@@ -38,8 +38,10 @@ to be done in admin
 
 ##Changelog:
 
-###0.0.3
+### for 0.0.4
 * pushing new sensor to config, then visible in admin/config page
+
+###0.0.3
 * abs humidity and dewpoint calculation
 
 ###0.0.2
