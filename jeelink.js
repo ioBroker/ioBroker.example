@@ -557,6 +557,103 @@ function logLaCrosseDTH(data){
     }
 }
 
+// OK WS 0 2    4  212 255 255 255 255 255 255 255 255 255 0   3   241  ID=0 T:23,6 Druck 1009 hPa
+// OK WS 0 XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   | --- [18] Druck LSB
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |-------- [17] Druck MSB
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |------------ [16]
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |   | --------------- [15]
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |-------------------- [14]
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |-------------------- [13]
+// |  |  |  |   |   |   |   |   |   |   |   |   |------------------------ [12]
+// |  |  |  |   |   |   |   |   |   |   |   |---------------------------- [11]
+// |  |  |  |   |   |   |   |   |   |   |-------------------------------- [10]
+// |  |  |  |   |   |   |   |   |   |------------------------------------ [9]
+// |  |  |  |   |   |   |   |   |---------------------------------------- [8]
+// |  |  |  |   |   |   |   |-------------------------------------------- [7]
+// |  |  |  |   |   |   |------------------------------------------------ [6]
+// |  |  |  |   |   |---------------------------------------------------- [5]Temp * 10 + 1000 LSB
+// |  |  |  |   |-------------------------------------------------------- [4]Temp * 10 + 1000 MSB
+// |  |  |  |------------------------------------------------------------ [3]Sensor type 2 fix
+// |  |  |--------------------------------------------------------------- [2]Sensor ID=0 fix
+// |  |------------------------------------------------------------------ [1]fix "WS"
+// |--------------------------------------------------------------------- [0]fix "OK"
+
+function defineLaCrosseBMP180(id){    
+    adapter.setObject('LaCrosse_' + id, {
+        type: 'channel',
+        common: {
+            name: 'LaCrosse ',
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
+
+    adapter.setObject('LaCrosse_' + id + '.temp', {
+        type: 'state',
+        common: {
+            "name":     "Temperature",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+            "desc":     "Temperature"
+        },
+        native: {}
+    });
+    adapter.setObject('LaCrosse_' + id + '.pressure', {
+        type: 'state',
+        common: {
+            "name":     "air pressure",
+            "type":     "number",
+            "unit":     "hPa",
+            "min":      0,
+            "max":      1200,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "air pressure"
+        },
+        native: {}
+    });
+}
+
+function logLaCrosseBMP180(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='WS'){                    // Für jeden Datensatz mit dem fixen Eintrag 9
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            adapter.log.debug('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            if (array.length === 0 || array.length !== 1) {
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+            }
+            else if (array[0].stype !==  'LaCrosseBMP180'){
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
+            }
+            else if (array[0].usid != 'nodef'){
+                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
+                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) );
+                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) );
+                adapter.log.debug('Pressure      : '+ (((buf.readIntLE(15))*256)+(buf.readIntLE(16))) );
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.pressure',   {val: (((buf.readIntLE(15))*256)+(buf.readIntLE(16))), ack: true});                
+            }
+        }
+    }
+}
+
+
 function write_cmd(command){
 
             sp.write(command, function(err) {
@@ -582,6 +679,9 @@ function main() {
         }else
         if(obj[anz].stype=="LaCrosseDTH"){
             defineLaCrosseDTH(obj[anz].usid);
+        }else 
+        if(obj[anz].stype=="LaCrosseBMP180"){
+            defineLaCrosseBMP180(obj[anz].usid);
         }
     }
 
@@ -603,6 +703,9 @@ function main() {
                 if(tmp[0]==='OK'){
                     if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
                        logLaCrosseDTH(data);
+                    }
+		    else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee
+                       logLaCrosseBMP180(data);
                     }
                     else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
                             logemonTH(data);
