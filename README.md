@@ -7,7 +7,8 @@
 [![NPM](https://nodei.co/npm/iobroker.jeelink.png?downloads=true)](https://nodei.co/npm/iobroker.jeelink/)
 
 This is an adapter for ioBroker to integrate RFM12B/RFM69 via Jeelink.
-The jeelink can be used with the preloaded software (rfmdemo).
+The jeelink can be used with the preloaded software (rfmdemo) for the reading of openenergy sensors (emon).
+For the usage of LaCrosse sensors, the firmware has to be exchanged (see iobroker forum).
 
 ## Installation:
 released version
