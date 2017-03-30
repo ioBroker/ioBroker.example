@@ -643,11 +643,11 @@ function logLaCrosseBMP180(data){
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
                 adapter.log.debug('Type         : '+ (buf.readIntLE(1)) );
                 adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) );
-                adapter.log.debug('Pressure      : '+ (((buf.readIntLE(15))*256)+(buf.readIntLE(16))) );
+                adapter.log.debug('Pressure      : '+ (((buf.readIntLE(14))*256)+(buf.readIntLE(15))) );
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
                 adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.pressure',   {val: (((buf.readIntLE(15))*256)+(buf.readIntLE(16))), ack: true});                
+                adapter.setState('LaCrosse_'+ array[0].usid +'.pressure',   {val: (((buf.readIntLE(14))*256)+(buf.readIntLE(15))), ack: true});                
             }
         }
     }
