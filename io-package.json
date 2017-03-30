@@ -33,8 +33,14 @@
                     "name": "example emonTH"
                 },
                 {
-                    "sid": "55",
+                    "sid": "0",
                     "usid": "2",
+                    "stype": "LaCrosseBMP180",
+                    "name": "example superjee"
+                },
+                {
+                    "sid": "55",
+                    "usid": "3",
                     "stype": "LaCrosseDTH",
                     "name": "example LaCrosseDTH"
                 }
