@@ -1,6 +1,5 @@
 ![Logo](admin/jeelab_logo.png)
 # ioBroker.jeelink
-=================
 [![NPM version](http://img.shields.io/npm/v/iobroker.jeelink.svg)](https://www.npmjs.com/package/iobroker.jeelink)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.jeelink.svg)](https://www.npmjs.com/package/iobroker.jeelink)
 [![Build Status](https://travis-ci.org/foxthefox/ioBroker.jeelink.svg?branch=master)](https://travis-ci.org/foxthefox/ioBroker.jeelink)
@@ -41,6 +40,7 @@ to be done in admin
 
 ### 0.0.4
 * command to USB-stick for configuration
+* added superjee, BMP180 sensor on jeenode
 
 ### 0.0.3
 * abs humidity and dewpoint calculation
