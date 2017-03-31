@@ -249,11 +249,11 @@ function logemonWater(data){
 // |---------------------------- [0]fix "OK"
 
 
-function defineemonTH(id){
+function defineemonTH(id, name){
     adapter.setObject('emonTH_' + id, {
         type: 'channel',
         common: {
-            name: 'emonTH ' + id,
+            name: name,
             role: 'sensor'
         },
         native: {
@@ -404,11 +404,11 @@ function logemonTH(data){
 
 
 
-function defineLaCrosseDTH(id){
+function defineLaCrosseDTH(id, name){
     adapter.setObject('LaCrosse_' + id, {
         type: 'channel',
         common: {
-            name: 'LaCrosse ',
+            name: name,
             role: 'sensor'
         },
         native: {
@@ -579,11 +579,11 @@ function logLaCrosseDTH(data){
 // |  |------------------------------------------------------------------ [1]fix "WS"
 // |--------------------------------------------------------------------- [0]fix "OK"
 
-function defineLaCrosseBMP180(id){    
+function defineLaCrosseBMP180(id, name){    
     adapter.setObject('LaCrosse_' + id, {
         type: 'channel',
         common: {
-            name: 'LaCrosse ',
+            name: name,
             role: 'sensor'
         },
         native: {
@@ -672,16 +672,16 @@ function main() {
     var obj = adapter.config.sensors;
     for (var anz in obj){
         if(obj[anz].stype=="emonTH") {
-            defineemonTH(obj[anz].usid);
+            defineemonTH(obj[anz].usid, obj[anz].name );
         }else
         if(obj[anz].stype=="emonWater"){
-            defineemonWater(obj[anz].usid);
+            defineemonWater(obj[anz].usid, obj[anz].name);
         }else
         if(obj[anz].stype=="LaCrosseDTH"){
-            defineLaCrosseDTH(obj[anz].usid);
+            defineLaCrosseDTH(obj[anz].usid, obj[anz].name);
         }else 
         if(obj[anz].stype=="LaCrosseBMP180"){
-            defineLaCrosseBMP180(obj[anz].usid);
+            defineLaCrosseBMP180(obj[anz].usid, obj[anz].name);
         }
     }
 
