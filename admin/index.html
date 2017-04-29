@@ -33,7 +33,7 @@
         // example: select elements with id=key and class=value and insert value
         for (var key in settings) {
             // example: select elements with id=key and class=value and insert value
-			var $value = $('#' + key + '.value');
+			var value = $('#' + key + '.value');
             if (value.attr('type') === 'checkbox') {
                 value.prop('checked', settings[key]).change(function () {
 					onChange();
@@ -58,7 +58,7 @@
         $('.value').each(function () {
             var $this = $(this);
 			if ($this.attr('type') === 'checkbox') {
-				obj[$this.attr('id')] = $this.prop('checked);
+				obj[$this.attr('id')] = $this.prop('checked');
 			} else {
 				obj[$this.attr('id')] = $this.val();
 			}
