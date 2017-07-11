@@ -668,7 +668,7 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-
+	adapter.log.debug('start of main');
     var obj = adapter.config.sensors;
     for (var anz in obj){
         if(obj[anz].stype=="emonTH") {
@@ -689,7 +689,8 @@ function main() {
         baudrate:   adapter.config.baudrate   || 57600,
         parser:     serialport.parsers.readline('\r\n')
     };
-
+	adapter.log.debug('configured port : ' + adapter.config.serialport );
+	adapter.log.debug('configured baudrate : ' + adapter.config.baudrate );
     sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
