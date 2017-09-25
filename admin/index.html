@@ -31,22 +31,22 @@
     // the function loadSettings has to exist ...
     function load(settings, onChange) {
         // example: select elements with id=key and class=value and insert value
-        for (var key in settings) {
-            // example: select elements with id=key and class=value and insert value
-			var value = $('#' + key + '.value');
-            if (value.attr('type') === 'checkbox') {
-                value.prop('checked', settings[key]).change(function () {
-					onChange();
-				});
+       if (!settings) return;
+        $('.value').each(function () {
+            var key = $(this).attr('id');
+            var $key = $('#' + key + '.value');
+            if ($key.attr('type') === 'checkbox') {
+                $key.prop('checked', settings[key]).change(function() {
+                    onChange();
+                });
             } else {
-                value.val(settings[key]).change(function () {
-					onChange();
-				}).keyup(function () {
-					$(this).trigger('change');
-				});
+                $key.val(settings[key]).change(function() {
+                    onChange();
+                }).keyup(function() {
+                    onChange();
+                });
             }
-        }
-        // Signal to admin, that no changes yet
+        });
         onChange(false);
     }
 
