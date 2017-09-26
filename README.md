@@ -8,7 +8,7 @@ It includes both code running within iobroker and as vis widget. If you only pla
 
 ##Steps 
 1. download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.template/archive/master.zip```
-  or clone git repository ```git clone https://github.com/ioBroker/ioBroker.template.git```
+  or clone git repository ```git clone --depth=1 https://github.com/ioBroker/ioBroker.template.git```
 
 2. download required npm packets. Write in ioBroker.template directory:
 
