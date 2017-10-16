@@ -18,43 +18,48 @@
         "icon": "jeelab_logo.png",
         "extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
         "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
-        "loglevel": "debug"
+        "loglevel": "debug",
+        "authors": [
+            {
+                "name": "@@foxthefox@@",
+                "email": "foxthefox@wysiwis.net"
+            }
+        ]
     },
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate": 57600,
         "command": "",
         "command_en": false,
-         "sensors": [
-                {
-                    "sid": "18",
-                    "usid": "1",
-                    "stype": "emonTH",
-                    "name": "example emonTH"
-                },
-                {
-                    "sid": "0",
-                    "usid": "2",
-                    "stype": "LaCrosseBMP180",
-                    "name": "example superjee"
-                },
-                {
-                    "sid": "55",
-                    "usid": "3",
-                    "stype": "LaCrosseDTH",
-                    "name": "example LaCrosseDTH"
-                }
-            ]
-        },
-    "objects": [
-    ],
+        "sensors": [
+            {
+                "sid": "18",
+                "usid": "1",
+                "stype": "emonTH",
+                "name": "example emonTH"
+            },
+            {
+                "sid": "0",
+                "usid": "2",
+                "stype": "LaCrosseBMP180",
+                "name": "example superjee"
+            },
+            {
+                "sid": "55",
+                "usid": "3",
+                "stype": "LaCrosseDTH",
+                "name": "example LaCrosseDTH"
+            }
+        ]
+    },
+    "objects": [],
     "instanceObjects": [
         {
             "_id": "foundDevices",
             "type": "channel",
             "common": {
-                "name":  "foundDevices",
-                "role":  "device"
+                "name": "foundDevices",
+                "role": "device"
             },
             "native": {}
         },
@@ -62,12 +67,12 @@
             "_id": "foundDevices.state",
             "type": "state",
             "common": {
-                "name":  "new Devices",
-                "type":  "array",
-                "role":  "list",
-                "read":  true,
+                "name": "new Devices",
+                "type": "array",
+                "role": "list",
+                "read": true,
                 "write": true,
-                "desc":  "new Devices"
+                "desc": "new Devices"
             },
             "native": {}
         }
