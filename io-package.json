@@ -29,6 +29,9 @@
             "fr": "ioBroker adaptateur modèle",
             "nl": "ioBroker Template Adapter"
         },
+        "authors": [
+            "my Name <my@email.com>"
+        ],
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "template.png",
