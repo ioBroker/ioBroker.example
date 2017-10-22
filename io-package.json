@@ -20,6 +20,9 @@
         "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
         "loglevel": "debug"
     },
+    "authors": [
+            "foxthefox <foxthefox@wysiwis.net>"
+     ],
     "native": {
         "serialport": "/dev/ttyUSB0",
         "baudrate": 57600,
