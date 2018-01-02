@@ -1,8 +1,18 @@
 {
     "common": {
         "name": "template",
-        "version": "0.5.0",
+        "version": "0.6.0",
         "news": {
+            "0.6.0": {
+                "en": "Support of admin3",
+                "de": "Unterstützung von admin3",
+                "ru": "Поддержка admin3",
+                "pt": "Suporte de admin3",
+                "nl": "Ondersteuning van admin3",
+                "fr": "Support de admin3",
+                "it": "Supporto di admin3",
+                "es": "Soporte de admin3"
+            },
             "0.5.0": {
                 "en": "beta version",
                 "de": "Betaversion",
@@ -20,21 +30,43 @@
                 "nl": "Eerste release"
             }
         },
-        "title": "Javascript/Node.js based template adapter",
+        "title": {
+            "en": "Javascript/Node.js based template adapter",
+            "de": "Javascript / Node.js basierte Vorlagenadapter",
+            "ru": "Адаптер шаблонов на основе Javascript / Node.js",
+            "pt": "Adaptador de modelo baseado em Javascript / Node.js",
+            "nl": "Javascript / Node.js gebaseerde sjabloonadapter",
+            "fr": "Javascript / Node.js basé adaptateur de modèle",
+            "it": "Adattatore modello basato su Javascript / Node.js",
+            "es": "Adaptador de plantilla basado en JavaScript / Node.js"
+        },
         "desc": {
             "en": "ioBroker template Adapter",
             "de": "ioBroker Template Adapter",
             "ru": "ioBroker Template драйвер как образец",
             "pt": "Modelo de adaptador para o ioBroker",
             "fr": "ioBroker adaptateur modèle",
-            "nl": "ioBroker Template Adapter"
+            "nl": "ioBroker Template Adapter",
+            "it": "Adattatore modello ioBroker",
+            "es": "Adaptador de plantilla ioBroker"
         },
         "authors": [
             "my Name <my@email.com>"
         ],
+        "docs": {
+            "en": "docs/en/admin.md",
+            "ru": "docs/ru/admin.md",
+            "de": "docs/de/admin.md",
+            "es": "docs/es/admin.md",
+            "it": "docs/it/admin.md",
+            "fr": "docs/fr/admin.md",
+            "nl": "docs/nl/admin.md",
+            "pt": "docs/pt/admin.md"
+        },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "template.png",
+        "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
         "keywords": ["template", "vis", "GUI", "graphical", "scada"],
@@ -45,7 +77,8 @@
     },
     "native": {
         "test1": true,
-        "test2": 42
+        "test2": 42,
+        "mySelect": "auto"
     },
     "objects": [
 

@@ -16,12 +16,14 @@
  *          "desc":         "template adapter",          // Adapter description shown in User Interfaces. Can be a language object {de:"...",ru:"..."} or a string
  *          "platform":     "Javascript/Node.js",       // possible values "javascript", "javascript/Node.js" - more coming
  *          "mode":         "daemon",                   // possible values "daemon", "schedule", "subscribe"
+ *          "materialize":  true,                       // support of admin3
  *          "schedule":     "0 0 * * *"                 // cron-style schedule. Only needed if mode=schedule
  *          "loglevel":     "info"                      // Adapters Log Level
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
  *          "test1": true,
- *          "test2": 42
+ *          "test2": 42,
+ *          "mySelect": "auto"
  *      }
  *  }
  *
@@ -29,7 +31,7 @@
 
 /* jshint -W097 */// jshint strict:false
 /*jslint node: true */
-"use strict";
+'use strict';
 
 // you have to require the utils module and call adapter function
 var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
@@ -37,7 +39,7 @@ var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-var adapter = utils.Adapter('template');
+var adapter = new utils.Adapter('template');
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
@@ -68,8 +70,8 @@ adapter.on('stateChange', function (id, state) {
 
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
 adapter.on('message', function (obj) {
-    if (typeof obj == 'object' && obj.message) {
-        if (obj.command == 'send') {
+    if (typeof obj === 'object' && obj.message) {
+        if (obj.command === 'send') {
             // e.g. send email or pushover or whatever
             console.log('send command');
 
@@ -89,8 +91,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config test1: ' + adapter.config.test1);
-    adapter.log.info('config test1: ' + adapter.config.test2);
+    adapter.log.info('config test1: '    + adapter.config.test1);
+    adapter.log.info('config test1: '    + adapter.config.test2);
+    adapter.log.info('config mySelect: ' + adapter.config.mySelect);
 
 
     /**

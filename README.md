@@ -54,19 +54,22 @@ It includes both code running within iobroker and as vis widget. If you only pla
 
 ## Changelog
 
-### 0.5.0
-  (vegetto) include vis widget
+### 0.6.0 (2017.01.02)
+* (bluefox) Support of admin3
 
-#### 0.4.0
+### 0.5.0
+* (vegetto) include vis widget
+
+### 0.4.0
 * (bluefox) fix errors with grunt
 
-#### 0.2.0
+### 0.2.0
 * (bluefox) initial release
 
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2017 @@Author@@ <@@email@@>
+Copyright (c) 2018 @@Author@@ <@@email@@>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
