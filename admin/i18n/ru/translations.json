@@ -1,0 +1,9 @@
+{
+  "Auto": "Автоматически",
+  "Manual": "Вручную",
+  "My select": "Выбор",
+  "on save adapter restarts with new config immediately": "При сохранении настроек адаптера он сразу же перезапускается",
+  "template adapter settings": "Пример",
+  "test1": "Тест 1",
+  "test2": "Тест 2"
+}
