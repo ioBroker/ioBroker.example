@@ -30,7 +30,8 @@
                 "nl": "Eerste release"
             }
         },
-        "title": {
+		"title": "Javascript/Node.js based template adapter",
+        "titleLang": {
             "en": "Javascript/Node.js based template adapter",
             "de": "Javascript / Node.js basierte Vorlagenadapter",
             "ru": "Адаптер шаблонов на основе Javascript / Node.js",
