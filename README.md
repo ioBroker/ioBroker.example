@@ -52,6 +52,11 @@ It includes both code running within iobroker and as vis widget. If you only pla
   
 8. share it with the community
 
+## Requirements
+* your github repository must have name "ioBroker.<adaptername>". **B** is capital in "ioBroker", but in the package.json the *name* must be low case, because npm does not allow upper case letters.
+* *title* in io-package.json (common) is simple short name of adapter in english. *titleLang* is object that consist short names in many languages. *Lang* ist not german Länge, but english LANGuages.
+* Do not use in the title the words "ioBroker" or "Adapter". It is clear anyway, that it is adapter for ioBroker.   
+
 ## Changelog
 
 ### 0.6.0 (2017.01.02)
