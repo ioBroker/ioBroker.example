@@ -411,6 +411,50 @@ gulp.task('rename', function ()  {
     if (fs.existsSync(__dirname + '/widgets/template')) {
         fs.renameSync(__dirname + '/widgets/template',                __dirname + '/widgets/' + newname);
     }
+    var patterns = [
+        {
+            match: /template/g,
+            replacement: newname
+        },
+        {
+            match: /Template/g,
+            replacement: newname ? (newname[0].toUpperCase() + newname.substring(1)) : 'Template'
+        },
+        {
+            match: /@@Author@@/g,
+            replacement: author
+        },
+        {
+            match: /@@email@@/g,
+            replacement: email
+        }
+    ];
+    var files = [
+        __dirname + '/io-package.json',
+        __dirname + '/LICENSE',
+        __dirname + '/package.json',
+        __dirname + '/README.md',
+        __dirname + '/main.js',
+        __dirname + '/Gruntfile.js',
+        __dirname + '/widgets/' + newname +'.html',
+        __dirname + '/www/index.html',
+        __dirname + '/admin/index.html',
+        __dirname + '/widgets/' + newname + '/js/' + newname +'.js',
+        __dirname + '/widgets/' + newname + '/css/style.css'
+    ];
+    files.forEach(function (f) {
+        try {
+            if (fs.existsSync(f)) {
+                var data = fs.readFileSync(f).toString('utf-8');
+                for (var r = 0; r < patterns.length; r++) {
+                    data = data.replace(patterns[r].match, patterns[r].replacement);
+                }
+                fs.writeFileSync(f, data);
+            }
+        } catch (e) {
+
+        }
+    });
 });
 
 gulp.task('updateReadme', function (done) {
