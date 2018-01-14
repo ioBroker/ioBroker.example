@@ -16,13 +16,13 @@ It includes both code running within iobroker and as vis widget. If you only pla
   
 3. set name of this template. Call
   
-  ```grunt rename --name=mynewname --email=email@mail.com --author="Author Name"```
+  ```gulp rename --name mynewname --email email@mail.com --author "Author Name"```
   
   *mynewname* must be **lower** case and with no spaces.
 
-  If grunt is not available, install grunt globally:
+  If gulp is not available, install gulp globally:
   
-  ```npm install -g grunt-cli```
+  ```npm install -g gulp-cli```
  
 4. rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
 
