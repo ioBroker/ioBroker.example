@@ -1,0 +1,138 @@
+<html>
+
+<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+
+<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+<script type="text/javascript" src="../../js/translate.js"></script>
+<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+<script type="text/javascript" src="words.js"></script>
+
+
+    var sensorTypes = [
+        'emonTH',
+        'emonWater',
+        'LaCrosseDTH',
+        'LaCrosseBMP180'    
+        ];
+    function setValue(id, value, onChange) {
+        // example: select elements with id=key and class=value and insert value
+        if ($('#' + id + '.value').attr('type') == 'checkbox') {
+            $('#' + id + '.value').prop('checked', value).change(function() {
+                onChange();
+            });
+        } else {
+            $('#' + id + '.value').val(value).change(function() {
+                onChange();
+            }).keyup(function() {
+                // Chack that only numbers entered
+                if ($(this).hasClass('number')) {
+                    var val = $(this).val();
+                    if (val) {
+                        var newVal = '';
+                        for (var i = 0; i < val.length; i++) {
+                            if (val[i] >= '0' && val[i] <= '9') {
+                                newVal += val[i];
+                            }
+                        }
+                        if (val != newVal) $(this).val(newVal);
+                    }
+                }
+                onChange();
+            });
+        }
+    }
+    // the function loadSettings has to exist ...
+    function load(settings, onChange) {
+            if (!settings) return;
+            sensors = settings.sensors || [];
+            for (var key in settings) {
+                setValue(key, settings[key], onChange);
+            }
+            editTable('sensors', ['usid','sid', 'stype', 'name'], sensors, 470);
+            /**
+            socket.emit('subscribeObjects',  'jeelink.' + instance + '.*');
+            socket.emit('subscribeStates',  'jeelink.' + instance + '.*');
+            socket.emit('getState', 'jeelink.' + instance + '.foundDevices.val', function (err, state) {
+                console.log("got the following config : "+ JSON.stringify(state));
+                        if (!err) {
+                            showMessage("new devices found " +JSON.stringify(state) );
+                        } else {
+                            showError(err);
+                        }
+                });
+            **/
+            
+        // Signal to admin, that no changes yet
+        onChange(false);
+    }
+    // ... and the function save has to exist.
+    // you have to make sure the callback is called with the settings object as first param!
+    function save(callback) {
+        // example: select elements with class=value and build settings object
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            if ($this.attr('type') === 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
+        });
+        // Get edited table
+        obj.sensors = getTableResult('sensors', ['sid', 'stype', 'usid', 'name']);
+        
+        callback(obj);
+    }
+</script>
+
+<!-- you have to put your config page in a div with id adapter-container -->
+<div id="adapter-container">
+
+    <table>
+        <tr>
+            <td><img src="jeelab_logo.png"/></td>
+            <td><h3 class="translate">jeelink adapter Settings</h3></td>
+        </tr>
+    </table>
+    
+    <h4 class="translate">jeelink USB adapter settings</h4>
+    <table>
+        <tr>
+            <td class="translate">Serial port</td>
+            <td><input id="serialport" class="value"/></td><td><p>/dev/ttyUSB0 or /dev/ttyACME0</p></td>
+        </tr>
+        <tr>
+            <td class="translate">Baud rate</td>
+            <td><input id="baudrate"   class="value number" size="5"/></td> <td><p>usually  57600</p></td>
+        </tr>
+        <tr>
+            <td class="translate">command for stick setup</td>
+            <td><input id="command" class="value string" size="5" /></td>
+            <td>
+                <p>usually empty</p>
+            </td>
+        </tr>
+                <tr>
+            <td class="translate">enable command</td>
+            <td><input id="command_en" class="value" type="checkbox" /></td>
+            <td>
+                <p>usually empty</p>
+            </td>
+        </tr>
+    </table>
+    
+
+    <p class="translate">on save adapter restarts with new config immediately</p>
+
+    <h4 class="translate">Sensor configuration</h4>
+    <p class="translate">valid sensor types:</p>
+    <p> emonTH, emonWater, LaCrosseDTH, LaCrosseBMP180</p>  <!--solange es noch kein select in der Tabelle gibt -->
+    <table id="sensors"></table><div id="pager-sensors"></div>
+
+</div>
+
+</html>
