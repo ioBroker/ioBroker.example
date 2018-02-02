@@ -12,7 +12,14 @@
 <script type="text/javascript" src="../../lib/js/materialize.js"></script>
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
 <script type="text/javascript" src="words.js"></script>
-
+ <style>
+  .m .col .select-wrapper+label {
+   top: -26px;  
+  }
+     .m span{
+         font-size: 0.9em;
+     }
+ </style>
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
 
@@ -20,7 +27,7 @@
     function load(settings, onChange) {
         // example: select elements with id=key and class=value and insert value
        if (!settings) return;
-        $('.value').each(function () {
+        $('.value').each(function () {            
             var $key = $(this);
             var id = $key.attr('id');
             if ($key.attr('type') === 'checkbox') {
@@ -38,6 +45,7 @@
             }
         });
         onChange(false);
+        M.updateTextFields();  // function Materialize.updateTextFields(); to reinitialize all the Materialize labels on the page if you are dynamically adding inputs.
     }
 
     // ... and the function save has to exist.
@@ -47,46 +55,74 @@
         var obj = {};
         $('.value').each(function () {
             var $this = $(this);
-			if ($this.attr('type') === 'checkbox') {
-				obj[$this.attr('id')] = $this.prop('checked');
-			} else {
-				obj[$this.attr('id')] = $this.val();
-			}
+            if ($this.attr('type') === 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
         });
         callback(obj);
     }
 </script>
 </head>
 <body>
-<!-- you have to put your config page in a div with id adapter-container -->
-<div class="m adapter-container">
-    <div class="row">
-        <div class="col s12 m4 l2">
-            <img src="template.png" class="logo">
+    <!-- you have to put your config page in a div with id adapter-container -->
+    <div class="m adapter-container">
+        <div class="row">
+            <!-- Forms are the standard way to receive user inputted data.
+         Learn more http://materializecss.com/forms.html-->
+            <div class="row">
+                <div class="input-field col s6">
+                    <img src="template.png" class="logo">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <input class="value" id="test1" type="checkbox" />
+                    <label for="test1" class="translate">test1</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l4">
+                    <input class="value" id="myText" type="text">
+                    <label for="myText">Text</label>
+                    <span class="translate">Descriptions of the input field</span>
+                </div>
+                <div class="input-field col s12 m6 l4">
+                    <input type="number" class="value" id="test2" />
+                    <label for="test2" class="translate">Number</label>
+                    <!-- Important: label must come directly after input. Label is important. -->
+                    <span class="translate">test2</span>
+                </div>
+                <div class="input-field col s12 m6 l4">
+                    <input id="email" type="email" class="value validate">
+                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                    <!--  You can add custom validation messages by adding either data-error or data-success attributes to your input field labels.-->
+                    <span class="translate">Verification input</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m4">
+                    <select class="value" id="mySelect">
+                        <option value="auto" class="translate">Auto</option>
+                        <option value="manual" class="translate">Manual</option>
+                    </select>
+                    <label for="mySelect" class="translate">My select</label>
+                    <!-- Important: label must come directly after select. Label is important. -->
+                </div>
+                <div class="input-field col s12 m8">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="Textarea" class="value materialize-textarea"></textarea>
+                    <label for="Textarea">Message</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p class="translate">on save adapter restarts with new config immediately</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12">
-            <input class="value" id="test1" type="checkbox"/><span class="translate">test1</span>
-            <!-- Important: span must come directly after checkbox input (only by checkbox the span will be used!) -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <input class="value" id="test2"/><label for="test2" class="translate">test2</label>
-            <!-- Important: label must come directly after input. Label is important. -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <select class="value" id="mySelect">
-                <option value="auto" class="translate">Auto</option>
-                <option value="manual" class="translate">Manual</option>
-            </select>
-            <label for="mySelect" class="translate">My select</label>
-            <!-- Important: label must come directly after select. Label is important. -->
-        </div>
-    </div>
-</div>
 </body>
+
 </html>
