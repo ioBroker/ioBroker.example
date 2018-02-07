@@ -439,6 +439,7 @@ gulp.task('rename', function ()  {
         __dirname + '/widgets/' + newname +'.html',
         __dirname + '/www/index.html',
         __dirname + '/admin/index.html',
+        __dirname + '/admin/index_m.html',
         __dirname + '/widgets/' + newname + '/js/' + newname +'.js',
         __dirname + '/widgets/' + newname + '/css/style.css'
     ];
