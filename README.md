@@ -12,13 +12,23 @@ For the usage of LaCrosse sensors, the firmware has to be exchanged (see iobroke
 
 ## Installation:
 released version
-* npm install iobroker.jeelink 
-* on raspberry it might help to use: npm install --unsafe-perm iobroker.jeelink, because serialport package must be built on unsupported arm-hw
+```javascript
+npm install iobroker.jeelink
+```
+* on raspberry it might help to use:
+```javascript
+ npm install --unsafe-perm iobroker.jeelink
+ ```
+ because serialport package must be built on unsupported arm-hw
 
 or the actual development version from github (when under testing, may not work!)
-* npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
-* npm install --unsafe-perm https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
-
+```javascript
+npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
+```
+or
+```javascript
+npm install --unsafe-perm https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
+```
 ## Settings:
 - USB port of JeelinkAdapter usually /dev/ttyACME
 - Serial Speed usually 57600 Baud
