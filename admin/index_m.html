@@ -1,144 +1,248 @@
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+        <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
-<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
-<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+        <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 
-<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="../../js/translate.js"></script>
+        <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+        <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+        <script type="text/javascript" src="words.js"></script>
 
-<script type="text/javascript" src="../../js/translate.js"></script>
-<script type="text/javascript" src="../../lib/js/materialize.js"></script>
-<script type="text/javascript" src="../../js/adapter-settings.js"></script>
-<script type="text/javascript" src="words.js"></script>
+        <script type="text/javascript">
+            
+            var sensors = [];
+            var sensorTypes = [
+                'emonTH',
+                'emonWater',
+                'LaCrosseDTH',
+                'LaCrosseBMP180'    
+                ];
 
-<script type="text/javascript">
-        var sensors = [];
-    
-    var sensorTypes = [
-        'emonTH',
-        'emonWater',
-        'LaCrosseDTH',
-        'LaCrosseBMP180'    
-        ];
-    function setValue(id, value, onChange) {
-        // example: select elements with id=key and class=value and insert value
-        if ($('#' + id + '.value').attr('type') == 'checkbox') {
-            $('#' + id + '.value').prop('checked', value).change(function() {
-                onChange();
-            });
-        } else {
-            $('#' + id + '.value').val(value).change(function() {
-                onChange();
-            }).keyup(function() {
-                // Chack that only numbers entered
-                if ($(this).hasClass('number')) {
-                    var val = $(this).val();
-                    if (val) {
-                        var newVal = '';
-                        for (var i = 0; i < val.length; i++) {
-                            if (val[i] >= '0' && val[i] <= '9') {
-                                newVal += val[i];
-                            }
+            // the function loadSettings has to exist ...
+            function load(settings, onChange) {
+                    if (!settings) return;
+                    sensors = settings.sensors || [];
+
+
+                    $('.value').each(function () {
+                        var $key = $(this);
+                        var id = $key.attr('id');
+                        if ($key.attr('type') === 'checkbox') {
+                            // do not call onChange direct, because onChange could expect some arguments
+                            $key.prop('checked', settings[id]).change(function() {
+                                onChange();
+                            });
+                        } else {
+                            // do not call onChange direct, because onChange could expect some arguments
+                            $key.val(settings[id]).change(function() {
+                                onChange();
+                            }).keyup(function() {
+                                onChange();
+                            });
                         }
-                        if (val != newVal) $(this).val(newVal);
+                    });
+
+                    /**
+                    socket.emit('subscribeObjects',  'jeelink.' + instance + '.*');
+                    socket.emit('subscribeStates',  'jeelink.' + instance + '.*');
+                    socket.emit('getState', 'jeelink.' + instance + '.foundDevices.val', function (err, state) {
+                        console.log("got the following config : "+ JSON.stringify(state));
+                                if (!err) {
+                                    showMessage("new devices found " +JSON.stringify(state) );
+                                } else {
+                                    showError(err);
+                                }
+                        });
+                    **/
+                //Tabelle mit Sensoren zeigen
+                showDevice(sensors);
+
+                //add button
+                $('#table-button-add').click(function () {
+                    getIsAdapterAlive(function (isAlive) {
+                            if (isAlive) {           
+                                    console.log('send browse to adapter');
+                                    var changed = true;
+                                    sensors.push({
+                                        sid: 'new',
+                                        stype: 'LaCrosseDTH',
+                                        usid: 'new',
+                                        name: 'new'
+                                    });
+                                    
+                                    if (changed) {
+                                        console.log('devices now '+ JSON.stringify(sensors));
+                                        onChange();
+                                        showDevice(sensors);
+                                    }
+                            } else {
+                            showMessage(_('Start or enable adapter first'));
+                            }
+                        });
+                }).attr('title', _('update adapter information'));
+                
+                //delete buttons in tabelle
+                var $div  = $('#values');
+                var $table = $div.find('.table-values');
+                var $lines = $table.find('.table-lines');
+                $lines.find('a[data-command]').each(function () {
+                        $(this).on('click', function () {
+                            var id = $(this).data('index'); //index=id entspricht der Position im device-array
+                            //var index = devices.map(function(obj){ return obj.uid; }).indexOf(id); //für Übergabe als event und suche nach position
+                            console.log('id'+id);
+                            if( id !== -1){
+                                sensors.splice(id,1);
+                                onChange();
+                                showDevice(sensors);
+                            }   
+                        })
+                }).addClass('red');
+                $lines.find('.values').each(function () {
+                    $(this).change(function () {
+                        var val = $(this).val();
+                        if (val) {
+                            console.log('textänderung'+val);
+                            onChange();
+                        }
+                    });
+                });
+                
+                // Signal to admin, that no changes yet
+                onChange(false);
+
+                M.updateTextFields();
+            }
+            // ... and the function save has to exist.
+            // you have to make sure the callback is called with the settings object as first param!
+            function save(callback) {
+                // example: select elements with class=value and build settings object
+                var obj = {};
+                $('.value').each(function () {
+                    var $this = $(this);
+                    if ($this.attr('type') === 'checkbox') {
+                        obj[$this.attr('id')] = $this.prop('checked');
+                    } else {
+                        obj[$this.attr('id')] = $this.val();
+                    }
+                });
+                // Get edited table
+                obj.sensors = table2values('values');
+                
+                callback(obj);
+            }
+
+            function showDevice(obj) {
+                $('#devices').empty();
+                for (var i in obj){
+                    var text = '';
+                    text += '<td><input class="values" value="' + obj[i].sid + '" type="text" data-index="' + i + '" data-name="sid"/></td>';
+                    //text += '<td><input class="values" value="' + obj[i].stype + '" type="text" data-index="' + i + '" data-name="stype"/></td>';
+                    
+                    text += '<td style="text-align: center;">' + '' +'<select data-index="' + i + '" data-name="stype" class="values">'; 
+                    text += '<option value="" disabled>Select Sensor</option>';                       
+                        for (var j in sensorTypes) {
+                            text += '<option value="' + sensorTypes[j] +'"';
+                            if (sensorTypes[j] == obj[i].stype){
+                                text += 'selected';
+                            }
+                            text += '>' +  sensorTypes[j] + '</option>';
+                        }
+                    text += '</select></td>';
+                    
+                    text += '<td><input class="values" value="' + obj[i].usid + '" type="text" data-index="' + i + '" data-name="usid"/></td>';
+                    text += '<td><input class="values" value="' + obj[i].name + '" type="text" data-index="' + i + '" data-name="name"/></td>';
+                    text += '<td style="text-align: center; white-space: nowrap;"><a data-command="delete" data-index="' + i + '" id="del-button_'+ obj[i].usid + '" class="btn"><i class="material-icons">delete_forever</i></a></td>'; //command und id sind nicht benutzt
+                    text = '<tr data-id="' + obj[i].usid + '">' + text + '</tr>';
+                    console.log(text);
+                    $('#devices').append(text);
+                    $('#'+ i + '_select').select();
                     }
                 }
-                onChange();
-            });
-        }
-    }
-    // the function loadSettings has to exist ...
-    function load(settings, onChange) {
-            if (!settings) return;
-            sensors = settings.sensors || [];
-            for (var key in settings) {
-                setValue(key, settings[key], onChange);
-            }
-            editTable('sensors', ['usid','sid', 'stype', 'name'], sensors, 470);
-            /**
-            socket.emit('subscribeObjects',  'jeelink.' + instance + '.*');
-            socket.emit('subscribeStates',  'jeelink.' + instance + '.*');
-            socket.emit('getState', 'jeelink.' + instance + '.foundDevices.val', function (err, state) {
-                console.log("got the following config : "+ JSON.stringify(state));
-                        if (!err) {
-                            showMessage("new devices found " +JSON.stringify(state) );
-                        } else {
-                            showError(err);
-                        }
-                });
-            **/
-            
-        // Signal to admin, that no changes yet
-        onChange(false);
-    }
-    // ... and the function save has to exist.
-    // you have to make sure the callback is called with the settings object as first param!
-    function save(callback) {
-        // example: select elements with class=value and build settings object
-        var obj = {};
-        $('.value').each(function () {
-            var $this = $(this);
-            if ($this.attr('type') === 'checkbox') {
-                obj[$this.attr('id')] = $this.prop('checked');
-            } else {
-                obj[$this.attr('id')] = $this.val();
-            }
-        });
-        // Get edited table
-        obj.sensors = getTableResult('sensors', ['sid', 'stype', 'usid', 'name']);
-        
-        callback(obj);
-    }
-</script>
 
+        </script>
+        <style>
+            .sub-title {
+                margin-top: 2rem!important;
+                padding: 0.5rem;
+                background: #64b5f6;
+                color: white;
+            }
+        </style>
+    </head>
+<body>
 <!-- you have to put your config page in a div with id adapter-container -->
 <div class ="m adapter-container">
-
-    <div class="row">
-        <div class="col s12 m4 l2">
-            <img src="jeelab_logo.png" class="logo">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4 l2">
+                <img src="jeelab_logo.png" style="height:7em; width: 7em;" class="logo">
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12">
-            <input class="value" id="serialport"/><label for="serialport" class="translate">Serial port</label>
-                <p>/dev/ttyUSB0 or /dev/ttyACME0</p></td>
-            <!-- Important: label must come directly after input. Label is important. -->
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h6 class="translate sub-title">Jeelink Settings</h6>
+            </div>
+            <div class="col s6">
+                <input class="value" id="serialport"/><label for="serialport" class="translate">Serial port</label>
+                    <p>/dev/ttyUSB0 or /dev/ttyACME0</p></td>
+                <!-- Important: label must come directly after input. Label is important. -->
+            </div>
+            <div class="col s6">
+                <input class="value" id="baudrate"/><label for="baudrate" class="translate">Baud rate</label>
+                    <p>usually  57600</p>
+                <!-- Important: label must come directly after input. Label is important. -->
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12">
-            <input class="value" id="baudrate"/><label for="baudrate" class="translate">Baud rate</label>
-                <p>usually  57600</p>
-            <!-- Important: label must come directly after input. Label is important. -->
-        </div>
-    </div>    
-    <div class="row">
-        <div class="col s12">
-            <input class="value string" id="command"/><label for="command" class="translate">command for stick setup</label>
-                <p>usually empty</p>
-            <!-- Important: label must come directly after input. Label is important. -->
-        </div>
-    </div>  
 
-    <div class="row">
-
-        <div class="col s12">
-
-            <input class="value" id="command_en" type="checkbox"/><span class="translate">enable command</span>
-                <p>usually empty</p>
-            <!-- Important: span must come directly after checkbox input (only by checkbox the span will be used!) -->
-
-        </div>
-
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h6 class="translate sub-title">Jeelink Command (trial)</h6>
+            </div>
+            <div class="col s6">
+                <input class="value string" id="command"/><label for="command" class="translate">command for stick setup</label>
+                    <p>usually empty</p>
+                <!-- Important: label must come directly after input. Label is important. -->
+            </div>
+            <div class="col s6">                     
+                <input class="value" id="command_en" type="checkbox"/><span class="translate">enable command</span>
+                    <p>usually empty</p>
+                <!-- Important: span must come directly after checkbox input (only by checkbox the span will be used!) -->
+            </div>
+        </div> 
     </div>
-  
-
-    <h4 class="translate">Sensor configuration</h4>
-    <p class="translate">valid sensor types:</p>
-    <p> emonTH, emonWater, LaCrosseDTH, LaCrosseBMP180</p>  <!--solange es noch kein select in der Tabelle gibt -->
-    <table id="sensors"></table><div id="pager-sensors"></div>
-
+ 
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h6 class="translate sub-title">Sensor configuration</h6>
+                <p class="translate">valid sensor types:</p>
+                <p> emonTH, emonWater, LaCrosseDTH, LaCrosseBMP180</p>
+                <p class="translate">If you see blue delete buttons, save settings first and open again the page.</p>
+            </div>            
+        </div>
+        <div id="values" style="width: 100%; height: calc(100% - 30px); overflow: auto;">
+            <a id="table-button-add" class="btn"><span class="translate">Add</span></a>
+            <table class="table-values" style="width: 90%;">
+                <thead>
+                <tr>
+                    <th data-name="sid"     style="width: 40px" class="translate">id</th>
+                    <th data-name="stype"   style="width: 150px" class="translate">type</th>
+                    <th data-name="usid"     style="width: 50px" class="translate">uid</th>
+                    <th data-name="name"     style="width: 200px" class="translate">name</th>
+                    <th data-buttons="delete" style="width: 40px" class="translate">delete</th>
+                </tr>
+                </thead>
+                <tbody class="table-lines" id="devices"></tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
+</body>
 </html>
