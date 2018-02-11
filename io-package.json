@@ -2,6 +2,19 @@
     "common": {
         "name": "jeelink",
         "version": "0.0.4",
+        "news": {
+            "0.0.4":{
+                "en": "LaCrosseBMP180 added, adminv3",
+                "de": "LaCrosseBMP180 hinzugefügt, adminv3",
+                "ru": "Добавлен LaCrosseBMP180, adminv3",
+                "pt": "LaCrosseBMP180 adicionado, adminv3",
+                "nl": "LaCrosseBMP180 toegevoegd, adminv3",
+                "fr": "LaCrosseBMP180 ajouté, adminv3",
+                "it": "LaCrosseBMP180 aggiunto, adminv3",
+                "es": "LaCrosseBMP180 agregado, adminv3",
+                "pl": "Dodano LaCrosseBMP180, adminv3"
+              }
+        },
         "title": "jeelink adapter",
         "desc": "ioBroker jeelink Adapter",
         "platform": "Javascript/Node.js",
