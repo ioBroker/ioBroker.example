@@ -42,6 +42,7 @@ to be done in admin
 ### 0.0.4
 * command to USB-stick for configuration
 * added superjee, BMP180 sensor on jeenode
+* admin v3 implementation
 
 ### 0.0.3
 * abs humidity and dewpoint calculation
