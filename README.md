@@ -21,7 +21,9 @@ npm install iobroker.jeelink
  ```
  because serialport package must be built on unsupported arm-hw
 
-or the actual development version from github (when under testing, may not work!)
+or 
+
+the actual development version from github (when under testing, may not work!)
 ```javascript
 npm install https://github.com/foxthefox/ioBroker.jeelink/tarball/master --production
 ```
