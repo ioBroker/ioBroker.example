@@ -1,5 +1,3 @@
-<!-- you have to define 2 functions in the global scope: -->
-
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
         "jeelink adapter settings": {
@@ -66,5 +64,10 @@
             "en": "on save adapter restarts with new config immediately",
             "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
             "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
+        },
+        "If you see blue delete buttons, save settings first and open again the page.": {
+            "en": "If you see blue delete buttons, save settings first and open again the page.",
+            "de": "Wenn du blaue Löschtasten siehst, die Einstellungen speichern und Seite neu laden.",
+            "ru": "Если вы видите синие кнопки удаления, сначала сохраните настройки и снова откройте страницу."
         }
 }
