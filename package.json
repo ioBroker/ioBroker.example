@@ -3,13 +3,11 @@
   "version": "0.0.4",
   "description": "ioBroker jeelink Adapter",
   "author": {
-    "name": "@@foxthefox@@",
+    "name": "foxthefox",
     "email": "foxthefox@wysiwis.net"
   },
   "contributors": [
     {
-      "name": "@@Author@@",
-      "email": "@@email@@"
     }
   ],
   "homepage": "https://github.com/foxthefox/ioBroker.jeelink",
