@@ -15,6 +15,7 @@
                 "pl": "Dodano LaCrosseBMP180, adminv3"
               }
         },
+        "title": "jeelink adapter",
         "titleLang": {
             "en": "jeelink adapter",
             "de": "Jeelink-Adapter",
