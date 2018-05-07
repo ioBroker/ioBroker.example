@@ -15,7 +15,17 @@
                 "pl": "Dodano LaCrosseBMP180, adminv3"
               }
         },
-        "title": "jeelink adapter",
+        "titleLang": {
+            "en": "jeelink adapter",
+            "de": "Jeelink-Adapter",
+            "ru": "адаптер для хэндлинка",
+            "pt": "adaptador jeelink",
+            "nl": "jeelink adapter",
+            "fr": "adaptateur de joncteur",
+            "it": "adattatore jeelink",
+            "es": "adaptador jeelink",
+            "pl": "Przystawka JELINK"
+        },
         "desc": "ioBroker jeelink Adapter",
         "platform": "Javascript/Node.js",
         "mode": "daemon",
