@@ -29,7 +29,7 @@
         },
         "desc": {
             "en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
-            "de": "lesen Sie 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
+            "de": "Einlesen der 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
             "ru": "читать 868 МГц датчики Technoline, emonTH, Lacrosse",
             "pt": "read 868Mhz sensors of Technoline, emonTH, Lacrosse",
             "nl": "lees 868MHz sensoren van Technoline, emonTH, Lacrosse",
