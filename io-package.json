@@ -27,7 +27,17 @@
             "es": "adaptador jeelink",
             "pl": "Przystawka JELINK"
         },
-        "desc": "ioBroker jeelink Adapter",
+        "desc": {
+            "en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
+            "de": "lesen Sie 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
+            "ru": "читать 868 МГц датчики Technoline, emonTH, Lacrosse",
+            "pt": "read 868Mhz sensors of Technoline, emonTH, Lacrosse",
+            "nl": "lees 868MHz sensoren van Technoline, emonTH, Lacrosse",
+            "fr": "lire les capteurs 868Mhz de Technoline, emonTH, Lacrosse",
+            "it": "leggi i sensori 868Mhz di Technoline, emonTH, Lacrosse",
+            "es": "leer sensores de 868Mhz de Technoline, emonTH, Lacrosse",
+            "pl": "przeczytaj czujniki 868Mhz Technoline, emonTH, Lacrosse"
+          },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "license": "MIT",
