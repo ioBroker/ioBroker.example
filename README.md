@@ -64,3 +64,9 @@ to be done in admin
 
 ### 0.0.1
 * working with 3 sensors emon
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2018 foxthefox <foxthefox@wysiwis.net>
