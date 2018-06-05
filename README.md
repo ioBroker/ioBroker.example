@@ -46,9 +46,12 @@ to be done in admin
 * other sensor types
 * put the sensor code in separate file
 * pushing new sensor to config, then visible in admin/config page
-* last version of serialport
+
 
 ## Changelog:
+
+### 0.0.6
+* last version of serialport
 
 ### 0.0.5
 * adminv3 improved with values2table
