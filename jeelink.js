@@ -686,10 +686,11 @@ function main() {
     }
 
     var options = {
-        baudRate:   adapter.config.baudrate   || 57600
+        baudRate:   parseInt(adapter.config.baudrate)   || parseInt(57600)
     };
 	adapter.log.debug('configured port : ' + adapter.config.serialport );
 	adapter.log.debug('configured baudrate : ' + adapter.config.baudrate );
+	adapter.log.debug('options : ' + JSON.stringify(options) );	
     	const sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
