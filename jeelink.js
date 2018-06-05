@@ -695,7 +695,7 @@ function main() {
             adapter.log.info('failed to open: '+error);
         } else {
             adapter.log.info('open');
-	    const parser = sp.pipe(new Readline({ delimiter: '\r\n' });
+	    const parser = sp.pipe(new Readline('\r\n');
 		//const parser = new Readline({ delimiter: '\r\n' });
 		//sp.pipe(parser);
             parser.on('data', function(data) {
