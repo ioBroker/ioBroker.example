@@ -2,7 +2,7 @@
 /*jslint node: true */
 "use strict";
 
-var SerialPort = require("serialport");
+const SerialPort = require("serialport");
 const Readline = SerialPort.parsers.Readline;
 var sp = null;
 
@@ -690,12 +690,12 @@ function main() {
     };
 	adapter.log.debug('configured port : ' + adapter.config.serialport );
 	adapter.log.debug('configured baudrate : ' + adapter.config.baudrate );
-    sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
+    	const sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
         } else {
             adapter.log.info('open');
-	    const parser = sp.pipe(new Readline('\r\n');
+	    const parser = sp.pipe(new Readline({ delimiter: '\r\n' }));
 		//const parser = new Readline({ delimiter: '\r\n' });
 		//sp.pipe(parser);
             parser.on('data', function(data) {
