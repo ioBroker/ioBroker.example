@@ -52,7 +52,7 @@
             "es": "Adaptador de plantilla ioBroker"
         },
         "authors": [
-            "my Name <my@email.com>"
+            "@@Author@@ <@@email@@>"
         ],
         "docs": {
             "en": "docs/en/admin.md",
