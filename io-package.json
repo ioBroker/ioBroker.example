@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "news": {
+            "0.0.6: {
+                "en": "last version of node-serialport",
+                "de": "letzte Version von node-serialport",
+                "ru": "последняя версия node-serialport",
+                "pt": "última versão do node-serialport",
+                "nl": "laatste versie van node-serialport",
+                "fr": "dernière version de node-serialport",
+                "it": "ultima versione di node-serialport",
+                "es": "última versión del nodo-puerto serial",
+                "pl": "ostatnia wersja portu-portu szeregowego"
+              },
             "0.0.5": {
                 "en": "adminv3 improved (values2table)",
                 "de": "adminv3 verbessert (values2table)",
