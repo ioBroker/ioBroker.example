@@ -686,8 +686,7 @@ function main() {
     }
 
     var options = {
-        baudrate:   adapter.config.baudrate   || 57600,
-        parser:     SerialPort.parsers.readline('\r\n')
+        baudrate:   adapter.config.baudrate   || 57600
     };
 	adapter.log.debug('configured port : ' + adapter.config.serialport );
 	adapter.log.debug('configured baudrate : ' + adapter.config.baudrate );
@@ -696,10 +695,10 @@ function main() {
             adapter.log.info('failed to open: '+error);
         } else {
             adapter.log.info('open');
-	    //const parser = sp.pipe(new Readline({ delimiter: '\r\n' });
+	    const parser = sp.pipe(new Readline({ delimiter: '\r\n' });
 		//const parser = new Readline({ delimiter: '\r\n' });
 		//sp.pipe(parser);
-            sp.on('data', function(data) {
+            parser.on('data', function(data) {
 
                 adapter.log.info('data received: ' + data);
 
