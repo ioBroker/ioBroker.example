@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": {
+            "0.0.5": {
+                "en": "adminv3 improved (values2table)",
+                "de": "adminv3 verbessert (values2table)",
+                "ru": "adminv3 улучшен (values2table)",
+                "pt": "adminv3 melhorado (values2table)",
+                "nl": "adminv3 verbeterd (values2table)",
+                "fr": "adminv3 amélioré (values2table)",
+                "it": "adminv3 improved (values2table)",
+                "es": "adminv3 mejorado (values2table)",
+                "pl": "poprawiono adminv3 (values2table)"
+              },
             "0.0.4":{
                 "en": "LaCrosseBMP180 added, adminv3",
                 "de": "LaCrosseBMP180 hinzugefügt, adminv3",
