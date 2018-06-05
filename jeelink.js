@@ -3,6 +3,7 @@
 "use strict";
 
 var SerialPort = require("serialport");
+const Readline = require('@serialport/parser-readline');
 var sp = null;
 
 // you have to require the utils module and call adapter function
@@ -695,6 +696,7 @@ function main() {
             adapter.log.info('failed to open: '+error);
         } else {
             adapter.log.info('open');
+	    //const parser = sp.pipe(new Readline({ delimiter: '\r\n' })
             sp.on('data', function(data) {
 
                 adapter.log.info('data received: ' + data);
