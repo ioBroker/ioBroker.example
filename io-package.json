@@ -3,7 +3,7 @@
         "name": "jeelink",
         "version": "0.0.6",
         "news": {
-            "0.0.6: {
+            "0.0.6": {
                 "en": "last version of node-serialport",
                 "de": "letzte Version von node-serialport",
                 "ru": "последняя версия node-serialport",
