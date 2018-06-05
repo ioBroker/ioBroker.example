@@ -686,7 +686,7 @@ function main() {
 
     var options = {
         baudrate:   adapter.config.baudrate   || 57600,
-        parser:     serialport.parsers.readline('\r\n')
+        parser:     SerialPort.parsers.readline('\r\n')
     };
 	adapter.log.debug('configured port : ' + adapter.config.serialport );
 	adapter.log.debug('configured baudrate : ' + adapter.config.baudrate );
