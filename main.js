@@ -34,12 +34,17 @@
 'use strict';
 
 // you have to require the utils module and call adapter function
-var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
+const utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-var adapter = new utils.Adapter('template');
+const adapter = new utils.Adapter('template');
+
+/*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
+it is available then var.The variable is available inside a block and it's childs, but not outside. 
+You can define the same variable name inside a child without produce a conflict with the variable of the parent block.*/
+let variable = 1234;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
@@ -100,7 +105,7 @@ function main() {
      *
      *      For every state in the system there has to be also an object of type state
      *
-     *      Here a simple template for a boolean variable named "testVariable"
+     *      Here a simple template for a boolean iable named "testVariable"
      *
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      *
