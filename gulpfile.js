@@ -413,6 +413,10 @@ gulp.task('rename', function ()  {
     }
     var patterns = [
         {
+            match: /ioBroker template Adapter/g,
+            replacement: newname
+        },
+        {
             match: /template/g,
             replacement: newname
         },
