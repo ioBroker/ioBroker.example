@@ -2,8 +2,7 @@
 /*jslint node: true */
 "use strict";
 
-var serialport = require("serialport");
-var SerialPort = serialport.SerialPort; // localize object constructor
+var SerialPort = require("serialport");
 var sp = null;
 
 // you have to require the utils module and call adapter function
