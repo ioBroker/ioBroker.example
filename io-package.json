@@ -75,6 +75,7 @@
         "readme": "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
+	"messagebox": false,
         "restartAdapters": ["vis"]
     },
     "native": {
