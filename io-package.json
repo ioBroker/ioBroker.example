@@ -74,6 +74,7 @@
         "readme": "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
+        "license": "MIT",
         "restartAdapters": ["vis"]
     },
     "native": {
