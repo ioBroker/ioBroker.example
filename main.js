@@ -105,7 +105,7 @@ function main() {
      *
      *      For every state in the system there has to be also an object of type state
      *
-     *      Here a simple template for a boolean iable named "testVariable"
+     *      Here a simple template for a boolean variable named "testVariable"
      *
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      *
