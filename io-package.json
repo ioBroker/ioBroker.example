@@ -66,7 +66,6 @@
         },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
-	"license": "MIT",
         "icon": "template.png",
         "materialize": true,
         "enabled": true,
@@ -75,7 +74,8 @@
         "readme": "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
-	"messagebox": false,
+        "license": "MIT",
+        "messagebox": false,
         "restartAdapters": ["vis"]
     },
     "native": {
