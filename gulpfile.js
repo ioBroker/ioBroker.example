@@ -406,7 +406,7 @@ gulp.task('rename', function ()  {
         fs.renameSync(__dirname + '/widgets/template.html',           __dirname + '/widgets/' + newname + '.html');
     }
     if (fs.existsSync(__dirname + '/widgets/template/js/template.js')) {
-        fs.renameSync(__dirname + '/widgets/template/js/template.js', __dirname + '/widgets/template/js/' + newname + '.js');
+        fs.renameSync(__dirname + '/widgets/template/js/template.js', __dirname + '/widgets/' + newname + '/js/' + newname + '.js');
     }
     if (fs.existsSync(__dirname + '/widgets/template')) {
         fs.renameSync(__dirname + '/widgets/template',                __dirname + '/widgets/' + newname);
@@ -439,7 +439,7 @@ gulp.task('rename', function ()  {
         __dirname + '/package.json',
         __dirname + '/README.md',
         __dirname + '/main.js',
-        __dirname + '/Gruntfile.js',
+        __dirname + '/gulpfile.js',
         __dirname + '/widgets/' + newname +'.html',
         __dirname + '/www/index.html',
         __dirname + '/admin/index.html',
