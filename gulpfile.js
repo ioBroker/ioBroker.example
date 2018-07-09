@@ -412,7 +412,7 @@ gulp.task('rename', function ()  {
         if (!fs.existsSync(__dirname + '/widgets/' + newname + '/js/')) {
             fs.mkdirSync(__dirname + '/widgets/' + newname + '/js/');
         }        
-        fs.renameSync(__dirname + '/widgets/template/js/template.js', __dirname + '/widgets/' + newname + '/js/' + newname + '.js');
+        fs.renameSync(__dirname + '/widgets/template/js/template.js', __dirname + '/widgets/template/js/' + newname + '.js');
     }
     if (fs.existsSync(__dirname + '/widgets/template')) {
         fs.renameSync(__dirname + '/widgets/template',                __dirname + '/widgets/' + newname);
