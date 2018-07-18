@@ -30,9 +30,9 @@
                 "nl": "Eerste release"
             }
         },
-		"title": "Javascript/Node.js based template adapter",
+		"title": "Javascript/Node.js based template",
         "titleLang": {
-            "en": "Javascript/Node.js based template adapter",
+            "en": "Javascript/Node.js based template",
             "de": "Javascript / Node.js basierte Vorlagenadapter",
             "ru": "Адаптер шаблонов на основе Javascript / Node.js",
             "pt": "Adaptador de modelo baseado em Javascript / Node.js",
@@ -42,12 +42,12 @@
             "es": "Adaptador de plantilla basado en JavaScript / Node.js"
         },
         "desc": {
-            "en": "ioBroker template Adapter",
-            "de": "ioBroker Template Adapter",
-            "ru": "ioBroker Template драйвер как образец",
+            "en": "ioBroker template",
+            "de": "ioBroker Template",
+            "ru": "ioBroker Template как образец",
             "pt": "Modelo de adaptador para o ioBroker",
             "fr": "ioBroker adaptateur modèle",
-            "nl": "ioBroker Template Adapter",
+            "nl": "ioBroker Template",
             "it": "Adattatore modello ioBroker",
             "es": "Adaptador de plantilla ioBroker"
         },
