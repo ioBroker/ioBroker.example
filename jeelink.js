@@ -389,6 +389,32 @@ function logemonTH(data){
     }
 }
 
+// TX29DTH-IT
+// H005400750255
+// H000700320268
+// H001000290270
+// H002700680253
+// H002500390426
+
+// H 00 AA F S T1T2H1T3H2H3
+//   0  1  2 3 4 5 6 7 8 9
+// H 00 ID X X X X X X X X
+// |  | |  | | | | | | | |-[10] Humidity H3
+// |  | |  | | | | | | |---[9] Humidity H2
+// |  | |  | | | | | | ----[8] Temperature T3
+// |  | |  | | | | |-------[7] Humidity H1
+// |  | |  | | | |-------- [6] Temperature T2
+// |  | |  | | |---------- [5] Temperature T1
+// |  | |  | |------------ [4] Sensor type (0 = HMS100TF or 1 = HMS100T)
+// |  | |  |-------------- [3] Flag und Temp Vorzeichen; 8 = <0°C, 2 = low Batt, A?=low Batt and <0°C
+// |  | |----------------- [2] Sensor ID
+// |  |------------------- [1] fix "00"
+// |---------------------- [0] fix "H"
+// Temp = (10*T3 + T1 + T2/10)* Vorzeichen
+// Feuchte = (10*H2 + H3 + H1/10)
+
+
+
 // OK 9 56 1   4   156 37   ID = 56 T: 18.0 H: 37 no NewBatt
 // OK 9 49 1   4   182 54   ID = 49 T: 20.6 H: 54 no NewBatt
 // OK 9 55 129 4   192 56   ID = 55 T: 21.6 H: 56 WITH NewBatt
