@@ -389,7 +389,7 @@ function logemonTH(data){
     }
 }
 
-// TX29DTH-IT
+// TX29DTH-IT mit H0...
 // H005400750255
 // H000700320268
 // H001000290270
@@ -413,8 +413,72 @@ function logemonTH(data){
 // Temp = (10*T3 + T1 + T2/10)* Vorzeichen
 // Feuchte = (10*H2 + H3 + H1/10)
 
+// EMT7110 FHEM
+// Format
+// 
+// OK  EMT7110  84 81  8  237 0  13  0  2   1  6  1  -> ID 5451   228,5V   13mA   2W   2,62kWh
+// OK  EMT7110  84 162 8  207 0  76  0  7   0  0  1
+// OK  EMT7110  ID ID  VV VV  AA AA  WW WW  KW KW Flags
+//     |        |  |   |  |   |  |   |  |   |  |
+//     |        |  |   |  |   |  |   |  |   |   `--- AccumulatedPower * 100 LSB
+//     |        |  |   |  |   |  |   |  |    `------ AccumulatedPower * 100 MSB
+//     |        |  |   |  |   |  |   |   `--- Power (W) LSB
+//     |        |  |   |  |   |  |    `------ Power (W) MSB
+//     |        |  |   |  |   |   `--- Current (mA) LSB
+//     |        |  |   |  |    `------ Current (mA) MSB
+//     |        |  |   |  `--- Voltage (V) * 10 LSB
+//     |        |  |    `----- Voltage (V) * 10 MSB
+//     |        |    `--- ID
+//     |         `------- ID
+//      `--- fix "EMT7110"
 
 
+
+// LevelSender FHEM
+// Format
+// 
+// OK LS 1  0   5   100 4   191 60      =  38,0cm    21,5°C   6,0V
+// OK LS 1  0   8   167 4   251 57      = 121,5cm    27,5°C   5,7V   
+// OK LS ID X   XXX XXX XXX XXX XXX
+// |   | |  |    |   |   |   |   |
+// |   | |  |    |   |   |   |   `--- Voltage * 10
+// |   | |  |    |   |   |   `------- Temp. * 10 + 1000 LSB
+// |   | |  |    |   |   `----------- Temp. * 10 + 1000 MSB
+// |   | |  |    |   `--------------- Level * 10 + 1000 MSB
+// |   | |  |    `------------------- Level * 10 + 1000 LSB
+// |   | |  `------------------------ Sensor type fix 0 at the moment
+// |   | `--------------------------- Sensor ID ( 0 .. 15)
+// |   `----------------------------- fix "11"
+// `--------------------------------- fix "LS"
+
+
+/*
+WS 1080  17.241 kbps  868.3 MHz
+-------------------------------
+
+A8 C0 58 5E 00 00 00 86 0A D8
+ID: 8C, T=  8.8`C, relH= 94%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=SW , Rain=  40.2mm
+
+A8 C0 55 5E 00 00 00 86 04 06
+ID: 8C, T=  8.5`C, relH= 94%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.2mm
+
+A8 C0 50 60 00 00 00 86 04 BF
+ID: 8C, T=  8.0`C, relH= 96%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.2mm
+*/
+
+// A8 C0 50 60 00 00 00 86 04 BF
+// |  |  |  |  |  |  |  |  |  |---[9] CRC? 
+// |  |  |  |  |  |  |  |  |------[8] Wind Direction Steps of 22,5° WindDirection = 22.5 * (bytes[8] & 0x0F)
+// |  |  |  |  |  |  |  |---------[7] Rain (0.5 mm steps)
+// |  |  |  |  |  |  |------------[6] Rain Rain = (((bytes[6] & 0x0F) << 8) | bytes[7]) * 0.6
+// |  |  |  |  |  |-------------- [5] Wind gust *0,34
+// |  |  |  |  |----------------- [4] Wind Speed *0,34
+// |  |  |  |-------------------- [3] Humidity
+// |  |  |----------------------- [2] Temp * 0.1 temp = ((bytes[1] & 0x07) << 8) | bytes[2] inkl. vorzeichen sign = (bytes[1] >> 3) & 1
+// |  |---------------------------[1] Sensor ID ((bytes[0] & 0xF) << 4) | ((bytes[1] & 0xF0) >> 4)
+// |------------------------------[0] fix "A"
+
+// LaCrosse und Derivate
 // OK 9 56 1   4   156 37   ID = 56 T: 18.0 H: 37 no NewBatt
 // OK 9 49 1   4   182 54   ID = 49 T: 20.6 H: 54 no NewBatt
 // OK 9 55 129 4   192 56   ID = 55 T: 21.6 H: 56 WITH NewBatt
@@ -583,6 +647,33 @@ function logLaCrosseDTH(data){
     }
 }
 
+// Weather Station
+//OK WS 60  1   4   193 52    2 88  4   101 15  20          ID=60  21.7°C  52%rH  600mm  Dir.: 112.5°  Wind:15m/s  Gust:20m/s
+//OK WS ID  XXX TTT TTT HHH RRR RRR DDD DDD SSS SSS GGG GGG FFF PPP PPP
+//|  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |-- Flags *
+//|  |  |   |   |   |   |   |   |   |   |   |   |   |   |------ WindGust * 10 LSB (0.0 ... 50.0 m/s)           FF/FF = none
+//|  |  |   |   |   |   |   |   |   |   |   |   |   |---------- WindGust * 10 MSB
+//|  |  |   |   |   |   |   |   |   |   |   |   |-------------- WindSpeed  * 10 LSB(0.0 ... 50.0 m/s)          FF/FF = none
+//|  |  |   |   |   |   |   |   |   |   |   |------------------ WindSpeed  * 10 MSB
+//|  |  |   |   |   |   |   |   |   |   |---------------------- WindDirection * 10 LSB (0.0 ... 365.0 Degrees) FF/FF = none
+//|  |  |   |   |   |   |   |   |   |-------------------------- WindDirection * 10 MSB
+//|  |  |   |   |   |   |   |   |------------------------------ Rain LSB (0 ... 9999 mm)                       FF/FF = none
+//|  |  |   |   |   |   |   |---------------------------------- Rain MSB
+//|  |  |   |   |   |   |-------------------------------------- Humidity (1 ... 99 %rH)                        FF = none
+//|  |  |   |   |   |------------------------------------------ Temp * 10 + 1000 LSB (-40 ... +60 ∞C)          FF/FF = none
+//|  |  |   |   |---------------------------------------------- Temp * 10 + 1000 MSB
+//|  |  |   |-------------------------------------------------- Sensor type (1=TX22IT, 2=NodeSensor, 3=WS1080)
+//|  |  |------------------------------------------------------ Sensor ID (1 ... 63)
+//|  |--------------------------------------------------------- fix "WS"
+//|------------------------------------------------------------ fix "OK"
+//* Flags: 128  64  32  16  8   4   2   1
+//                              |   |   |
+//                              |   |   |-- New battery
+//                              |   |------ ERROR
+//                              |---------- Low battery
+
+
+// superjee LaCrosse mit BMP180
 // OK WS 0 2    4  212 255 255 255 255 255 255 255 255 255 0   3   241  ID=0 T:23,6 Druck 1009 hPa
 // OK WS 0 XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   | --- [18] Druck LSB
