@@ -42,6 +42,16 @@ to be done in admin
 - define the type of sensor (as of now emonTH, emonWater, LaCrosseDTH, LaCrosseBMP180)
 - define the room
 
+## Sensors
+|Object|device variants|telegram example|Description|
+|--------|-------|:-:|--------|
+|emonTH|emonTH|OK 19 ...|sensor from openenergy.org|
+|emonWater|emonWater|OK 21 ... |sensor with RFM12B for water metering|
+|LaCrosseDTH |TX|OK 9 ... |sensors from LaCrosse, technoline|
+|HMS100TF |TXH29DTH-IT|H00 ... |sensors technoline|
+|LaCrosseBMP180||OK WS ... |sensor mod, superjee|
+|LaCrosseWS|WS1080|OK WS ... |Weather Station|
+
 ## TODO:
 * other sensor types
 * put the sensor code in separate file
@@ -52,6 +62,8 @@ to be done in admin
 
 ### 0.0.6
 * last version of serialport
+* new sensor TXH29DTH-IT
+* new weather station WS1080
 
 ### 0.0.5
 * adminv3 improved with values2table
