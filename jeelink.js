@@ -78,7 +78,7 @@ function round(value, digits) //digits 1 for 1 digit after comma
 
 
 function defineemonWater(id){
-    adapter.setObject('emonWater_' + id, {
+    adapter.setObjectNotExist('emonWater_' + id, {
         type: 'channel',
         common: {
             name: 'emonWater ' + id,
@@ -90,7 +90,7 @@ function defineemonWater(id){
     });
     adapter.log.info('RFM12B setting up object = emonWater' + id);
 
-    adapter.setObject('emonWater_' + id + '.cw_mom', {
+    adapter.setObjectNotExist('emonWater_' + id + '.cw_mom', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -105,7 +105,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('emonWater_' + id + '.cw_cum', {
+    adapter.setObjectNotExist('emonWater_' + id + '.cw_cum', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -120,7 +120,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('emonWater_' + id + '.ww_mom', {
+    adapter.setObjectNotExist('emonWater_' + id + '.ww_mom', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -135,7 +135,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('emonWater_' + id + '.ww_cum', {
+    adapter.setObjectNotExist('emonWater_' + id + '.ww_cum', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -150,7 +150,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObject('emonWater_' + id + '.batt', {
+    adapter.setObjectNotExist('emonWater_' + id + '.batt', {
         type: 'state',
         common: {
             "name": "Battery",
@@ -250,7 +250,7 @@ function logemonWater(data){
 
 
 function defineemonTH(id, name){
-    adapter.setObject('emonTH_' + id, {
+    adapter.setObjectNotExist('emonTH_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -262,7 +262,7 @@ function defineemonTH(id, name){
     });
     adapter.log.info('RFM12B setting up object = emonTH' + id);
 
-    adapter.setObject('emonTH_' + id + '.temp', {
+    adapter.setObjectNotExist('emonTH_' + id + '.temp', {
         type: 'state',
         common: {
             "name": "Temperature",
@@ -277,7 +277,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('emonTH_' + id + '.humid', {
+    adapter.setObjectNotExist('emonTH_' + id + '.humid', {
         type: 'state',
         common: {
             "name": "Humidity",
@@ -292,7 +292,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('emonTH_' + id + '.batt', {
+    adapter.setObjectNotExist('emonTH_' + id + '.batt', {
         type: 'state',
         common: {
             "name": "Battery",
@@ -307,7 +307,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('emonTH_' + id + '.abshumid', {
+    adapter.setObjectNotExist('emonTH_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -321,7 +321,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('emonTH_' + id + '.dewpoint', {
+    adapter.setObjectNotExist('emonTH_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -413,6 +413,126 @@ function logemonTH(data){
 // Temp = (10*T3 + T1 + T2/10)* Vorzeichen
 // Feuchte = (10*H2 + H3 + H1/10)
 
+function defineHMS100TF(id, name){
+    adapter.setObjectNotExist('HMS100TF_' + id, {
+        type: 'channel',
+        common: {
+            name: name,
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = HMS100TF ' + id);
+
+    adapter.setObjectNotExist('HMS100TF_' + id + '.temp', {
+        type: 'state',
+        common: {
+            "name":     "Temperature",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+            "desc":     "Temperature"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('HMS100TF_' + id + '.humid', {
+        type: 'state',
+        common: {
+            "name":     "Humidity",
+            "type":     "number",
+            "unit":     "%",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+            "desc":     "Humidity"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('HMS100TF_' + id + '.lowBatt', {
+        type: 'state',
+        common: {
+            "name":     "Battery Low",
+            "type":     "boolean",
+            "role":     "value.lowBatt",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('HMS100TF_' + id + '.abshumid', {
+        type: 'state',
+        common: {
+            "name":     "abs Humidity",
+            "type":     "number",
+            "unit":     "g/m3",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('HMS100TF_' + id + '.dewpoint', {
+        type: 'state',
+        common: {
+            "name":     "Dewpoint",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+        },
+        native: {}
+    });
+}
+
+
+function logHMS100TF(data){
+    var tmp = data.split('');
+    if(tmp[0]==='H'){                      // Wenn ein Datensatz sauber gelesen wurde
+        // somit werden alle SenderIDs bearbeitet
+        var buf = new Buffer(tmp);
+        var eid = buf.readIntLE(3)+buf.readIntLE(4); //empfangene ID
+        var array=getConfigObjects(adapter.config.sensors, 'sid', eid);
+        if (array.length === 0 || array.length !== 1) {
+            adapter.log.debug('received ID :' + eid + ' is not defined in the adapter or not unique received address');
+        }
+        else if (array[0].stype !==  'HMS100TF'){
+            adapter.log.debug('received ID :' + eid + ' is not defined in the adapter as HMS100TF');
+        }
+        else if (array[0].usid != 'nodef'){
+            adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(3))+(buf.readIntLE(4)) );
+            adapter.log.debug('Type         : '+ (buf.readIntLE(6)) ); //should be 0 otherwise it is only temperature
+            adapter.log.debug('Temperatur   : '+ ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) )); // Vorzeichen fehlt noch
+            adapter.log.debug('Humidty      : '+ ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) ));
+            adapter.log.debug('LowBattery   : '+ ( (buf.readIntLE(5) & 0x02) >> 1));      //irgendwie wird xA nicht ausgewertet 
+            // Werte schreiben
+            // aus gesendeter ID die unique ID bestimmen
+            adapter.setState('HMS100TF_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(5) & 0x02) >> 1), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.temp',    {val: ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) ), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.humid',   {val: ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) ), ack: true});
+                //absolute Feuchte und Taupunkt
+            var temp = ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) );
+            var rel = ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) );
+            var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+            var v = Math.log(vappress/6.1078) * Math.LOG10E;
+            var dewp = (237.3 * v) / (7.5 - v);
+            var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+            adapter.setState('HMS100TF_'+ array[0].usid +'.abshumid',   {val: round(habs, 1), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.dewpoint',   {val: round(dewp, 1), ack: true});
+        }
+    }
+}
+
 // EMT7110 FHEM
 // Format
 // 
@@ -495,7 +615,7 @@ ID: 8C, T=  8.0`C, relH= 96%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.
 
 
 function defineLaCrosseDTH(id, name){
-    adapter.setObject('LaCrosse_' + id, {
+    adapter.setObjectNotExist('LaCrosse_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -507,7 +627,7 @@ function defineLaCrosseDTH(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
 
-    adapter.setObject('LaCrosse_' + id + '.temp', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -522,7 +642,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.humid', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.humid', {
         type: 'state',
         common: {
             "name":     "Humidity",
@@ -537,7 +657,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.lowBatt', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.lowBatt', {
         type: 'state',
         common: {
             "name":     "Battery Low",
@@ -546,7 +666,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.newBatt', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.newBatt', {
         type: 'state',
         common: {
             "name":     "Battery New",
@@ -555,7 +675,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.abshumid', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -569,7 +689,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.dewpoint', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -672,13 +792,213 @@ function logLaCrosseDTH(data){
 //                              |   |------ ERROR
 //                              |---------- Low battery
 
+function defineLaCrosseWS(id, name){
+    adapter.setObjectNotExist('LaCrosseWS_' + id, {
+        type: 'channel',
+        common: {
+            name: name,
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = LaCrosseWS ' + id);
 
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.temp', {
+        type: 'state',
+        common: {
+            "name":     "Temperature",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+            "desc":     "Temperature"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.humid', {
+        type: 'state',
+        common: {
+            "name":     "Humidity",
+            "type":     "number",
+            "unit":     "%",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+            "desc":     "Humidity"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.rain', {
+        type: 'state',
+        common: {
+            "name":     "Rain",
+            "type":     "number",
+            "unit":     "mm",
+            "min":      0,
+            "max":      9999,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Rain"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wspeed', {
+        type: 'state',
+        common: {
+            "name":     "Wind Speed",
+            "type":     "number",
+            "unit":     "m/s",
+            "min":      0,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Wind Speed"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wdir', {
+        type: 'state',
+        common: {
+            "name":     "Wind Direction",
+            "type":     "number",
+            "unit":     "°",
+            "min":      0,
+            "max":      365,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Wind Direction"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wgust', {
+        type: 'state',
+        common: {
+            "name":     "Wind Gust",
+            "type":     "number",
+            "unit":     "m/s",
+            "min":      0,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Wind Gust"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.abshumid', {
+        type: 'state',
+        common: {
+            "name":     "abs Humidity",
+            "type":     "number",
+            "unit":     "g/m3",
+            "min":      0,
+            "max":      100,
+            "read":     true,
+            "write":    false,
+            "role":     "value.humidity",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.dewpoint', {
+        type: 'state',
+        common: {
+            "name":     "Dewpoint",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.lowBatt', {
+        type: 'state',
+        common: {
+            "name":     "Battery Low",
+            "type":     "boolean",
+            "role":     "value.lowBatt",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExist('LaCrosseWS_' + id + '.newBatt', {
+        type: 'state',
+        common: {
+            "name":     "Battery New",
+            "type":     "boolean",
+            "role":     "value.newBatt",
+        },
+        native: {}
+    });
+}
+
+
+function logLaCrosseWS(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='WS'){                    // Für jeden Datensatz mit dem fixen Eintrag WS
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            adapter.log.debug('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            if (array.length === 0 || array.length !== 1) {
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+            }
+            else if (array[0].stype !==  'LaCrosseWS'){
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseWS');
+            }
+            else if (array[0].usid != 'nodef'){
+                adapter.log.debug('Station ID    : '+ (buf.readIntLE(0)) );
+                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) ); //should be 3 otherwise it is only temperature
+                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) ) ; // Vorzeichen fehlt noch
+                adapter.log.debug('Humidty      : '+ ((buf.readIntLE(4))*256) );
+                adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10) );
+                adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
+                adapter.log.debug('WindDirection: '+ ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10) );
+                adapter.log.debug('WindGust     : '+ ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10) );
+                adapter.log.debug('NewBattery   : '+ (buf.readIntLE(13) & 0x01) );
+                adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(13) & 0x04) >> 2) ); 
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((buf.readIntLE(4)*256)), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wgust',   {val: ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(13) & 0x04) >> 2), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(13) & 0x01) ), ack: true});
+                    //absolute Feuchte und Taupunkt
+                var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
+                var rel = ((buf.readIntLE(4))*256) ;
+                var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+                var v = Math.log(vappress/6.1078) * Math.LOG10E;
+                var dewp = (237.3 * v) / (7.5 - v);
+                var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.abshumid',   {val: round(habs, 1), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.dewpoint',   {val: round(dewp, 1), ack: true});
+            }
+        }
+    }
+}
 // superjee LaCrosse mit BMP180
 // OK WS 0 2    4  212 255 255 255 255 255 255 255 255 255 0   3   241  ID=0 T:23,6 Druck 1009 hPa
 // OK WS 0 XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   | --- [18] Druck LSB
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |-------- [17] Druck MSB
-// |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |------------ [16]
+// |  |  |  |   |   |   |   |   |   |   |   |   |   |   |   |------------ [16] Flags ?
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |   | --------------- [15]
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |-------------------- [14]
 // |  |  |  |   |   |   |   |   |   |   |   |   |   |-------------------- [13]
@@ -697,7 +1017,7 @@ function logLaCrosseDTH(data){
 // |--------------------------------------------------------------------- [0]fix "OK"
 
 function defineLaCrosseBMP180(id, name){    
-    adapter.setObject('LaCrosse_' + id, {
+    adapter.setObjectNotExist('LaCrosse_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -709,7 +1029,7 @@ function defineLaCrosseBMP180(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
 
-    adapter.setObject('LaCrosse_' + id + '.temp', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -724,7 +1044,7 @@ function defineLaCrosseBMP180(id, name){
         },
         native: {}
     });
-    adapter.setObject('LaCrosse_' + id + '.pressure', {
+    adapter.setObjectNotExist('LaCrosse_' + id + '.pressure', {
         type: 'state',
         common: {
             "name":     "air pressure",
@@ -744,7 +1064,7 @@ function defineLaCrosseBMP180(id, name){
 function logLaCrosseBMP180(data){
     var tmp = data.split(' ');
     if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
-        if(tmp[1]=='WS'){                    // Für jeden Datensatz mit dem fixen Eintrag 9
+        if(tmp[1]=='WS'){                    // Für jeden Datensatz mit dem fixen Eintrag WS
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
@@ -800,6 +1120,12 @@ function main() {
         if(obj[anz].stype=="LaCrosseBMP180"){
             defineLaCrosseBMP180(obj[anz].usid, obj[anz].name);
         }
+        if(obj[anz].stype=="HMS100TF"){
+            defineHMS100TF(obj[anz].usid, obj[anz].name);
+        }
+        if(obj[anz].stype=="LaCrosseWS"){
+            defineLaCrosseWS(obj[anz].usid, obj[anz].name);
+        }
     }
 
     var options = {
@@ -819,20 +1145,26 @@ function main() {
             parser.on('data', function(data) {
 
                 adapter.log.info('data received: ' + data);
-
-                var tmp = data.split(' ');
-                if(tmp[0]==='OK'){
-                    if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
-                       logLaCrosseDTH(data);
-                    }
-		    else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee
-                       logLaCrosseBMP180(data);
-                    }
-                    else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
-                            logemonTH(data);
-                            logemonWater(data);
+                if ( data.startsWith('H0')){
+                    logHMS100TF(data);
+                }
+                else {
+                    var tmp = data.split(' ');
+                    if(tmp[0]==='OK'){
+                        if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
+                           logLaCrosseDTH(data);
+                        }
+                    else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee, noch auf beide geschickt :-(
+                           logLaCrosseBMP180(data);
+                           logLaCrosseWS(data);
+                        }
+                        else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
+                                logemonTH(data);
+                                logemonWater(data);
+                        }
                     }
                 }
+
 
             });
 	    if (adapter.config.command_en) {
