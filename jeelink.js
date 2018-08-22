@@ -78,7 +78,7 @@ function round(value, digits) //digits 1 for 1 digit after comma
 
 
 function defineemonWater(id){
-    adapter.setObjectNotExist('emonWater_' + id, {
+    adapter.setObjectNotExists('emonWater_' + id, {
         type: 'channel',
         common: {
             name: 'emonWater ' + id,
@@ -90,7 +90,7 @@ function defineemonWater(id){
     });
     adapter.log.info('RFM12B setting up object = emonWater' + id);
 
-    adapter.setObjectNotExist('emonWater_' + id + '.cw_mom', {
+    adapter.setObjectNotExists('emonWater_' + id + '.cw_mom', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -105,7 +105,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonWater_' + id + '.cw_cum', {
+    adapter.setObjectNotExists('emonWater_' + id + '.cw_cum', {
         type: 'state',
         common: {
             "name": "Cold Water",
@@ -120,7 +120,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonWater_' + id + '.ww_mom', {
+    adapter.setObjectNotExists('emonWater_' + id + '.ww_mom', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -135,7 +135,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonWater_' + id + '.ww_cum', {
+    adapter.setObjectNotExists('emonWater_' + id + '.ww_cum', {
         type: 'state',
         common: {
             "name": "Warm Water",
@@ -150,7 +150,7 @@ function defineemonWater(id){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonWater_' + id + '.batt', {
+    adapter.setObjectNotExists('emonWater_' + id + '.batt', {
         type: 'state',
         common: {
             "name": "Battery",
@@ -250,7 +250,7 @@ function logemonWater(data){
 
 
 function defineemonTH(id, name){
-    adapter.setObjectNotExist('emonTH_' + id, {
+    adapter.setObjectNotExists('emonTH_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -262,7 +262,7 @@ function defineemonTH(id, name){
     });
     adapter.log.info('RFM12B setting up object = emonTH' + id);
 
-    adapter.setObjectNotExist('emonTH_' + id + '.temp', {
+    adapter.setObjectNotExists('emonTH_' + id + '.temp', {
         type: 'state',
         common: {
             "name": "Temperature",
@@ -277,7 +277,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonTH_' + id + '.humid', {
+    adapter.setObjectNotExists('emonTH_' + id + '.humid', {
         type: 'state',
         common: {
             "name": "Humidity",
@@ -292,7 +292,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonTH_' + id + '.batt', {
+    adapter.setObjectNotExists('emonTH_' + id + '.batt', {
         type: 'state',
         common: {
             "name": "Battery",
@@ -307,7 +307,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonTH_' + id + '.abshumid', {
+    adapter.setObjectNotExists('emonTH_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -321,7 +321,7 @@ function defineemonTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('emonTH_' + id + '.dewpoint', {
+    adapter.setObjectNotExists('emonTH_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -414,7 +414,7 @@ function logemonTH(data){
 // Feuchte = (10*H2 + H3 + H1/10)
 
 function defineHMS100TF(id, name){
-    adapter.setObjectNotExist('HMS100TF_' + id, {
+    adapter.setObjectNotExists('HMS100TF_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -426,7 +426,7 @@ function defineHMS100TF(id, name){
     });
     adapter.log.info('RFM12B setting up object = HMS100TF ' + id);
 
-    adapter.setObjectNotExist('HMS100TF_' + id + '.temp', {
+    adapter.setObjectNotExists('HMS100TF_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -441,7 +441,7 @@ function defineHMS100TF(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('HMS100TF_' + id + '.humid', {
+    adapter.setObjectNotExists('HMS100TF_' + id + '.humid', {
         type: 'state',
         common: {
             "name":     "Humidity",
@@ -456,7 +456,7 @@ function defineHMS100TF(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('HMS100TF_' + id + '.lowBatt', {
+    adapter.setObjectNotExists('HMS100TF_' + id + '.lowBatt', {
         type: 'state',
         common: {
             "name":     "Battery Low",
@@ -465,7 +465,7 @@ function defineHMS100TF(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('HMS100TF_' + id + '.abshumid', {
+    adapter.setObjectNotExists('HMS100TF_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -479,7 +479,7 @@ function defineHMS100TF(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('HMS100TF_' + id + '.dewpoint', {
+    adapter.setObjectNotExists('HMS100TF_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -615,7 +615,7 @@ ID: 8C, T=  8.0`C, relH= 96%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.
 
 
 function defineLaCrosseDTH(id, name){
-    adapter.setObjectNotExist('LaCrosse_' + id, {
+    adapter.setObjectNotExists('LaCrosse_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -627,7 +627,7 @@ function defineLaCrosseDTH(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
 
-    adapter.setObjectNotExist('LaCrosse_' + id + '.temp', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -642,7 +642,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.humid', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.humid', {
         type: 'state',
         common: {
             "name":     "Humidity",
@@ -657,7 +657,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.lowBatt', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.lowBatt', {
         type: 'state',
         common: {
             "name":     "Battery Low",
@@ -666,7 +666,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.newBatt', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.newBatt', {
         type: 'state',
         common: {
             "name":     "Battery New",
@@ -675,7 +675,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.abshumid', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -689,7 +689,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.dewpoint', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -793,7 +793,7 @@ function logLaCrosseDTH(data){
 //                              |---------- Low battery
 
 function defineLaCrosseWS(id, name){
-    adapter.setObjectNotExist('LaCrosseWS_' + id, {
+    adapter.setObjectNotExists('LaCrosseWS_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -805,7 +805,7 @@ function defineLaCrosseWS(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosseWS ' + id);
 
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.temp', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -820,7 +820,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.humid', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.humid', {
         type: 'state',
         common: {
             "name":     "Humidity",
@@ -835,7 +835,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.rain', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.rain', {
         type: 'state',
         common: {
             "name":     "Rain",
@@ -850,7 +850,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wspeed', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.wspeed', {
         type: 'state',
         common: {
             "name":     "Wind Speed",
@@ -865,7 +865,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wdir', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.wdir', {
         type: 'state',
         common: {
             "name":     "Wind Direction",
@@ -880,7 +880,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.wgust', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.wgust', {
         type: 'state',
         common: {
             "name":     "Wind Gust",
@@ -895,7 +895,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.abshumid', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.abshumid', {
         type: 'state',
         common: {
             "name":     "abs Humidity",
@@ -909,7 +909,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.dewpoint', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.dewpoint', {
         type: 'state',
         common: {
             "name":     "Dewpoint",
@@ -923,7 +923,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.lowBatt', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.lowBatt', {
         type: 'state',
         common: {
             "name":     "Battery Low",
@@ -932,7 +932,7 @@ function defineLaCrosseWS(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosseWS_' + id + '.newBatt', {
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.newBatt', {
         type: 'state',
         common: {
             "name":     "Battery New",
@@ -1017,7 +1017,7 @@ function logLaCrosseWS(data){
 // |--------------------------------------------------------------------- [0]fix "OK"
 
 function defineLaCrosseBMP180(id, name){    
-    adapter.setObjectNotExist('LaCrosse_' + id, {
+    adapter.setObjectNotExists('LaCrosse_' + id, {
         type: 'channel',
         common: {
             name: name,
@@ -1029,7 +1029,7 @@ function defineLaCrosseBMP180(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
 
-    adapter.setObjectNotExist('LaCrosse_' + id + '.temp', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.temp', {
         type: 'state',
         common: {
             "name":     "Temperature",
@@ -1044,7 +1044,7 @@ function defineLaCrosseBMP180(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExist('LaCrosse_' + id + '.pressure', {
+    adapter.setObjectNotExists('LaCrosse_' + id + '.pressure', {
         type: 'state',
         common: {
             "name":     "air pressure",
