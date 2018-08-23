@@ -501,7 +501,7 @@ function logHMS100TF(data){
     if(tmp[0]==='H'){                      // Wenn ein Datensatz sauber gelesen wurde
         // somit werden alle SenderIDs bearbeitet
         var buf = new Buffer(tmp);
-        var eid = buf.readIntLE(3)+buf.readIntLE(4); //empfangene ID
+        var eid = buf.readIntLE(3)*10 + buf.readIntLE(4); //empfangene ID
         var array=getConfigObjects(adapter.config.sensors, 'sid', eid);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + eid + ' is not defined in the adapter or not unique received address');
@@ -510,7 +510,7 @@ function logHMS100TF(data){
             adapter.log.debug('received ID :' + eid + ' is not defined in the adapter as HMS100TF');
         }
         else if (array[0].usid != 'nodef'){
-            adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(3))+(buf.readIntLE(4)) );
+            adapter.log.debug('Sensor ID    : '+ eid );
             adapter.log.debug('Type         : '+ (buf.readIntLE(6)) ); //should be 0 otherwise it is only temperature
             adapter.log.debug('Temperatur   : '+ ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) )); // Vorzeichen fehlt noch
             adapter.log.debug('Humidty      : '+ ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) ));
