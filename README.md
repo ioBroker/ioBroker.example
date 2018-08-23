@@ -56,6 +56,7 @@ to be done in admin
 * other sensor types
 * put the sensor code in separate file
 * pushing new sensor to config, then visible in admin/config page
+* HMS100TF Temp below 0°C and battery low to be implemented
 
 
 ## Changelog:
