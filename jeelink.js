@@ -962,33 +962,65 @@ function logLaCrosseWS(data){
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Station ID    : '+ (buf.readIntLE(0)) );
                 adapter.log.debug('Type         : '+ (buf.readIntLE(1)) ); //should be 3 otherwise it is only temperature
-                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) ) ; // Vorzeichen fehlt noch
-                adapter.log.debug('Humidty      : '+ ((buf.readIntLE(4))*256) );
-                adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10) );
-                adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
-                adapter.log.debug('WindDirection: '+ ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10) );
-                adapter.log.debug('WindGust     : '+ ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10) );
+		if ((buf.readIntLE(2)) === 254){
+		    adapter.log.debug('Temperature   : no data (255)');
+		    } 
+		else {
+                	adapter.log.debug('Temperature   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) ) ; // Vorzeichen fehlt noch
+                	adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+	    	}
+		if  ((buf.readIntLE(4)) === 254){
+		    adapter.log.debug('Humidty   : no data (255)');
+		    } 
+		else {
+               		adapter.log.debug('Humidty      : '+ ((buf.readIntLE(4))*1) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((buf.readIntLE(4)*1)), ack: true});    
+		}
+		if  ((buf.readIntLE(5)) === 254){
+		    adapter.log.debug('Rain   : no data (255)');
+		    }
+		else {
+                	adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10), ack: true});
+		    }
+		if  ((buf.readIntLE(9)) === 254){
+		    adapter.log.debug('Wind Speed   : no data (255)');
+		    }
+		else {		    
+                	adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
+	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
+		}
+		if  ((buf.readIntLE(7)) === 254){
+		    adapter.log.debug('WindDirection   : no data (255)');
+		    }
+		else {				    
+                	adapter.log.debug('WindDirection: '+ ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10), ack: true});	
+		}
+		if  ((buf.readIntLE(11)) === 254){
+		    adapter.log.debug('WindDirection   : no data (255)');
+		    }
+		else {			    
+                	adapter.log.debug('WindGust     : '+ ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10) );
+               		adapter.setState('LaCrosseWS_'+ array[0].usid +'.wgust',   {val: ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10), ack: true});
+		}
                 adapter.log.debug('NewBattery   : '+ (buf.readIntLE(13) & 0x01) );
                 adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(13) & 0x04) >> 2) ); 
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((buf.readIntLE(4)*256)), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.wgust',   {val: ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10), ack: true});
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(13) & 0x04) >> 2), ack: true});
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(13) & 0x01) ), ack: true});
-                    //absolute Feuchte und Taupunkt
+                //absolute Feuchte und Taupunkt
+		if ((buf.readIntLE(2)) !== 254) && (buf.readIntLE(4)) !== 254)) {
                 var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
-                var rel = ((buf.readIntLE(4))*256) ;
+                var rel = ((buf.readIntLE(4))*1) ;
                 var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
                 var v = Math.log(vappress/6.1078) * Math.LOG10E;
                 var dewp = (237.3 * v) / (7.5 - v);
                 var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.abshumid',   {val: round(habs, 1), ack: true});
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.dewpoint',   {val: round(dewp, 1), ack: true});
+	    	} else {adapter.log.debug('WS no dewpoint calculation ');}
             }
         }
     }
