@@ -1011,7 +1011,7 @@ function logLaCrosseWS(data){
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(13) & 0x04) >> 2), ack: true});
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(13) & 0x01) ), ack: true});
                 //absolute Feuchte und Taupunkt
-		if ((buf.readIntLE(2)) !== 254) && (buf.readIntLE(4)) !== 254)) {
+		if ( ((buf.readIntLE(2)) !== 254) && ((buf.readIntLE(4)) !== 254) ) {
                 var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
                 var rel = ((buf.readIntLE(4))*1) ;
                 var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
