@@ -552,6 +552,264 @@ function logHMS100TF(data){
 //     |         `------- ID
 //      `--- fix "EMT7110"
 
+function defineEMT7110(id, name){
+    adapter.setObjectNotExists('EMT7110_' + id, {
+        type: 'channel',
+        common: {
+            name: name,
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = EMT7110 ' + id);
+
+    adapter.setObjectNotExists('EMT7110_' + id + '.voltage', {
+        type: 'state',
+        common: {
+            "name":     "Voltage",
+            "type":     "number",
+            "unit":     "V",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Voltage"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.current', {
+        type: 'state',
+        common: {
+            "name":     "Current",
+            "type":     "number",
+            "unit":     "mA",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Current"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EMT7110_' + id + '.energy', {
+        type: 'state',
+        common: {
+            "name":     "energy",
+            "type":     "number",
+            "unit":     "kWh",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EMT7110_' + id + '.power', {
+        type: 'state',
+        common: {
+            "name":     "actual power",
+            "type":     "number",
+            "unit":     "W",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+}
+
+function logEMT7110(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='EMT7110'){                    // Für jeden Datensatz mit dem fixen Eintrag EMT7110
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,13);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            adapter.log.debug('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var id = (buf.readIntLE(0)*256 + buf.readIntLE(1));
+            var array=getConfigObjects(adapter.config.sensors, 'sid', id);
+            if (array.length === 0 || array.length !== 1) {
+                adapter.log.debug('received ID :' + id + ' is not defined in the adapter or not unique received address');
+            }
+            else if (array[0].stype !==  'EMT7110'){
+                adapter.log.debug('received ID :' + id + ' is not defined in the adapter as LaCrosseWS');
+            }
+            else if (array[0].usid != 'nodef'){
+                adapter.log.debug('Station ID   : '+ id );
+                adapter.log.debug('voltage      : '+ ( (buf.readIntLE(2) *256) + (buf.readIntLE(3))  )/10 );
+                adapter.log.debug('current      : '+ ( (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ) );
+                adapter.log.debug('power        : '+ ( (buf.readIntLE(6) *256) + (buf.readIntLE(7))  ) );
+                adapter.log.debug('energy       : '+ ( (buf.readIntLE(8) *256) + (buf.readIntLE(9))  )/100 );
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                adapter.setState('EMT7110_'+ array[0].usid +'.voltage',   {val: ( (buf.readIntLE(2) *256) + (buf.readIntLE(3))  )/10, ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.current',   {val: ( (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ), ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.power',     {val: ( (buf.readIntLE(6) *256) + (buf.readIntLE(7))  ), ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.energy',    {val: ( (buf.readIntLE(8) *256) + (buf.readIntLE(9))  )/100, ack: true});
+            }
+        }
+    }
+}
+// EC3000 openhab
+// OK 22 188 129 0   209 209 102 0   174 89  187 0   1   123 102 0   0   10  117 2   0 (ID = BC81) 
+//
+// OK 22 ID  ID  XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |----[20] ??
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |--------[19] resets
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |------------[18] max power
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |----------------[17] max power
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |--------------------[16] power
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |------------------------[15] power
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |----------------------------[14] energy
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |   |--------------------------------[13] energy
+// |  |  |   |   |   |   |   |   |   |   |   |   |   |------------------------------------[12] energy
+// |  |  |   |   |   |   |   |   |   |   |   |   |----------------------------------------[11] energy
+// |  |  |   |   |   |   |   |   |   |   |   |--------------------------------------------[10] on time
+// |  |  |   |   |   |   |   |   |   |   |------------------------------------------------[9] on time
+// |  |  |   |   |   |   |   |   |   |----------------------------------------------------[8] on time
+// |  |  |   |   |   |   |   |   |--------------------------------------------------------[7] on time
+// |  |  |   |   |   |   |   |------------------------------------------------------------[6] total time
+// |  |  |   |   |   |   |--------------------------------------------------------------- [5] total time
+// |  |  |   |   |   |------------------------------------------------------------------- [4] total time
+// |  |  |   |   |----------------------------------------------------------------------- [3] total time
+// |  |  |   |--------------------------------------------------------------------------- [2] Sensor ID
+// |  |  |------------------------------------------------------------------------------- [1] Sensor ID
+// |  |---------------------------------------------------------------------------------- [0] fix "22"
+// |------------------------------------------------------------------------------------- fix "OK"
+
+function defineEC3000(id, name){
+    adapter.setObjectNotExists('EC3000_' + id, {
+        type: 'channel',
+        common: {
+            name: name,
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = EC3000 ' + id);
+
+    adapter.setObjectNotExists('EC3000_' + id + '.total', {
+        type: 'state',
+        common: {
+            "name":     "Time ON total",
+            "type":     "number",
+            "unit":     "s",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Time ON total"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.ontime', {
+        type: 'state',
+        common: {
+            "name":     "Time ON",
+            "type":     "number",
+            "unit":     "s",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Time ON"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.energy', {
+        type: 'state',
+        common: {
+            "name":     "energy",
+            "type":     "number",
+            "unit":     "Wh",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.power', {
+        type: 'state',
+        common: {
+            "name":     "actual power",
+            "type":     "number",
+            "unit":     "W",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.maxpower', {
+        type: 'state',
+        common: {
+            "name":     "maximum power",
+            "type":     "number",
+            "unit":     "W",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('EC3000_' + id + '.resets', {
+        type: 'state',
+        common: {
+            "name":     "number of resets",
+            "type":     "number",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+        },
+        native: {}
+    });
+}
+
+function logEC3000(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='22'){                    // Für jeden Datensatz mit dem fixen Eintrag WS
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,21);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            adapter.log.debug('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var id = (buf.readIntLE(0)*256 + buf.readIntLE(1));
+            var array=getConfigObjects(adapter.config.sensors, 'sid', id);
+            if (array.length === 0 || array.length !== 1) {
+                adapter.log.debug('received ID :' + id + ' is not defined in the adapter or not unique received address');
+            }
+            else if (array[0].stype !==  'EC3000'){
+                adapter.log.debug('received ID :' + id + ' is not defined in the adapter as LaCrosseWS');
+            }
+            else if (array[0].usid != 'nodef'){
+                adapter.log.debug('Station ID   : '+ id );
+                adapter.log.debug('total time   : '+ ( (buf.readIntLE(2) *16777216 ) + (buf.readIntLE(3) *65536)+ (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ) );
+                adapter.log.debug('on time      : '+ ( (buf.readIntLE(6) *16777216  ) + (buf.readIntLE(7) *65536)+ (buf.readIntLE(8) *256) + (buf.readIntLE(9))  ) );
+                adapter.log.debug('energy       : '+ ( (buf.readIntLE(10) *16777216  ) + (buf.readIntLE(11) *65536)+ (buf.readIntLE(12)  *256) + (buf.readIntLE(13))  ) );
+                adapter.log.debug('power        : '+ ( (buf.readIntLE(14) *256 ) + (buf.readIntLE(15))  ) );
+                adapter.log.debug('max power    : '+ ( (buf.readIntLE(16) *256 ) + (buf.readIntLE(17))  ) );
+                adapter.log.debug('resets       : '+ ( buf.readIntLE(18))  );
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                adapter.setState('EC3000_'+ array[0].usid +'.total',    {val: ( (buf.readIntLE(2) *16777216 ) + (buf.readIntLE(3) *65536)+ (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.ontime',   {val: ( (buf.readIntLE(6) *16777216 ) + (buf.readIntLE(7) *65536)+ (buf.readIntLE(8) *256) + (buf.readIntLE(9))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.energy',   {val: ( (buf.readIntLE(10) *16777216 ) + (buf.readIntLE(11) *65536)+ (buf.readIntLE(12)  *256) + (buf.readIntLE(13))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.power',    {val: ( (buf.readIntLE(14) *256 ) + (buf.readIntLE(15))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.maxpower', {val: ( (buf.readIntLE(16) *256 ) + (buf.readIntLE(17))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.resets',   {val: ( buf.readIntLE(18)), ack: true});
+            }
+        }
+    }
+}
 
 
 // LevelSender FHEM
@@ -1177,6 +1435,12 @@ function main() {
         if(obj[anz].stype=="LaCrosseWS"){
             defineLaCrosseWS(obj[anz].usid, obj[anz].name);
         }
+	if(obj[anz].stype=="EC3000"){
+            defineEC3000(obj[anz].usid, obj[anz].name);
+        }
+        if(obj[anz].stype=="EMT7110"){
+            defineEMT7110(obj[anz].usid, obj[anz].name);
+        }
     }
 
     var options = {
@@ -1205,10 +1469,16 @@ function main() {
                         if (tmp[1]=== '9'){ // 9 ist fix für LaCrosse
                            logLaCrosseDTH(data);
                         }
-                    else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee, noch auf beide geschickt :-(
+	                else if (tmp[1]=== '22'){ //22 ist fix für EC3000
+                            logEC3000(data);
+                         }
+                        else if (tmp[1]=== 'EMT7110'){ // EMT7110 ist fix für EMT7110
+                            logEMT7110(data);
+                         }
+                         else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee, noch auf beide geschickt :-(
                            logLaCrosseBMP180(data);
                            logLaCrosseWS(data);
-                        }
+                         }
                         else {  // es wird auf beide log der Datenstrom geschickt und dann ausgewertet
                                 logemonTH(data);
                                 logemonWater(data);
