@@ -50,7 +50,9 @@ to be done in admin
 |LaCrosseDTH |TX|OK 9 ... |sensors from LaCrosse, technoline|
 |HMS100TF |TXH29DTH-IT|H00 ... |sensors technoline|
 |LaCrosseBMP180||OK WS ... |sensor mod, superjee|
-|LaCrosseWS|WS1080|OK WS ... |Weather Station|
+|LaCrosseWS|WS1080,TX22,WS1600|OK WS ... |Weather Station|
+|EC3000|EC3000|OK 22 ... |Energy Meter|
+|EMT7110|EMT7110|OK EMT7110 ... |Energy Meter|
 
 ## TODO:
 * other sensor types
@@ -64,7 +66,8 @@ to be done in admin
 ### 0.0.6
 * last version of serialport
 * new sensor TXH29DTH-IT
-* new weather station WS1080
+* new weather station WS1600
+* new sensor EC3000, EMT7110 not verified with life data
 
 ### 0.0.5
 * adminv3 improved with values2table
