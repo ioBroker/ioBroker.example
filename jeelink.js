@@ -767,9 +767,11 @@ function logLaCrosseDTH(data){
     }
 }
 
-// Weather Station
+// Weather Station TX22IT same as WS1600
 //OK WS 60  1   4   193 52    2 88  4   101 15  20          ID=60  21.7°C  52%rH  600mm  Dir.: 112.5°  Wind:15m/s  Gust:20m/s
 //OK WS ID  XXX TTT TTT HHH RRR RRR DDD DDD SSS SSS GGG GGG FFF PPP PPP
+//|  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |    |   |-- Pressure LSB
+//|  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |    |------ Pressure MSB
 //|  |  |   |   |   |   |   |   |   |   |   |   |   |   |   |-- Flags *
 //|  |  |   |   |   |   |   |   |   |   |   |   |   |   |------ WindGust * 10 LSB (0.0 ... 50.0 m/s)           FF/FF = none
 //|  |  |   |   |   |   |   |   |   |   |   |   |   |---------- WindGust * 10 MSB
@@ -998,7 +1000,7 @@ function logLaCrosseWS(data){
 			adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10), ack: true});	
 		}
 		if  ((buf.readIntLE(11)) === 254){
-		    adapter.log.debug('WindDirection   : no data (255)');
+		    adapter.log.debug('WindGust   : no data (255)');
 		    }
 		else {			    
                 	adapter.log.debug('WindGust     : '+ ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10) );
