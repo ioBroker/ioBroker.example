@@ -813,8 +813,8 @@ function defineLaCrosseWS(id, name){
             "name":     "Temperature",
             "type":     "number",
             "unit":     "°C",
-            "min":      -50,
-            "max":      50,
+            "min":      -40,
+            "max":      60,
             "read":     true,
             "write":    false,
             "role":     "value.temperature",
@@ -864,6 +864,21 @@ function defineLaCrosseWS(id, name){
             "write":    false,
             "role":     "value",
             "desc":     "Wind Speed"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('LaCrosseWS_' + id + '.wspeed2', {
+        type: 'state',
+        common: {
+            "name":     "Wind Speed km/h",
+            "type":     "number",
+            "unit":     "km/h",
+            "min":      0,
+            "max":      180,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "Wind Speed km/h"
         },
         native: {}
     });
@@ -982,8 +997,8 @@ function logLaCrosseWS(data){
 		    adapter.log.debug('Rain   : no data (255)');
 		    }
 		else {
-                	adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10) );
-			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/10), ack: true});
+                	adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/2) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/2), ack: true});
 		    }
 		if  ((buf.readIntLE(9)) === 254){
 		    adapter.log.debug('Wind Speed   : no data (255)');
@@ -991,6 +1006,8 @@ function logLaCrosseWS(data){
 		else {		    
                 	adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
 	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
+	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10)*3.6, ack: true});
+
 		}
 		if  ((buf.readIntLE(7)) === 254){
 		    adapter.log.debug('WindDirection   : no data (255)');
