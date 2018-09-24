@@ -826,9 +826,98 @@ function logEC3000(data){
 // |   | |  |    `------------------- Level * 10 + 1000 LSB
 // |   | |  `------------------------ Sensor type fix 0 at the moment
 // |   | `--------------------------- Sensor ID ( 0 .. 15)
-// |   `----------------------------- fix "11"
-// `--------------------------------- fix "LS"
+// |   `----------------------------- fix "LS"
+// `--------------------------------- fix "OK"
 
+function defineLevel(id, name){    
+    adapter.setObjectNotExists('Level_' + id, {
+        type: 'channel',
+        common: {
+            name: name,
+            role: 'sensor'
+        },
+        native: {
+            "addr": id
+        }
+    });
+    adapter.log.info('RFM12B setting up object = Level ' + id);
+
+    adapter.setObjectNotExists('Level_' + id + '.temp', {
+        type: 'state',
+        common: {
+            "name":     "Temperature",
+            "type":     "number",
+            "unit":     "°C",
+            "min":      -50,
+            "max":      50,
+            "read":     true,
+            "write":    false,
+            "role":     "value.temperature",
+            "desc":     "Temperature"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('Level_' + id + '.level', {
+        type: 'state',
+        common: {
+            "name":     "level",
+            "type":     "number",
+            "unit":     "cm",
+            "min":      0,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "level"
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('Level_' + id + '.voltage', {
+        type: 'state',
+        common: {
+            "name":     "voltage",
+            "type":     "number",
+            "unit":     "V",
+            "min":      0,
+            "max":      6,
+            "read":     true,
+            "write":    false,
+            "role":     "value",
+            "desc":     "voltage"
+        },
+        native: {}
+    });
+}
+
+function logLevel(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='LS'){                    // Für jeden Datensatz mit dem fixen Eintrag WS
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,8);       // es werden die vorderen Blöcke (0,1) entfernt
+            adapter.log.debug('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            if (array.length === 0 || array.length !== 1) {
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+            }
+            else if (array[0].stype !==  'Level'){
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as Level');
+            }
+            else if (array[0].usid != 'nodef'){
+                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
+                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) );
+                adapter.log.debug('Level        : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) );
+                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(4))*256)+(buf.readIntLE(5))-1000)/10) );
+                adapter.log.debug('Voltage      : '+ ((buf.readIntLE(6))/10 ) );
+                // Werte schreiben
+                // aus gesendeter ID die unique ID bestimmen
+                adapter.setState('Level_'+ array[0].usid +'.level',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                adapter.setState('Level_'+ array[0].usid +'.temp',     {val: ((((buf.readIntLE(4))*256)+(buf.readIntLE(5))-1000)/10), ack: true});
+                adapter.setState('Level_'+ array[0].usid +'.voltage',   {val: ((buf.readIntLE(6))/10), ack: true});                
+            }
+        }
+    }
+}
 
 /*
 WS 1080  17.241 kbps  868.3 MHz
@@ -1375,7 +1464,7 @@ function logLaCrosseBMP180(data){
     if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
         if(tmp[1]=='WS'){                    // Für jeden Datensatz mit dem fixen Eintrag WS
             // somit werden alle SenderIDs bearbeitet
-            var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1) entfernt
             adapter.log.debug('splice       : '+ tmpp);
             var buf = new Buffer(tmpp);
             var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
@@ -1383,7 +1472,7 @@ function logLaCrosseBMP180(data){
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
             }
             else if (array[0].stype !==  'LaCrosseBMP180'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseBMP180');
             }
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
