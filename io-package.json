@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "news": {
+             "0.0.7": {
+                  "en": "level sensor added",
+                  "de": "Füllstandssensor hinzugefügt",
+                  "ru": "добавлен датчик уровня",
+                  "pt": "sensor de nível adicionado",
+                  "nl": "niveausensor toegevoegd",
+                  "fr": "capteur de niveau ajouté",
+                  "it": "sensore di livello aggiunto",
+                  "es": "sensor de nivel agregado",
+                  "pl": "dodano czujnik poziomu"
+                },
             "0.0.6": {
                 "en": "last version of node-serialport",
                 "de": "letzte Version von node-serialport",
