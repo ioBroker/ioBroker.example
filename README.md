@@ -53,6 +53,7 @@ to be done in admin
 |LaCrosseWS|WS1080,TX22,WS1600|OK WS ... |Weather Station|
 |EC3000|EC3000|OK 22 ... |Energy Meter|
 |EMT7110|EMT7110|OK EMT7110 ... |Energy Meter|
+|level|level|OK  ... |level sensor|
 
 ## TODO:
 * other sensor types
@@ -62,7 +63,8 @@ to be done in admin
 
 
 ## Changelog:
-
+### 0.0.7
+* new level sensor (fhem) 
 ### 0.0.6
 * last version of serialport
 * new sensor TXH29DTH-IT
