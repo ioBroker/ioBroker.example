@@ -53,7 +53,7 @@ to be done in admin
 |LaCrosseWS|WS1080,TX22,WS1600|OK WS ... |Weather Station|
 |EC3000|EC3000|OK 22 ... |Energy Meter|
 |EMT7110|EMT7110|OK EMT7110 ... |Energy Meter|
-|level|level|OK  ... |level sensor|
+|level|level|OK LS ... |level sensor|
 
 ## TODO:
 * other sensor types
