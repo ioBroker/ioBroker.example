@@ -1353,7 +1353,7 @@ function logLaCrosseWS(data){
 		else {		    
                 	adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
 	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
-	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10)*3.6, ack: true});
+	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: round( ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10)*3.6, 2), ack: true});
 
 		}
 		if  ((buf.readIntLE(7)) === 254){
