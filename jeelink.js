@@ -1530,6 +1530,9 @@ function main() {
         if(obj[anz].stype=="EMT7110"){
             defineEMT7110(obj[anz].usid, obj[anz].name);
         }
+	if(obj[anz].stype=="level"){
+            defineLevel(obj[anz].usid, obj[anz].name);
+        }
     }
 
     var options = {
@@ -1563,6 +1566,9 @@ function main() {
                          }
                         else if (tmp[1]=== 'EMT7110'){ // EMT7110 ist fix für EMT7110
                             logEMT7110(data);
+                         }
+			 else if (tmp[1]=== 'LS'){ // LS fix für level
+                            logLevel(data);
                          }
                          else if (tmp[1]=== 'WS'){ //derzeitig fix für superjee, noch auf beide geschickt :-(
                            logLaCrosseBMP180(data);
