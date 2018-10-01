@@ -900,8 +900,8 @@ function logLevel(data){
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
             }
-            else if (array[0].stype !==  'Level'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as Level');
+            else if (array[0].stype !==  'level'){
+                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as level');
             }
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
