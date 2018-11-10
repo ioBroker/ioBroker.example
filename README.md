@@ -2,7 +2,7 @@
 # ioBroker.template
 =================
 
-This adapter is a template for the creation of an ioBroker adapter. You do not need it at least that you plan developing your own adapter.
+This adapter is a template for the creation of an ioBroker adapter. You do not need it unless you plan on developing your own adapter.
 
 It includes both code running within iobroker and as vis widget. If you only plan to create a vis widget then you should use the [iobroker.vis-template](https://github.com/ioBroker/ioBroker.vis-template) instead.
 
