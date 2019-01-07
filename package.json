@@ -1,6 +1,6 @@
 {
   "name": "iobroker.jeelink",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ioBroker jeelink Adapter",
   "author": {
     "name": "foxthefox",
