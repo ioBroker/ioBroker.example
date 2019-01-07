@@ -63,6 +63,8 @@ to be done in admin
 
 
 ## Changelog:
+### 0.0.8
+* compact mode
 ### 0.0.7
 * new level sensor (fhem) 
 ### 0.0.6
