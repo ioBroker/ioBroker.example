@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": {
+             "0.0.8": {
+                "en": "compact mode added",
+                "de": "Kompaktmodus hinzugefügt",
+                "ru": "добавлен компактный режим",
+                "pt": "modo compacto adicionado",
+                "nl": "compacte modus toegevoegd",
+                "fr": "mode compact ajouté",
+                "it": "modalità compatta aggiunta",
+                "es": "modo compacto agregado",
+                "pl": "dodano tryb kompaktowy"
+              },
              "0.0.7": {
                   "en": "level sensor added",
                   "de": "Füllstandssensor hinzugefügt",
