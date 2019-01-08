@@ -7,7 +7,7 @@ const Readline = SerialPort.parsers.Readline;
 var sp = null;
 
 // you have to require the utils module and call adapter function
-var utils =  require('@iobroker/adapter-core'); // Get common adapter utils
+const utils =  require('@iobroker/adapter-core'); // Get common adapter utils
 
 
 // you have to call the adapter function and pass a options object
@@ -45,7 +45,9 @@ function startAdapter(options) {
         },
         // is called when databases are connected and adapter received configuration.
         // start here!
-        ready: main()
+        ready: () => {
+      		main()
+		}
      });
      adapter = new utils.Adapter(options);
      
