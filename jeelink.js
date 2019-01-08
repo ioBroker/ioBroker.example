@@ -7,47 +7,50 @@ const Readline = SerialPort.parsers.Readline;
 var sp = null;
 
 // you have to require the utils module and call adapter function
-var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
+var utils =  require('@iobroker/adapter-core'); // Get common adapter utils
 
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-var adapter = utils.Adapter('jeelink');
 
-// is called when adapter shuts down - callback has to be called under any circumstances!
-adapter.on('unload', function (callback) {
-    try {
-        adapter.log.info('cleaned everything up...');
-        callback();
-    } catch (e) {
-        callback();
-    }
-});
-
-// is called if a subscribed object changes
-adapter.on('objectChange', function (id, obj) {
-    // Warning, obj can be null if it was deleted
-    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
-});
-
-// is called if a subscribed state changes
-adapter.on('stateChange', function (id, state) {
-    // Warning, state can be null if it was deleted
-    adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
-
-    // you can use the ack flag to detect if it is status (true) or command (false)
-    if (state && !state.ack) {
-        adapter.log.info('ack is not set!');
-    }
-});
-
-// is called when databases are connected and adapter received configuration.
-// start here!
-adapter.on('ready', function () {
-    adapter.log.info('entered ready');
-    main();
-});
+let adapter;
+function startAdapter(options) {
+     options = options || {};
+     Object.assign(options, {
+          name: 'jeelink',
+          // is called when adapter shuts down - callback has to be called under any circumstances!
+          unload: function (callback) {
+            try {
+                adapter.log.info('cleaned everything up...');
+                callback();
+            } catch (e) {
+                callback();
+            }
+        },
+        // is called if a subscribed object changes
+        objectChange: function (id, obj) {
+            // Warning, obj can be null if it was deleted
+            adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+        },
+        // is called if a subscribed state changes
+        stateChange: function (id, state) {
+            // Warning, state can be null if it was deleted
+            adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+        
+            // you can use the ack flag to detect if it is status (true) or command (false)
+            if (state && !state.ack) {
+                adapter.log.info('ack is not set!');
+            }
+        },
+        // is called when databases are connected and adapter received configuration.
+        // start here!
+        ready: main()
+     });
+     adapter = new utils.Adapter(options);
+     
+     return adapter;
+};
 
 function getConfigObjects(Obj, where, what){
     var foundObjects = [];
@@ -922,13 +925,10 @@ function logLevel(data){
 /*
 WS 1080  17.241 kbps  868.3 MHz
 -------------------------------
-
 A8 C0 58 5E 00 00 00 86 0A D8
 ID: 8C, T=  8.8`C, relH= 94%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=SW , Rain=  40.2mm
-
 A8 C0 55 5E 00 00 00 86 04 06
 ID: 8C, T=  8.5`C, relH= 94%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.2mm
-
 A8 C0 50 60 00 00 00 86 04 BF
 ID: 8C, T=  8.0`C, relH= 96%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.2mm
 */
@@ -1595,3 +1595,11 @@ function main() {
 
 
 }
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
+} 
