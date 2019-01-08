@@ -1,6 +1,6 @@
 {
   "name": "iobroker.jeelink",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "ioBroker jeelink Adapter",
   "author": {
     "name": "foxthefox",
@@ -23,7 +23,8 @@
     "url": "https://github.com/foxthefox/ioBroker.jeelink"
   },
   "dependencies": {
-    "serialport": "^6.2.2"
+    "serialport": "^6.2.2",
+     "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
       "gulp": "^3.9.1",
