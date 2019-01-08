@@ -44,127 +44,132 @@ it is available then var.The variable is available inside a block and it's child
 You can define the same variable name inside a child without produce a conflict with the variable of the parent block.*/
 let variable = 1234;
 
-// create adapter instance wich will be used for communication with controller
-let adapter;
-function startAdapter(options) {
-	options = options || {};
-	Object.assign(options, {
-        // name has to be set and has to be equal to adapters folder name and main file name excluding extension
-        name: adapterName,
+// define adapter class wich will be used for communication with controller
+class MyAdapter extends utils.Adapter {
+    constructor(options) {
+        super(options);
+
         // is called when adapter shuts down - callback has to be called under any circumstances!
-        unload: function (callback) {
-            try {
-                adapter.log.info('cleaned everything up...');
-                callback();
-            } catch (e) {
-                callback();
-            }
-        },
+        on('unload', this._unload);
+
         // is called if a subscribed object changes
-        objectChange: function (id, obj) {
-            // Warning, obj can be null if it was deleted
-            adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
-        },
+        on('objectChange', this._objectChange);
+
         // is called if a subscribed state changes
-        stateChange: function (id, state) {
-            // Warning, state can be null if it was deleted
-            adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
-        
-            // you can use the ack flag to detect if it is status (true) or command (false)
-            if (state && !state.ack) {
-                adapter.log.info('ack is not set!');
-            }
-        },
+        on('stateChange', this._stateChange);
+
         // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-        message: function (obj) {
-            if (typeof obj === 'object' && obj.message) {
-                if (obj.command === 'send') {
-                    // e.g. send email or pushover or whatever
-                    console.log('send command');
-        
-                    // Send response in callback if required
-                    if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-                }
-            }
-        },
+        on('message', this._message);
+
         // is called when databases are connected and adapter received configuration.
         // start here!
-        ready: main()
-    });
-    // you have to call the adapter function and pass a options object
-    // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-	adapter = new utils.Adapter(options);
+        on('ready', this._main);
+    }
 
-	return adapter;
+    // name has to be set and has to be equal to adapters folder name and main file name excluding extension
+    get name() { return adapterName; }
+
+    _unload(callback) {
+        try {
+            adapter.log.info('cleaned everything up...');
+            callback();
+        } catch (e) {
+            callback();
+        }
+    }
+
+    _objectChange(id, obj) {
+        // Warning, obj can be null if it was deleted
+        adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+    }
+
+    _stateChange(id, state) {
+        // Warning, state can be null if it was deleted
+        adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+
+        // you can use the ack flag to detect if it is status (true) or command (false)
+        if (state && !state.ack) {
+            adapter.log.info('ack is not set!');
+        }
+    }
+
+    _message(obj) {
+        if (typeof obj === 'object' && obj.message) {
+            if (obj.command === 'send') {
+                // e.g. send email or pushover or whatever
+                console.log('send command');
+
+                // Send response in callback if required
+                if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+            }
+        }
+    }
+
+    _main() {
+        // The adapters config (in the instance object everything under the attribute "native") is accessible via
+        // adapter.config:
+        this.log.info('config test1: ' + this.config.test1);
+        this.log.info('config test1: ' + this.config.test2);
+        this.log.info('config mySelect: ' + this.config.mySelect);
+
+
+		/**
+		 *
+		 *      For every state in the system there has to be also an object of type state
+		 *
+		 *      Here a simple template for a boolean variable named "testVariable"
+		 *
+		 *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
+		 *
+		 */
+
+        this.setObject('testVariable', {
+            type: 'state',
+            common: {
+                name: 'testVariable',
+                type: 'boolean',
+                role: 'indicator'
+            },
+            native: {}
+        });
+
+        // in this template all states changes inside the adapters namespace are subscribed
+        this.subscribeStates('*');
+
+
+		/**
+		 *   setState examples
+		 *
+		 *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+		 *
+		 */
+
+        // the variable testVariable is set to true as command (ack=false)
+        this.setState('testVariable', true);
+
+        // same thing, but the value is flagged "ack"
+        // ack should be always set to true if the value is received from or acknowledged from the target system
+        this.setState('testVariable', { val: true, ack: true });
+
+        // same thing, but the state is deleted after 30s (getState will return null afterwards)
+        this.setState('testVariable', { val: true, ack: true, expire: 30 });
+
+
+        // examples for the checkPassword/checkGroup functions
+        this.checkPassword('admin', 'iobroker', function (res) {
+            console.log('check user admin pw ioboker: ' + res);
+        });
+
+        this.checkGroup('admin', 'admin', function (res) {
+            console.log('check group user admin group admin: ' + res);
+        });
+    }
 };
-
-function main() {
-
-    // The adapters config (in the instance object everything under the attribute "native") is accessible via
-    // adapter.config:
-    adapter.log.info('config test1: '    + adapter.config.test1);
-    adapter.log.info('config test1: '    + adapter.config.test2);
-    adapter.log.info('config mySelect: ' + adapter.config.mySelect);
-
-
-    /**
-     *
-     *      For every state in the system there has to be also an object of type state
-     *
-     *      Here a simple template for a boolean variable named "testVariable"
-     *
-     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-     *
-     */
-
-    adapter.setObject('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
-        },
-        native: {}
-    });
-
-    // in this template all states changes inside the adapters namespace are subscribed
-    adapter.subscribeStates('*');
-
-
-    /**
-     *   setState examples
-     *
-     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-     *
-     */
-
-    // the variable testVariable is set to true as command (ack=false)
-    adapter.setState('testVariable', true);
-
-    // same thing, but the value is flagged "ack"
-    // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
-
-    // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
-
-
-
-    // examples for the checkPassword/checkGroup functions
-    adapter.checkPassword('admin', 'iobroker', function (res) {
-        console.log('check user admin pw ioboker: ' + res);
-    });
-
-    adapter.checkGroup('admin', 'admin', function (res) {
-        console.log('check group user admin group admin: ' + res);
-    });
-
-}
 
 // If started as allInOne/compact mode => return function to create instance
 if (module && module.parent) {
-    module.exports = startAdapter;
+    module.exports = () => new MyAdapter;
 } else {
     // or start the instance directly
-    startAdapter();
+    new MyAdapter();
 } 
