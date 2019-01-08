@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.0.8",
+        "version": "0.1.0",
         "news": {
              "0.0.8": {
                 "en": "compact mode added",
@@ -98,6 +98,7 @@
         "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
         "loglevel": "debug",
         "materialize": true,
+        "compact": true,
         "authors": [
             {
                 "name": "foxthefox",
