@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "template",
-        "version": "0.6.0",
+        "version": "0.7.0",
         "news": {
+            "0.7.0": {
+                "en": "compact mode and fixes",
+                "de": "Kompaktmodus und Korrekturen",
+                "ru": "компактный режим и исправления",
+                "pt": "modo compacto e correções",
+                "nl": "compacte modus en oplossingen",
+                "fr": "mode compact et correctifs",
+                "it": "modalità compatta e correzioni",
+                "es": "Modo compacto y correcciones.",
+                "pl": "tryb kompaktowy i poprawki"
+            },
             "0.6.0": {
                 "en": "Support of admin3",
                 "de": "Unterstützung von admin3",
@@ -66,6 +77,7 @@
         },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
+        "compact": true,
         "icon": "template.png",
         "materialize": true,
         "enabled": true,
