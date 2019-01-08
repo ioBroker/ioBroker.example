@@ -59,6 +59,9 @@ It includes both code running within iobroker and as vis widget. If you only pla
 
 ## Changelog
 
+### 0.8.0 (2019.01.08)
+* (jogibear998) es6 class support
+
 ### 0.7.0 (2019.01.08)
 * (jogibear998) compact mode and fixes
 

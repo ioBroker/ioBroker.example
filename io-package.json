@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "template",
-        "version": "0.7.0",
+        "version": "0.8.0",
         "news": {
+            "0.8.0": {
+                "en": "es6 class support",
+                "de": "Es6-Klassenunterstützung",
+                "ru": "поддержка класса es6",
+                "pt": "suporte a classe es6",
+                "nl": "es6 klasse ondersteuning",
+                "fr": "support de classe es6",
+                "it": "es6 supporto di classe",
+                "es": "soporte de clase es6",
+                "pl": "Wsparcie dla klasy es6"
+            },
             "0.7.0": {
                 "en": "compact mode and fixes",
                 "de": "Kompaktmodus und Korrekturen",
@@ -41,7 +52,7 @@
                 "nl": "Eerste release"
             }
         },
-		"title": "Javascript/Node.js based template",
+        "title": "Javascript/Node.js based template",
         "titleLang": {
             "en": "Javascript/Node.js based template",
             "de": "Javascript / Node.js basierte Vorlagenadapter",
