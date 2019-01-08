@@ -89,7 +89,7 @@ function startAdapter(options) {
         },
         // is called when databases are connected and adapter received configuration.
         // start here!
-        ready: main()
+        ready: () => main()
     });
     // you have to call the adapter function and pass a options object
     // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
