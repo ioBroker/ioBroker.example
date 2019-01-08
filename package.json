@@ -1,6 +1,6 @@
 {
   "name": "iobroker.template",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "ioBroker template Adapter",
   "author": {
     "name": "@@Author@@",
@@ -24,7 +24,9 @@
     "type": "git",
     "url": "https://github.com/ioBroker/ioBroker.template"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@iobroker/adapter-core": "^1.0.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "mocha": "^4.1.0",
