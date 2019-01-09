@@ -37,7 +37,6 @@
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 
 // read the adapter name from package.json
-// name has to be set and has to be equal to adapters folder name and main file name excluding extension
 const adapterName = require('./package.json').name.split('.').pop();
 
 /*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
@@ -48,23 +47,28 @@ let variable = 1234;
 // define adapter class wich will be used for communication with controller
 class MyAdapter extends utils.Adapter {
     constructor(options) {
-        super(Object.assign(options || {}, { name: adapterName }));
+        let adapterOptions = {
+            // name has to be set and has to be equal to adapters folder name and main file name excluding extension
+            name: adapterName,
 
-        // is called when adapter shuts down - callback has to be called under any circumstances!
-        on('unload', this._unload);
+            // is called when adapter shuts down - callback has to be called under any circumstances!
+            unload: this._unload,
 
-        // is called if a subscribed object changes
-        on('objectChange', this._objectChange);
+            // is called if a subscribed object changes
+            objectChange: this._objectChange,
 
-        // is called if a subscribed state changes
-        on('stateChange', this._stateChange);
+            // is called if a subscribed state changes
+            stateChange: this._stateChange,
 
-        // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-        on('message', this._message);
+            // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
+            message: this._message,
 
-        // is called when databases are connected and adapter received configuration.
-        // start here!
-        on('ready', this._main);
+            // is called when databases are connected and adapter received configuration.
+            // start here!
+            ready: this._main
+        }
+
+        super(Object.assign(adapterOptions, options || {}));
     }
 
     _unload(callback) {
