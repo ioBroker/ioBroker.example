@@ -37,6 +37,7 @@
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 
 // read the adapter name from package.json
+// name has to be set and has to be equal to adapters folder name and main file name excluding extension
 const adapterName = require('./package.json').name.split('.').pop();
 
 /*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
@@ -47,7 +48,7 @@ let variable = 1234;
 // define adapter class wich will be used for communication with controller
 class MyAdapter extends utils.Adapter {
     constructor(options) {
-        super(options);
+        super(Object.assign(options || {}, { name: adapterName }));
 
         // is called when adapter shuts down - callback has to be called under any circumstances!
         on('unload', this._unload);
@@ -65,9 +66,6 @@ class MyAdapter extends utils.Adapter {
         // start here!
         on('ready', this._main);
     }
-
-    // name has to be set and has to be equal to adapters folder name and main file name excluding extension
-    get name() { return adapterName; }
 
     _unload(callback) {
         try {
@@ -168,7 +166,7 @@ class MyAdapter extends utils.Adapter {
 
 // If started as allInOne/compact mode => return function to create instance
 if (module && module.parent) {
-    module.exports = () => new MyAdapter;
+    module.exports = (options) => new MyAdapter(options);
 } else {
     // or start the instance directly
     new MyAdapter();
