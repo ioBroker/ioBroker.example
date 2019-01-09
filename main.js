@@ -52,23 +52,23 @@ class MyAdapter extends utils.Adapter {
             name: adapterName,
 
             // is called when adapter shuts down - callback has to be called under any circumstances!
-            unload: this._unload,
+            unload: this._unload.bind(this),
 
             // is called if a subscribed object changes
-            objectChange: this._objectChange,
+            objectChange: this._objectChange.bind(this),
 
             // is called if a subscribed state changes
-            stateChange: this._stateChange,
+            stateChange: this._stateChange.bind(this),
 
             // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-            message: this._message,
+            message: this._message.bind(this),
 
             // is called when databases are connected and adapter received configuration.
             // start here!
-            ready: this._main
+            ready: this._ready.bind(this)
         }
 
-        super(Object.assign(adapterOptions, options || {}));
+        super(Object.assign(adapterOptions, options));
     }
 
     _unload(callback) {
@@ -107,7 +107,7 @@ class MyAdapter extends utils.Adapter {
         }
     }
 
-    _main() {
+    _ready() {
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // adapter.config:
         this.log.info('config test1: ' + this.config.test1);
