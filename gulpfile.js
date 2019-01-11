@@ -526,4 +526,4 @@ gulp.task('translate', async function (done) {
     fs.writeFileSync('io-package.json', JSON.stringify(iopackage, null, 4));
 });
 
-gulp.task('default', ['updatePackages', 'updateReadme']);
+gulp.task('default', gulp.series('updatePackages', 'updateReadme'));
