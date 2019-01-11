@@ -522,6 +522,26 @@ gulp.task('translate', async function (done) {
 		if (iopackage.common.desc) {
 			await translateNotExisting(iopackage.common.desc)
 		}
+		
+		if (fs.existsSync('./admin/i18n/en/translations.json')) {
+			let enTranslations = require('./admin/i18n/en/translations.json');
+			for (let l in languages) {
+				let existing = {};
+				if (fs.existsSync('./admin/i18n/' + l +'/translations.json')) {
+					existing = require('./admin/i18n/' + l + '/translations.json');
+				}
+				for (let t in enTranslations) {
+					if (!existing[t]) {
+						existing[t] = await translateText(enTranslations[t], l);
+					}					
+				}
+				if (!fs.existsSync('./admin/i18n/' + l +'/')) {
+					fs.mkdirSync('./admin/i18n/' + l +'/');
+				}
+				fs.writeFileSync('./admin/i18n/' + l + '/translations.json', JSON.stringify(existing, null, 4));
+			}
+		}
+		
 	}
     fs.writeFileSync('io-package.json', JSON.stringify(iopackage, null, 4));
 });
