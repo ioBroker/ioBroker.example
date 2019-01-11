@@ -28,9 +28,13 @@
     "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "gulp": "^3.9.1",
     "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+	"@vitalets/google-translate-api": "github:vitalets/google-translate-api",
+    "configstore": "^4.0.0",
+    "request": "^2.88.0",
+    "safe-eval": "^0.4.1"
   },
   "main": "main.js",
   "scripts": {

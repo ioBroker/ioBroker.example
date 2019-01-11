@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "template",
-        "version": "0.8.0",
+        "version": "0.9.0",
         "news": {
+            "0.9.0": {
+                "en": "gulp-task for translation",
+                "de": "gulp-task für die Übersetzung",
+                "ru": "глоток-задание на перевод",
+                "pt": "gulp-task for translation",
+                "nl": "gulp-taak voor vertaling",
+                "fr": "gulp-task pour la traduction",
+                "it": "gulp-task per la traduzione",
+                "es": "gulp-tarea para la traducción",
+                "pl": "gulp-task do tłumaczenia",
+                "zh-cn": "gulp-task for translation"
+            },
             "0.8.0": {
                 "en": "es6 class support",
                 "de": "Es6-Klassenunterstützung",
@@ -12,7 +24,8 @@
                 "fr": "support de classe es6",
                 "it": "es6 supporto di classe",
                 "es": "soporte de clase es6",
-                "pl": "Wsparcie dla klasy es6"
+                "pl": "Wsparcie dla klasy es6",
+                "zh-cn": "es6类支持"
             },
             "0.7.0": {
                 "en": "compact mode and fixes",
@@ -23,7 +36,8 @@
                 "fr": "mode compact et correctifs",
                 "it": "modalità compatta e correzioni",
                 "es": "Modo compacto y correcciones.",
-                "pl": "tryb kompaktowy i poprawki"
+                "pl": "tryb kompaktowy i poprawki",
+                "zh-cn": "紧凑模式和修复"
             },
             "0.6.0": {
                 "en": "Support of admin3",
@@ -33,7 +47,9 @@
                 "nl": "Ondersteuning van admin3",
                 "fr": "Support de admin3",
                 "it": "Supporto di admin3",
-                "es": "Soporte de admin3"
+                "es": "Soporte de admin3",
+                "pl": "Wsparcie dla administratora3",
+                "zh-cn": "支持admin3"
             },
             "0.5.0": {
                 "en": "beta version",
@@ -41,7 +57,11 @@
                 "ru": "Бета версия",
                 "pt": "Versão beta",
                 "fr": "Version bêta",
-                "nl": "Beta versie"
+                "nl": "Beta versie",
+                "it": "versione beta",
+                "es": "versión beta",
+                "pl": "wersja beta",
+                "zh-cn": "测试版"
             },
             "0.0.1": {
                 "en": "initial adapter",
@@ -49,7 +69,11 @@
                 "ru": "Первоначальный адаптер",
                 "pt": "Versão inicial",
                 "fr": "Version initiale",
-                "nl": "Eerste release"
+                "nl": "Eerste release",
+                "it": "adattatore iniziale",
+                "es": "adaptador inicial",
+                "pl": "początkowy adapter",
+                "zh-cn": "初始适配器"
             }
         },
         "title": "Javascript/Node.js based template",
@@ -61,7 +85,9 @@
             "nl": "Javascript / Node.js gebaseerde sjabloonadapter",
             "fr": "Javascript / Node.js basé adaptateur de modèle",
             "it": "Adattatore modello basato su Javascript / Node.js",
-            "es": "Adaptador de plantilla basado en JavaScript / Node.js"
+            "es": "Adaptador de plantilla basado en JavaScript / Node.js",
+            "pl": "Szablon oparty na Javascript / Node.js",
+            "zh-cn": "基于Javascript / Node.js的模板"
         },
         "desc": {
             "en": "ioBroker template",
@@ -71,7 +97,9 @@
             "fr": "ioBroker adaptateur modèle",
             "nl": "ioBroker Template",
             "it": "Adattatore modello ioBroker",
-            "es": "Adaptador de plantilla ioBroker"
+            "es": "Adaptador de plantilla ioBroker",
+            "pl": "szablon ioBroker",
+            "zh-cn": "ioBroker模板"
         },
         "authors": [
             "@@Author@@ <@@email@@>"
@@ -93,20 +121,26 @@
         "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
-        "keywords": ["template", "vis", "GUI", "graphical", "scada"],
+        "keywords": [
+            "template",
+            "vis",
+            "GUI",
+            "graphical",
+            "scada"
+        ],
         "readme": "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
         "license": "MIT",
         "messagebox": false,
-        "restartAdapters": ["vis"]
+        "restartAdapters": [
+            "vis"
+        ]
     },
     "native": {
         "test1": true,
         "test2": 42,
         "mySelect": "auto"
     },
-    "objects": [
-
-    ]
+    "objects": []
 }

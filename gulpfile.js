@@ -22,7 +22,8 @@ var languages =  {
     fr: {},
     it: {},
     es: {},
-    pl: {}
+    pl: {},
+	"zh-cn": {}
 };
 
 function lang2data(lang, isFlat) {
@@ -484,6 +485,45 @@ gulp.task('updateReadme', function (done) {
         }
     }
     done();
+});
+
+const translate   = require('@vitalets/google-translate-api');
+
+async function translateText(text, lang) {
+	let res = await translate(text, {to: lang, from: 'en'});
+	return res.text;
+}
+
+async function translateNotExisting(obj, baseText) {
+	let t = obj['en'];
+	if (!t)
+		t = baseText;
+
+	if (t) {
+		for (let l in languages) {
+			if (!obj[l]) {
+				obj[l] = await translateText(t, l);
+			}
+		}
+	}
+}
+
+gulp.task('translate', async function (done) {
+	if (iopackage && iopackage.common) {
+		if (iopackage.common.news) {
+			for (let k in iopackage.common.news) {
+				let nw = iopackage.common.news[k];
+				await translateNotExisting(nw)
+			}
+		}
+		if (iopackage.common.titleLang) {
+			await translateNotExisting(iopackage.common.titleLang, iopackage.common.title)
+		}
+		if (iopackage.common.desc) {
+			await translateNotExisting(iopackage.common.desc)
+		}
+	}
+    fs.writeFileSync('io-package.json', JSON.stringify(iopackage, null, 4));
 });
 
 gulp.task('default', ['updatePackages', 'updateReadme']);
