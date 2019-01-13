@@ -102,7 +102,7 @@ class MyAdapter extends utils.Adapter {
         }
     }
 
-    _ready() {
+    async _ready() {
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // adapter.config:
         this.log.info('config test1: ' + this.config.test1);
@@ -120,7 +120,7 @@ class MyAdapter extends utils.Adapter {
 		 *
 		 */
 
-        this.setObject('testVariable', {
+        await this.setObjectNotExistsAsync('testVariable', {
             type: 'state',
             common: {
                 name: 'testVariable',
@@ -135,31 +135,29 @@ class MyAdapter extends utils.Adapter {
 
 
 		/**
-		 *   setState examples
+		 *   setStateAsync examples
 		 *
-		 *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+		 *   you will notice that each setStateAsync will cause the stateChange event to fire (because of above subscribeStates cmd)
 		 *
 		 */
 
         // the variable testVariable is set to true as command (ack=false)
-        this.setState('testVariable', true);
+        await this.setStateAsync('testVariable', true);
 
         // same thing, but the value is flagged "ack"
         // ack should be always set to true if the value is received from or acknowledged from the target system
-        this.setState('testVariable', { val: true, ack: true });
+        await this.setStateAsync('testVariable', { val: true, ack: true });
 
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
-        this.setState('testVariable', { val: true, ack: true, expire: 30 });
+        await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
 
 
         // examples for the checkPassword/checkGroup functions
-        this.checkPassword('admin', 'iobroker', function (res) {
-            console.log('check user admin pw ioboker: ' + res);
-        });
+        let res = await this.checkPasswordAsync('admin', 'iobroker');
+        console.log('check user admin pw ioboker: ' + res);
 
-        this.checkGroup('admin', 'admin', function (res) {
-            console.log('check group user admin group admin: ' + res);
-        });
+        res = this.checkGroupAsync('admin', 'admin');
+        console.log('check group user admin group admin: ' + res);
     }
 };
 
