@@ -33,8 +33,7 @@
     "mocha": "^5.2.0",
     "@vitalets/google-translate-api": "github:vitalets/google-translate-api",
     "configstore": "^4.0.0",
-    "request": "^2.88.0",
-    "safe-eval": "^0.4.1"
+    "axios": "^0.18.0"
   },
   "main": "main.js",
   "scripts": {
