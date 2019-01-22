@@ -9,21 +9,17 @@ Currently, the following templates are available:
 
 ### Adapter and visualization
 
-#### JavaScript
+#### [JavaScript](JavaScriptVIS)
 
-#### TypeScript
+#### [TypeScript](TypeScriptVIS)
 
 ### Adapter only
 
-#### JavaScript
+#### [JavaScript](JavaScript)
 
-#### TypeScript
+#### [TypeScript](TypeScript)
 
-## Visualization only
-
-#### JavaScript
-
-#### TypeScript
+## [Visualization only](VIS)
 
 
 ## Features
