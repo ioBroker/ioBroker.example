@@ -1,87 +1,47 @@
-![Logo](admin/template.png)
-# ioBroker.template
-=================
+# <img src="icon.png" width=48> ioBroker templates
 
-This adapter is a template for the creation of an ioBroker adapter. You do not need it at least that you plan developing your own adapter.
+This is a collection of templates for ioBroker developers. Just select the template you need, copy its contents from the sub directory and begin working on your project.
 
-It includes both code running within iobroker and as vis widget. If you only plan to create a vis widget then you should use the [iobroker.vis-template](https://github.com/ioBroker/ioBroker.vis-template) instead.
+<!-- TODO: Links to documentation and stuff -->
 
-##Steps 
-1. download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.template/archive/master.zip```
-  or clone git repository ```git clone --depth=1 https://github.com/ioBroker/ioBroker.template.git```
+## Templates
+Currently, the following templates are available:
 
-2. download required npm packets. Write in ioBroker.template directory:
+### Adapter and visualization
 
-  ```npm install```
-  
-3. set name of this template. Call
-  
-  ```grunt rename --name=mynewname --email=email@mail.com --author="Author Name"```
-  
-  *mynewname* must be **lower** case and with no spaces.
+#### JavaScript
 
-  If grunt is not available, install grunt globally:
-  
-  ```npm install -g grunt-cli```
- 
-4. rename directory from *ioBroker.template* (can be *ioBroker.template-master*) to *iobroker.mynewname*
+#### TypeScript
 
-5. to use this template you should copy it into *.../iobroker/node_modules* directory and then create an instance for it with iobroker.admin
+### Adapter only
 
-6. create your adapter:
+#### JavaScript
 
-  * you might want to start with main.js (code running within iobroker) and admin/index.html (the adapter settings page).
+#### TypeScript
 
-  * [Adapter-Development-Documentation](https://github.com/ioBroker/ioBroker/wiki/Adapter-Development-Documentation),
-  
-  * [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
-  
-  * [Write and debug vis widgets](https://github.com/ioBroker/ioBroker/wiki/How-to-debug-vis-and-to-write-own-widget-set)
-  
-  * files under the www folders are made available under http://&lt;iobrokerIP&gt;:8082/&lt;adapter-name&gt;/
-    * for this to work the iobroker.vis adapter has to be installed
-    * delete this folder if you do not plan to export any files this way
-    * call ```iobroker upload <adapter-name>``` after you change files in the www folder to get the new files uploaded to vis
-  * the widget folder contains an example of a vis widget
-    * you might want to start with *widget/<adapter-name>.html* and *widget/js/<adapter-name>.js*
-    * call ```iobroker visdebug <adapter-name>``` to enable debugging and upload widget to "vis". (This works only from V0.7.15 of js-controller)
-    * If you do not plan to export any widget then delete the whole widget folder and remove the ```"restartAdapters": ["vis"]``` statement from *io-package.json*
-    * After admin/index.html is changed you must execute ```iobroker upload mynewname``` to see changes in admin console. The same is valid for any files in *admin* and *www* directory  
+## Visualization only
 
-7. change version: edit package.json and then call ```grunt p``` in your adapter directory.
-  
-8. share it with the community
+#### JavaScript
 
-## Changelog
+#### TypeScript
 
-### 0.5.0
-  (vegetto) include vis widget
 
-#### 0.4.0
-* (bluefox) fix errors with grunt
+## Features
+All templates come with the following features:
+* IntelliSense (auto completion and tooltips) in supporting editors
+* JavaScript only:
+  * [ESLint](https://github.com/eslint/eslint) for code quality
+  * Type checking based on the ioBroker declarations
+* TypeScript only:
+  * [TSLint](https://github.com/palantir/tslint) for code quality
+  * [nyc](https://github.com/istanbuljs/nyc) for code coverage
+* Built-in component tests using `mocha` & `chai` (with `chai-as-promised`) and `sinon` (with `sinon-chai`) for:
+  * Correctly defined package files
+  * and your own tests
+* ... [and more to come](https://github.com/ioBroker/create-adapter/blob/master/README.md#roadmap)
 
-#### 0.2.0
-* (bluefox) initial release
+## Anything missing?
+The templates are automatically generated using [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter). If you're missing a feature or found a bug, please open an issue in that repository. Or consider using the tool directly for much more configuration goodness.
 
-## License
-The MIT License (MIT)
-
-Copyright (c) 2017 @@Author@@ <@@email@@>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+## For developers
+Please don't edit these files directly (except this README). Instead the CI builds in the `create-adapter` repo should be updated.
