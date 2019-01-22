@@ -1,0 +1,94 @@
+{
+    "common": {
+        "name": "template",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Template (JavaScript)",
+        "titleLang": {
+            "en": "Template (JavaScript)",
+            "de": "Vorlage (JavaScript)",
+            "ru": "Шаблон (JavaScript)",
+            "pt": "Template (JavaScript)",
+            "nl": "Sjabloon (JavaScript)",
+            "fr": "Modèle (JavaScript)",
+            "it": "Template (JavaScript)",
+            "es": "Plantilla (JavaScript)",
+            "pl": "Szablon (JavaScript)",
+            "zh-cn": "模板（JavaScript）"
+        },
+        "desc": {
+            "en": "Template for adapter development",
+            "de": "Vorlage für die Adapterentwicklung",
+            "ru": "Шаблон для разработки адаптера",
+            "pt": "Modelo para desenvolvimento de adaptador",
+            "nl": "Sjabloon voor ontwikkeling van adapters",
+            "fr": "Modèle pour le développement de l'adaptateur",
+            "it": "Modello per lo sviluppo dell'adattatore",
+            "es": "Plantilla para desarrollo de adaptadores.",
+            "pl": "Szablon do opracowania adaptera",
+            "zh-cn": "适配器开发模板"
+        },
+        "authors": [
+            "Author <author@mail.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "template.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
+        "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "general",
+        "materialize": true,
+        "materializeTab": true,
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "Template (JavaScript)",
+                "de": "Vorlage (JavaScript)",
+                "ru": "Шаблон (JavaScript)",
+                "pt": "Template (JavaScript)",
+                "nl": "Sjabloon (JavaScript)",
+                "fr": "Modèle (JavaScript)",
+                "it": "Template (JavaScript)",
+                "es": "Plantilla (JavaScript)",
+                "pl": "Szablon (JavaScript)",
+                "zh-cn": "模板（JavaScript）"
+            },
+            "link": "",
+            "fa-icon": "info"
+        },
+        "supportCustoms": true,
+        "dependencies": [
+            {
+                "admin": ">=3.0.0"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
