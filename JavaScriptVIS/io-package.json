@@ -1,0 +1,100 @@
+{
+    "common": {
+        "name": "template",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Template (JavaScript with VIS)",
+        "titleLang": {
+            "en": "Template (JavaScript with VIS)",
+            "de": "Vorlage (JavaScript mit VIS)",
+            "ru": "Шаблон (JavaScript с VIS)",
+            "pt": "Modelo (JavaScript com VIS)",
+            "nl": "Sjabloon (JavaScript met VIS)",
+            "fr": "Modèle (JavaScript avec VIS)",
+            "it": "Template (JavaScript con VIS)",
+            "es": "Plantilla (JavaScript con VIS)",
+            "pl": "Szablon (JavaScript z VIS)",
+            "zh-cn": "模板（带VIS的JavaScript）"
+        },
+        "desc": {
+            "en": "Template for adapter development",
+            "de": "Vorlage für die Adapterentwicklung",
+            "ru": "Шаблон для разработки адаптера",
+            "pt": "Modelo para desenvolvimento de adaptador",
+            "nl": "Sjabloon voor ontwikkeling van adapters",
+            "fr": "Modèle pour le développement de l'adaptateur",
+            "it": "Modello per lo sviluppo dell'adattatore",
+            "es": "Plantilla para desarrollo de adaptadores.",
+            "pl": "Szablon do opracowania adaptera",
+            "zh-cn": "适配器开发模板"
+        },
+        "authors": [
+            "Author <author@mail.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "template.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
+        "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+        "loglevel": "info",
+        "restartAdapters": [
+            "vis"
+        ],
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "mode": "daemon",
+        "type": "general",
+        "compact": true,
+        "materialize": true,
+        "materializeTab": true,
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "Template (JavaScript with VIS)",
+                "de": "Vorlage (JavaScript mit VIS)",
+                "ru": "Шаблон (JavaScript с VIS)",
+                "pt": "Modelo (JavaScript com VIS)",
+                "nl": "Sjabloon (JavaScript met VIS)",
+                "fr": "Modèle (JavaScript avec VIS)",
+                "it": "Template (JavaScript con VIS)",
+                "es": "Plantilla (JavaScript con VIS)",
+                "pl": "Szablon (JavaScript z VIS)",
+                "zh-cn": "模板（带VIS的JavaScript）"
+            },
+            "link": "",
+            "fa-icon": "info"
+        },
+        "supportCustoms": true,
+        "dependencies": [
+            {
+                "admin": ">=3.0.0"
+            },
+            "vis"
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
