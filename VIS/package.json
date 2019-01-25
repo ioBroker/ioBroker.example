@@ -1,0 +1,33 @@
+{
+  "name": "iobroker.template",
+  "version": "0.0.1",
+  "description": "Template for adapter development",
+  "author": {
+    "name": "Author",
+    "email": "author@mail.com"
+  },
+  "homepage": "https://github.com/Author/ioBroker.template",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "template",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Author/ioBroker.template"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/gulp": "^4.0.5",
+    "axios": "^0.18.0",
+    "gulp": "^4.0.0"
+  },
+  "main": "widgets/template.html",
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/Author/ioBroker.template/issues"
+  },
+  "readmeFilename": "README.md"
+}
