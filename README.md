@@ -1,6 +1,8 @@
 # <img src="icon.png" width=48> ioBroker templates
 
-This is a collection of templates for ioBroker developers. Just select the template you need, copy its contents from the sub directory and begin working on your project.
+This is a collection of templates for ioBroker developers to create adapters or VIS widgets. Just select the template you need, copy its contents from the sub directory and begin working on your project.
+
+Alternatively you can use [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter) to generate a custom skeleton based on your exact needs. We recommended that way if you start developing an adapter or widget.
 
 <!-- TODO: Links to documentation and stuff -->
 
