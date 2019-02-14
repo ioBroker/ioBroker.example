@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Created with @iobroker/create-adapter v1.8.0
+ * Created with @iobroker/create-adapter v1.9.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -36,8 +36,8 @@ class Template extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('config test1: ' + this.config.option1);
-        this.log.info('config test1: ' + this.config.option2);
+        this.log.info('config option1: ' + this.config.option1);
+        this.log.info('config option2: ' + this.config.option2);
 
         /*
         For every state in the system there has to be also an object of type state
