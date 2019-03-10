@@ -1,6 +1,6 @@
 ![Logo](admin/jeelab_logo.png)
 # ioBroker.jeelink
-[![NPM version](http://img.shields.io/npm/v/iobroker.jeelink.svg)](https://www.npmjs.com/package/iobroker.jeelink)
+![Number of Installations](http://iobroker.live/badges/jeelink-installed.svg) ![Number of Installations](http://iobroker.live/badges/jeelink-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.jeelink.svg)](https://www.npmjs.com/package/iobroker.jeelink)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.jeelink.svg)](https://www.npmjs.com/package/iobroker.jeelink)
 [![Build Status](https://travis-ci.org/foxthefox/ioBroker.jeelink.svg?branch=master)](https://travis-ci.org/foxthefox/ioBroker.jeelink)
 
