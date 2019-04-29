@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Created with @iobroker/create-adapter v1.11.0
+ * Created with @iobroker/create-adapter v1.12.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -24,7 +24,7 @@ class Template extends utils.Adapter {
         this.on('ready', this.onReady.bind(this));
         this.on('objectChange', this.onObjectChange.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
-        // this.on("message", this.onMessage.bind(this));
+        // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
@@ -130,13 +130,13 @@ class Template extends utils.Adapter {
     //  * @param {ioBroker.Message} obj
     //  */
     // onMessage(obj) {
-    // 	if (typeof obj === "object" && obj.message) {
-    // 		if (obj.command === "send") {
+    // 	if (typeof obj === 'object' && obj.message) {
+    // 		if (obj.command === 'send') {
     // 			// e.g. send email or pushover or whatever
-    // 			this.log.info("send command");
+    // 			this.log.info('send command');
 
     // 			// Send response in callback if required
-    // 			if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
+    // 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
     // 		}
     // 	}
     // }

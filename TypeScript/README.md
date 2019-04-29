@@ -10,8 +10,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
 
-**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Author/ioBroker.template?branch=master&svg=true)](https://ci.appveyor.com/project/Author/ioBroker-template/)
+**Tests:**: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
 
 ## template adapter for ioBroker
 
