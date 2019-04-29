@@ -1,7 +1,5 @@
-<h1>
-	<img src="admin/template.png" width="64"/>
-	ioBroker.template
-</h1>
+![Logo](admin/template.png)
+# ioBroker.template
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
