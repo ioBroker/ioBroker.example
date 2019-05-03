@@ -17,10 +17,7 @@ class Template extends utils.Adapter {
      * @param {Partial<ioBroker.AdapterOptions>} [options={}]
      */
     constructor(options) {
-        super({
-            ...options,
-            name: 'template',
-        });
+        super( Object.assign({name: 'template'}, options) );
         this.on('ready', this.onReady.bind(this));
         this.on('objectChange', this.onObjectChange.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
