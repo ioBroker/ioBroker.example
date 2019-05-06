@@ -2,7 +2,7 @@
 
 This is a collection of templates for ioBroker developers to create adapters or VIS widgets. Just select the template you need, copy its contents from the sub directory and begin working on your project.
 
-Alternatively you can use [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter) to generate a custom skeleton based on your exact needs. We recommended that way if you start developing an adapter or widget.
+Alternatively you can use [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter) to generate a custom skeleton based on your exact needs. We recommend that way if you start developing an adapter or widget.
 
 <!-- TODO: Links to documentation and stuff -->
 
@@ -31,7 +31,7 @@ All templates come with the following features:
   * [ESLint](https://github.com/eslint/eslint) for code quality
   * Type checking based on the ioBroker declarations
 * TypeScript only:
-  * [TSLint](https://github.com/palantir/tslint) for code quality
+  * [ESLint](https://github.com/eslint/eslint) for code quality
   * [nyc](https://github.com/istanbuljs/nyc) for code coverage
 * Built-in component tests using `mocha` & `chai` (with `chai-as-promised`) and `sinon` (with `sinon-chai`) for:
   * Correctly defined package files
