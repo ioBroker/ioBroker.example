@@ -1,8 +1,32 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+        "0.1.1": {
+                "en": "compatibility with NodeJS10, enhanced testing",
+                "ru": "совместимость с NodeJS10, расширенное тестирование",
+                "de": "Kompatibilität mit NodeJS10, erweitertes Testen",
+                "nl": "compatibiliteit met NodeJS10, verbeterde testen",
+                "fr": "compatibilité avec NodeJS10, tests améliorés",
+                "es": "compatibilidad con NodeJS10, pruebas mejoradas",
+                "it": "compatibilità con NodeJS10, test migliorati",
+                "pt": "compatibilidade com o NodeJS10, teste aprimorado",
+                "pl": "zgodność z NodeJS10, ulepszone testy",
+                "zh-cn": "与NodeJS10的兼容性，增强的测试"
+              },      
+              "0.1.0": {
+                "en": "compact mode",
+                "de": "Kompaktmodus",
+                "ru": "компактный режим",
+                "pt": "modo compacto",
+                "nl": "compacte modus",
+                "fr": "mode compact",
+                "it": "modalità compatta",
+                "es": "modo compacto",
+                "pl": "tryb kompaktowy",
+                "zh-cn": "紧凑模式"
+              },
              "0.0.8": {
                 "en": "compact mode added",
                 "de": "Kompaktmodus hinzugefügt",
