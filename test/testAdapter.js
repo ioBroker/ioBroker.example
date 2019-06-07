@@ -184,10 +184,10 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         this.timeout(90000);
         setTimeout(function () {
             states.getState(adapterShortName+'.0.LaCrosse_4.temp', function (err, state) {
-                if (err) console.error(err);
+                if (err) console.log(err);
                 expect(state).to.exist;
                 if (!state) {
-                    console.error('state "jeelink.0.LaCrosse_4.temp" not set');
+                    console.log('state "jeelink.0.LaCrosse_4.temp" not set');
                 }
                 else {
                     console.log('jeelink.0.LaCrosse_4.temp          ... ' + state.val);
