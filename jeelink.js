@@ -1507,6 +1507,7 @@ function main() {
     // adapter.config:
 	adapter.log.debug('start of main');
     var obj = adapter.config.sensors;
+	console.log('sensors  ' + JSON.stringify(obj));
     for (var anz in obj){
         if(obj[anz].stype=="emonTH") {
             defineemonTH(obj[anz].usid, obj[anz].name );
