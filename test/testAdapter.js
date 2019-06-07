@@ -84,6 +84,58 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.loglevel = 'debug';
 
             //config.native.serialport = '/dev/ttyS';
+            
+            config.native.sensors = [
+                {
+                    "sid": "18",
+                    "usid": "1",
+                    "stype": "emonTH",
+                    "name": "example emonTH"
+                },
+                {
+                    "sid": "0",
+                    "usid": "2",
+                    "stype": "LaCrosseBMP180",
+                    "name": "example superjee"
+                },
+                {
+                    "sid": "56",
+                    "usid": "3",
+                    "stype": "LaCrosseDTH",
+                    "name": "example LaCrosseDTH"
+                },
+                {
+                    "sid": "22",
+                    "usid": "4",
+                    "stype": "LaCrosseDTH",
+                    "name": "example LaCrosseDTH"
+                },
+                {
+                    "sid": "60",
+                    "usid": "5",
+                    "stype": "LaCrosseWS",
+                    "name": "example LaCrosseWS"
+                },
+                {
+                    "sid": "188",
+                    "usid": "6",
+                    "stype": "EC3000",
+                    "name": "example EC3000"
+                },
+                {
+                    "sid": "5451",
+                    "usid": "7",
+                    "stype": "EMT7110",
+                    "name": "example EMT7110"
+                },
+                {
+                    "sid": "1",
+                    "usid": "8",
+                    "stype": "level",
+                    "name": "example level"
+                }
+    ];
+
 
             setup.setAdapterConfig(config.common, config.native);
 
@@ -128,6 +180,42 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
     You can also use "sendTo" method to send messages to the started adapter
 */
+   it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDTH', function (done) {
+        this.timeout(30000);
+        setTimeout(function () {
+            states.getState('jeelink.0.LaCrosse_4.temp', function (err, state) {
+                if (err) console.error(err);
+                expect(state).to.exist;
+                if (!state) {
+                    console.error('state "jeelink.0.LaCrosse_4.temp" not set');
+                }
+                else {
+                    console.log('jeelink.0.LaCrosse_4.temp          ... ' + state.val);
+                    expect(state.val).to.exist;
+                    //expect(state.val).to.be.equal(17.5);
+                    done();
+                }
+            });
+        }, 1000);
+    });
+    it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDMP180', function (done) {
+        this.timeout(30000);
+        setTimeout(function () {
+            states.getState('jeelink.0.LaCrosse_2.temp', function (err, state) {
+                if (err) console.error(err);
+                expect(state).to.exist;
+                if (!state) {
+                    console.error('state "jeelink.0.LaCrosse_2.temp" not set');
+                }
+                else {
+                    console.log('jeelink.0.LaCrosse_2.temp          ... ' + state.val);
+                    expect(state.val).to.exist;
+                    //expect(state.val).to.be.equal(17.5);
+                    done();
+                }
+            });
+        }, 1000);
+    });
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
