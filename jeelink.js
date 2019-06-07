@@ -180,7 +180,7 @@ function logemonWater(data){
     if(tmp[0]==='OK'){
         var tmpp=tmp.splice(3,12);
         adapter.log.debug('splice:' + tmpp);
-        var buf = new Buffer(tmpp);
+        
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
@@ -227,16 +227,16 @@ function logemonWater(data){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
         }
         else if (array[0].usid != 'nodef'){
-            adapter.log.info('cw_mom:'  +     (buf.readInt16LE(0))/10);
-            adapter.log.info('cw counter: ' + (buf.readInt16LE(2))/10);
-            adapter.log.info('ww_mom:'  +     (buf.readInt16LE(4))/10);
-            adapter.log.info('ww counter: ' + (buf.readInt16LE(6))/10);
-            adapter.log.info('Voltage: ' +    (buf.readInt16LE(8))/10);
-            adapter.setState('emonWater_'+ array[0].usid +'.cw_mom', {val: (buf.readInt16LE(0))/10, ack: true});
-            adapter.setState('emonWater_'+ array[0].usid +'.cw_cum', {val: (buf.readInt16LE(2))/10, ack: true});
-            adapter.setState('emonWater_'+ array[0].usid +'.ww_mom', {val: (buf.readInt16LE(4))/10, ack: true});
-            adapter.setState('emonWater_'+ array[0].usid +'.ww_cum', {val: (buf.readInt16LE(6))/10, ack: true});
-            adapter.setState('emonWater_'+ array[0].usid +'.batt',   {val: (buf.readInt16LE(8))/10, ack: true});
+            adapter.log.info('cw_mom:'  +     (parseInt(tmpp[0]))/10);
+            adapter.log.info('cw counter: ' + (parseInt(tmpp[2]))/10);
+            adapter.log.info('ww_mom:'  +     (parseInt(tmpp[4]))/10);
+            adapter.log.info('ww counter: ' + (parseInt(tmpp[6]))/10);
+            adapter.log.info('Voltage: ' +    (parseInt(tmpp[8]))/10);
+            adapter.setState('emonWater_'+ array[0].usid +'.cw_mom', {val: (parseInt(tmpp[0]))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.cw_cum', {val: (parseInt(tmpp[2]))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.ww_mom', {val: (parseInt(tmpp[4]))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.ww_cum', {val: (parseInt(tmpp[6]))/10, ack: true});
+            adapter.setState('emonWater_'+ array[0].usid +'.batt',   {val: (parseInt(tmpp[8]))/10, ack: true});
         }
     }
 }
@@ -348,7 +348,7 @@ function logemonTH(data){
     if(tmp[0]==='OK'){
         var tmpp=tmp.splice(3,8);
         adapter.log.debug('splice:' + tmpp);
-        var buf = new Buffer(tmpp);
+        
         var array=getConfigObjects(adapter.config.sensors, 'sid', tmp[2]);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter or not unique received address');
@@ -375,15 +375,15 @@ function logemonTH(data){
             adapter.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
         }
         else if (array[0].usid != 'nodef'){
-            adapter.log.info('Temperature:'+ (buf.readInt16LE(0))/10);
-            adapter.log.info('Humidty: ' +   (buf.readInt16LE(4))/10);
-            adapter.log.info('Voltage: ' +   (buf.readInt16LE(6))/10);
-            adapter.setState('emonTH_'+ array[0].usid +'.temp',  {val: (buf.readInt16LE(0))/10, ack: true});
-            adapter.setState('emonTH_'+ array[0].usid +'.humid', {val: (buf.readInt16LE(4))/10, ack: true});
-            adapter.setState('emonTH_'+ array[0].usid +'.batt',  {val: (buf.readInt16LE(6))/10, ack: true});
+            adapter.log.info('Temperature:'+ (parseInt(tmpp[0]))/10);
+            adapter.log.info('Humidty: ' +   (parseInt(tmpp[4]))/10);
+            adapter.log.info('Voltage: ' +   (parseInt(tmpp[6]))/10);
+            adapter.setState('emonTH_'+ array[0].usid +'.temp',  {val: (parseInt(tmpp[0]))/10, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.humid', {val: (parseInt(tmpp[4]))/10, ack: true});
+            adapter.setState('emonTH_'+ array[0].usid +'.batt',  {val: (parseInt(tmpp[6]))/10, ack: true});
             //absolute Feuchte und Taupunkt
-            var temp = (buf.readInt16LE(0))/10;
-            var rel = (buf.readInt16LE(4))/10;
+            var temp = (parseInt(tmpp[0]))/10;
+            var rel = (parseInt(tmpp[4]))/10;
             var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
             var v = Math.log(vappress/6.1078) * Math.LOG10E;
             var dewp = (237.3 * v) / (7.5 - v);
@@ -506,7 +506,7 @@ function logHMS100TF(data){
     if(tmp[0]==='H'){                      // Wenn ein Datensatz sauber gelesen wurde
         // somit werden alle SenderIDs bearbeitet
         var buf = new Buffer(tmp);
-        var eid = buf.readIntLE(3)*10 + buf.readIntLE(4); //empfangene ID
+        var eid = parseInt(tmpp[3])*10 + parseInt(tmpp[4]); //empfangene ID
         var array=getConfigObjects(adapter.config.sensors, 'sid', eid);
         if (array.length === 0 || array.length !== 1) {
             adapter.log.debug('received ID :' + eid + ' is not defined in the adapter or not unique received address');
@@ -516,18 +516,18 @@ function logHMS100TF(data){
         }
         else if (array[0].usid != 'nodef'){
             adapter.log.debug('Sensor ID    : '+ eid );
-            adapter.log.debug('Type         : '+ (buf.readIntLE(6)) ); //should be 0 otherwise it is only temperature
-            adapter.log.debug('Temperatur   : '+ ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) )); // Vorzeichen fehlt noch
-            adapter.log.debug('Humidty      : '+ ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) ));
-            adapter.log.debug('LowBattery   : '+ ( (buf.readIntLE(5) & 0x02) >> 1));      //irgendwie wird xA nicht ausgewertet 
+            adapter.log.debug('Type         : '+ (parseInt(tmpp[6])) ); //should be 0 otherwise it is only temperature
+            adapter.log.debug('Temperatur   : '+ ( (parseInt(tmpp[10])*10) + (parseInt(tmpp[7]))+(parseInt(tmpp[8])/10) )); // Vorzeichen fehlt noch
+            adapter.log.debug('Humidty      : '+ ( (parseInt(tmpp[11])*10) + (parseInt(tmpp[12]))+(parseInt(tmpp[9])/10) ));
+            adapter.log.debug('LowBattery   : '+ ( (parseInt(tmpp[5]) & 0x02) >> 1));      //irgendwie wird xA nicht ausgewertet 
             // Werte schreiben
             // aus gesendeter ID die unique ID bestimmen
-            adapter.setState('HMS100TF_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(5) & 0x02) >> 1), ack: true});
-            adapter.setState('HMS100TF_'+ array[0].usid +'.temp',    {val: ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) ), ack: true});
-            adapter.setState('HMS100TF_'+ array[0].usid +'.humid',   {val: ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) ), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[5]) & 0x02) >> 1), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.temp',    {val: ( (parseInt(tmpp[10])*10) + (parseInt(tmpp[7]))+(parseInt(tmpp[8])/10) ), ack: true});
+            adapter.setState('HMS100TF_'+ array[0].usid +'.humid',   {val: ( (parseInt(tmpp[11])*10) + (parseInt(tmpp[12]))+(parseInt(tmpp[9])/10) ), ack: true});
                 //absolute Feuchte und Taupunkt
-            var temp = ( (buf.readIntLE(10)*10) + (buf.readIntLE(7))+(buf.readIntLE(8)/10) );
-            var rel = ( (buf.readIntLE(11)*10) + (buf.readIntLE(12))+(buf.readIntLE(9)/10) );
+            var temp = ( (parseInt(tmpp[10])*10) + (parseInt(tmpp[7]))+(parseInt(tmpp[8])/10) );
+            var rel = ( (parseInt(tmpp[11])*10) + (parseInt(tmpp[12]))+(parseInt(tmpp[9])/10) );
             var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
             var v = Math.log(vappress/6.1078) * Math.LOG10E;
             var dewp = (237.3 * v) / (7.5 - v);
@@ -633,8 +633,8 @@ function logEMT7110(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,13);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var id = (buf.readIntLE(0)*256 + buf.readIntLE(1));
+            
+            var id = (parseInt(tmpp[0])*256 + parseInt(tmpp[1]));
             var array=getConfigObjects(adapter.config.sensors, 'sid', id);
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + id + ' is not defined in the adapter or not unique received address');
@@ -644,16 +644,16 @@ function logEMT7110(data){
             }
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Station ID   : '+ id );
-                adapter.log.debug('voltage      : '+ ( (buf.readIntLE(2) *256) + (buf.readIntLE(3))  )/10 );
-                adapter.log.debug('current      : '+ ( (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ) );
-                adapter.log.debug('power        : '+ ( (buf.readIntLE(6) *256) + (buf.readIntLE(7))  ) );
-                adapter.log.debug('energy       : '+ ( (buf.readIntLE(8) *256) + (buf.readIntLE(9))  )/100 );
+                adapter.log.debug('voltage      : '+ ( (parseInt(tmpp[2]) *256) + (parseInt(tmpp[3]))  )/10 );
+                adapter.log.debug('current      : '+ ( (parseInt(tmpp[4]) *256) + (parseInt(tmpp[5]))  ) );
+                adapter.log.debug('power        : '+ ( (parseInt(tmpp[6]) *256) + (parseInt(tmpp[7]))  ) );
+                adapter.log.debug('energy       : '+ ( (parseInt(tmpp[8]) *256) + (parseInt(tmpp[9]))  )/100 );
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('EMT7110_'+ array[0].usid +'.voltage',   {val: ( (buf.readIntLE(2) *256) + (buf.readIntLE(3))  )/10, ack: true});
-                adapter.setState('EMT7110_'+ array[0].usid +'.current',   {val: ( (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ), ack: true});
-                adapter.setState('EMT7110_'+ array[0].usid +'.power',     {val: ( (buf.readIntLE(6) *256) + (buf.readIntLE(7))  ), ack: true});
-                adapter.setState('EMT7110_'+ array[0].usid +'.energy',    {val: ( (buf.readIntLE(8) *256) + (buf.readIntLE(9))  )/100, ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.voltage',   {val: ( (parseInt(tmpp[2]) *256) + (parseInt(tmpp[3]))  )/10, ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.current',   {val: ( (parseInt(tmpp[4]) *256) + (parseInt(tmpp[5]))  ), ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.power',     {val: ( (parseInt(tmpp[6]) *256) + (parseInt(tmpp[7]))  ), ack: true});
+                adapter.setState('EMT7110_'+ array[0].usid +'.energy',    {val: ( (parseInt(tmpp[8]) *256) + (parseInt(tmpp[9]))  )/100, ack: true});
             }
         }
     }
@@ -786,8 +786,8 @@ function logEC3000(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,21);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var id = (buf.readIntLE(0)*256 + buf.readIntLE(1));
+            
+            var id = (parseInt(tmpp[0])*256 + parseInt(tmpp[1]));
             var array=getConfigObjects(adapter.config.sensors, 'sid', id);
             if (array.length === 0 || array.length !== 1) {
                 adapter.log.debug('received ID :' + id + ' is not defined in the adapter or not unique received address');
@@ -797,20 +797,20 @@ function logEC3000(data){
             }
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Station ID   : '+ id );
-                adapter.log.debug('total time   : '+ ( (buf.readIntLE(2) *16777216 ) + (buf.readIntLE(3) *65536)+ (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ) );
-                adapter.log.debug('on time      : '+ ( (buf.readIntLE(6) *16777216  ) + (buf.readIntLE(7) *65536)+ (buf.readIntLE(8) *256) + (buf.readIntLE(9))  ) );
-                adapter.log.debug('energy       : '+ ( (buf.readIntLE(10) *16777216  ) + (buf.readIntLE(11) *65536)+ (buf.readIntLE(12)  *256) + (buf.readIntLE(13))  ) );
-                adapter.log.debug('power        : '+ ( (buf.readIntLE(14) *256 ) + (buf.readIntLE(15))  ) );
-                adapter.log.debug('max power    : '+ ( (buf.readIntLE(16) *256 ) + (buf.readIntLE(17))  ) );
-                adapter.log.debug('resets       : '+ ( buf.readIntLE(18))  );
+                adapter.log.debug('total time   : '+ ( (parseInt(tmpp[2]) *16777216 ) + (parseInt(tmpp[3]) *65536)+ (parseInt(tmpp[4]) *256) + (parseInt(tmpp[5]))  ) );
+                adapter.log.debug('on time      : '+ ( (parseInt(tmpp[6]) *16777216  ) + (parseInt(tmpp[7]) *65536)+ (parseInt(tmpp[8]) *256) + (parseInt(tmpp[9]))  ) );
+                adapter.log.debug('energy       : '+ ( (parseInt(tmpp[10]) *16777216  ) + (parseInt(tmpp[11]) *65536)+ (parseInt(tmpp[12])  *256) + (parseInt(tmpp[13]))  ) );
+                adapter.log.debug('power        : '+ ( (parseInt(tmpp[14]) *256 ) + (parseInt(tmpp[15]))  ) );
+                adapter.log.debug('max power    : '+ ( (parseInt(tmpp[16]) *256 ) + (parseInt(tmpp[17]))  ) );
+                adapter.log.debug('resets       : '+ ( parseInt(tmpp[18]))  );
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('EC3000_'+ array[0].usid +'.total',    {val: ( (buf.readIntLE(2) *16777216 ) + (buf.readIntLE(3) *65536)+ (buf.readIntLE(4) *256) + (buf.readIntLE(5))  ), ack: true});
-                adapter.setState('EC3000_'+ array[0].usid +'.ontime',   {val: ( (buf.readIntLE(6) *16777216 ) + (buf.readIntLE(7) *65536)+ (buf.readIntLE(8) *256) + (buf.readIntLE(9))  ), ack: true});
-                adapter.setState('EC3000_'+ array[0].usid +'.energy',   {val: ( (buf.readIntLE(10) *16777216 ) + (buf.readIntLE(11) *65536)+ (buf.readIntLE(12)  *256) + (buf.readIntLE(13))  ), ack: true});
-                adapter.setState('EC3000_'+ array[0].usid +'.power',    {val: ( (buf.readIntLE(14) *256 ) + (buf.readIntLE(15))  ), ack: true});
-                adapter.setState('EC3000_'+ array[0].usid +'.maxpower', {val: ( (buf.readIntLE(16) *256 ) + (buf.readIntLE(17))  ), ack: true});
-                adapter.setState('EC3000_'+ array[0].usid +'.resets',   {val: ( buf.readIntLE(18)), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.total',    {val: ( (parseInt(tmpp[2]) *16777216 ) + (parseInt(tmpp[3]) *65536)+ (parseInt(tmpp[4]) *256) + (parseInt(tmpp[5]))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.ontime',   {val: ( (parseInt(tmpp[6]) *16777216 ) + (parseInt(tmpp[7]) *65536)+ (parseInt(tmpp[8]) *256) + (parseInt(tmpp[9]))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.energy',   {val: ( (parseInt(tmpp[10]) *16777216 ) + (parseInt(tmpp[11]) *65536)+ (parseInt(tmpp[12])  *256) + (parseInt(tmpp[13]))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.power',    {val: ( (parseInt(tmpp[14]) *256 ) + (parseInt(tmpp[15]))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.maxpower', {val: ( (parseInt(tmpp[16]) *256 ) + (parseInt(tmpp[17]))  ), ack: true});
+                adapter.setState('EC3000_'+ array[0].usid +'.resets',   {val: ( parseInt(tmpp[18])), ack: true});
             }
         }
     }
@@ -900,25 +900,25 @@ function logLevel(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,8);       // es werden die vorderen Blöcke (0,1) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            
+            var array=getConfigObjects(adapter.config.sensors, 'sid', parseInt(tmpp[0]));
             if (array.length === 0 || array.length !== 1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter or not unique received address');
             }
             else if (array[0].stype !==  'level'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as level');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as level');
             }
             else if (array[0].usid != 'nodef'){
-                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
-                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) );
-                adapter.log.debug('Level        : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) );
-                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(4))*256)+(buf.readIntLE(5))-1000)/10) );
-                adapter.log.debug('Voltage      : '+ ((buf.readIntLE(6))/10 ) );
+                adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])) );
+                adapter.log.debug('Type         : '+ (parseInt(tmpp[1])) );
+                adapter.log.debug('Level        : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10) );
+                adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[4]))*256)+(parseInt(tmpp[5]))-1000)/10) );
+                adapter.log.debug('Voltage      : '+ ((parseInt(tmpp[6]))/10 ) );
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('Level_'+ array[0].usid +'.level',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('Level_'+ array[0].usid +'.temp',     {val: ((((buf.readIntLE(4))*256)+(buf.readIntLE(5))-1000)/10), ack: true});
-                adapter.setState('Level_'+ array[0].usid +'.voltage',   {val: ((buf.readIntLE(6))/10), ack: true});                
+                adapter.setState('Level_'+ array[0].usid +'.level',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
+                adapter.setState('Level_'+ array[0].usid +'.temp',     {val: ((((parseInt(tmpp[4]))*256)+(parseInt(tmpp[5]))-1000)/10), ack: true});
+                adapter.setState('Level_'+ array[0].usid +'.voltage',   {val: ((parseInt(tmpp[6]))/10), ack: true});                
             }
         }
     }
@@ -1062,10 +1062,10 @@ function logLaCrosseDTH(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            
+            var array=getConfigObjects(adapter.config.sensors, 'sid', parseInt(tmpp[0]));
             if (array.length === 0 || array.length !== 1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter or not unique received address');
                 
                 /** new sensor -> config (not nice, because auf adapter restart, but works)
                 adapter.getForeignObject('system.adapter.' + adapter.namespace, function(err,obj){
@@ -1074,11 +1074,11 @@ function logLaCrosseDTH(data){
                     }
                     else {
                         adapter.log.debug("native object : " + JSON.stringify(obj.native.sensors));
-                        obj.native.sensors.push({"sid": buf.readIntLE(0) , "usid":"nodef" , "stype":"LaCrosse???" , "name":"room???"});
+                        obj.native.sensors.push({"sid": parseInt(tmpp[0]) , "usid":"nodef" , "stype":"LaCrosse???" , "name":"room???"});
                         adapter.setForeignObject('system.adapter.' + adapter.namespace, obj, function(err){
                            if(err) {adapter.log.error(err);}
                            else{
-                               adapter.log.info("new sensor ID = "+ buf.readIntLE(0) + "added to config, please see admin page of adapter for further configuration");
+                               adapter.log.info("new sensor ID = "+ parseInt(tmpp[0]) + "added to config, please see admin page of adapter for further configuration");
                            }
                         });
                     }
@@ -1086,24 +1086,24 @@ function logLaCrosseDTH(data){
                 **/
             }
             else if (array[0].stype !==  'LaCrosseDTH'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseDTH');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as LaCrosseDTH');
             }
             else if (array[0].usid != 'nodef'){
-                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)));
-                adapter.log.debug('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
-                adapter.log.debug('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
-                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10));
-                adapter.log.debug('Humidty      : '+ (buf.readIntLE(4) & 0x7f));
-                adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(4) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+                adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])));
+                adapter.log.debug('Type         : '+ ((parseInt(tmpp[1]) & 0x70) >> 4));
+                adapter.log.debug('NewBattery   : '+ ((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10));
+                adapter.log.debug('Humidty      : '+ (parseInt(tmpp[4]) & 0x7f));
+                adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(4) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(1) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (buf.readIntLE(4) & 0x7f), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (parseInt(tmpp[4]) & 0x7f), ack: true});
                  //absolute Feuchte und Taupunkt
-                var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
-                var rel = (buf.readIntLE(4) & 0x7f);
+                var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
+                var rel = (parseInt(tmpp[4]) & 0x7f);
                 var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
                 var v = Math.log(vappress/6.1078) * Math.LOG10E;
                 var dewp = (237.3 * v) / (7.5 - v);
@@ -1317,71 +1317,71 @@ function logLaCrosseWS(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            
+            var array=getConfigObjects(adapter.config.sensors, 'sid', parseInt(tmpp[0]));
             if (array.length === 0 || array.length !== 1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter or not unique received address');
             }
             else if (array[0].stype !==  'LaCrosseWS'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseWS');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as LaCrosseWS');
             }
             else if (array[0].usid != 'nodef'){
-                adapter.log.debug('Station ID    : '+ (buf.readIntLE(0)) );
-                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) ); //should be 3 otherwise it is only temperature
-		if ((buf.readIntLE(2)) === 254){
+                adapter.log.debug('Station ID    : '+ (parseInt(tmpp[0])) );
+                adapter.log.debug('Type         : '+ (parseInt(tmpp[1])) ); //should be 3 otherwise it is only temperature
+		if ((parseInt(tmpp[2])) === 254){
 		    adapter.log.debug('Temperature   : no data (255)');
 		    } 
 		else {
-                	adapter.log.debug('Temperature   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) ) ; // Vorzeichen fehlt noch
-                	adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
+                	adapter.log.debug('Temperature   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10) ) ; // Vorzeichen fehlt noch
+                	adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
 	    	}
-		if  ((buf.readIntLE(4)) === 254){
+		if  ((parseInt(tmpp[4])) === 254){
 		    adapter.log.debug('Humidty   : no data (255)');
 		    } 
 		else {
-               		adapter.log.debug('Humidty      : '+ ((buf.readIntLE(4))*1) );
-			adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((buf.readIntLE(4)*1)), ack: true});    
+               		adapter.log.debug('Humidty      : '+ ((parseInt(tmpp[4]))*1) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((parseInt(tmpp[4])*1)), ack: true});    
 		}
-		if  ((buf.readIntLE(5)) === 254){
+		if  ((parseInt(tmpp[5])) === 254){
 		    adapter.log.debug('Rain   : no data (255)');
 		    }
 		else {
-                	adapter.log.debug('Rain         : '+ ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/2) );
-			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((buf.readIntLE(5))*256)+(buf.readIntLE(6)))/2), ack: true});
+                	adapter.log.debug('Rain         : '+ ((((parseInt(tmpp[5]))*256)+(parseInt(tmpp[6])))/2) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((parseInt(tmpp[5]))*256)+(parseInt(tmpp[6])))/2), ack: true});
 		    }
-		if  ((buf.readIntLE(9)) === 254){
+		if  ((parseInt(tmpp[9])) === 254){
 		    adapter.log.debug('Wind Speed   : no data (255)');
 		    }
 		else {		    
-                	adapter.log.debug('WindSpeed    : '+ ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10) );
-	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10), ack: true});
-	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: round( ((((buf.readIntLE(9))*256)+(buf.readIntLE(10)))/10)*3.6, 2), ack: true});
+                	adapter.log.debug('WindSpeed    : '+ ((((parseInt(tmpp[9]))*256)+(parseInt(tmpp[10])))/10) );
+	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed',  {val: ((((parseInt(tmpp[9]))*256)+(parseInt(tmpp[10])))/10), ack: true});
+	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: round( ((((parseInt(tmpp[9]))*256)+(parseInt(tmpp[10])))/10)*3.6, 2), ack: true});
 
 		}
-		if  ((buf.readIntLE(7)) === 254){
+		if  ((parseInt(tmpp[7])) === 254){
 		    adapter.log.debug('WindDirection   : no data (255)');
 		    }
 		else {				    
-                	adapter.log.debug('WindDirection: '+ ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10) );
-			adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((buf.readIntLE(7))*256)+(buf.readIntLE(8)))/10), ack: true});	
+                	adapter.log.debug('WindDirection: '+ ((((parseInt(tmpp[7]))*256)+(parseInt(tmpp[8])))/10) );
+			adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((parseInt(tmpp[7]))*256)+(parseInt(tmpp[8])))/10), ack: true});	
 		}
-		if  ((buf.readIntLE(11)) === 254){
+		if  ((parseInt(tmpp[11])) === 254){
 		    adapter.log.debug('WindGust   : no data (255)');
 		    }
 		else {			    
-                	adapter.log.debug('WindGust     : '+ ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10) );
-               		adapter.setState('LaCrosseWS_'+ array[0].usid +'.wgust',   {val: ((((buf.readIntLE(11))*256)+(buf.readIntLE(12)))/10), ack: true});
+                	adapter.log.debug('WindGust     : '+ ((((parseInt(tmpp[11]))*256)+(parseInt(tmpp[12])))/10) );
+               		adapter.setState('LaCrosseWS_'+ array[0].usid +'.wgust',   {val: ((((parseInt(tmpp[11]))*256)+(parseInt(tmpp[12])))/10), ack: true});
 		}
-                adapter.log.debug('NewBattery   : '+ (buf.readIntLE(13) & 0x01) );
-                adapter.log.debug('LowBattery   : '+ ((buf.readIntLE(13) & 0x04) >> 2) ); 
+                adapter.log.debug('NewBattery   : '+ (parseInt(tmpp[13]) & 0x01) );
+                adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[13]) & 0x04) >> 2) ); 
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((buf.readIntLE(13) & 0x04) >> 2), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((buf.readIntLE(13) & 0x01) ), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[13]) & 0x01) ), ack: true});
                 //absolute Feuchte und Taupunkt
-		if ( ((buf.readIntLE(2)) !== 254) && ((buf.readIntLE(4)) !== 254) ) {
-                var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
-                var rel = ((buf.readIntLE(4))*1) ;
+		if ( ((parseInt(tmpp[2])) !== 254) && ((parseInt(tmpp[4])) !== 254) ) {
+                var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
+                var rel = ((parseInt(tmpp[4]))*1) ;
                 var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
                 var v = Math.log(vappress/6.1078) * Math.LOG10E;
                 var dewp = (237.3 * v) / (7.5 - v);
@@ -1468,23 +1468,23 @@ function logLaCrosseBMP180(data){
             // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,18);       // es werden die vorderen Blöcke (0,1) entfernt
             adapter.log.debug('splice       : '+ tmpp);
-            var buf = new Buffer(tmpp);
-            var array=getConfigObjects(adapter.config.sensors, 'sid', buf.readIntLE(0));
+            
+            var array=getConfigObjects(adapter.config.sensors, 'sid', parseInt(tmpp[0]));
             if (array.length === 0 || array.length !== 1) {
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter or not unique received address');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter or not unique received address');
             }
             else if (array[0].stype !==  'LaCrosseBMP180'){
-                adapter.log.debug('received ID :' + buf.readIntLE(0) + ' is not defined in the adapter as LaCrosseBMP180');
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as LaCrosseBMP180');
             }
             else if (array[0].usid != 'nodef'){
-                adapter.log.debug('Sensor ID    : '+ (buf.readIntLE(0)) );
-                adapter.log.debug('Type         : '+ (buf.readIntLE(1)) );
-                adapter.log.debug('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10) );
-                adapter.log.debug('Pressure      : '+ (((buf.readIntLE(14))*256)+(buf.readIntLE(15))) );
+                adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])) );
+                adapter.log.debug('Type         : '+ (parseInt(tmpp[1])) );
+                adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10) );
+                adapter.log.debug('Pressure      : '+ (((parseInt(tmpp[14]))*256)+(parseInt(tmpp[15]))) );
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.pressure',   {val: (((buf.readIntLE(14))*256)+(buf.readIntLE(15))), ack: true});                
+                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
+                adapter.setState('LaCrosse_'+ array[0].usid +'.pressure',   {val: (((parseInt(tmpp[14]))*256)+(parseInt(tmpp[15]))), ack: true});                
             }
         }
     }
