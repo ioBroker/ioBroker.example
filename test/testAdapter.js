@@ -183,7 +183,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
    it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDTH', function (done) {
         this.timeout(30000);
         setTimeout(function () {
-            states.getState('jeelink.0.LaCrosse_4.temp', function (err, state) {
+            states.getState(adapterShortName+'.0.LaCrosse_4.temp', function (err, state) {
                 if (err) console.error(err);
                 expect(state).to.exist;
                 if (!state) {
@@ -201,7 +201,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDMP180', function (done) {
         this.timeout(30000);
         setTimeout(function () {
-            states.getState('jeelink.0.LaCrosse_2.temp', function (err, state) {
+            states.getState(adapterShortName+'.0.LaCrosse_2.temp', function (err, state) {
                 if (err) console.error(err);
                 expect(state).to.exist;
                 if (!state) {
