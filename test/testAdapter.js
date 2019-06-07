@@ -134,7 +134,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     "stype": "level",
                     "name": "example level"
                 }
-    ];
+    ]
 
 
             setup.setAdapterConfig(config.common, config.native);
