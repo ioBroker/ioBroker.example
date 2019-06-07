@@ -181,7 +181,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     You can also use "sendTo" method to send messages to the started adapter
 */
    it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDTH', function (done) {
-        this.timeout(60000);
+        this.timeout(90000);
         setTimeout(function () {
             states.getState(adapterShortName+'.0.LaCrosse_4.temp', function (err, state) {
                 if (err) console.error(err);
@@ -196,10 +196,10 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     done();
                 }
             });
-        }, 30000);
+        }, 70000);
     });
     it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDMP180', function (done) {
-        this.timeout(30000);
+        this.timeout(90000);
         setTimeout(function () {
             states.getState(adapterShortName+'.0.LaCrosse_2.temp', function (err, state) {
                 if (err) console.error(err);
@@ -214,7 +214,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     done();
                 }
             });
-        }, 1000);
+        }, 70000);
     });
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
