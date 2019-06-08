@@ -180,14 +180,31 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
     You can also use "sendTo" method to send messages to the started adapter
 */
+    it('Test ' + adapterShortName + ' adapter: Objects must exist for avg', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.LaCrosse_4.temp', (err, obj) => {
+                if (err) console.error('avg dayMin '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.LaCrosse_4.humid', (err, obj) => {
+                        if (err) console.error('avg dayMax ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+    
+    
    it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDTH', function (done) {
         this.timeout(90000);
         setTimeout(function () {
             states.getState(adapterShortName+'.0.LaCrosse_4.temp', function (err, state) {
-                if (err) console.log(err);
+                if (err) console.error(err);
                 expect(state).to.exist;
                 if (!state) {
-                    console.log('state "jeelink.0.LaCrosse_4.temp" not set');
+                    console.error('state "jeelink.0.LaCrosse_4.temp" not set');
                 }
                 else {
                     console.log('jeelink.0.LaCrosse_4.temp          ... ' + state.val);
