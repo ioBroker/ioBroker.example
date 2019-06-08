@@ -990,7 +990,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-	adapter.setState('LaCrosse_' + id + '.temp', {val: 0, ack: true});
+
     adapter.setObjectNotExists('LaCrosse_' + id + '.humid', {
         type: 'state',
         common: {
