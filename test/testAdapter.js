@@ -9,9 +9,15 @@ const MockBinding = require('@serialport/binding-mock')
 SerialPort.Binding = MockBinding
 
 // Create a port and enable the echo and recording.
-MockBinding.createPort('/dev/ttyUSB0', { echo: true, record: true })
-const port = new SerialPort('/dev/ttyUSB0')
+// MockBinding.createPort('/dev/ttyUSB0', { echo: true, record: true })
+// const port = new SerialPort('/dev/ttyUSB0')
 
+function setupJeelinkSim(callback) {
+    //We need a function which creates artificial JeeLink input data
+    // Create a port and enable the echo and recording.
+    MockBinding.createPort('/dev/ttySim', { echo: true, record: true })
+    const port = new SerialPort('/dev/ttySim')
+}
 
 // create reader with serialport stub
 //const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
@@ -151,16 +157,17 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
 
             setup.setAdapterConfig(config.common, config.native);
-
-            setup.startController(true, function(id, obj) {}, function (id, state) {
-                    if (onStateChanged) onStateChanged(id, state);
-                },
-                function (_objects, _states) {
-                    objects = _objects;
-                    states  = _states;
-                    _done();
-                });
-                port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 22 129 4 220 52\r\n')
+            setupJeelinkSim(function () {
+                setup.startController(true, function(id, obj) {}, function (id, state) {
+                        if (onStateChanged) onStateChanged(id, state);
+                    },
+                    function (_objects, _states) {
+                        objects = _objects;
+                        states  = _states;
+                        _done();
+                    });
+                    port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 22 129 4 220 52\r\n')
+            });
         });
     });
 
