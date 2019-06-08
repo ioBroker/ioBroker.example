@@ -14,7 +14,7 @@ const port = new SerialPort('/dev/ttyUSB0')
 
 
 // create reader with serialport stub
-const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
+//const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
 
 var objects = null;
 var states  = null;
