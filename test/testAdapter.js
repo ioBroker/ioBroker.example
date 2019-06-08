@@ -260,7 +260,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                 if (err) console.error('level '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
-                    objects.getObject(adapterShortName + '.0.Level_4.level', (err, obj) => {
+                    objects.getObject(adapterShortName + '.0.Level_8.level', (err, obj) => {
                         if (err) console.error('level ' + err);
                         expect(obj).to.exist;    
                         expect(obj).to.be.ok;
