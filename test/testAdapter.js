@@ -96,7 +96,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            //config.native.serialport = '/dev/ttyS';
+            config.native.serialport = '/dev/ttyUSB0';
             
             config.native.sensors = [
                 {
