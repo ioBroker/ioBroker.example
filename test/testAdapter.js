@@ -12,13 +12,6 @@ SerialPort.Binding = MockBinding
 // MockBinding.createPort('/dev/ttyUSB0', { echo: true, record: true })
 // const port = new SerialPort('/dev/ttyUSB0')
 
-function setupJeelinkSim(callback) {
-    //We need a function which creates artificial JeeLink input data
-    // Create a port and enable the echo and recording.
-    MockBinding.createPort('/dev/ttySim', { echo: true, record: true })
-    const port = new SerialPort('/dev/ttySim')
-}
-
 // create reader with serialport stub
 //const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
 
@@ -157,7 +150,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
 
             setup.setAdapterConfig(config.common, config.native);
-            setupJeelinkSim(function () {
+
                 setup.startController(true, function(id, obj) {}, function (id, state) {
                         if (onStateChanged) onStateChanged(id, state);
                     },
@@ -166,9 +159,9 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                         states  = _states;
                         _done();
                     });
-                    port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 22 129 4 220 52\r\n')
+                    //port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 22 129 4 220 52\r\n')
             });
-        });
+        
     });
 
 /*
@@ -201,14 +194,14 @@ describe('Test ' + adapterShortName + ' adapter', function() {
 
     You can also use "sendTo" method to send messages to the started adapter
 */
-    it('Test ' + adapterShortName + ' adapter: Objects must exist for avg', done => {
+    it('Test ' + adapterShortName + ' adapter: Objects must exist for LaCrosse 2', done => {
         setTimeout(function(){
-            objects.getObject(adapterShortName + '.0.LaCrosse_4.temp', (err, obj) => {
-                if (err) console.error('avg dayMin '+err);
+            objects.getObject(adapterShortName + '.0.LaCrosse_2.temp', (err, obj) => {
+                if (err) console.error('LaCrosse '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
-                    objects.getObject(adapterShortName + '.0.LaCrosse_4.humid', (err, obj) => {
-                        if (err) console.error('avg dayMax ' + err);
+                    objects.getObject(adapterShortName + '.0.LaCrosse_2.humid', (err, obj) => {
+                        if (err) console.error('LaCrosse ' + err);
                         expect(obj).to.exist;    
                         expect(obj).to.be.ok;
                         done();
@@ -216,8 +209,114 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     });
                 }, 1000);
         }).timeout(5000);
-    
-    
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for LaCrosse 3', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.LaCrosse_3.temp', (err, obj) => {
+                if (err) console.error('LaCrosse '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.LaCrosse_3.humid', (err, obj) => {
+                        if (err) console.error('LaCrosse ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for LaCrosse 4', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.LaCrosse_4.temp', (err, obj) => {
+                if (err) console.error('LaCrosse '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.LaCrosse_4.humid', (err, obj) => {
+                        if (err) console.error('LaCrosse ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for LaCrosse 5', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.LaCrosse_5.temp', (err, obj) => {
+                if (err) console.error('LaCrosse '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.LaCrosse_5.humid', (err, obj) => {
+                        if (err) console.error('LaCrosse ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+       it('Test ' + adapterShortName + ' adapter: Objects must exist for level', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.level_8.temp', (err, obj) => {
+                if (err) console.error('level '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.LaCrosse_4.level', (err, obj) => {
+                        if (err) console.error('level ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for emonTH', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.emonTH_1.temp', (err, obj) => {
+                if (err) console.error('emonTH'+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.emonTH_1.humid', (err, obj) => {
+                        if (err) console.error('emonTh ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000); 
+         
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for EC3000', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.EC3000_6.total', (err, obj) => {
+                if (err) console.error('level '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.EC3000_6.energy', (err, obj) => {
+                        if (err) console.error('level ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+        it('Test ' + adapterShortName + ' adapter: Objects must exist for EMT7110', done => {
+        setTimeout(function(){
+            objects.getObject(adapterShortName + '.0.EMT7110_7.power', (err, obj) => {
+                if (err) console.error('level '+err);
+                expect(obj).to.exist;
+                expect(obj).to.be.ok;
+                    objects.getObject(adapterShortName + '.0.EMT7110_7.energy', (err, obj) => {
+                        if (err) console.error('level ' + err);
+                        expect(obj).to.exist;    
+                        expect(obj).to.be.ok;
+                        done();
+                    });
+                    });
+                }, 1000);
+        }).timeout(5000);
+    // state test gehen nur, wenn auch Werte zu lesen sind, nur angelegte states reichen nicht aus
+    /*
    it('Test ' + adapterShortName + ' adapter: Check existence of LaCrosseDTH', function (done) {
         this.timeout(90000);
         setTimeout(function () {
@@ -254,7 +353,8 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             });
         }, 70000);
     });
-
+    */
+    
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
 
