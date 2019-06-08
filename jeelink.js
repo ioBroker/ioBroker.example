@@ -94,7 +94,6 @@ function defineemonWater(id){
         }
     });
     adapter.log.info('RFM12B setting up object = emonWater' + id);
-console.log('RFM12B setting up object = emonWater' + id);
     adapter.setObjectNotExists('emonWater_' + id + '.cw_mom', {
         type: 'state',
         common: {
@@ -991,6 +990,7 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
+	adapter.setState('LaCrosse_' + id + '.temp', {val: 0, ack: true});
     adapter.setObjectNotExists('LaCrosse_' + id + '.humid', {
         type: 'state',
         common: {
