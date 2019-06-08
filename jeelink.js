@@ -1509,6 +1509,7 @@ function main() {
     var obj = adapter.config.sensors;
 	console.log('sensors  ' + JSON.stringify(obj));
     for (var anz in obj){
+	    console.log('schleife '+obj[anz].name);
         if(obj[anz].stype=="emonTH") {
             defineemonTH(obj[anz].usid, obj[anz].name );
         }else
