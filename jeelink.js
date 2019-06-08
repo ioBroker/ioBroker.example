@@ -1555,6 +1555,7 @@ function main() {
             parser.on('data', function(data) {
 
                 adapter.log.info('data received: ' + data);
+		console.log('recv data = '+ data);
                 if ( data.startsWith('H0')){
                     logHMS100TF(data);
                 }
