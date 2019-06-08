@@ -160,7 +160,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     states  = _states;
                     _done();
                 });
-                port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 2 129 4 220 52\r\n')
+                port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 22 129 4 220 52\r\n')
         });
     });
 
