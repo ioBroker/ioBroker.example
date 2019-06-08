@@ -28,7 +28,8 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "proxyquire":"^2.1.0"
   },
   "bugs": {
     "url": "https://github.com/foxthefox/ioBroker.jeelink/issues"
