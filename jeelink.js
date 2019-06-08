@@ -94,7 +94,7 @@ function defineemonWater(id){
         }
     });
     adapter.log.info('RFM12B setting up object = emonWater' + id);
-
+console.log.('RFM12B setting up object = emonWater' + id);
     adapter.setObjectNotExists('emonWater_' + id + '.cw_mom', {
         type: 'state',
         common: {
