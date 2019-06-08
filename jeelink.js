@@ -266,7 +266,7 @@ function defineemonTH(id, name){
         }
     });
     adapter.log.info('RFM12B setting up object = emonTH' + id);
-
+onsole.log('RFM12B setting up object = emonTH' + id);
     adapter.setObjectNotExists('emonTH_' + id + '.temp', {
         type: 'state',
         common: {
