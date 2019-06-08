@@ -200,7 +200,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                 if (err) console.error('LaCrosse '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
-                    objects.getObject(adapterShortName + '.0.LaCrosse_2.humid', (err, obj) => {
+                    objects.getObject(adapterShortName + '.0.LaCrosse_2.pressure', (err, obj) => {
                         if (err) console.error('LaCrosse ' + err);
                         expect(obj).to.exist;    
                         expect(obj).to.be.ok;
@@ -241,11 +241,11 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         }).timeout(5000);
         it('Test ' + adapterShortName + ' adapter: Objects must exist for LaCrosse 5', done => {
         setTimeout(function(){
-            objects.getObject(adapterShortName + '.0.LaCrosse_5.temp', (err, obj) => {
+            objects.getObject(adapterShortName + '.0.LaCrosseWS_5.temp', (err, obj) => {
                 if (err) console.error('LaCrosse '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
-                    objects.getObject(adapterShortName + '.0.LaCrosse_5.humid', (err, obj) => {
+                    objects.getObject(adapterShortName + '.0.LaCrosseWS_5.humid', (err, obj) => {
                         if (err) console.error('LaCrosse ' + err);
                         expect(obj).to.exist;    
                         expect(obj).to.be.ok;
@@ -288,7 +288,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         it('Test ' + adapterShortName + ' adapter: Objects must exist for EC3000', done => {
         setTimeout(function(){
             objects.getObject(adapterShortName + '.0.EC3000_6.total', (err, obj) => {
-                if (err) console.error('level '+err);
+                if (err) console.error('Level '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
                     objects.getObject(adapterShortName + '.0.EC3000_6.energy', (err, obj) => {
