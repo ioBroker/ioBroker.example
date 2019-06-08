@@ -1,10 +1,17 @@
 /* jshint -W097 */// jshint strict:false
 /*jslint node: true */
 var expect = require('chai').expect;
-var setup  = require(__dirname + '/lib/setup');
+var setup  = require(__dirname + '/lib/setup')
 
-const EventEmitter = require('events')
-const proxyquire = require('proxyquire')
+const SerialPort = require('@serialport/stream')
+const MockBinding = require('@serialport/binding-mock')
+
+SerialPort.Binding = MockBinding
+
+// Create a port and enable the echo and recording.
+MockBinding.createPort('/dev/ttyUSB0, { echo: true, record: true })
+const port = new SerialPort('/dev/ttyUSB0')
+
 
 // create reader with serialport stub
 const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
@@ -153,6 +160,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     states  = _states;
                     _done();
                 });
+                port.emit('data', '\n[LaCrosseITPlusReader.10.1q (RFM69 f:868300 r:17241)]\r\nOK 9 2 129 4 220 52\r\n')
         });
     });
 
