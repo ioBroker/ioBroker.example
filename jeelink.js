@@ -1508,7 +1508,6 @@ function main() {
 	adapter.log.debug('start of main');
     var obj = adapter.config.sensors;
     for (var anz in obj){
-	    console.log('schleife '+obj[anz].stype);
         if(obj[anz].stype=="emonTH") {
             defineemonTH(obj[anz].usid, obj[anz].name );
         }else
@@ -1547,6 +1546,7 @@ function main() {
     	const sp = new SerialPort(adapter.config.serialport || '/dev/ttyUSB0', options, function (error) {
         if ( error ) {
             adapter.log.info('failed to open: '+error);
+		console.log('usb open error'+error);
         } else {
             adapter.log.info('open');
 	    const parser = sp.pipe(new Readline({ delimiter: '\r\n' }));
