@@ -1509,14 +1509,16 @@ function main() {
     var obj = adapter.config.sensors;
 	console.log('sensors  ' + JSON.stringify(obj));
     for (var anz in obj){
-	    console.log('schleife '+obj[anz].name);
+	    console.log('schleife '+obj[anz].stype);
         if(obj[anz].stype=="emonTH") {
+		console.log(' emonth anlegen');
             defineemonTH(obj[anz].usid, obj[anz].name );
         }else
         if(obj[anz].stype=="emonWater"){
             defineemonWater(obj[anz].usid, obj[anz].name);
         }else
         if(obj[anz].stype=="LaCrosseDTH"){
+		console.log(' DTH anlegen');
             defineLaCrosseDTH(obj[anz].usid, obj[anz].name);
         }else 
         if(obj[anz].stype=="LaCrosseBMP180"){
