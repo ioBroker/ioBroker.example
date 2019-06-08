@@ -3,6 +3,12 @@
 var expect = require('chai').expect;
 var setup  = require(__dirname + '/lib/setup');
 
+const EventEmitter = require('events')
+const proxyquire = require('proxyquire')
+
+// create reader with serialport stub
+const SerialPort = proxyquire('../jeelink.js', { 'serialport': EventEmitter })
+
 var objects = null;
 var states  = null;
 var onStateChanged = null;
