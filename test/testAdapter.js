@@ -256,11 +256,11 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         }).timeout(5000);
        it('Test ' + adapterShortName + ' adapter: Objects must exist for level', done => {
         setTimeout(function(){
-            objects.getObject(adapterShortName + '.0.level_8.temp', (err, obj) => {
+            objects.getObject(adapterShortName + '.0.Level_8.temp', (err, obj) => {
                 if (err) console.error('level '+err);
                 expect(obj).to.exist;
                 expect(obj).to.be.ok;
-                    objects.getObject(adapterShortName + '.0.LaCrosse_4.level', (err, obj) => {
+                    objects.getObject(adapterShortName + '.0.Level_4.level', (err, obj) => {
                         if (err) console.error('level ' + err);
                         expect(obj).to.exist;    
                         expect(obj).to.be.ok;
