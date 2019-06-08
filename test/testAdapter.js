@@ -9,7 +9,7 @@ const MockBinding = require('@serialport/binding-mock')
 SerialPort.Binding = MockBinding
 
 // Create a port and enable the echo and recording.
-MockBinding.createPort('/dev/ttyUSB0, { echo: true, record: true })
+MockBinding.createPort('/dev/ttyUSB0', { echo: true, record: true })
 const port = new SerialPort('/dev/ttyUSB0')
 
 
