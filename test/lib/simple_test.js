@@ -28,9 +28,9 @@ function logEC3000(data){
         }
     }
 }
-
+/*
 logEC3000('OK 22 188 129 0 209 209 102 0 174 89 187 0 1 123 102 0 0 10 117 2 0');
-
+*/
 
 // Weather Station
 //OK WS 60  1   4   193 52    2 88  4   101 15  20          ID=60  21.7°C  52%rH  600mm  Dir.: 112.5°  Wind:15m/s  Gust:20m/s
@@ -113,7 +113,7 @@ function logLaCrosseWS(data){
         }
     }
 }
-
+/*
 logLaCrosseWS('OK WS 60 1 4 193 52 2 88 4 101 15 20 255 255');
 console.log('ID=60  21.7°C  52%rH  600mm  Dir.: 112.5°  Wind:15m/s  Gust:20m/s');
 logLaCrosseWS('OK WS 34 1 4 199 65 0 29 7 8 0 0 255 255');
@@ -122,7 +122,7 @@ logLaCrosseWS('OK WS 34 1 4 199 65 0 129 2 163 0 9 0 19');
 console.log('ID=34  21.8°C  66%rH  600mm  Dir.: 67,5°  Wind:0,9m/s  Gust:1,9m/s');
 logLaCrosseWS('OK WS 34 1 5 21 43 0 168 3 132 0 9 0 19');
 console.log('ID=34  30,1°C  43%rH  600mm  Dir.: 90°  Wind:0,9m/s  Gust:1,9m/s');
-
+*/
 
 function logEMT7110(data){
     var tmp = data.split(' ');
@@ -142,11 +142,12 @@ function logEMT7110(data){
         }
     }
 }
+/*
 logEMT7110('OK EMT7110 84 81 8 237 0 13 0 2 1 6 1');
 console.log('ID 5451   228,5V   13mA   2W   2,62kWh')
 logEMT7110('OK EMT7110 84 162 8 207 0 76 0 7 0 0 1');
 console.log('ID 5451   228,5V   13mA   2W   2,62kWh')
-
+*/
 function logLevel(data){
     var tmp = data.split(' ');
     if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
@@ -164,8 +165,58 @@ function logLevel(data){
         }
     }
 }
-
+/*
 logLevel('OK LS 1 0 5 100 4 191 60');
 console.log('  38,0cm    21,5°C   6,0V ');
 logLevel('OK LS 1 0 8 167 4 251 57');
-console.log('   121,5cm    27,5°C   5,7V '); 
+console.log('   121,5cm    27,5°C   5,7V ');
+*/
+
+function logLaCrosseDTH(data){
+    var tmp = data.split(' ');
+    if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
+        if(tmp[1]=='9'){                    // Für jeden Datensatz mit dem fixen Eintrag 9
+            // somit werden alle SenderIDs bearbeitet
+            var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
+            console.log('splice       : '+ tmpp);
+            var buf = new Buffer(tmpp);
+            var buf = Buffer.from(tmpp);
+
+                console.log('Buffer    : '+ buf.inspect());
+                console.log('Buffer    : '+ tmpp[0]+' '+tmpp[2]);
+                console.log('Sensor ID    : '+ (buf.readIntLE(0)));
+                console.log('Type         : '+ ((buf.readIntLE(1) & 0x70) >> 4));
+                console.log('NewBattery   : '+ ((buf.readIntLE(1) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                console.log('Temperatur   : '+ ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10));
+                console.log('Humidty      : '+ (buf.readIntLE(4) & 0x7f));
+                console.log('LowBattery   : '+ ((buf.readIntLE(4) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+
+                console.log('Buffer    : '+ tmpp[0]+' '+tmpp[2]);
+                console.log('Sensor ID    : '+ (tmpp[0]));
+                console.log('Type         : '+ ((tmpp[1] & 0x70) >> 4));
+                console.log('NewBattery   : '+ ((tmpp[1] & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                console.log('Temperatur   : '+ (((parseInt(tmpp[2])*256)+parseInt(tmpp[3])-1000)/10));
+                console.log('Humidty      : '+ (tmpp[4] & 0x7f));
+                console.log('LowBattery   : '+ ((tmpp[4] & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+
+                 //absolute Feuchte und Taupunkt
+                var temp = ((((buf.readIntLE(2))*256)+(buf.readIntLE(3))-1000)/10);
+                var rel = (buf.readIntLE(4) & 0x7f);
+                var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+                var v = Math.log(vappress/6.1078) * Math.LOG10E;
+                var dewp = (237.3 * v) / (7.5 - v);
+                var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+                console.log('LaCrosse_abshumid'+ round(habs, 1));
+                console.log('LaCrosse_dewpoint'+round(dewp, 1));
+                
+        }
+    }
+}
+
+
+logLaCrosseDTH('OK 9 22 1 4 179 106');
+console.log('  ID = 22 T: 20,2 H: 106 no NewBatt ');
+logLaCrosseDTH('OK 9 56 1 4 156 37'); 
+console.log('  ID = 56 T: 18.0 H: 37 no NewBatt ');
+logLaCrosseDTH('OK 9 2 129 4 220 52');
+console.log('  ID = 2 T: 24,4 H: 52 NewBatt now weak Battery');
