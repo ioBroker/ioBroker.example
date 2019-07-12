@@ -86,7 +86,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 ## License
 MIT License
 
-Copyright (c) 2019 Author
+Copyright (c) 2019 Author <author@mail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
