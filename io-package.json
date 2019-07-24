@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
+          "0.1.2": {
+                "en": "correction in weather modul",
+                "de": "Korrektur im Wettermodul",
+                "ru": "коррекция погоды по модулю",
+                "pt": "correção no módulo do tempo",
+                "nl": "correctie in weermodul",
+                "fr": "correction dans le module météo",
+                "it": "correzione nel modulo meteorologico",
+                "es": "corrección en el módulo de tiempo",
+                "pl": "korekta w module pogodowym",
+                "zh-cn": "天气模块校正"
+              },
         "0.1.1": {
                 "en": "compatibility with NodeJS10, enhanced testing",
                 "ru": "совместимость с NodeJS10, расширенное тестирование",
