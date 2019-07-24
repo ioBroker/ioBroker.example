@@ -1328,28 +1328,28 @@ function logLaCrosseWS(data){
             else if (array[0].usid != 'nodef'){
                 adapter.log.debug('Station ID    : '+ (parseInt(tmpp[0])) );
                 adapter.log.debug('Type         : '+ (parseInt(tmpp[1])) ); //should be 3 otherwise it is only temperature
-		if ((parseInt(tmpp[2])) === 254){
+		if ((parseInt(tmpp[2])) === 255){
 		    adapter.log.debug('Temperature   : no data (255)');
 		    } 
 		else {
                 	adapter.log.debug('Temperature   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10) ) ; // Vorzeichen fehlt noch
                 	adapter.setState('LaCrosseWS_'+ array[0].usid +'.temp',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
 	    	}
-		if  ((parseInt(tmpp[4])) === 254){
+		if  ((parseInt(tmpp[4])) === 255){
 		    adapter.log.debug('Humidty   : no data (255)');
 		    } 
 		else {
                		adapter.log.debug('Humidty      : '+ ((parseInt(tmpp[4]))*1) );
 			adapter.setState('LaCrosseWS_'+ array[0].usid +'.humid',   {val: ((parseInt(tmpp[4])*1)), ack: true});    
 		}
-		if  ((parseInt(tmpp[5])) === 254){
+		if  ((parseInt(tmpp[5])) === 255){
 		    adapter.log.debug('Rain   : no data (255)');
 		    }
 		else {
                 	adapter.log.debug('Rain         : '+ ((((parseInt(tmpp[5]))*256)+(parseInt(tmpp[6])))/2) );
 			adapter.setState('LaCrosseWS_'+ array[0].usid +'.rain',    {val: ((((parseInt(tmpp[5]))*256)+(parseInt(tmpp[6])))/2), ack: true});
 		    }
-		if  ((parseInt(tmpp[9])) === 254){
+		if  ((parseInt(tmpp[9])) === 255){
 		    adapter.log.debug('Wind Speed   : no data (255)');
 		    }
 		else {		    
@@ -1358,14 +1358,14 @@ function logLaCrosseWS(data){
 	        	adapter.setState('LaCrosseWS_'+ array[0].usid +'.wspeed2',  {val: round( ((((parseInt(tmpp[9]))*256)+(parseInt(tmpp[10])))/10)*3.6, 2), ack: true});
 
 		}
-		if  ((parseInt(tmpp[7])) === 254){
+		if  ((parseInt(tmpp[7])) === 255){
 		    adapter.log.debug('WindDirection   : no data (255)');
 		    }
 		else {				    
                 	adapter.log.debug('WindDirection: '+ ((((parseInt(tmpp[7]))*256)+(parseInt(tmpp[8])))/10) );
 			adapter.setState('LaCrosseWS_'+ array[0].usid +'.wdir',    {val: ((((parseInt(tmpp[7]))*256)+(parseInt(tmpp[8])))/10), ack: true});	
 		}
-		if  ((parseInt(tmpp[11])) === 254){
+		if  ((parseInt(tmpp[11])) === 255){
 		    adapter.log.debug('WindGust   : no data (255)');
 		    }
 		else {			    
@@ -1379,7 +1379,7 @@ function logLaCrosseWS(data){
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
                 adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[13]) & 0x01) ), ack: true});
                 //absolute Feuchte und Taupunkt
-		if ( ((parseInt(tmpp[2])) !== 254) && ((parseInt(tmpp[4])) !== 254) ) {
+		if ( ((parseInt(tmpp[2])) !== 255) && ((parseInt(tmpp[4])) !== 255) ) {
                 var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
                 var rel = ((parseInt(tmpp[4]))*1) ;
                 var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
