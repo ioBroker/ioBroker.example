@@ -962,7 +962,7 @@ ID: 8C, T=  8.0`C, relH= 96%, Wvel=  0.0m/s, Wmax=  0.0m/s, Wdir=E  , Rain=  40.
 
 
 
-function defineLaCrosseDTH(id, name){
+function defineLaCrosseDTH(id, name, stype){
     adapter.setObjectNotExists('LaCrosse_' + id, {
         type: 'channel',
         common: {
@@ -975,37 +975,100 @@ function defineLaCrosseDTH(id, name){
     });
     adapter.log.info('RFM12B setting up object = LaCrosse ' + id);
 
-    adapter.setObjectNotExists('LaCrosse_' + id + '.temp', {
-        type: 'state',
-        common: {
-            "name":     "Temperature",
-            "type":     "number",
-            "unit":     "°C",
-            "min":      -50,
-            "max":      50,
-            "read":     true,
-            "write":    false,
-            "role":     "value.temperature",
-            "desc":     "Temperature"
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists('LaCrosse_' + id + '.humid', {
-        type: 'state',
-        common: {
-            "name":     "Humidity",
-            "type":     "number",
-            "unit":     "%",
-            "min":      0,
-            "max":      100,
-            "read":     true,
-            "write":    false,
-            "role":     "value.humidity",
-            "desc":     "Humidity"
-        },
-        native: {}
-    });
+    if (stype == "LaCrosseDTH") {
+        // define states for LaCrosse DTH sensors, like TX29DTH-IT
+        adapter.setObjectNotExists('LaCrosse_' + id + '.temp', {
+            type: 'state',
+            common: {
+                "name":     "Temperature",
+                "type":     "number",
+                "unit":     "°C",
+                "min":      -50,
+                "max":      50,
+                "read":     true,
+                "write":    false,
+                "role":     "value.temperature",
+                "desc":     "Temperature"
+            },
+            native: {}
+        });
+        adapter.setObjectNotExists('LaCrosse_' + id + '.humid', {
+            type: 'state',
+            common: {
+                "name":     "Humidity",
+                "type":     "number",
+                "unit":     "%",
+                "min":      0,
+                "max":      100,
+                "read":     true,
+                "write":    false,
+                "role":     "value.humidity",
+                "desc":     "Humidity"
+            },
+            native: {}
+        });
+        adapter.setObjectNotExists('LaCrosse_' + id + '.abshumid', {
+            type: 'state',
+            common: {
+                "name":     "abs Humidity",
+                "type":     "number",
+                "unit":     "g/m3",
+                "min":      0,
+                "max":      100,
+                "read":     true,
+                "write":    false,
+                "role":     "value.humidity",
+            },
+            native: {}
+        });
+        adapter.setObjectNotExists('LaCrosse_' + id + '.dewpoint', {
+            type: 'state',
+            common: {
+                "name":     "Dewpoint",
+                "type":     "number",
+                "unit":     "°C",
+                "min":      -50,
+                "max":      50,
+                "read":     true,
+                "write":    false,
+                "role":     "value.temperature",
+            },
+            native: {}
+        });
+    }
+    else if (stype == "LaCrosseDTT") {
+        // define states for LaCrosse DTT sensors, like TX25-IT (dual temperature)
+        adapter.setObjectNotExists('LaCrosse_' + id + '.temp_1', {
+            type: 'state',
+            common: {
+                "name":     "Temperature 1",
+                "type":     "number",
+                "unit":     "°C",
+                "min":      -50,
+                "max":      50,
+                "read":     true,
+                "write":    false,
+                "role":     "value.temperature",
+                "desc":     "Temperature (Channel 1)"
+            },
+            native: {}
+        });
+        adapter.setObjectNotExists('LaCrosse_' + id + '.temp_2', {
+            type: 'state',
+            common: {
+                "name":     "Temperature 2",
+                "type":     "number",
+                "unit":     "°C",
+                "min":      -50,
+                "max":      50,
+                "read":     true,
+                "write":    false,
+                "role":     "value.temperature",
+                "desc":     "Temperature (Channel 2)"
+            },
+            native: {}
+        });
+    }
     adapter.setObjectNotExists('LaCrosse_' + id + '.lowBatt', {
         type: 'state',
         common: {
@@ -1024,34 +1087,6 @@ function defineLaCrosseDTH(id, name){
         },
         native: {}
     });
-    adapter.setObjectNotExists('LaCrosse_' + id + '.abshumid', {
-        type: 'state',
-        common: {
-            "name":     "abs Humidity",
-            "type":     "number",
-            "unit":     "g/m3",
-            "min":      0,
-            "max":      100,
-            "read":     true,
-            "write":    false,
-            "role":     "value.humidity",
-        },
-        native: {}
-    });
-    adapter.setObjectNotExists('LaCrosse_' + id + '.dewpoint', {
-        type: 'state',
-        common: {
-            "name":     "Dewpoint",
-            "type":     "number",
-            "unit":     "°C",
-            "min":      -50,
-            "max":      50,
-            "read":     true,
-            "write":    false,
-            "role":     "value.temperature",
-        },
-        native: {}
-    });
 }
 
 
@@ -1059,7 +1094,7 @@ function logLaCrosseDTH(data){
     var tmp = data.split(' ');
     if(tmp[0]==='OK'){                      // Wenn ein Datensatz sauber gelesen wurde
         if(tmp[1]=='9'){                    // Für jeden Datensatz mit dem fixen Eintrag 9
-            // somit werden alle SenderIDs bearbeitet
+                                            // somit werden alle SenderIDs bearbeitet
             var tmpp=tmp.splice(2,6);       // es werden die vorderen Blöcke (0,1,2) entfernt
             adapter.log.debug('splice       : '+ tmpp);
             
@@ -1085,36 +1120,50 @@ function logLaCrosseDTH(data){
                 });
                 **/
             }
-            else if (array[0].stype !==  'LaCrosseDTH'){
-                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as LaCrosseDTH');
+            else if (array[0].stype !== 'LaCrosseDTH' && array[0].stype !== 'LaCrosseDTT'){
+                adapter.log.debug('received ID :' + parseInt(tmpp[0]) + ' is not defined in the adapter as LaCrosseDTH or LaCrosseDTT');
             }
             else if (array[0].usid != 'nodef'){
+                var sensor_type = parseInt(tmpp[1]) & 0x3;
                 adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])));
-                adapter.log.debug('Type         : '+ ((parseInt(tmpp[1]) & 0x70) >> 4));
+                adapter.log.debug('Type         : '+ sensor_type);
                 adapter.log.debug('NewBattery   : '+ ((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
                 adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10));
-                adapter.log.debug('Humidty      : '+ (parseInt(tmpp[4]) & 0x7f));
+                adapter.log.debug('Humidity     : '+ (parseInt(tmpp[4]) & 0x7f));              
                 adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.temp',    {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.humid',   {val: (parseInt(tmpp[4]) & 0x7f), ack: true});
-                 //absolute Feuchte und Taupunkt
-                var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
-                var rel = (parseInt(tmpp[4]) & 0x7f);
-                var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
-                var v = Math.log(vappress/6.1078) * Math.LOG10E;
-                var dewp = (237.3 * v) / (7.5 - v);
-                var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
-                adapter.setState('LaCrosse_'+ array[0].usid +'.abshumid',   {val: round(habs, 1), ack: true});
-                adapter.setState('LaCrosse_'+ array[0].usid +'.dewpoint',   {val: round(dewp, 1), ack: true});
-                
+
+                // lowBatt and newBatt seems only valid if sensor_type == 1
+                if (sensor_type == 1) {
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
+                }
+
+                // write states based on stype of Sensor configuration (LaCrosseDTH/T)
+                if (array[0].stype ===  'LaCrosseDTH') {
+                    // calculate and write values for LaCrosseDTH sensors
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.temp', {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.humid', {val: (parseInt(tmpp[4]) & 0x7f), ack: true});
+                    //absolute Feuchte und Taupunkt
+                    var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
+                    var rel = (parseInt(tmpp[4]) & 0x7f);
+                    var vappress =rel/100 * 6.1078 * Math.exp(((7.5*temp)/(237.3+temp))/Math.LOG10E);
+                    var v = Math.log(vappress/6.1078) * Math.LOG10E;
+                    var dewp = (237.3 * v) / (7.5 - v);
+                    var habs = 1000 * 18.016 / 8314.3 * 100*vappress/(273.15 + temp );
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.abshumid',   {val: round(habs, 1), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.dewpoint',   {val: round(dewp, 1), ack: true});
+                }
+                else if (array[0].stype ===  'LaCrosseDTT') {
+                    // write temperature values for LaCrosseDTT sensors
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.temp_' + sensor_type, {val: ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10), ack: true});
+                }
             }
         }
     }
 }
+
 
 // Weather Station TX22IT same as WS1600
 //OK WS 60  1   4   193 52    2 88  4   101 15  20          ID=60  21.7°C  52%rH  600mm  Dir.: 112.5°  Wind:15m/s  Gust:20m/s
@@ -1514,8 +1563,8 @@ function main() {
         if(obj[anz].stype=="emonWater"){
             defineemonWater(obj[anz].usid, obj[anz].name);
         }else
-        if(obj[anz].stype=="LaCrosseDTH"){
-            defineLaCrosseDTH(obj[anz].usid, obj[anz].name);
+        if(obj[anz].stype.indexOf("LaCrosseDT") == 0){
+            defineLaCrosseDTH(obj[anz].usid, obj[anz].name, obj[anz].stype);
         }else 
         if(obj[anz].stype=="LaCrosseBMP180"){
             defineLaCrosseBMP180(obj[anz].usid, obj[anz].name);
