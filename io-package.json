@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.1.2",
+        "version": "0.1.3",
         "news": {
+          "0.1.3": {
+                "en": "new sensor with double temp",
+                "de": "neuer Sensor mit Doppeltemp",
+                "ru": "новый датчик с двойной температурой",
+                "pt": "novo sensor com dupla temperatura",
+                "nl": "nieuwe sensor met dubbele temp",
+                "fr": "nouveau capteur à double temp",
+                "it": "nuovo sensore con doppia temperatura",
+                "es": "nuevo sensor con doble temperatura",
+                "pl": "nowy czujnik z podwójną temperaturą",
+                "zh-cn": "新型双温传感器"
+              },
           "0.1.2": {
                 "en": "correction in weather modul",
                 "de": "Korrektur im Wettermodul",
