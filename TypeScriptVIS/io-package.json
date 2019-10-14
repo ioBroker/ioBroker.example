@@ -24,22 +24,22 @@
 			"pt": "Modelo (TypeScript com VIS)",
 			"nl": "Sjabloon (TypeScript met VIS)",
 			"fr": "Modèle (TypeScript avec VIS)",
-			"it": "Template (TypeScript con VIS)",
+			"it": "Modello (TypeScript con VIS)",
 			"es": "Plantilla (TypeScript con VIS)",
 			"pl": "Szablon (TypeScript z VIS)",
-			"zh-cn": "模板（带VIS的TypeScript）"
+			"zh-cn": "模板（带有VIS的TypeScript）"
 		},
 		"desc": {
 			"en": "Template for adapter development",
 			"de": "Vorlage für die Adapterentwicklung",
 			"ru": "Шаблон для разработки адаптера",
-			"pt": "Modelo para desenvolvimento de adaptador",
-			"nl": "Sjabloon voor ontwikkeling van adapters",
+			"pt": "Modelo para desenvolvimento de adaptadores",
+			"nl": "Sjabloon voor adapterontwikkeling",
 			"fr": "Modèle pour le développement de l'adaptateur",
 			"it": "Modello per lo sviluppo dell'adattatore",
-			"es": "Plantilla para desarrollo de adaptadores.",
-			"pl": "Szablon do rozwoju adaptera",
-			"zh-cn": "适配器开发模板"
+			"es": "Plantilla para desarrollo de adaptadores",
+			"pl": "Szablon do opracowania adaptera",
+			"zh-cn": "适配器开发的模板"
 		},
 		"authors": [
 			"Author <author@mail.com>"
@@ -76,10 +76,10 @@
 				"pt": "Modelo (TypeScript com VIS)",
 				"nl": "Sjabloon (TypeScript met VIS)",
 				"fr": "Modèle (TypeScript avec VIS)",
-				"it": "Template (TypeScript con VIS)",
+				"it": "Modello (TypeScript con VIS)",
 				"es": "Plantilla (TypeScript con VIS)",
 				"pl": "Szablon (TypeScript z VIS)",
-				"zh-cn": "模板（带VIS的TypeScript）"
+				"zh-cn": "模板（带有VIS的TypeScript）"
 			},
 			"link": "",
 			"fa-icon": "info"

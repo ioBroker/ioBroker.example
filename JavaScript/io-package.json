@@ -21,25 +21,25 @@
             "en": "Template (JavaScript)",
             "de": "Vorlage (JavaScript)",
             "ru": "Шаблон (JavaScript)",
-            "pt": "Template (JavaScript)",
+            "pt": "Modelo (JavaScript)",
             "nl": "Sjabloon (JavaScript)",
             "fr": "Modèle (JavaScript)",
-            "it": "Template (JavaScript)",
+            "it": "Modello (JavaScript)",
             "es": "Plantilla (JavaScript)",
             "pl": "Szablon (JavaScript)",
-            "zh-cn": "模板（JavaScript）"
+            "zh-cn": "范本（JavaScript）"
         },
         "desc": {
             "en": "Template for adapter development",
             "de": "Vorlage für die Adapterentwicklung",
             "ru": "Шаблон для разработки адаптера",
-            "pt": "Modelo para desenvolvimento de adaptador",
-            "nl": "Sjabloon voor ontwikkeling van adapters",
+            "pt": "Modelo para desenvolvimento de adaptadores",
+            "nl": "Sjabloon voor adapterontwikkeling",
             "fr": "Modèle pour le développement de l'adaptateur",
             "it": "Modello per lo sviluppo dell'adattatore",
-            "es": "Plantilla para desarrollo de adaptadores.",
-            "pl": "Szablon do rozwoju adaptera",
-            "zh-cn": "适配器开发模板"
+            "es": "Plantilla para desarrollo de adaptadores",
+            "pl": "Szablon do opracowania adaptera",
+            "zh-cn": "适配器开发的模板"
         },
         "authors": [
             "Author <author@mail.com>"
@@ -69,13 +69,13 @@
                 "en": "Template (JavaScript)",
                 "de": "Vorlage (JavaScript)",
                 "ru": "Шаблон (JavaScript)",
-                "pt": "Template (JavaScript)",
+                "pt": "Modelo (JavaScript)",
                 "nl": "Sjabloon (JavaScript)",
                 "fr": "Modèle (JavaScript)",
-                "it": "Template (JavaScript)",
+                "it": "Modello (JavaScript)",
                 "es": "Plantilla (JavaScript)",
                 "pl": "Szablon (JavaScript)",
-                "zh-cn": "模板（JavaScript）"
+                "zh-cn": "范本（JavaScript）"
             },
             "link": "",
             "fa-icon": "info"

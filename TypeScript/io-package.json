@@ -24,7 +24,7 @@
 			"pt": "Modelo (TypeScript)",
 			"nl": "Sjabloon (TypeScript)",
 			"fr": "Modèle (TypeScript)",
-			"it": "Template (TypeScript)",
+			"it": "Modello (TypeScript)",
 			"es": "Plantilla (TypeScript)",
 			"pl": "Szablon (TypeScript)",
 			"zh-cn": "模板（TypeScript）"
@@ -33,13 +33,13 @@
 			"en": "Template for adapter development",
 			"de": "Vorlage für die Adapterentwicklung",
 			"ru": "Шаблон для разработки адаптера",
-			"pt": "Modelo para desenvolvimento de adaptador",
-			"nl": "Sjabloon voor ontwikkeling van adapters",
+			"pt": "Modelo para desenvolvimento de adaptadores",
+			"nl": "Sjabloon voor adapterontwikkeling",
 			"fr": "Modèle pour le développement de l'adaptateur",
 			"it": "Modello per lo sviluppo dell'adattatore",
-			"es": "Plantilla para desarrollo de adaptadores.",
-			"pl": "Szablon do rozwoju adaptera",
-			"zh-cn": "适配器开发模板"
+			"es": "Plantilla para desarrollo de adaptadores",
+			"pl": "Szablon do opracowania adaptera",
+			"zh-cn": "适配器开发的模板"
 		},
 		"authors": [
 			"Author <author@mail.com>"
@@ -72,7 +72,7 @@
 				"pt": "Modelo (TypeScript)",
 				"nl": "Sjabloon (TypeScript)",
 				"fr": "Modèle (TypeScript)",
-				"it": "Template (TypeScript)",
+				"it": "Modello (TypeScript)",
 				"es": "Plantilla (TypeScript)",
 				"pl": "Szablon (TypeScript)",
 				"zh-cn": "模板（TypeScript）"
