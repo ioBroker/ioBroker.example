@@ -10,8 +10,6 @@
 
 [![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
 
-**Tests:**: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
-
 ## template adapter for ioBroker
 
 Template for adapter development
@@ -47,7 +45,7 @@ Several npm scripts are predefined for your convenience. You can run them using 
 | `test:js`   | Executes the tests you defined in `*.test.js` files.     |
 | `test:package`    | Ensures your `package.json` and `io-package.json` are valid. |
 | `test` | Performs a minimal test run on package files and your tests. |
-| `coverage` | Generates code coverage using your test files. |
+| `lint` | Runs `ESLint` to check your code for formatting errors and potential bugs. |
 
 ### Writing tests
 When done right, testing code is invaluable, because it gives you the 
