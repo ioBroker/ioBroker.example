@@ -52,6 +52,11 @@ vis.binds['template'] = {
             $div.data('bound', [data.oid + '.val']); //remember bound state that vis can release if didnt needed
             $div.data('bindHandler', onChange);      //remember onchange handler to release bound states
         }
+        // optional
+        $div.data('destroy', function () {
+            // destroy here timers and other suff
+            console.log('Widget destroyed');
+        });
     }
 };
 
