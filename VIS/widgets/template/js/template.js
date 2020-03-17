@@ -42,12 +42,22 @@ vis.binds["template"] = {
 
         $('#' + widgetID).html(text);
 
+        function onChange (e, newVal, oldVal) {
+            $div.find('.template-value').html(newVal);
+        }
+
         // subscribe on updates of value
         if (data.oid) {
-            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                $div.find('.template-value').html(newVal);
-            });
+            vis.states.bind(data.oid + '.val', onChange);
+            $div.data('bound', [data.oid + '.val']); //remember bound state that vis can release if didnt needed
+            $div.data('bindHandler', onChange);      //remember onchange handler to release bound states
         }
+        // optional
+        $div.data('destroy', function () {
+            // destroy here timers and other suff
+            console.log('Widget destroyed');
+        });
+        
     }
 };
 
