@@ -34,7 +34,7 @@ vis.binds['template'] = {
 
         var text = '';
         text += 'OID: ' + data.oid + '</div><br>';
-        text += 'OID value: <span class="myset-value">' + vis.states[data.oid + '.val'] + '</span><br>';
+        text += 'OID value: <span class="template-value">' + vis.states[data.oid + '.val'] + '</span><br>';
         text += 'Color: <span style="color: ' + data.myColor + '">' + data.myColor + '</span><br>';
         text += 'extraAttr: ' + data.extraAttr + '<br>';
         text += 'Browser instance: ' + vis.instance + '<br>';
@@ -42,21 +42,17 @@ vis.binds['template'] = {
 
         $('#' + widgetID).html(text);
 
-        function onChange (e, newVal, oldVal) {
+        // subscribe on updates of value
+        function onChange(e, newVal, oldVal) {
             $div.find('.template-value').html(newVal);
         }
-
-        // subscribe on updates of value
         if (data.oid) {
             vis.states.bind(data.oid + '.val', onChange);
-            $div.data('bound', [data.oid + '.val']); //remember bound state that vis can release if didnt needed
-            $div.data('bindHandler', onChange);      //remember onchange handler to release bound states
+            //remember bound state that vis can release if didnt needed
+            $div.data('bound', [data.oid + '.val']);
+            //remember onchange handler to release bound states
+            $div.data('bindHandler', onChange);
         }
-        // optional
-        $div.data('destroy', function () {
-            // destroy here timers and other suff
-            console.log('Widget destroyed');
-        });
     }
 };
 
