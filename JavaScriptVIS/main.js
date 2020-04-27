@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Created with @iobroker/create-adapter v1.24.1
+ * Created with @iobroker/create-adapter v1.24.2
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -14,7 +14,7 @@ const utils = require('@iobroker/adapter-core');
 class Template extends utils.Adapter {
 
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options={}]
      */
     constructor(options) {
         super({
@@ -147,7 +147,7 @@ class Template extends utils.Adapter {
 if (module.parent) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options={}]
      */
     module.exports = (options) => new Template(options);
 } else {

@@ -1,5 +1,5 @@
 /*
- * Created with @iobroker/create-adapter v1.24.1
+ * Created with @iobroker/create-adapter v1.24.2
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -26,7 +26,7 @@ declare global {
 
 class Template extends utils.Adapter {
 
-	public constructor(options: Partial<ioBroker.AdapterOptions> = {}) {
+	public constructor(options: Partial<utils.AdapterOptions> = {}) {
 		super({
 			...options,
 			name: "template",
@@ -149,7 +149,7 @@ class Template extends utils.Adapter {
 
 if (module.parent) {
 	// Export the constructor in compact mode
-	module.exports = (options: Partial<ioBroker.AdapterOptions> | undefined) => new Template(options);
+	module.exports = (options: Partial<utils.AdapterOptions> | undefined) => new Template(options);
 } else {
 	// otherwise start the instance directly
 	(() => new Template())();
