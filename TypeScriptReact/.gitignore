@@ -1,0 +1,21 @@
+.git
+.idea
+*.code-workspace
+node_modules
+nbproject
+
+# Sourcemaps
+maps/
+
+# npm package files
+iobroker.*.tgz
+
+Thumbs.db
+
+# NYC coverage files
+coverage
+.nyc*
+
+# i18n intermediate files
+admin/i18n/flat.txt
+admin/i18n/*/flat.txt
