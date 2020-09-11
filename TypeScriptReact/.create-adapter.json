@@ -1,0 +1,34 @@
+{
+	"adapterName": "template",
+	"description": "Template for adapter development",
+	"authorName": "Author",
+	"authorGithub": "Author",
+	"authorEmail": "author@mail.com",
+	"gitRemoteProtocol": "HTTPS",
+	"ci": [
+		"travis"
+	],
+	"dependabot": "yes",
+	"license": "MIT License",
+	"startMode": "daemon",
+	"features": [
+		"adapter"
+	],
+	"connectionIndicator": "no",
+	"es6class": "yes",
+	"type": "general",
+	"adminFeatures": [
+		"custom",
+		"tab"
+	],
+	"adminReact": "yes",
+	"language": "TypeScript",
+	"title": "Template (TypeScript with React)",
+	"tools": [
+		"ESLint",
+		"code coverage"
+	],
+	"indentation": "Tab",
+	"quotes": "double",
+	"creatorVersion": "1.28.0"
+}

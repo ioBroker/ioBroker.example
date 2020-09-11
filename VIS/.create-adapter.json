@@ -1,0 +1,19 @@
+{
+    "adapterName": "template",
+    "description": "Template for adapter development",
+    "authorName": "Author",
+    "authorGithub": "Author",
+    "authorEmail": "author@mail.com",
+    "gitRemoteProtocol": "HTTPS",
+    "ci": [
+        "travis"
+    ],
+    "dependabot": "yes",
+    "license": "MIT License",
+    "features": [
+        "vis"
+    ],
+    "title": "Template (VIS only)",
+    "type": "visualization-widgets",
+    "creatorVersion": "1.28.0"
+}
