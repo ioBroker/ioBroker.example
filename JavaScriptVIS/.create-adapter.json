@@ -1,0 +1,35 @@
+{
+    "adapterName": "template",
+    "description": "Template for adapter development",
+    "authorName": "Author",
+    "authorGithub": "Author",
+    "authorEmail": "author@mail.com",
+    "gitRemoteProtocol": "HTTPS",
+    "ci": [
+        "travis"
+    ],
+    "dependabot": "yes",
+    "license": "MIT License",
+    "startMode": "daemon",
+    "features": [
+        "adapter",
+        "vis"
+    ],
+    "connectionIndicator": "no",
+    "es6class": "yes",
+    "type": "general",
+    "adminFeatures": [
+        "custom",
+        "tab"
+    ],
+    "adminReact": "no",
+    "language": "JavaScript",
+    "title": "Template (JavaScript with VIS)",
+    "tools": [
+        "ESLint",
+        "type checking"
+    ],
+    "indentation": "Space (4)",
+    "quotes": "single",
+    "creatorVersion": "1.28.0"
+}
