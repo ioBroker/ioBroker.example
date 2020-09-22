@@ -5,9 +5,7 @@
     "authorGithub": "Author",
     "authorEmail": "author@mail.com",
     "gitRemoteProtocol": "HTTPS",
-    "ci": [
-        "travis"
-    ],
+    "ci": "gh-actions",
     "dependabot": "yes",
     "license": "MIT License",
     "startMode": "daemon",
@@ -31,5 +29,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "1.28.0"
+    "creatorVersion": "1.29.0"
 }

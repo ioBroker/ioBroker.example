@@ -10,7 +10,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
 
-**Tests:**: [![Travis-CI](http://img.shields.io/travis/Author/ioBroker.template/master.svg)](https://travis-ci.org/Author/ioBroker.template)
+**Tests:** ![Test and Release](https://github.com/Author/ioBroker.template/workflows/Test%20and%20Release/badge.svg)
 
 ## template adapter for ioBroker
 
@@ -72,6 +72,10 @@ The template provides you with basic tests for the adapter startup and package f
 It is recommended that you add your own tests into the mix.
 
 ### Publishing the adapter
+Since you have chosen GitHub Actions as your CI service, you can 
+enable automatic releases on npm whenever you push a new git tag that matches the form 
+`v<major>.<minor>.<patch>`. The necessary steps are described in `.github/workflows/test-and-release.yml`.
+
 To get your adapter released in ioBroker, please refer to the documentation 
 of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
 
