@@ -5,9 +5,7 @@
     "authorGithub": "Author",
     "authorEmail": "author@mail.com",
     "gitRemoteProtocol": "HTTPS",
-    "ci": [
-        "travis"
-    ],
+    "ci": "gh-actions",
     "dependabot": "yes",
     "license": "MIT License",
     "features": [
@@ -15,5 +13,5 @@
     ],
     "title": "Template (VIS only)",
     "type": "visualization-widgets",
-    "creatorVersion": "1.28.0"
+    "creatorVersion": "1.29.0"
 }
