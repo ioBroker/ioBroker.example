@@ -1,5 +1,5 @@
 /*
- * Created with @iobroker/create-adapter v1.29.1
+ * Created with @iobroker/create-adapter v1.30.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -8,21 +8,6 @@ import * as utils from "@iobroker/adapter-core";
 
 // Load your modules here, e.g.:
 // import * as fs from "fs";
-
-// Augment the adapter.config object with the actual types
-// TODO: delete this in the next version
-declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
-	namespace ioBroker {
-		interface AdapterConfig {
-			// Define the shape of your options here (recommended)
-			option1: boolean;
-			option2: string;
-			// Or use a catch-all approach
-			[key: string]: any;
-		}
-	}
-}
 
 class Template extends utils.Adapter {
 
