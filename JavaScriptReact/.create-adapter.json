@@ -1,0 +1,32 @@
+{
+    "adapterName": "template",
+    "description": "Template for adapter development",
+    "authorName": "Author",
+    "authorGithub": "Author",
+    "authorEmail": "author@mail.com",
+    "gitRemoteProtocol": "HTTPS",
+    "ci": "gh-actions",
+    "dependabot": "yes",
+    "license": "MIT License",
+    "startMode": "daemon",
+    "features": [
+        "adapter"
+    ],
+    "connectionIndicator": "no",
+    "es6class": "yes",
+    "type": "general",
+    "adminFeatures": [
+        "custom",
+        "tab"
+    ],
+    "adminReact": "yes",
+    "language": "JavaScript",
+    "title": "Template (JavaScript)",
+    "tools": [
+        "ESLint",
+        "type checking"
+    ],
+    "indentation": "Space (4)",
+    "quotes": "single",
+    "creatorVersion": "1.30.0"
+}
