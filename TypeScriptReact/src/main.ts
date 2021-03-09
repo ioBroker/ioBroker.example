@@ -1,5 +1,5 @@
 /*
- * Created with @iobroker/create-adapter v1.31.0
+ * Created with @iobroker/create-adapter v1.32.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -144,7 +144,7 @@ class Template extends utils.Adapter {
 
 }
 
-if (module.parent) {
+if (require.main !== module) {
 	// Export the constructor in compact mode
 	module.exports = (options: Partial<utils.AdapterOptions> | undefined) => new Template(options);
 } else {

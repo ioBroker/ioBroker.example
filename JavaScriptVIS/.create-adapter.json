@@ -21,6 +21,7 @@
         "tab"
     ],
     "adminReact": "no",
+    "tabReact": "no",
     "language": "JavaScript",
     "title": "Template (JavaScript with VIS)",
     "tools": [
@@ -29,5 +30,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "1.31.0"
+    "creatorVersion": "1.32.0"
 }
