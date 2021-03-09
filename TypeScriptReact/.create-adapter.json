@@ -20,6 +20,7 @@
 		"tab"
 	],
 	"adminReact": "yes",
+	"tabReact": "yes",
 	"language": "TypeScript",
 	"title": "Template (TypeScript with React)",
 	"tools": [
@@ -28,5 +29,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "1.31.0"
+	"creatorVersion": "1.32.0"
 }

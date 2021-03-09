@@ -20,6 +20,7 @@
         "tab"
     ],
     "adminReact": "yes",
+    "tabReact": "yes",
     "language": "JavaScript",
     "title": "Template (JavaScript)",
     "tools": [
@@ -28,5 +29,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "1.31.0"
+    "creatorVersion": "1.32.0"
 }

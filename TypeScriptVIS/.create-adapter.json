@@ -21,6 +21,7 @@
 		"tab"
 	],
 	"adminReact": "no",
+	"tabReact": "no",
 	"language": "TypeScript",
 	"title": "Template (TypeScript with VIS)",
 	"tools": [
@@ -29,5 +30,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "1.31.0"
+	"creatorVersion": "1.32.0"
 }

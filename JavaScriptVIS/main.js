@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Created with @iobroker/create-adapter v1.31.0
+ * Created with @iobroker/create-adapter v1.32.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -155,8 +155,7 @@ class Template extends utils.Adapter {
 
 }
 
-// @ts-ignore parent is a valid property on module
-if (module.parent) {
+if (require.main !== module) {
     // Export the constructor in compact mode
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
