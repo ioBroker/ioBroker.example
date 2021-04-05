@@ -16,7 +16,6 @@
 				"zh-cn": "首次出版"
 			}
 		},
-		"title": "Template (TypeScript with VIS)",
 		"titleLang": {
 			"en": "Template (TypeScript with VIS)",
 			"de": "Vorlage (TypeScript mit VIS)",
@@ -52,7 +51,6 @@
 		],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
-		"main": "build/main.js",
 		"icon": "template.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
@@ -61,7 +59,9 @@
 		"restartAdapters": [
 			"vis"
 		],
-		"localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+		"localLinks": {
+			"_default": "%web_protocol%://%ip%:%web_port%/vis/edit.html"
+		},
 		"mode": "daemon",
 		"type": "general",
 		"compact": true,
