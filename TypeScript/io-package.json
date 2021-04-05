@@ -16,7 +16,6 @@
 				"zh-cn": "首次出版"
 			}
 		},
-		"title": "Template (TypeScript)",
 		"titleLang": {
 			"en": "Template (TypeScript)",
 			"de": "Vorlage (TypeScript)",
@@ -52,7 +51,6 @@
 		],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
-		"main": "build/main.js",
 		"icon": "template.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
