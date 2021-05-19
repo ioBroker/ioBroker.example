@@ -8,6 +8,7 @@
     "ci": "gh-actions",
     "dependabot": "yes",
     "license": "MIT License",
+    "releaseScript": "yes",
     "startMode": "daemon",
     "features": [
         "adapter",
@@ -30,5 +31,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "1.33.0"
+    "creatorVersion": "1.34.0"
 }

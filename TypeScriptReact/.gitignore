@@ -4,11 +4,11 @@
 node_modules
 nbproject
 
-# Sourcemaps
-maps/
-
 # npm package files
 iobroker.*.tgz
+
+# ioBroker dev-server
+.dev-server/
 
 Thumbs.db
 
