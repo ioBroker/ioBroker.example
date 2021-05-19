@@ -58,6 +58,7 @@ Several npm scripts are predefined for your convenience. You can run them using 
 | `test` | Performs a minimal test run on package files and your tests. |
 | `check` | Performs a type-check on your code (without compiling anything). |
 | `lint` | Runs `ESLint` to check your code for formatting errors and potential bugs. |
+| `release` | Creates a new release, see [`@alcalzone/release-script`](https://github.com/AlCalzone/release-script#usage) for more details. |
 
 ### Writing tests
 When done right, testing code is invaluable, because it gives you the 
@@ -74,6 +75,14 @@ It is recommended that you add your own tests into the mix.
 Since you have chosen GitHub Actions as your CI service, you can 
 enable automatic releases on npm whenever you push a new git tag that matches the form 
 `v<major>.<minor>.<patch>`. The necessary steps are described in `.github/workflows/test-and-release.yml`.
+
+Since you installed the release script, you can create a new
+release simply by calling:
+```bash
+npm run release
+```
+Additional command line options for the release script are explained in the
+[release-script documentation](https://github.com/AlCalzone/release-script#command-line).
 
 To get your adapter released in ioBroker, please refer to the documentation 
 of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
@@ -96,8 +105,12 @@ For later updates, the above procedure is not necessary. Just do the following:
 1. Execute `iobroker upload template` on the ioBroker host
 
 ## Changelog
+<!--
+    Placeholder for the next version (at the beginning of the line):
+    ### **WORK IN PROGRESS**
+-->
 
-### 0.0.1
+### **WORK IN PROGRESS**
 * (Author) initial release
 
 ## License

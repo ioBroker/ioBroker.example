@@ -17,9 +17,6 @@ admin/src/
 tsconfig.json
 tsconfig.*.json
 
-# Sourcemaps
-*.map
-
 # npm package files
 iobroker.*.tgz
 package-lock.json
