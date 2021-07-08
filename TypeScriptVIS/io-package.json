@@ -23,10 +23,10 @@
 			"pt": "Modelo (TypeScript com VIS)",
 			"nl": "Sjabloon (TypeScript met VIS)",
 			"fr": "Modèle (TypeScript avec VIS)",
-			"it": "Modello (TypeScript con VIS)",
+			"it": "Modello (dattiloscritto con VIS)",
 			"es": "Plantilla (TypeScript con VIS)",
 			"pl": "Szablon (TypeScript z VIS)",
-			"zh-cn": "模板（带有VIS的TypeScript）"
+			"zh-cn": "模板（带有 VIS 的 TypeScript）"
 		},
 		"desc": {
 			"en": "Template for adapter development",
@@ -37,8 +37,8 @@
 			"fr": "Modèle pour le développement d'adaptateurs",
 			"it": "Modello per lo sviluppo dell'adattatore",
 			"es": "Plantilla para el desarrollo de adaptadores",
-			"pl": "Szablon do tworzenia adapterów",
-			"zh-cn": "适配器开发的模板"
+			"pl": "Szablon do opracowania adaptera",
+			"zh-cn": "适配器开发模板"
 		},
 		"authors": [
 			"Author <author@mail.com>"
@@ -51,6 +51,7 @@
 		],
 		"license": "MIT",
 		"platform": "Javascript/Node.js",
+		"main": "build/main.js",
 		"icon": "template.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
@@ -76,10 +77,10 @@
 				"pt": "Modelo (TypeScript com VIS)",
 				"nl": "Sjabloon (TypeScript met VIS)",
 				"fr": "Modèle (TypeScript avec VIS)",
-				"it": "Modello (TypeScript con VIS)",
+				"it": "Modello (dattiloscritto con VIS)",
 				"es": "Plantilla (TypeScript con VIS)",
 				"pl": "Szablon (TypeScript z VIS)",
-				"zh-cn": "模板（带有VIS的TypeScript）"
+				"zh-cn": "模板（带有 VIS 的 TypeScript）"
 			},
 			"link": "",
 			"fa-icon": "info"

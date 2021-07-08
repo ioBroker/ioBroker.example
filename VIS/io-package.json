@@ -21,12 +21,12 @@
             "de": "Vorlage (nur VIS)",
             "ru": "Шаблон (только VIS)",
             "pt": "Modelo (apenas VIS)",
-            "nl": "Template (alleen VIS)",
+            "nl": "Sjabloon (alleen VIS)",
             "fr": "Modèle (VIS uniquement)",
             "it": "Modello (solo VIS)",
             "es": "Plantilla (solo VIS)",
             "pl": "Szablon (tylko VIS)",
-            "zh-cn": "模板（仅VIS）"
+            "zh-cn": "模板（仅限 VIS）"
         },
         "desc": {
             "en": "Template for adapter development",
@@ -37,8 +37,8 @@
             "fr": "Modèle pour le développement d'adaptateurs",
             "it": "Modello per lo sviluppo dell'adattatore",
             "es": "Plantilla para el desarrollo de adaptadores",
-            "pl": "Szablon do tworzenia adapterów",
-            "zh-cn": "适配器开发的模板"
+            "pl": "Szablon do opracowania adaptera",
+            "zh-cn": "适配器开发模板"
         },
         "authors": [
             "Author <author@mail.com>"
@@ -51,6 +51,7 @@
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
+        "main": "main.js",
         "icon": "template.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
