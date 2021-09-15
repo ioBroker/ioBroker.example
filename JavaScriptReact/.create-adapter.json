@@ -1,14 +1,17 @@
 {
+    "cli": true,
+    "target": "directory",
     "adapterName": "template",
     "description": "Template for adapter development",
     "authorName": "Author",
     "authorGithub": "Author",
     "authorEmail": "author@mail.com",
     "gitRemoteProtocol": "HTTPS",
-    "ci": "gh-actions",
     "dependabot": "yes",
     "license": "MIT License",
     "releaseScript": "yes",
+    "gitCommit": "no",
+    "defaultBranch": "main",
     "startMode": "daemon",
     "features": [
         "adapter"
@@ -30,5 +33,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "1.34.1"
+    "creatorVersion": "2.0.0"
 }
