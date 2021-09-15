@@ -16,6 +16,7 @@
                 "zh-cn": "首次出版"
             }
         },
+        "title": "Template (JavaScript with VIS)",
         "titleLang": {
             "en": "Template (JavaScript with VIS)",
             "de": "Vorlage (JavaScript mit VIS)",
@@ -54,8 +55,8 @@
         "main": "main.js",
         "icon": "template.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/master/admin/template.png",
-        "readme": "https://github.com/Author/ioBroker.template/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
+        "readme": "https://github.com/Author/ioBroker.template/blob/main/README.md",
         "loglevel": "info",
         "restartAdapters": [
             "vis"

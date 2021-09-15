@@ -3,8 +3,8 @@
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
-![Number of Installations (latest)](https://iobroker.live/badges/template-installed.svg)
-![Number of Installations (stable)](https://iobroker.live/badges/template-stable.svg)
+![Number of Installations](https://iobroker.live/badges/template-installed.svg)
+![Current version in stable repository](https://iobroker.live/badges/template-stable.svg)
 [![Dependency Status](https://img.shields.io/david/Author/iobroker.template.svg)](https://david-dm.org/Author/iobroker.template)
 
 [![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
@@ -24,7 +24,7 @@ You are almost done, only a few steps left:
 1. Create a new repository on GitHub with the name `ioBroker.template`
 1. Initialize the current folder as a new git repository:  
     ```bash
-    git init
+    git init -b main
     git add .
     git commit -m "Initial commit"
     ```
@@ -35,7 +35,7 @@ You are almost done, only a few steps left:
 
 1. Push all files to the GitHub repo:  
     ```bash
-    git push origin master
+    git push origin main
     ```
 1. Add a new secret under https://github.com/Author/ioBroker.template/settings/secrets. It must be named `AUTO_MERGE_TOKEN` and contain a personal access token with push access to the repository, e.g. yours. You can create a new token under https://github.com/settings/tokens.
 
@@ -54,9 +54,8 @@ Several npm scripts are predefined for your convenience. You can run them using 
 | `release` | Creates a new release, see [`@alcalzone/release-script`](https://github.com/AlCalzone/release-script#usage) for more details. |
 
 ### Publishing the widget
-Since you have chosen GitHub Actions as your CI service, you can 
-enable automatic releases on npm whenever you push a new git tag that matches the form 
-`v<major>.<minor>.<patch>`. The necessary steps are described in `.github/workflows/test-and-release.yml`.
+Using GitHub Actions, you can enable automatic releases on npm whenever you push a new git tag that matches the form 
+`v<major>.<minor>.<patch>`. We **strongly recommend** that you do. The necessary steps are described in `.github/workflows/test-and-release.yml`.
 
 Since you installed the release script, you can create a new
 release simply by calling:

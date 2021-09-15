@@ -20,13 +20,19 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.0",
-    "@iobroker/testing": "^2.4.4",
+    "@alcalzone/release-script": "^2.2.1",
+    "@iobroker/testing": "^2.5.1",
     "@types/gulp": "^4.0.9",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "gulp": "^4.0.2"
   },
   "main": "widgets/template.html",
+  "files": [
+    "widgets/",
+    "www/",
+    "io-package.json",
+    "LICENSE"
+  ],
   "scripts": {
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package",
