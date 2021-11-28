@@ -1587,9 +1587,7 @@ function main() {
 		//const parser = new Readline({ delimiter: '\r\n' });
 		//sp.pipe(parser);
             parser.on('data', function(data) {
-
-                adapter.log.info('data received: ' + data);
-		console.log('recv data = '+ data);
+                adapter.log.debug('data received: ' + data);
                 if ( data.startsWith('H0')){
                     logHMS100TF(data);
                 }
