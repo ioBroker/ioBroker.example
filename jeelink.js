@@ -1068,7 +1068,7 @@ function defineLaCrosseDTH(id, name, stype){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "indicator.newBatt",
+            "role":     "indicator.newbat",
         },
         native: {}
     });
@@ -1337,7 +1337,7 @@ function defineLaCrosseWS(id, name){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "indicator.newBatt",
+            "role":     "indicator.newbat",
         },
         native: {}
     });
