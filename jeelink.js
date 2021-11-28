@@ -450,7 +450,7 @@ function defineHMS100TF(id, name){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1059,7 +1059,7 @@ function defineLaCrosseDTH(id, name, stype){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1068,7 +1068,7 @@ function defineLaCrosseDTH(id, name, stype){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "value.newBatt",
+            "role":     "indicator.newBatt",
         },
         native: {}
     });
@@ -1328,7 +1328,7 @@ function defineLaCrosseWS(id, name){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1337,7 +1337,7 @@ function defineLaCrosseWS(id, name){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "value.newBatt",
+            "role":     "indicator.newBatt",
         },
         native: {}
     });
