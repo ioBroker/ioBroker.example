@@ -1127,17 +1127,17 @@ function logLaCrosseDTH(data){
                 var sensor_type = parseInt(tmpp[1]) & 0x3;
                 adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])));
                 adapter.log.debug('Type         : '+ sensor_type);
-                adapter.log.debug('NewBattery   : '+ ((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                adapter.log.debug('NewBattery   : '+ Boolean((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
                 adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10));
                 adapter.log.debug('Humidity     : '+ (parseInt(tmpp[4]) & 0x7f));              
-                adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+                adapter.log.debug('LowBattery   : '+ Boolean((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
 
                 // lowBatt and newBatt seems only valid if sensor_type == 1
                 if (sensor_type == 1) {
-                    adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
-                    adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: Boolean((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: Boolean((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
                 }
 
                 // write states based on stype of Sensor configuration (LaCrosseDTH/T)
@@ -1425,8 +1425,8 @@ function logLaCrosseWS(data){
                 adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[13]) & 0x04) >> 2) ); 
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[13]) & 0x01) ), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: Boolean((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: Boolean((parseInt(tmpp[13]) & 0x01) ), ack: true});
                 //absolute Feuchte und Taupunkt
 		if ( ((parseInt(tmpp[2])) !== 255) && ((parseInt(tmpp[4])) !== 255) ) {
                 var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
