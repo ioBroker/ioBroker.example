@@ -28,21 +28,6 @@ function startAdapter(options) {
                 callback();
             }
         },
-        // is called if a subscribed object changes
-        objectChange: function (id, obj) {
-            // Warning, obj can be null if it was deleted
-            adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
-        },
-        // is called if a subscribed state changes
-        stateChange: function (id, state) {
-            // Warning, state can be null if it was deleted
-            adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
-        
-            // you can use the ack flag to detect if it is status (true) or command (false)
-            if (state && !state.ack) {
-                adapter.log.info('ack is not set!');
-            }
-        },
         // is called when databases are connected and adapter received configuration.
         // start here!
         ready: () => {
@@ -465,7 +450,7 @@ function defineHMS100TF(id, name){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1074,7 +1059,7 @@ function defineLaCrosseDTH(id, name, stype){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1083,7 +1068,7 @@ function defineLaCrosseDTH(id, name, stype){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "value.newBatt",
+            "role":     "indicator.newbat",
         },
         native: {}
     });
@@ -1127,17 +1112,17 @@ function logLaCrosseDTH(data){
                 var sensor_type = parseInt(tmpp[1]) & 0x3;
                 adapter.log.debug('Sensor ID    : '+ (parseInt(tmpp[0])));
                 adapter.log.debug('Type         : '+ sensor_type);
-                adapter.log.debug('NewBattery   : '+ ((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
+                adapter.log.debug('NewBattery   : '+ Boolean((parseInt(tmpp[1]) & 0x80) >> 7));       // wenn "100000xx" dann NewBatt # xx = SensorType 1 oder 2
                 adapter.log.debug('Temperatur   : '+ ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10));
                 adapter.log.debug('Humidity     : '+ (parseInt(tmpp[4]) & 0x7f));              
-                adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
+                adapter.log.debug('LowBattery   : '+ Boolean((parseInt(tmpp[4]) & 0x80) >> 7));       // Hier muss noch "incl. WeakBatteryFlag" ausgewertet werden
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
 
                 // lowBatt and newBatt seems only valid if sensor_type == 1
                 if (sensor_type == 1) {
-                    adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
-                    adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.lowBatt', {val: Boolean((parseInt(tmpp[4]) & 0x80) >> 7), ack: true});
+                    adapter.setState('LaCrosse_'+ array[0].usid +'.newBatt', {val: Boolean((parseInt(tmpp[1]) & 0x80) >> 7), ack: true});
                 }
 
                 // write states based on stype of Sensor configuration (LaCrosseDTH/T)
@@ -1343,7 +1328,7 @@ function defineLaCrosseWS(id, name){
         common: {
             "name":     "Battery Low",
             "type":     "boolean",
-            "role":     "value.lowBatt",
+            "role":     "indicator.lowbat",
         },
         native: {}
     });
@@ -1352,7 +1337,7 @@ function defineLaCrosseWS(id, name){
         common: {
             "name":     "Battery New",
             "type":     "boolean",
-            "role":     "value.newBatt",
+            "role":     "indicator.newbat",
         },
         native: {}
     });
@@ -1425,8 +1410,8 @@ function logLaCrosseWS(data){
                 adapter.log.debug('LowBattery   : '+ ((parseInt(tmpp[13]) & 0x04) >> 2) ); 
                 // Werte schreiben
                 // aus gesendeter ID die unique ID bestimmen
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: ((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
-                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: ((parseInt(tmpp[13]) & 0x01) ), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.lowBatt', {val: Boolean((parseInt(tmpp[13]) & 0x04) >> 2), ack: true});
+                adapter.setState('LaCrosseWS_'+ array[0].usid +'.newBatt', {val: Boolean((parseInt(tmpp[13]) & 0x01) ), ack: true});
                 //absolute Feuchte und Taupunkt
 		if ( ((parseInt(tmpp[2])) !== 255) && ((parseInt(tmpp[4])) !== 255) ) {
                 var temp = ((((parseInt(tmpp[2]))*256)+(parseInt(tmpp[3]))-1000)/10);
@@ -1602,9 +1587,7 @@ function main() {
 		//const parser = new Readline({ delimiter: '\r\n' });
 		//sp.pipe(parser);
             parser.on('data', function(data) {
-
-                adapter.log.info('data received: ' + data);
-		console.log('recv data = '+ data);
+                adapter.log.debug('data received: ' + data);
                 if ( data.startsWith('H0')){
                     logHMS100TF(data);
                 }
