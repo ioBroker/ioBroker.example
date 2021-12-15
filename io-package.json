@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "0.1.3",
+        "version": "0.1.4",
         "news": {
+          "0.1.4": {
+                "en": "nodejs14 compatibility",
+                "de": "nodejs14-Kompatibilität",
+                "ru": "nodejs14 совместимость",
+                "pt": "compatibilidade nodejs14",
+                "nl": "nodejs14 compatibiliteit",
+                "fr": "compatibilité nodejs14",
+                "it": "compatibilità nodejs14",
+                "es": "compatibilidad con nodejs14",
+                "pl": "Kompatybilność z nodejs14",
+                "zh-cn": "nodejs14 兼容性"
+                          },
           "0.1.3": {
                 "en": "new sensor with double temp",
                 "de": "neuer Sensor mit Doppeltemp",
