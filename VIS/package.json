@@ -20,10 +20,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.1",
-    "@iobroker/testing": "^2.5.1",
+    "@alcalzone/release-script": "^2.2.2",
+    "@iobroker/testing": "^2.5.2",
     "@types/gulp": "^4.0.9",
-    "axios": "^0.21.4",
+    "axios": "^0.24.0",
     "gulp": "^4.0.2"
   },
   "main": "widgets/template.html",
