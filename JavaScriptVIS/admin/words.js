@@ -29,7 +29,7 @@ systemDictionary = {
     'option2': {
         'en': 'option2',
         'de': 'Option 2',
-        'ru': 'option2',
+        'ru': 'вариант 2',
         'pt': 'opção 2',
         'nl': 'Optie 2',
         'fr': 'Option 2',
