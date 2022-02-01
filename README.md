@@ -112,4 +112,4 @@ to be done in admin
 
 The MIT License (MIT)
 
-Copyright (c) 2018 - 2020 foxthefox <foxthefox@wysiwis.net>
+Copyright (c) 2016 - 2022 foxthefox <foxthefox@wysiwis.net>

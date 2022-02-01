@@ -1,31 +1,36 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
-        <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
-        <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+<head>
+    <!-- Load ioBroker scripts and styles-->
+    <link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
-        <script type="text/javascript" src="../../js/translate.js"></script>
-        <script type="text/javascript" src="../../lib/js/materialize.js"></script>
-        <script type="text/javascript" src="../../js/adapter-settings.js"></script>
-        <script type="text/javascript" src="words.js"></script>
+    <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 
-        <script type="text/javascript">
-            
-            var sensors = [];
-            var sensorTypes = [
-                'emonTH',
-                'emonWater',
-                'LaCrosseDTH',
-                'LaCrosseDTT',
-                'LaCrosseBMP180',
-                'HMS100TF',
-                'LaCrosseWS',
-                'EC3000',
-                'EMT7110',
-                'level'
-                ];
+    <script type="text/javascript" src="../../js/translate.js"></script>
+    <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+    <!-- Load our own files -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="words.js"></script>
+
+    <script type="text/javascript">
+
+        var sensors = [];
+        var sensorTypes = [
+            'emonTH',
+            'emonWater',
+            'LaCrosseDTH',
+            'LaCrosseDTT',
+            'LaCrosseBMP180',
+            'HMS100TF',
+            'LaCrosseWS',
+            'EC3000',
+            'EMT7110',
+            'level'
+        ];
 
         function setValue(id, value, onChange) {
             var $value = $('#' + id + '.value');
@@ -111,17 +116,18 @@
             obj.sensors = table2values('values');
             callback(obj);
         }
-            
-        </script>
-        <style>
-            .sub-title {
-                margin-top: 2rem!important;
-                padding: 0.5rem;
-                background: #64b5f6;
-                color: white;
-            }
-        </style>
-    </head>
+
+    </script>
+    <style>
+        .sub-title {
+            margin-top: 2rem !important;
+            padding: 0.5rem;
+            background: #64b5f6;
+            color: white;
+        }
+    </style>
+</head>
+
 <body>
     <!-- you have to put your config page in a div with id adapter-container -->
     <div class="m adapter-container">
@@ -178,13 +184,15 @@
                 <div class="col s12">
                     <h6 class="translate sub-title">Sensor configuration</h6>
                     <p class="translate">valid sensor types:</p>
-                    <p> emonTH, emonWater, LaCrosseDTH, LaCrosseDTT, LaCrosseBMP180, HMS100T, LaCrosseWS, EC3000, EMT7110, level</p>
+                    <p> emonTH, emonWater, LaCrosseDTH, LaCrosseDTT, LaCrosseBMP180, HMS100T, LaCrosseWS, EC3000,
+                        EMT7110, level</p>
                 </div>
             </div>
             <div class="col s12" id="values">
                 <div class="row">
                     <div class="col s2 m1 l1 center">
-                        <button title="Add device" class="table-button-add btn-floating waves-effect waves-light btn-small">
+                        <button title="Add device"
+                            class="table-button-add btn-floating waves-effect waves-light btn-small">
                             <i class=" material-icons">add</i>
                         </button>
                     </div>
@@ -201,7 +209,9 @@
                             <tr>
                                 <th data-name="_index" style="width: 40px" class="translate"></th>
                                 <th data-name="sid" style="width: 40px" class="translate">id</th>
-                                <th data-name="stype" style="width: 150px" class="translate" data-options="emonTH;emonWater;LaCrosseDTH;LaCrosseDTT;LaCrosseBMP180;HMS100TF;LaCrosseWS;EC3000;EMT7110;level" data-type="select">type</th>
+                                <th data-name="stype" style="width: 150px" class="translate"
+                                    data-options="emonTH;emonWater;LaCrosseDTH;LaCrosseDTT;LaCrosseBMP180;HMS100TF;LaCrosseWS;EC3000;EMT7110;level"
+                                    data-type="select">type</th>
                                 <th data-name="usid" style="width: 50px" class="translate">uid</th>
                                 <th data-name="name" style="width: 200px" class="translate">name</th>
                                 <th data-buttons="delete" style="width: 40px" class="translate">delete</th>
@@ -214,4 +224,5 @@
         </div>
     </div>
 </body>
+
 </html>
