@@ -8,7 +8,12 @@
 	},
 	"homepage": "https://github.com/foxthefox/ioBroker.jeelink",
 	"license": "MIT",
-	"keywords": [ "ioBroker", "jeelink", "RFM", "openenergymonitor" ],
+	"keywords": [
+		"ioBroker",
+		"jeelink",
+		"RFM",
+		"openenergymonitor"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/foxthefox/ioBroker.jeelink"
@@ -18,7 +23,7 @@
 		"@iobroker/adapter-core": "^2.5.1"
 	},
 	"devDependencies": {
-		"@iobroker/testing": "^2.5.3",
+		"@iobroker/testing": "^2.5.4",
 		"@types/chai": "^4.3.0",
 		"@types/chai-as-promised": "^7.1.4",
 		"@types/gulp": "^4.0.9",
