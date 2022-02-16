@@ -21,10 +21,8 @@
   "dependencies": {},
   "devDependencies": {
     "@alcalzone/release-script": "^2.2.2",
-    "@iobroker/testing": "^2.5.2",
-    "@types/gulp": "^4.0.9",
-    "axios": "^0.24.0",
-    "gulp": "^4.0.2"
+    "@iobroker/adapter-dev": "^1.0.0",
+    "@iobroker/testing": "^2.5.4"
   },
   "main": "widgets/template.html",
   "files": [
@@ -36,6 +34,7 @@
   "scripts": {
     "test:package": "mocha test/package --exit",
     "test": "npm run test:package",
+    "translate": "translate-adapter",
     "release": "release-script"
   },
   "bugs": {
