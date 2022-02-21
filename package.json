@@ -1,6 +1,6 @@
 {
 	"name": "iobroker.jeelink",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ioBroker jeelink Adapter",
 	"author": {
 		"name": "foxthefox",
@@ -8,12 +8,7 @@
 	},
 	"homepage": "https://github.com/foxthefox/ioBroker.jeelink",
 	"license": "MIT",
-	"keywords": [
-		"ioBroker",
-		"jeelink",
-		"RFM",
-		"openenergymonitor"
-	],
+	"keywords": [ "ioBroker", "jeelink", "RFM", "openenergymonitor" ],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/foxthefox/ioBroker.jeelink"

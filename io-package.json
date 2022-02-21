@@ -1,8 +1,20 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"news": {
+			"1.0.1": {
+				"en": "corrections in baudrate and rounding",
+				"de": "Korrekturen in Baudrate und Rundung",
+				"ru": "исправления в скорости передачи и округлении",
+				"pt": "correções na taxa de transmissão e arredondamento",
+				"nl": "correcties in baudrate en afronding",
+				"fr": "corrections de baudrate et d'arrondi",
+				"it": "correzioni in baudrate e arrotondamenti",
+				"es": "correcciones en baudios y redondeo",
+				"pl": "korekty szybkości transmisji i zaokrągleń",
+				"zh-cn": "波特率和舍入的更正"
+			},
 			"1.0.0": {
 				"en": "refactoring to classbased adapter, github actions",
 				"de": "Refactoring auf klassenbasierten Adapter, Github-Aktionen",

@@ -515,8 +515,14 @@ class Jeelink extends utils.Adapter {
 				var v = Math.log(vappress / 6.1078) * Math.LOG10E;
 				var dewp = 237.3 * v / (7.5 - v);
 				var habs = 1000 * 18.016 / 8314.3 * 100 * vappress / (273.15 + temp);
-				await this.setStateAsync('emonTH_' + array[0].usid + '.abshumid', { val: round(habs, 1), ack: true });
-				await this.setStateAsync('emonTH_' + array[0].usid + '.dewpoint', { val: round(dewp, 1), ack: true });
+				await this.setStateAsync('emonTH_' + array[0].usid + '.abshumid', {
+					val: this.round(habs, 1),
+					ack: true
+				});
+				await this.setStateAsync('emonTH_' + array[0].usid + '.dewpoint', {
+					val: this.round(dewp, 1),
+					ack: true
+				});
 			}
 		}
 	}
@@ -672,8 +678,14 @@ class Jeelink extends utils.Adapter {
 				var v = Math.log(vappress / 6.1078) * Math.LOG10E;
 				var dewp = 237.3 * v / (7.5 - v);
 				var habs = 1000 * 18.016 / 8314.3 * 100 * vappress / (273.15 + temp);
-				await this.setStateAsync('HMS100TF_' + array[0].usid + '.abshumid', { val: round(habs, 1), ack: true });
-				await this.setStateAsync('HMS100TF_' + array[0].usid + '.dewpoint', { val: round(dewp, 1), ack: true });
+				await this.setStateAsync('HMS100TF_' + array[0].usid + '.abshumid', {
+					val: this.round(habs, 1),
+					ack: true
+				});
+				await this.setStateAsync('HMS100TF_' + array[0].usid + '.dewpoint', {
+					val: this.round(dewp, 1),
+					ack: true
+				});
 			}
 		}
 	}
@@ -1390,11 +1402,11 @@ class Jeelink extends utils.Adapter {
 						var dewp = 237.3 * v / (7.5 - v);
 						var habs = 1000 * 18.016 / 8314.3 * 100 * vappress / (273.15 + temp);
 						await this.setStateAsync('LaCrosse_' + array[0].usid + '.abshumid', {
-							val: round(habs, 1),
+							val: this.round(habs, 1),
 							ack: true
 						});
 						await this.setStateAsync('LaCrosse_' + array[0].usid + '.dewpoint', {
-							val: round(dewp, 1),
+							val: this.round(dewp, 1),
 							ack: true
 						});
 					} else if (array[0].stype === 'LaCrosseDTT') {
@@ -1666,7 +1678,7 @@ class Jeelink extends utils.Adapter {
 							ack: true
 						});
 						await this.setStateAsync('LaCrosseWS_' + array[0].usid + '.wspeed2', {
-							val: round((parseInt(tmpp[9]) * 256 + parseInt(tmpp[10])) / 10 * 3.6, 2),
+							val: this.round((parseInt(tmpp[9]) * 256 + parseInt(tmpp[10])) / 10 * 3.6, 2),
 							ack: true
 						});
 					}
@@ -1709,11 +1721,11 @@ class Jeelink extends utils.Adapter {
 						var dewp = 237.3 * v / (7.5 - v);
 						var habs = 1000 * 18.016 / 8314.3 * 100 * vappress / (273.15 + temp);
 						await this.setStateAsync('LaCrosseWS_' + array[0].usid + '.abshumid', {
-							val: round(habs, 1),
+							val: this.round(habs, 1),
 							ack: true
 						});
 						await this.setStateAsync('LaCrosseWS_' + array[0].usid + '.dewpoint', {
-							val: round(dewp, 1),
+							val: this.round(dewp, 1),
 							ack: true
 						});
 					} else {
