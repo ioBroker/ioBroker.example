@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"serialport": "^9.2.8",
-		"@iobroker/adapter-core": "^2.5.1"
+		"@iobroker/adapter-core": "^2.6.0"
 	},
 	"devDependencies": {
 		"@iobroker/testing": "^2.5.4",
