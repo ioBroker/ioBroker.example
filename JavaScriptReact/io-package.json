@@ -81,6 +81,7 @@
             "fa-icon": "info"
         },
         "supportCustoms": true,
+        "eraseOnUpload": true,
         "dependencies": [
             {
                 "js-controller": ">=2.0.0"
