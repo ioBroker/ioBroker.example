@@ -18,7 +18,7 @@
 		"@iobroker/adapter-core": "^2.6.0"
 	},
 	"devDependencies": {
-		"@iobroker/testing": "^2.5.6",
+		"@iobroker/testing": "^3.0.2",
 		"@types/chai": "^4.3.1",
 		"@types/chai-as-promised": "^7.1.5",
 		"@types/gulp": "^4.0.9",
