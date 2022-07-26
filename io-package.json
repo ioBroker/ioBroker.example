@@ -1,8 +1,20 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.0.1",
+		"version": "1.0.2",
 		"news": {
+			"1.0.2": {
+				"en": "upper range temperature 50->70",
+				"de": "temperatur im oberen bereich 50->70",
+				"ru": "температура верхнего диапазона 50->70",
+				"pt": "temperatura da faixa superior 50->70",
+				"nl": "upperrange temperatuur 50-70",
+				"fr": "température supérieure 50-hépatite70",
+				"it": "temperatura dell'intervallo superiore 50->70",
+				"es": "temperatura de rango superior 50- título70",
+				"pl": "temperatura górna 50 >70",
+				"zh-cn": "高温 a. 导 言"
+			},
 			"1.0.1": {
 				"en": "corrections in baudrate and rounding",
 				"de": "Korrekturen in Baudrate und Rundung",
