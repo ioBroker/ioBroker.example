@@ -67,7 +67,7 @@ class Jeelink extends utils.Adapter {
 		}
 
 		var options = {
-			baudRate: this.config.baudrate || 57600
+			baudRate: parseInt(this.config.baudrate || 57600)
 		};
 		this.log.debug('configured port : ' + this.config.serialport);
 		this.log.debug('configured baudrate : ' + this.config.baudrate);
