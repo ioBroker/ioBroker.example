@@ -1,8 +1,20 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.0.2",
+		"version": "1.0.3",
 		"news": {
+			"1.0.3": {
+				"en": "correction wrong type of baudRate config, causing adapter crash",
+				"de": "korrektur falsche Art von baudRate config, wodurch Adapter Crash",
+				"ru": "исправление неправильного типа baudRate config, вызывая адаптер аварии",
+				"pt": "correção tipo errado de baudRate config, causando falha do adaptador",
+				"nl": "correctie verkeerd typisch gematigde configuur veroorzaakte adapter crash",
+				"fr": "correction type incorrect de configuration de baudRate, causant le crash de l'adaptateur",
+				"it": "correzione tipo sbagliato di configurazione baudRate, causando crash dell'adattatore",
+				"es": "corrección tipo incorrecto de baudRate config, causante de choque del adaptador",
+				"pl": "konfiguracja niewłaściwego typu baudRate, powodująca rozbicie adaptatora",
+				"zh-cn": "纠正错误的偷窃行为,造成改装机事故"
+			},
 			"1.0.2": {
 				"en": "upper range temperature 50->70",
 				"de": "temperatur im oberen bereich 50->70",
