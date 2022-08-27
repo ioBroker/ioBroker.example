@@ -23,7 +23,7 @@
 		"custom",
 		"tab"
 	],
-	"adminReact": "no",
+	"adminUi": "json",
 	"tabReact": "no",
 	"language": "TypeScript",
 	"title": "Template (TypeScript)",
@@ -33,5 +33,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "2.1.1"
+	"creatorVersion": "2.2.0"
 }

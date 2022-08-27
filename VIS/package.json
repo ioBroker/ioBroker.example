@@ -16,13 +16,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Author/ioBroker.template"
+    "url": "https://github.com/Author/ioBroker.template.git"
   },
   "dependencies": {},
   "devDependencies": {
     "@alcalzone/release-script": "^2.2.2",
-    "@iobroker/adapter-dev": "^1.0.0",
-    "@iobroker/testing": "^2.5.6"
+    "@iobroker/adapter-dev": "^1.0.1",
+    "@iobroker/testing": "^3.0.2"
   },
   "main": "widgets/template.html",
   "files": [

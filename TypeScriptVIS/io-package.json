@@ -61,14 +61,13 @@
 		"restartAdapters": [
 			"vis"
 		],
-		"localLinks": {
-			"_default": "%web_protocol%://%ip%:%web_port%/vis/edit.html"
-		},
 		"mode": "daemon",
 		"type": "general",
 		"compact": true,
-		"materialize": true,
-		"materializeTab": true,
+		"adminUI": {
+			"config": "json",
+			"tab": "materialize"
+		},
 		"adminTab": {
 			"singleton": true,
 			"name": {
@@ -89,9 +88,14 @@
 		"supportCustoms": true,
 		"dependencies": [
 			{
-				"js-controller": ">=2.0.0"
+				"js-controller": ">=3.3.22"
 			},
 			"vis"
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=5.1.13"
+			}
 		]
 	},
 	"native": {
