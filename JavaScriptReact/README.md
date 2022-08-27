@@ -5,7 +5,6 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.template.svg)](https://www.npmjs.com/package/iobroker.template)
 ![Number of Installations](https://iobroker.live/badges/template-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/template-stable.svg)
-[![Dependency Status](https://img.shields.io/david/Author/iobroker.template.svg)](https://david-dm.org/Author/iobroker.template)
 
 [![NPM](https://nodei.co/npm/iobroker.template.png?downloads=true)](https://nodei.co/npm/iobroker.template/)
 
@@ -53,7 +52,6 @@ Several npm scripts are predefined for your convenience. You can run them using 
 | `watch` | Compile the React sources and watch for changes. |
 | `test:js` | Executes the tests you defined in `*.test.js` files. |
 | `test:package` | Ensures your `package.json` and `io-package.json` are valid. |
-| `test:unit` | Tests the adapter startup with unit tests (fast, but might require module mocks to work). |
 | `test:integration` | Tests the adapter startup with an actual instance of ioBroker. |
 | `test` | Performs a minimal test run on package files and your tests. |
 | `check` | Performs a type-check on your code (without compiling anything). |

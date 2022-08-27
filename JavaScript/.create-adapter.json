@@ -23,7 +23,7 @@
         "custom",
         "tab"
     ],
-    "adminReact": "no",
+    "adminUi": "json",
     "tabReact": "no",
     "language": "JavaScript",
     "title": "Template (JavaScript)",
@@ -33,5 +33,5 @@
     ],
     "indentation": "Space (4)",
     "quotes": "single",
-    "creatorVersion": "2.1.1"
+    "creatorVersion": "2.2.0"
 }
