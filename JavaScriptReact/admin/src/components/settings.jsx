@@ -1,14 +1,14 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import I18n from "@iobroker/adapter-react/i18n";
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import I18n from '@iobroker/adapter-react/i18n';
 
 /**
  * @type {() => Record<string, import("@material-ui/core/styles/withStyles").CreateCSSProperties>}
@@ -23,14 +23,14 @@ const styles = () => ({
     },
     card: {
         maxWidth: 345,
-        textAlign: "center",
+        textAlign: 'center',
     },
     media: {
         height: 180,
     },
     column: {
-        display: "inline-block",
-        verticalAlign: "top",
+        display: 'inline-block',
+        verticalAlign: 'top',
         marginRight: 20,
     },
     columnLogo: {
@@ -38,7 +38,7 @@ const styles = () => ({
         marginRight: 0,
     },
     columnSettings: {
-        width: "calc(100% - 370px)",
+        width: 'calc(100% - 370px)',
     },
     controlElement: {
         //background: "#d2d2d2",
@@ -78,7 +78,7 @@ class Settings extends React.Component {
                 label={I18n.t(title)}
                 className={`${this.props.classes.input} ${this.props.classes.controlElement}`}
                 value={this.props.native[attr]}
-                type={type || "text"}
+                type={type || 'text'}
                 onChange={(e) => this.props.onChange(attr, e.target.value)}
                 margin="normal"
             />
@@ -101,12 +101,12 @@ class Settings extends React.Component {
                 }}
             >
                 <Select
-                    value={this.props.native[attr] || "_"}
-                    onChange={(e) => this.props.onChange(attr, e.target.value === "_" ? "" : e.target.value)}
-                    input={<Input name={attr} id={attr + "-helper"} />}
+                    value={this.props.native[attr] || '_'}
+                    onChange={(e) => this.props.onChange(attr, e.target.value === '_' ? '' : e.target.value)}
+                    input={<Input name={attr} id={attr + '-helper'} />}
                 >
                     {options.map((item) => (
-                        <MenuItem key={"key-" + item.value} value={item.value || "_"}>
+                        <MenuItem key={'key-' + item.value} value={item.value || '_'}>
                             {I18n.t(item.title)}
                         </MenuItem>
                     ))}
@@ -117,7 +117,7 @@ class Settings extends React.Component {
     }
 
     /**
-     * @param {string} AdminWord
+     * @param {AdminWord} title
      * @param {string} attr
      * @param {React.CSSProperties} [style]
      */
@@ -145,8 +145,8 @@ class Settings extends React.Component {
     render() {
         return (
             <form className={this.props.classes.tab}>
-                {this.renderCheckbox("option1", "option1")}<br />
-                {this.renderInput("option2", "option2", "text")}
+                {this.renderCheckbox('option1', 'option1')}<br />
+                {this.renderInput('option2', 'option2', 'text')}
             </form>
         );
     }
