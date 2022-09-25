@@ -18,10 +18,16 @@
     "type": "git",
     "url": "https://github.com/Author/ioBroker.template.git"
   },
+  "engines": {
+    "node": ">= 14"
+  },
   "dependencies": {},
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.2",
-    "@iobroker/adapter-dev": "^1.0.1",
+    "@alcalzone/release-script": "^3.5.9",
+    "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
+    "@alcalzone/release-script-plugin-license": "^3.5.9",
+    "@alcalzone/release-script-plugin-manual-review": "^3.5.9",
+    "@iobroker/adapter-dev": "^1.1.0",
     "@iobroker/testing": "^4.1.0"
   },
   "main": "widgets/template.html",
