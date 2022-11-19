@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.0.3",
+		"version": "1.1.0",
 		"news": {
+			"1.1.0": {
+				"en": "upgrade serialport 9 ->10",
+				"de": "aktualisierung serialport 9 ->10",
+				"ru": "обновление серийного порта 9 ->10",
+				"pt": "upgrade serialport 9 ->10",
+				"nl": "upgrade serialport 9 ->10",
+				"fr": "upgrade serialport 9 ->10",
+				"it": "aggiornamento serialport 9 ->10",
+				"es": "actualización serialport 9 ->10",
+				"pl": "modernizacja seryjna 9 ->10",
+				"uk": "оновлений серійний порт 9 -> 10",
+				"zh-cn": "b. 更新serialport 9 - 10"
+			},
 			"1.0.3": {
 				"en": "correction wrong type of baudRate config, causing adapter crash",
 				"de": "korrektur falsche Art von baudRate config, wodurch Adapter Crash",

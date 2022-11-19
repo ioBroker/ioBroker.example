@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ioBroker/testing-action-check@v1
+      - uses: ioBroker/testing-action-check@v3
         with:
           node-version: '14.x'
           # Uncomment the following line if your adapter cannot be installed using 'npm ci'
@@ -35,11 +35,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [14, 16]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: ioBroker/testing-action-adapter@v1
+      - uses: ioBroker/testing-action-adapter@v3
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}

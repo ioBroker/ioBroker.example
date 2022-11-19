@@ -11,9 +11,9 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
-const SerialPort = require('serialport');
-const Readline = SerialPort.parsers.Readline;
-var sp = null;
+const { SerialPort } = require('serialport');
+const { ReadlineParser } = require('@serialport/parser-readline');
+
 let timeout;
 class Jeelink extends utils.Adapter {
 	/**
@@ -27,7 +27,6 @@ class Jeelink extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
 		this.on('unload', this.onUnload.bind(this));
-		this.plc = null;
 	}
 
 	/**
@@ -65,20 +64,20 @@ class Jeelink extends utils.Adapter {
 				await this.defineLevel(obj[anz].usid, obj[anz].name);
 			}
 		}
+		let path = this.config.serialport || '/dev/ttyUSB0';
+		let baudrate = parseInt(this.config.baudrate || 57600);
 
-		var options = {
-			baudRate: parseInt(this.config.baudrate || 57600)
-		};
 		this.log.debug('configured port : ' + this.config.serialport);
 		this.log.debug('configured baudrate : ' + this.config.baudrate);
-		this.log.debug('options : ' + JSON.stringify(options));
-		const sp = new SerialPort(this.config.serialport || '/dev/ttyUSB0', options, async (error) => {
+		this.log.debug('instatiating SP path: ' + path + ' baudrate : ' + baudrate);
+
+		const sp = new SerialPort({ path: path, baudRate: baudrate }, async (error) => {
 			if (error) {
 				this.log.info('failed to open: ' + error);
 				console.log('usb open error' + error);
 			} else {
 				this.log.info('open');
-				const parser = sp.pipe(new Readline({ delimiter: '\r\n' }));
+				const parser = sp.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 				//const parser = new Readline({ delimiter: '\r\n' });
 				//sp.pipe(parser);
 				parser.on('data', async (data) => {
@@ -120,12 +119,6 @@ class Jeelink extends utils.Adapter {
 			}
 		});
 		this.subscribeStates('*');
-		// examples for the checkPassword/checkGroup functions
-		let result = await this.checkPasswordAsync('admin', 'iobroker');
-		this.log.info('check user admin pw iobroker: ' + result);
-
-		result = await this.checkGroupAsync('admin', 'admin');
-		this.log.info('check group user admin group admin: ' + result);
 	}
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
