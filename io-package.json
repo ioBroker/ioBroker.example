@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.1.0",
+		"version": "1.1.1",
 		"news": {
 			"1.1.1": {
 				"en": "changes in loglevel",
