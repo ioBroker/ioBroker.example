@@ -36,7 +36,7 @@ class Jeelink extends utils.Adapter {
 		// Initialize your adapter here
 		// The adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
-		this.log.debug('start of main');
+		this.log.info('start of main');
 		var obj = this.config.sensors;
 		for (var anz in obj) {
 			if (obj[anz].stype == 'emonTH') {
@@ -67,16 +67,16 @@ class Jeelink extends utils.Adapter {
 		let path = this.config.serialport || '/dev/ttyUSB0';
 		let baudrate = parseInt(this.config.baudrate || 57600);
 
-		this.log.debug('configured port : ' + this.config.serialport);
-		this.log.debug('configured baudrate : ' + this.config.baudrate);
-		this.log.debug('instatiating SP path: ' + path + ' baudrate : ' + baudrate);
+		this.log.info('configured port : ' + this.config.serialport);
+		this.log.info('configured baudrate : ' + this.config.baudrate);
+		this.log.info('instantiating SerialPort path: ' + path + ' baudrate : ' + baudrate);
 
 		const sp = new SerialPort({ path: path, baudRate: baudrate }, async (error) => {
 			if (error) {
-				this.log.info('failed to open: ' + error);
-				console.log('usb open error' + error);
+				this.log.error('failed to open Serialport: ' + error);
+				//console.log('usb open error' + error);
 			} else {
-				this.log.info('open');
+				this.log.info('adapter opened the SerialPort');
 				const parser = sp.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 				//const parser = new Readline({ delimiter: '\r\n' });
 				//sp.pipe(parser);
@@ -113,7 +113,12 @@ class Jeelink extends utils.Adapter {
 				});
 				if (this.config.command_en) {
 					timeout = setTimeout(() => {
-						this.write_cmd(this.config.command);
+						sp.write(this.config.command, (err) => {
+							if (err) {
+								return this.log.debug('Error on write: ' + err.message);
+							}
+							this.log.debug('message to USB-stick written : ' + this.config.command);
+						});
 					}, 1500);
 				}
 			}
@@ -145,21 +150,13 @@ class Jeelink extends utils.Adapter {
 	onStateChange(id, state) {
 		if (state) {
 			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		} else {
 			// The state was deleted
-			this.log.info(`state ${id} deleted`);
+			this.log.debug(`state ${id} deleted`);
 		}
 	}
 
-	write_cmd(command) {
-		sp.write(command, (err) => {
-			if (err) {
-				return this.log.debug('Error on write: ' + err.message);
-			}
-			this.log.debug('message to USB-stick written : ' + command);
-		});
-	}
 	getConfigObjects(Obj, where, what) {
 		var foundObjects = [];
 		for (var prop in Obj) {
@@ -197,6 +194,7 @@ class Jeelink extends utils.Adapter {
 			}
 		});
 		this.log.info('RFM12B setting up object = emonWater' + id);
+
 		await this.setObjectNotExistsAsync('emonWater_' + id + '.cw_mom', {
 			type: 'state',
 			common: {
@@ -326,11 +324,11 @@ class Jeelink extends utils.Adapter {
 			} else if (array[0].stype !== 'emonWater') {
 				this.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonWater');
 			} else if (array[0].usid != 'nodef') {
-				this.log.info('cw_mom:' + parseInt(tmpp[0]) / 10);
-				this.log.info('cw counter: ' + parseInt(tmpp[2]) / 10);
-				this.log.info('ww_mom:' + parseInt(tmpp[4]) / 10);
-				this.log.info('ww counter: ' + parseInt(tmpp[6]) / 10);
-				this.log.info('Voltage: ' + parseInt(tmpp[8]) / 10);
+				this.log.debug('cw_mom:' + parseInt(tmpp[0]) / 10);
+				this.log.debug('cw counter: ' + parseInt(tmpp[2]) / 10);
+				this.log.debug('ww_mom:' + parseInt(tmpp[4]) / 10);
+				this.log.debug('ww counter: ' + parseInt(tmpp[6]) / 10);
+				this.log.debug('Voltage: ' + parseInt(tmpp[8]) / 10);
 				await this.setStateAsync('emonWater_' + array[0].usid + '.cw_mom', {
 					val: parseInt(tmpp[0]) / 10,
 					ack: true
@@ -486,9 +484,9 @@ class Jeelink extends utils.Adapter {
 			} else if (array[0].stype !== 'emonTH') {
 				this.log.debug('received ID :' + tmp[2] + ' is not defined in the adapter as emonTH');
 			} else if (array[0].usid != 'nodef') {
-				this.log.info('Temperature:' + parseInt(tmpp[0]) / 10);
-				this.log.info('Humidty: ' + parseInt(tmpp[4]) / 10);
-				this.log.info('Voltage: ' + parseInt(tmpp[6]) / 10);
+				this.log.debug('Temperature:' + parseInt(tmpp[0]) / 10);
+				this.log.debug('Humidty: ' + parseInt(tmpp[4]) / 10);
+				this.log.debug('Voltage: ' + parseInt(tmpp[6]) / 10);
 				await this.setStateAsync('emonTH_' + array[0].usid + '.temp', {
 					val: parseInt(tmpp[0]) / 10,
 					ack: true
