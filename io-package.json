@@ -3,6 +3,10 @@
 		"name": "jeelink",
 		"version": "1.1.0",
 		"news": {
+			"1.1.1": {
+				"en": "changes in loglevel",
+				"de": "Änderungen im Loglevel"
+			},
 			"1.1.0": {
 				"en": "upgrade serialport 9 ->10",
 				"de": "aktualisierung serialport 9 ->10",
