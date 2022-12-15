@@ -1,8 +1,12 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.1.1",
+		"version": "1.2.0",
 		"news": {
+			"1.2.0": {
+				"en": "new device Davis Vantage",
+				"de": "neues Gerät Davis Vantage"
+			},
 			"1.1.1": {
 				"en": "changes in loglevel",
 				"de": "Änderungen im Loglevel"

@@ -54,6 +54,9 @@ class Jeelink extends utils.Adapter {
 			if (obj[anz].stype == 'LaCrosseWS') {
 				await this.defineLaCrosseWS(obj[anz].usid, obj[anz].name);
 			}
+			if (obj[anz].stype == 'DavisVantage') {
+				await this.defineDavisVantage(obj[anz].usid, obj[anz].name);
+			}
 			if (obj[anz].stype == 'EC3000') {
 				await this.defineEC3000(obj[anz].usid, obj[anz].name);
 			}
@@ -99,6 +102,9 @@ class Jeelink extends utils.Adapter {
 							} else if (tmp[1] === 'LS') {
 								// LS fix für level
 								await this.logLevel(data);
+							} else if (tmp[2] === 'DAVIS') {
+								// DAVIS fix für Davis Vantage
+								await this.logDavisVantage(data);
 							} else if (tmp[1] === 'WS') {
 								//derzeitig fix für superjee, noch auf beide geschickt :-(
 								await this.logLaCrosseBMP180(data);
@@ -1834,7 +1840,421 @@ class Jeelink extends utils.Adapter {
 			}
 		}
 	}
+	// https://forum.iobroker.net/topic/52860/iobroker-jeelink-davis-geht-teilweise-hilfe-beim-rest?_=1671121143289
+	// Davis Vantage Pro 2
+	// Jeelink v3c mit RFM69CW Radiochip mit der Davis Firmware (Version 0.8e)
+	// command 0,0s r
+	// OK VALUES DAVIS 0 20=0,22=-64,21=ok,4=0.00,5=93,8=108,
+	// OK VALUES DAVIS 0 20=1,22=-64,21=ok,4=0.00,5=93,9=-1,
+	// OK VALUES DAVIS 0 20=2,22=-63,21=ok,4=0.00,5=93,6=0.00,7=-1,
+	// OK VALUES DAVIS 0 20=3,22=-64,21=ok,4=0.00,5=93,1=-3.94,
+
+	/** Mapping
+		 1 => 'Temperature',
+		2 => 'Pressure',
+		3 => 'Humidity',
+		4 => 'WindSpeed',
+		5 => 'WindDirection',
+		6 => 'WindGust',
+		7 => 'WindGustRef',
+		8 => 'Rain',
+		9 => 'RainSecs',
+		 10 => 'Solar',
+		 11 => 'VoltageSolar',
+		 12 => 'VoltageCapacity',
+		 13 => 'SoilLeaf',
+		20 => 'Channel'
+		21 => 'Battery',
+		22 => 'RSSI',
+	**/
+	async defineDavisVantage(id, name) {
+		await this.setObjectNotExistsAsync('DavisVantage_' + id, {
+			type: 'channel',
+			common: {
+				name: name,
+				role: 'sensor'
+			},
+			native: {
+				addr: id
+			}
+		});
+		this.log.info('RFM12B setting up object = DavisVantage ' + id);
+
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.temp', {
+			type: 'state',
+			common: {
+				name: 'Temperature',
+				type: 'number',
+				unit: '°C',
+				min: -50,
+				max: 70,
+				read: true,
+				write: false,
+				role: 'value.temperature',
+				desc: 'Temperature'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.pressure', {
+			type: 'state',
+			common: {
+				name: 'air pressure',
+				type: 'number',
+				unit: 'hPa',
+				min: 0,
+				max: 1200,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'air pressure'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.humid', {
+			type: 'state',
+			common: {
+				name: 'Humidity',
+				type: 'number',
+				unit: '%',
+				min: 0,
+				max: 100,
+				read: true,
+				write: false,
+				role: 'value.humidity',
+				desc: 'Humidity'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rain', {
+			type: 'state',
+			common: {
+				name: 'Rain',
+				type: 'number',
+				unit: 'mm',
+				min: 0,
+				max: 999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Rain'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rainsec', {
+			type: 'state',
+			common: {
+				name: 'RainSec',
+				type: 'number',
+				unit: 's',
+				min: 0,
+				max: 99999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'RainSec'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.wspeed', {
+			type: 'state',
+			common: {
+				name: 'Wind Speed',
+				type: 'number',
+				unit: 'm/s',
+				min: 0,
+				max: 50,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Wind Speed'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.wdir', {
+			type: 'state',
+			common: {
+				name: 'Wind Direction',
+				type: 'number',
+				unit: '°',
+				min: 0,
+				max: 365,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Wind Direction'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.wgust', {
+			type: 'state',
+			common: {
+				name: 'Wind Gust',
+				type: 'number',
+				unit: 'm/s',
+				min: 0,
+				max: 50,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Wind Gust'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.wgustref', {
+			type: 'state',
+			common: {
+				name: 'Wind Gust ref',
+				type: 'number',
+				unit: 'm/s',
+				min: 0,
+				max: 50,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Wind Gust ref'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.solar', {
+			type: 'state',
+			common: {
+				name: 'Solar',
+				type: 'number',
+				unit: '?',
+				min: 0,
+				max: 9999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Solar'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.voltagesolar', {
+			type: 'state',
+			common: {
+				name: 'Voltage Solar',
+				type: 'number',
+				unit: 'V',
+				min: 0,
+				max: 9999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Voltage Solar'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.voltagcapacity', {
+			type: 'state',
+			common: {
+				name: 'Voltage capacity',
+				type: 'number',
+				unit: '?',
+				min: 0,
+				max: 9999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Voltage capacity'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.soilleaf', {
+			type: 'state',
+			common: {
+				name: 'Soil leaf',
+				type: 'number',
+				unit: '?',
+				min: 0,
+				max: 9999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Soil leaf'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rssi', {
+			type: 'state',
+			common: {
+				name: 'RSSI',
+				type: 'number',
+				unit: 'dBm',
+				min: -100,
+				max: 10,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'RSSI'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('LaCrosse_' + id + '.battery', {
+			type: 'state',
+			common: {
+				name: 'Battery',
+				type: 'string',
+				role: 'text',
+				read: true,
+				write: false,
+				desc: 'Battery'
+			},
+			native: {}
+		});
+	}
+
+	async logDavisVantage(data) {
+		var tmp = data.split(' ');
+		if (tmp[0] === 'OK') {
+			// Wenn ein Datensatz sauber gelesen wurde
+			if (tmp[2] == 'DAVIS') {
+				// Für jeden Datensatz mit dem fixen Eintrag WS
+				// somit werden alle SenderIDs bearbeitet
+
+				var array = this.getConfigObjects(this.config.sensors, 'sid', parseInt(tmp[3]));
+				if (array.length === 0 || array.length !== 1) {
+					this.log.debug(
+						'received ID :' +
+							parseInt(tmp[3]) +
+							' is not defined in the adapter or not unique received address'
+					);
+				} else if (array[0].stype !== 'DavisVantage') {
+					this.log.debug(
+						'received ID :' + parseInt(tmp[3]) + ' is not defined in the adapter as DavisVantage'
+					);
+				} else if (array[0].usid != 'nodef') {
+					this.log.debug('Sensor ID    : ' + parseInt(tmp[3]));
+
+					var tmpp = tmp.splice(4, 10); // es werden die vorderen Blöcke (0,1,2,3) entfernt
+					this.log.debug('splice       : ' + tmpp);
+
+					if (tmpp.length > 1) {
+						this.log.debug('something is wrong in stream ' + tmpp[0] + ' strange part ->' + tmpp[1]);
+					}
+
+					var tmppp = tmpp[0].split(',');
+					tmppp.forEach(async (value) => {
+						var val = value.split('=');
+						switch (val[0]) {
+							case '1':
+								this.log.debug('Temperatur   : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.temp', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '2':
+								this.log.debug('Pressure    : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.pressure', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '3':
+								this.log.debug('Humidity    : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.humid', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '4':
+								this.log.debug('WindSpeed    : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wspeed', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '5':
+								this.log.debug('WindDirection: ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wdir', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '6':
+								this.log.debug('WindGust    : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wgust', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '7':
+								this.log.debug('WindGustRef : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wgustref', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '8':
+								this.log.debug('Rain        : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rain', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '9':
+								this.log.debug('RainSecs    : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rainsec', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '10':
+								this.log.debug('Solar       : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.solar', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '11':
+								this.log.debug('VoltageSolar: ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.voltagesolar', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '12':
+								this.log.debug('VoltageCapacity: ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.voltagcapacity', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '13':
+								this.log.debug('SoilLeaf  : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.soilleaf', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '20':
+								this.log.debug('Channel   :   ' + val[1]);
+								break;
+							case '21':
+								this.log.debug('Battery   : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.battery', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							case '22':
+								this.log.debug('RSSI     : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rssi', {
+									val: val[1],
+									ack: true
+								});
+								break;
+							default:
+								this.log.debug('submitted value pair is unknown ' + val[0] + '=' + val[1]);
+						}
+					});
+				}
+			}
+		}
+	}
 }
+
 if (require.main !== module) {
 	// Export the constructor in compact mode
 	/**
