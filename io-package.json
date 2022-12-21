@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.2.0",
+		"version": "1.2.1",
 		"news": {
 			"1.2.1": {
 				"en": "corrections for Davis Vantage",
