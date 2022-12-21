@@ -1940,6 +1940,21 @@ class Jeelink extends utils.Adapter {
 			},
 			native: {}
 		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.raintipcount', {
+			type: 'state',
+			common: {
+				name: 'RainTipCount',
+				type: 'number',
+				unit: '',
+				min: 0,
+				max: 999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'RainTipCount'
+			},
+			native: {}
+		});
 		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rainsec', {
 			type: 'state',
 			common: {
@@ -2045,10 +2060,10 @@ class Jeelink extends utils.Adapter {
 			},
 			native: {}
 		});
-		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.voltagcapacity', {
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.voltagcapacitor', {
 			type: 'state',
 			common: {
-				name: 'Voltage capacity',
+				name: 'Voltage capacitor',
 				type: 'number',
 				unit: '?',
 				min: 0,
@@ -2056,7 +2071,7 @@ class Jeelink extends utils.Adapter {
 				read: true,
 				write: false,
 				role: 'value',
-				desc: 'Voltage capacity'
+				desc: 'Voltage capacitor'
 			},
 			native: {}
 		});
@@ -2075,6 +2090,21 @@ class Jeelink extends utils.Adapter {
 			},
 			native: {}
 		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.uv', {
+			type: 'state',
+			common: {
+				name: 'UV',
+				type: 'number',
+				unit: '?',
+				min: 0,
+				max: 9999,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'UV'
+			},
+			native: {}
+		});
 		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rssi', {
 			type: 'state',
 			common: {
@@ -2090,7 +2120,7 @@ class Jeelink extends utils.Adapter {
 			},
 			native: {}
 		});
-		await this.setObjectNotExistsAsync('LaCrosse_' + id + '.battery', {
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.battery', {
 			type: 'state',
 			common: {
 				name: 'Battery',
@@ -2140,91 +2170,98 @@ class Jeelink extends utils.Adapter {
 							case '1':
 								this.log.debug('Temperatur   : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.temp', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '2':
 								this.log.debug('Pressure    : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.pressure', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '3':
 								this.log.debug('Humidity    : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.humid', {
-									val: val[1],
+									val: parseInt(val[1]),
 									ack: true
 								});
 								break;
 							case '4':
 								this.log.debug('WindSpeed    : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wspeed', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '5':
 								this.log.debug('WindDirection: ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wdir', {
-									val: val[1],
+									val: parseInt(val[1]),
 									ack: true
 								});
 								break;
 							case '6':
 								this.log.debug('WindGust    : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wgust', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '7':
 								this.log.debug('WindGustRef : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.wgustref', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '8':
-								this.log.debug('Rain        : ' + val[1]);
-								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rain', {
-									val: val[1],
+								this.log.debug('RainTipCount        : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.raintipcount', {
+									val: parseInt(val[1]),
 									ack: true
 								});
 								break;
 							case '9':
 								this.log.debug('RainSecs    : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rainsec', {
-									val: val[1],
+									val: parseInt(val[1]),
 									ack: true
 								});
 								break;
 							case '10':
 								this.log.debug('Solar       : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.solar', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '11':
 								this.log.debug('VoltageSolar: ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.voltagesolar', {
-									val: val[1],
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '12':
-								this.log.debug('VoltageCapacity: ' + val[1]);
-								await this.setStateAsync('DavisVantage_' + array[0].usid + '.voltagcapacity', {
-									val: val[1],
+								this.log.debug('VoltageCapacitor: ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.voltagcapacitor', {
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
 							case '13':
 								this.log.debug('SoilLeaf  : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.soilleaf', {
-									val: val[1],
+									val: parseFloat(val[1]),
+									ack: true
+								});
+								break;
+							case '14':
+								this.log.debug('UV      : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.uv', {
+									val: parseFloat(val[1]),
 									ack: true
 								});
 								break;
@@ -2241,7 +2278,7 @@ class Jeelink extends utils.Adapter {
 							case '22':
 								this.log.debug('RSSI     : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.rssi', {
-									val: val[1],
+									val: parseInt(val[1]),
 									ack: true
 								});
 								break;
