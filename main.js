@@ -2251,6 +2251,51 @@ class Jeelink extends utils.Adapter {
 			},
 			native: {}
 		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.soiltemp_4', {
+			type: 'state',
+			common: {
+				name: 'Soil Temperature #4',
+				type: 'number',
+				unit: '°C',
+				min: -50,
+				max: 70,
+				read: true,
+				write: false,
+				role: 'value.temperature',
+				desc: 'Soil Temperature #4'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.soilmoist_4', {
+			type: 'state',
+			common: {
+				name: 'Soil Moisture #4',
+				type: 'number',
+				unit: '%?',
+				min: 0,
+				max: 100,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Soil Moisture #4'
+			},
+			native: {}
+		});
+		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.leafwetness_4', {
+			type: 'state',
+			common: {
+				name: 'Leaf Wetness #4',
+				type: 'number',
+				unit: '%?',
+				min: 0,
+				max: 100,
+				read: true,
+				write: false,
+				role: 'value',
+				desc: 'Leaf Wetness #4'
+			},
+			native: {}
+		});
 		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.rssi', {
 			type: 'state',
 			common: {
@@ -2460,7 +2505,7 @@ class Jeelink extends utils.Adapter {
 									ack: true
 								});
 								break;
-							case '16.1':
+							case '16.3':
 								this.log.debug('SoilMoist3 : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.soilmoist_3', {
 									val: parseInt(val[1]),
@@ -2470,6 +2515,27 @@ class Jeelink extends utils.Adapter {
 							case '17.3':
 								this.log.debug('LeafWet3  : ' + val[1]);
 								await this.setStateAsync('DavisVantage_' + array[0].usid + '.leafwetness_3', {
+									val: parseInt(val[1]),
+									ack: true
+								});
+								break;
+							case '15.4':
+								this.log.debug('SoilTemp4 : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.soiltemp_4', {
+									val: parseFloat(val[1]),
+									ack: true
+								});
+								break;
+							case '16.4':
+								this.log.debug('SoilMoist4 : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.soilmoist_4', {
+									val: parseInt(val[1]),
+									ack: true
+								});
+								break;
+							case '17.4':
+								this.log.debug('LeafWet4  : ' + val[1]);
+								await this.setStateAsync('DavisVantage_' + array[0].usid + '.leafwetness_4', {
 									val: parseInt(val[1]),
 									ack: true
 								});
