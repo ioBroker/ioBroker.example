@@ -2046,9 +2046,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Solar',
 				type: 'number',
-				unit: '?',
+				unit: 'W/m²',
 				min: 0,
-				max: 9999,
+				max: 1800,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2104,15 +2104,15 @@ class Jeelink extends utils.Adapter {
 		await this.setObjectNotExistsAsync('DavisVantage_' + id + '.uv', {
 			type: 'state',
 			common: {
-				name: 'UV',
+				name: 'UV index',
 				type: 'number',
-				unit: '?',
+				unit: '',
 				min: 0,
-				max: 9999,
+				max: 16,
 				read: true,
 				write: false,
 				role: 'value',
-				desc: 'UV'
+				desc: 'UV index'
 			},
 			native: {}
 		});
@@ -2136,9 +2136,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Soil Moisture #1',
 				type: 'number',
-				unit: '%?',
+				unit: 'cb',
 				min: 0,
-				max: 100,
+				max: 200,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2151,9 +2151,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Leaf Wetness #1',
 				type: 'number',
-				unit: '%?',
+				unit: '',
 				min: 0,
-				max: 100,
+				max: 15,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2181,9 +2181,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Soil Moisture #2',
 				type: 'number',
-				unit: '%?',
+				unit: 'cb',
 				min: 0,
-				max: 100,
+				max: 200,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2196,9 +2196,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Leaf Wetness #2',
 				type: 'number',
-				unit: '%?',
+				unit: '',
 				min: 0,
-				max: 100,
+				max: 15,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2226,9 +2226,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Soil Moisture #3',
 				type: 'number',
-				unit: '%?',
+				unit: 'cb',
 				min: 0,
-				max: 100,
+				max: 200,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2241,9 +2241,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Leaf Wetness #3',
 				type: 'number',
-				unit: '%?',
+				unit: '',
 				min: 0,
-				max: 100,
+				max: 15,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2271,9 +2271,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Soil Moisture #4',
 				type: 'number',
-				unit: '%?',
+				unit: 'cb',
 				min: 0,
-				max: 100,
+				max: 200,
 				read: true,
 				write: false,
 				role: 'value',
@@ -2286,9 +2286,9 @@ class Jeelink extends utils.Adapter {
 			common: {
 				name: 'Leaf Wetness #4',
 				type: 'number',
-				unit: '%?',
+				unit: '',
 				min: 0,
-				max: 100,
+				max: 15,
 				read: true,
 				write: false,
 				role: 'value',
