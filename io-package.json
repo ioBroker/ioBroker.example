@@ -1,8 +1,12 @@
 {
 	"common": {
 		"name": "jeelink",
-		"version": "1.2.1",
+		"version": "1.2.2",
 		"news": {
+			"1.2.2": {
+				"en": "more datapoints for Davis Vantage",
+				"de": "mehr Datenpunkte Davis Vantage"
+			},
 			"1.2.1": {
 				"en": "corrections for Davis Vantage",
 				"de": "Verbesserung Davis Vantage"
