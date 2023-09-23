@@ -1,0 +1,31 @@
+2022-12-11 18:45:21.221 - info: host.iobroker-slave stopInstance system.adapter.jeelink.0 (force=false, process=true) 
+2022-12-11 18:45:21.235 - info: jeelink.0 (29652) Got terminate signal TERMINATE_YOURSELF 
+2022-12-11 18:45:21.242 - info: jeelink.0 (29652) terminating 
+2022-12-11 18:45:21.246 - info: jeelink.0 (29652) Terminated (ADAPTER_REQUESTED_TERMINATION): Without reason 
+2022-12-11 18:45:21.276 - info: host.iobroker-slave stopInstance system.adapter.jeelink.0 send kill signal 
+2022-12-11 18:45:21.843 - info: host.iobroker-slave instance system.adapter.jeelink.0 terminated with code 11 (ADAPTER_REQUESTED_TERMINATION) 
+2022-12-11 18:45:24.343 - info: host.iobroker-slave instance system.adapter.jeelink.0 started with pid 29865 
+2022-12-11 18:45:27.448 - info: jeelink.0 (29865) starting. Version 1.1.1 (non-npm: foxthefox/ioBroker.jeelink#ccbca53f2b4568cbb7d797d44e0f7d845d26754b) in /opt/iobroker/node_modules/iobroker.jeelink, node: v16.18.1, js-controller: 4.0.23 
+2022-12-11 18:45:27.502 - info: jeelink.0 (29865) start of main 
+2022-12-11 18:45:27.549 - info: jeelink.0 (29865) RFM12B setting up object = emonTH1 
+2022-12-11 18:45:27.585 - info: jeelink.0 (29865) RFM12B setting up object = LaCrosse 2 
+2022-12-11 18:45:27.595 - info: jeelink.0 (29865) RFM12B setting up object = LaCrosse 3 
+2022-12-11 18:45:27.609 - info: jeelink.0 (29865) configured port : /dev/ttyUSB0 
+2022-12-11 18:45:27.610 - info: jeelink.0 (29865) configured baudrate : 57600 
+2022-12-11 18:45:27.611 - info: jeelink.0 (29865) instantiating SerialPort path: /dev/ttyUSB0 baudrate : 57600 
+2022-12-11 18:45:27.624 - info: jeelink.0 (29865) adapter opened the SerialPort 
+2022-12-11 18:45:30.903 - info: host.iobroker-slave stopInstance system.adapter.jeelink.1 (force=false, process=true) 
+2022-12-11 18:45:30.917 - info: jeelink.1 (29667) Got terminate signal TERMINATE_YOURSELF 
+2022-12-11 18:45:30.922 - info: jeelink.1 (29667) terminating 
+2022-12-11 18:45:30.926 - info: jeelink.1 (29667) Terminated (ADAPTER_REQUESTED_TERMINATION): Without reason 
+2022-12-11 18:45:30.956 - info: host.iobroker-slave stopInstance system.adapter.jeelink.1 send kill signal 
+2022-12-11 18:45:31.527 - info: host.iobroker-slave instance system.adapter.jeelink.1 terminated with code 11 (ADAPTER_REQUESTED_TERMINATION) 
+2022-12-11 18:45:34.014 - info: host.iobroker-slave instance system.adapter.jeelink.1 started with pid 29891 
+2022-12-11 18:45:37.099 - info: jeelink.1 (29891) starting. Version 1.1.1 (non-npm: foxthefox/ioBroker.jeelink#ccbca53f2b4568cbb7d797d44e0f7d845d26754b) in /opt/iobroker/node_modules/iobroker.jeelink, node: v16.18.1, js-controller: 4.0.23 
+2022-12-11 18:45:37.153 - info: jeelink.1 (29891) start of main 2022-12-11 18:45:37.196 - info: jeelink.1 (29891) RFM12B setting up object = emonTH1 
+2022-12-11 18:45:37.226 - info: jeelink.1 (29891) RFM12B setting up object = LaCrosse 2 
+2022-12-11 18:45:37.235 - info: jeelink.1 (29891) RFM12B setting up object = LaCrosse 3 
+2022-12-11 18:45:37.248 - info: jeelink.1 (29891) configured port : /dev/ttyUSB1 
+2022-12-11 18:45:37.249 - info: jeelink.1 (29891) configured baudrate : 57600 
+2022-12-11 18:45:37.250 - info: jeelink.1 (29891) instantiating SerialPort path: /dev/ttyUSB1 baudrate : 57600 
+2022-12-11 18:45:37.263 - info: jeelink.1 (29891) adapter opened the SerialPort

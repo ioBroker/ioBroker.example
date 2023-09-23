@@ -1,0 +1,17 @@
+{
+    "If you see blue delete buttons, save settings first and open again the page.": "Wenn Sie blaue Löschschaltflächen sehen, speichern Sie zunächst die Einstellungen und öffnen Sie die Seite erneut.",
+    "Sensor configuration": "Sensorkonfiguration",
+    "baudrate": "Baudrate",
+    "command for stick setup": "Befehl für Stick-Setup",
+    "enable command": "Befehl aktivieren",
+    "jeelink USB adapter settings": "Jeelink USB-Adaptereinstellungen",
+    "jeelink adapter settings": "Jeelink-Adaptereinstellungen",
+    "name": "Name",
+    "on save adapter restarts with new config immediately": "Beim Speichern wird der Adapter sofort mit der neuen Konfiguration neu gestartet",
+    "serialport": "serielle Schnittstelle",
+    "sid": "empfangene Sensor-ID",
+    "stype": "Sensortyp",
+    "usid": "eindeutige Sensor-ID",
+    "usually empty": "normalerweise leer",
+    "valid sensor types:": "gültige Sensortypen:"
+}

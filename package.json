@@ -1,6 +1,6 @@
 {
 	"name": "iobroker.jeelink",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "ioBroker jeelink Adapter",
 	"author": {
 		"name": "foxthefox",
@@ -14,11 +14,12 @@
 		"url": "https://github.com/foxthefox/ioBroker.jeelink"
 	},
 	"dependencies": {
-		"serialport": "^10.5.0",
-		"@serialport/parser-readline": "^10.5.0",
+		"serialport": "^12.0.0",
+		"@serialport/parser-readline": "^12.0.0",
 		"@iobroker/adapter-core": "^2.6.7"
 	},
 	"devDependencies": {
+		"@iobroker/adapter-dev": "^1.2.0",
 		"@iobroker/testing": "^4.1.0",
 		"@types/chai": "^4.3.3",
 		"@types/chai-as-promised": "^7.1.5",
@@ -59,6 +60,7 @@
 		"test:integration": "mocha test/integration --exit",
 		"test": "npm run test:js && npm run test:package",
 		"check": "tsc --noEmit -p tsconfig.check.json",
+		"translate": "translate-adapter",
 		"lint": "eslint"
 	},
 	"readmeFilename": "README.md"
