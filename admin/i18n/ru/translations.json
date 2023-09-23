@@ -1,0 +1,17 @@
+{
+    "If you see blue delete buttons, save settings first and open again the page.": "Если вы видите синие кнопки удаления, сначала сохраните настройки и снова откройте страницу.",
+    "Sensor configuration": "Конфигурация датчика",
+    "baudrate": "бод",
+    "command for stick setup": "команда для настройки палки",
+    "enable command": "команда enable",
+    "jeelink USB adapter settings": "Настройки адаптера USB-устройства jeelink",
+    "jeelink adapter settings": "настройки адаптера jeelink",
+    "name": "имя",
+    "on save adapter restarts with new config immediately": "на перезаписываемом адаптере перезагружается с новой конфигурацией немедленно",
+    "serialport": "Серийный порт",
+    "sid": "получил идентификатор датчика",
+    "stype": "Тип датчика",
+    "usid": "уникальный идентификатор датчика",
+    "usually empty": "обычно пустые",
+    "valid sensor types:": "допустимые типы датчиков:"
+}

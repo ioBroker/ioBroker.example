@@ -1,0 +1,17 @@
+{
+    "If you see blue delete buttons, save settings first and open again the page.": "如果您看到蓝色删除按钮，请先保存设置，然后再次打开页面。",
+    "Sensor configuration": "传感器配置",
+    "baudrate": "波特率",
+    "command for stick setup": "摇杆设置命令",
+    "enable command": "启用命令",
+    "jeelink USB adapter settings": "jeelink USB适配器设置",
+    "jeelink adapter settings": "jeelink适配器设置",
+    "name": "姓名",
+    "on save adapter restarts with new config immediately": "保存适配器后立即使用新配置重新启动",
+    "serialport": "串行端口",
+    "sid": "收到传感器 ID",
+    "stype": "传感器类型",
+    "usid": "唯一的传感器 ID",
+    "usually empty": "通常是空的",
+    "valid sensor types:": "有效的传感器类型："
+}

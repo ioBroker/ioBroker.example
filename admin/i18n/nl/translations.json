@@ -1,0 +1,17 @@
+{
+    "If you see blue delete buttons, save settings first and open again the page.": "Als u blauwe wisknoppen ziet, slaat u eerst de instellingen op en opent u de pagina opnieuw.",
+    "Sensor configuration": "Sensor configuratie",
+    "baudrate": "baudrate",
+    "command for stick setup": "commando voor het instellen van de stick",
+    "enable command": "commando inschakelen",
+    "jeelink USB adapter settings": "jeelink USB-adapterinstellingen",
+    "jeelink adapter settings": "jeelink-adapterinstellingen",
+    "name": "naam",
+    "on save adapter restarts with new config immediately": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config",
+    "serialport": "seriele poort",
+    "sid": "ontvangen Sensor ID",
+    "stype": "Sensortyp",
+    "usid": "uniek sensor-ID",
+    "usually empty": "meestal leeg",
+    "valid sensor types:": "geldige sensortypes:"
+}

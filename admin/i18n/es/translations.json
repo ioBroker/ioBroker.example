@@ -1,0 +1,17 @@
+{
+    "If you see blue delete buttons, save settings first and open again the page.": "Si ve botones azules para borrar, primero guarde la configuración y abra de nuevo la página.",
+    "Sensor configuration": "Configuración del sensor",
+    "baudrate": "velocidad de baudios",
+    "command for stick setup": "comando para la configuración del palo",
+    "enable command": "habilitar comando",
+    "jeelink USB adapter settings": "configuración del adaptador USB jeelink",
+    "jeelink adapter settings": "configuración del adaptador jeelink",
+    "name": "nombre",
+    "on save adapter restarts with new config immediately": "en el adaptador de guardar se reinicia con nueva configuración de inmediato",
+    "serialport": "Puerto serial",
+    "sid": "ID del sensor recibido",
+    "stype": "Sensor tipo",
+    "usid": "identificación única del sensor",
+    "usually empty": "generalmente vacío",
+    "valid sensor types:": "tipos de sensor válidos:"
+}
