@@ -13,6 +13,7 @@
 				"it": "Versione iniziale",
 				"es": "Versión inicial",
 				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
 				"zh-cn": "首次出版"
 			}
 		},
@@ -24,9 +25,10 @@
 			"pt": "Modelo (TypeScript com React)",
 			"nl": "Sjabloon (TypeScript met React)",
 			"fr": "Modèle (TypeScript avec React)",
-			"it": "Modello (dattiloscritto con React)",
+			"it": "Modello (TypeScript con React)",
 			"es": "Plantilla (TypeScript con React)",
-			"pl": "Szablon (TypeScript z React)",
+			"pl": "Szablon (TypeScript z Reactem)",
+			"uk": "Шаблон (TypeScript з React)",
 			"zh-cn": "模板（带有 React 的 TypeScript）"
 		},
 		"desc": {
@@ -37,8 +39,9 @@
 			"nl": "Sjabloon voor adapterontwikkeling",
 			"fr": "Modèle pour le développement d'adaptateurs",
 			"it": "Modello per lo sviluppo dell'adattatore",
-			"es": "Plantilla para el desarrollo de adaptadores",
+			"es": "Plantilla para el desarrollo de adaptadores.",
 			"pl": "Szablon do opracowania adaptera",
+			"uk": "Шаблон для розробки адаптера",
 			"zh-cn": "适配器开发模板"
 		},
 		"authors": [
@@ -58,6 +61,7 @@
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
 		"readme": "https://github.com/Author/ioBroker.template/blob/main/README.md",
 		"loglevel": "info",
+		"tier": 3,
 		"mode": "daemon",
 		"type": "general",
 		"compact": true,
@@ -74,9 +78,10 @@
 				"pt": "Modelo (TypeScript com React)",
 				"nl": "Sjabloon (TypeScript met React)",
 				"fr": "Modèle (TypeScript avec React)",
-				"it": "Modello (dattiloscritto con React)",
+				"it": "Modello (TypeScript con React)",
 				"es": "Plantilla (TypeScript con React)",
-				"pl": "Szablon (TypeScript z React)",
+				"pl": "Szablon (TypeScript z Reactem)",
+				"uk": "Шаблон (TypeScript з React)",
 				"zh-cn": "模板（带有 React 的 TypeScript）"
 			},
 			"link": "",

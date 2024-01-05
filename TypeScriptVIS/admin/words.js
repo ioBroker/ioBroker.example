@@ -14,6 +14,7 @@ systemDictionary = {
 		"it": "Impostazioni dell'adattatore per template",
 		"es": "Ajustes del adaptador para template",
 		"pl": "Ustawienia adaptera dla template",
+		"uk": "Налаштування адаптера для template",
 		"zh-cn": "template的适配器设置"
 	},
 	"option1": {
@@ -26,6 +27,7 @@ systemDictionary = {
 		"it": "opzione 1",
 		"es": "Opción 1",
 		"pl": "opcja 1",
+		"uk": "варіант1",
 		"zh-cn": "选项1"
 	},
 	"option2": {
@@ -38,6 +40,7 @@ systemDictionary = {
 		"it": "opzione 2",
 		"es": "opcion 2",
 		"pl": "Opcja 2",
+		"uk": "варіант2",
 		"zh-cn": "选项2"
 	},
 	"myColor": {
@@ -50,6 +53,7 @@ systemDictionary = {
 		"it": "mioColore",
 		"es": "miColor",
 		"pl": "mójKolor",
+		"uk": "мійКолір",
 		"zh-cn": "我的颜色"
 	},
 	"myColor_tooltip": {
@@ -62,6 +66,7 @@ systemDictionary = {
 		"it": "Descrizione di\nmyColor",
 		"es": "Descripción de\nmyColor",
 		"pl": "Opis\nmyColor",
+		"uk": "Опис\nmyColor",
 		"zh-cn": "\nmyColor的描述"
 	},
 	"htmlText": {
@@ -74,6 +79,7 @@ systemDictionary = {
 		"it": "htmlText",
 		"es": "htmlText",
 		"pl": "htmlText",
+		"uk": "htmlText",
 		"zh-cn": "htmlText"
 	},
 	"group_extraMyset": {
@@ -86,6 +92,7 @@ systemDictionary = {
 		"it": "extraMyset",
 		"es": "extraMyset",
 		"pl": "extraMyset",
+		"uk": "extraMyset",
 		"zh-cn": "extraMyset"
 	},
 	"extraAttr": {
@@ -98,6 +105,7 @@ systemDictionary = {
 		"it": "extraAttr",
 		"es": "extraAttr",
 		"pl": "extraAttr",
+		"uk": "extraAttr",
 		"zh-cn": "extraAttr"
 	},
 	"Instance": {
@@ -110,6 +118,7 @@ systemDictionary = {
 		"it": "Esempio",
 		"es": "Instancia",
 		"pl": "Instancja",
+		"uk": "Інстанція",
 		"zh-cn": "例"
 	}
 };
