@@ -14,6 +14,7 @@ systemDictionary = {
 		"it": "Impostazioni dell'adattatore per template",
 		"es": "Ajustes del adaptador para template",
 		"pl": "Ustawienia adaptera dla template",
+		"uk": "Налаштування адаптера для template",
 		"zh-cn": "template的适配器设置"
 	},
 	"option1": {
@@ -26,6 +27,7 @@ systemDictionary = {
 		"it": "opzione 1",
 		"es": "Opción 1",
 		"pl": "opcja 1",
+		"uk": "варіант1",
 		"zh-cn": "选项1"
 	},
 	"option2": {
@@ -38,6 +40,7 @@ systemDictionary = {
 		"it": "opzione 2",
 		"es": "opcion 2",
 		"pl": "Opcja 2",
+		"uk": "варіант2",
 		"zh-cn": "选项2"
 	}
 };

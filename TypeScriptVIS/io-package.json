@@ -13,6 +13,7 @@
 				"it": "Versione iniziale",
 				"es": "Versión inicial",
 				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
 				"zh-cn": "首次出版"
 			}
 		},
@@ -22,11 +23,12 @@
 			"de": "Vorlage (TypeScript mit VIS)",
 			"ru": "Шаблон (TypeScript с VIS)",
 			"pt": "Modelo (TypeScript com VIS)",
-			"nl": "Sjabloon (TypeScript met VIS)",
+			"nl": "Sjabloon (typescript met VIS)",
 			"fr": "Modèle (TypeScript avec VIS)",
-			"it": "Modello (dattiloscritto con VIS)",
+			"it": "Modello (TypeScript con VIS)",
 			"es": "Plantilla (TypeScript con VIS)",
 			"pl": "Szablon (TypeScript z VIS)",
+			"uk": "Шаблон (TypeScript з VIS)",
 			"zh-cn": "模板（带有 VIS 的 TypeScript）"
 		},
 		"desc": {
@@ -37,8 +39,9 @@
 			"nl": "Sjabloon voor adapterontwikkeling",
 			"fr": "Modèle pour le développement d'adaptateurs",
 			"it": "Modello per lo sviluppo dell'adattatore",
-			"es": "Plantilla para el desarrollo de adaptadores",
+			"es": "Plantilla para el desarrollo de adaptadores.",
 			"pl": "Szablon do opracowania adaptera",
+			"uk": "Шаблон для розробки адаптера",
 			"zh-cn": "适配器开发模板"
 		},
 		"authors": [
@@ -58,6 +61,7 @@
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
 		"readme": "https://github.com/Author/ioBroker.template/blob/main/README.md",
 		"loglevel": "info",
+		"tier": 3,
 		"restartAdapters": [
 			"vis"
 		],
@@ -75,11 +79,12 @@
 				"de": "Vorlage (TypeScript mit VIS)",
 				"ru": "Шаблон (TypeScript с VIS)",
 				"pt": "Modelo (TypeScript com VIS)",
-				"nl": "Sjabloon (TypeScript met VIS)",
+				"nl": "Sjabloon (typescript met VIS)",
 				"fr": "Modèle (TypeScript avec VIS)",
-				"it": "Modello (dattiloscritto con VIS)",
+				"it": "Modello (TypeScript con VIS)",
 				"es": "Plantilla (TypeScript con VIS)",
 				"pl": "Szablon (TypeScript z VIS)",
+				"uk": "Шаблон (TypeScript з VIS)",
 				"zh-cn": "模板（带有 VIS 的 TypeScript）"
 			},
 			"link": "",
