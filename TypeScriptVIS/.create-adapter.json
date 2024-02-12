@@ -18,7 +18,6 @@
 		"vis"
 	],
 	"connectionIndicator": "no",
-	"es6class": "yes",
 	"type": "general",
 	"adminFeatures": [
 		"custom",
@@ -34,5 +33,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "2.6.1"
+	"creatorVersion": "2.6.2"
 }
