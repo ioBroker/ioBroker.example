@@ -94,12 +94,12 @@
         "supportCustoms": true,
         "dependencies": [
             {
-                "js-controller": ">=3.3.22"
+                "js-controller": ">=4.0.24"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.1.13"
+                "admin": ">=6.13.16"
             }
         ]
     },
