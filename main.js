@@ -42,7 +42,7 @@ class Jeelink extends utils.Adapter {
 			if (obj[anz].stype == 'emonTH') {
 				await this.defineemonTH(obj[anz].usid, obj[anz].name);
 			} else if (obj[anz].stype == 'emonWater') {
-				await this.defineemonWater(obj[anz].usid, obj[anz].name);
+				await this.defineemonWater(obj[anz].usid);
 			} else if (obj[anz].stype.indexOf('LaCrosseDT') == 0) {
 				await this.defineLaCrosseDTH(obj[anz].usid, obj[anz].name, obj[anz].stype);
 			} else if (obj[anz].stype == 'LaCrosseBMP180') {
@@ -144,6 +144,7 @@ class Jeelink extends utils.Adapter {
 			//clearInterval(interval1);
 			callback();
 		} catch (e) {
+			this.log.error(e);
 			callback();
 		}
 	}
@@ -188,7 +189,7 @@ class Jeelink extends utils.Adapter {
 	// |  |-------------------- [2]Sensor ID
 	// |----------------------- [0]fix "OK"
 
-	async defineemonWater(id, name) {
+	async defineemonWater(id) {
 		await this.setObjectNotExistsAsync('emonWater_' + id, {
 			type: 'channel',
 			common: {
@@ -1859,10 +1860,10 @@ class Jeelink extends utils.Adapter {
 		7 => 'WindGustRef',
 		8 => 'RainTipCount',
 		9 => 'RainSecs',
-		 10 => 'Solar',
-		 11 => 'VoltageSolar',
-		 12 => 'VoltageCapacity',
-		 13 => 'SoilLeaf',
+		10 => 'Solar',
+		11 => 'VoltageSolar',
+		12 => 'VoltageCapacity',
+		13 => 'SoilLeaf',
 		14 =>  'UV',
 		15.1= SoilTemperature.1
 		16.1= SoilMoisture.1
