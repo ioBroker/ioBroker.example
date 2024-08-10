@@ -1,140 +1,159 @@
 {
-	"common": {
-		"name": "jeelink",
-		"version": "1.2.4",
-		"news": {
-			"1.2.4": {
-				"en": "IOB checker corrections",
-				"de": "Korrekturen des IOB-Checkers",
-				"ru": "Исправления проверки IOB",
-				"pt": "Correções do verificador IOB",
-				"nl": "IOB-checkercorrecties",
-				"fr": "Corrections du vérificateur IOB",
-				"it": "Correzioni del controllo IOB",
-				"es": "Correcciones del verificador IOB",
-				"pl": "Poprawki sprawdzania IOB",
-				"uk": "Виправлення перевірки IOB",
-				"zh-cn": "IOB 检查器更正"
-			},
-			"1.2.3": {
-				"en": "serialport12, translation with adapter-dev",
-				"de": "Serialport12, Übersetzung mit Adapter-Dev",
-				"ru": "серийный порт12, перевод с помощью адаптера-dev",
-				"pt": "serialport12, tradução com adaptador-dev",
-				"nl": "serialport12, vertaling met adapter-dev",
-				"fr": "Serialport12, traduction avec adapter-dev",
-				"it": "serialport12, traduzione con adattatore-dev",
-				"es": "serialport12, traducción con adaptador-dev",
-				"pl": "serialport12, tłumaczenie za pomocą adapter-dev",
-				"uk": "serialport12, переклад за допомогою adapter-dev",
-				"zh-cn": "Serialport12，使用适配器开发进行翻译"
-			}
-		},
-		"titleLang": {
-			"en": "jeelink devices",
-			"de": "Jeelink-Geräte",
-			"ru": "джилинк устройства",
-			"pt": "dispositivos jeelink",
-			"nl": "jeelink-apparaten",
-			"fr": "appareils jeelink",
-			"it": "dispositivi jeelink",
-			"es": "dispositivos jeelink",
-			"pl": "urządzenia jeelink",
-			"zh-cn": "捷联设备",
-			"uk": "пристрої jeelink"
-		},
-		"desc": {
-			"en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
-			"de": "lese 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
-			"ru": "считывать датчики 868 МГц Technoline, emonTH, Lacrosse",
-			"pt": "ler sensores de 868Mhz de Technoline, emonTH, Lacrosse",
-			"nl": "lees 868Mhz sensoren van Technoline, emonTH, Lacrosse",
-			"fr": "lire les capteurs 868Mhz de Technoline, emonTH, Lacrosse",
-			"it": "leggere i sensori 868Mhz di Technoline, emonTH, Lacrosse",
-			"es": "leer sensores de 868Mhz de Technoline, emonTH, Lacrosse",
-			"pl": "odczytaj czujniki 868Mhz Technoline, emonTH, Lacrosse",
-			"zh-cn": "读取 Technoline、emonTH、Lacrosse 的 868Mhz 传感器",
-			"uk": "читати 868Mhz датчики Technoline, emonTH, Lacrosse"
-		},
-		"platform": "Javascript/Node.js",
-		"mode": "daemon",
-		"keywords": [ "jeelink", "openenergy", "RFM", "LaCrosse", "emonTH" ],
-		"type": "hardware",
-		"icon": "jeelab_logo.png",
-		"extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
-		"readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
-		"loglevel": "info",
-		"materialize": true,
-		"compact": true,
-		"tier": 3,
-		"licenseInformation": {
-			"license": "MIT",
-			"link": "https://opensource.org/license/mit/",
-			"type": "free"
-		},
-		"connectionType": "local",
-		"dataSource": "push",
-		"authors": [
-			{
-				"name": "foxthefox",
-				"email": "foxthefox@wysiwis.net"
-			}
-		],
-		"dependencies": [
-			{
-				"js-controller": ">=4.0.24"
-			}
-		]
-	},
-	"native": {
-		"serialport": "/dev/ttyUSB0",
-		"baudrate": 57600,
-		"command": "",
-		"command_en": false,
-		"sensors": [
-			{
-				"sid": "18",
-				"usid": "1",
-				"stype": "emonTH",
-				"name": "example emonTH"
-			},
-			{
-				"sid": "0",
-				"usid": "2",
-				"stype": "LaCrosseBMP180",
-				"name": "example superjee"
-			},
-			{
-				"sid": "55",
-				"usid": "3",
-				"stype": "LaCrosseDTH",
-				"name": "example LaCrosseDTH"
-			}
-		]
-	},
-	"objects": [],
-	"instanceObjects": [
-		{
-			"_id": "foundDevices",
-			"type": "channel",
-			"common": {
-				"name": "foundDevices",
-				"role": "device"
-			},
-			"native": {}
-		},
-		{
-			"_id": "foundDevices.state",
-			"type": "state",
-			"common": {
-				"name": "new Devices",
-				"type": "array",
-				"role": "list",
-				"read": true,
-				"write": true,
-				"desc": "new Devices"
-			},
-			"native": {}
-		}
-	]
+    "common": {
+        "name": "jeelink",
+        "version": "1.2.5",
+        "news": {
+            "1.2.5": {
+                "en": "eslint upgrade and corrections",
+                "de": "Eslint-Upgrade und Korrekturen",
+                "ru": "обновление и исправления eslint",
+                "pt": "atualização e correções do eslint",
+                "nl": "eslint-upgrade en correcties",
+                "fr": "mise à jour et corrections d'Eslint",
+                "it": "aggiornamento e correzioni di eslint",
+                "es": "actualización y correcciones de eslint",
+                "pl": "aktualizacja i poprawki eslint",
+                "uk": "оновлення та виправлення eslint",
+                "zh-cn": "eslint 升级和修正"
+            },
+            "1.2.4": {
+                "en": "IOB checker corrections",
+                "de": "Korrekturen des IOB-Checkers",
+                "ru": "Исправления проверки IOB",
+                "pt": "Correções do verificador IOB",
+                "nl": "IOB-checkercorrecties",
+                "fr": "Corrections du vérificateur IOB",
+                "it": "Correzioni del controllo IOB",
+                "es": "Correcciones del verificador IOB",
+                "pl": "Poprawki sprawdzania IOB",
+                "uk": "Виправлення перевірки IOB",
+                "zh-cn": "IOB 检查器更正"
+            },
+            "1.2.3": {
+                "en": "serialport12, translation with adapter-dev",
+                "de": "Serialport12, Übersetzung mit Adapter-Dev",
+                "ru": "серийный порт12, перевод с помощью адаптера-dev",
+                "pt": "serialport12, tradução com adaptador-dev",
+                "nl": "serialport12, vertaling met adapter-dev",
+                "fr": "Serialport12, traduction avec adapter-dev",
+                "it": "serialport12, traduzione con adattatore-dev",
+                "es": "serialport12, traducción con adaptador-dev",
+                "pl": "serialport12, tłumaczenie za pomocą adapter-dev",
+                "uk": "serialport12, переклад за допомогою adapter-dev",
+                "zh-cn": "Serialport12，使用适配器开发进行翻译"
+            }
+        },
+        "titleLang": {
+            "en": "jeelink devices",
+            "de": "Jeelink-Geräte",
+            "ru": "джилинк устройства",
+            "pt": "dispositivos jeelink",
+            "nl": "jeelink-apparaten",
+            "fr": "appareils jeelink",
+            "it": "dispositivi jeelink",
+            "es": "dispositivos jeelink",
+            "pl": "urządzenia jeelink",
+            "zh-cn": "捷联设备",
+            "uk": "пристрої jeelink"
+        },
+        "desc": {
+            "en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
+            "de": "lese 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
+            "ru": "считывать датчики 868 МГц Technoline, emonTH, Lacrosse",
+            "pt": "ler sensores de 868Mhz de Technoline, emonTH, Lacrosse",
+            "nl": "lees 868Mhz sensoren van Technoline, emonTH, Lacrosse",
+            "fr": "lire les capteurs 868Mhz de Technoline, emonTH, Lacrosse",
+            "it": "leggere i sensori 868Mhz di Technoline, emonTH, Lacrosse",
+            "es": "leer sensores de 868Mhz de Technoline, emonTH, Lacrosse",
+            "pl": "odczytaj czujniki 868Mhz Technoline, emonTH, Lacrosse",
+            "zh-cn": "读取 Technoline、emonTH、Lacrosse 的 868Mhz 传感器",
+            "uk": "читати 868Mhz датчики Technoline, emonTH, Lacrosse"
+        },
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "keywords": [
+            "jeelink",
+            "openenergy",
+            "RFM",
+            "LaCrosse",
+            "emonTH"
+        ],
+        "type": "hardware",
+        "icon": "jeelab_logo.png",
+        "extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
+        "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
+        "loglevel": "info",
+        "materialize": true,
+        "compact": true,
+        "tier": 3,
+        "licenseInformation": {
+            "license": "MIT",
+            "link": "https://opensource.org/license/mit/",
+            "type": "free"
+        },
+        "connectionType": "local",
+        "dataSource": "push",
+        "authors": [
+            {
+                "name": "foxthefox",
+                "email": "foxthefox@wysiwis.net"
+            }
+        ],
+        "dependencies": [
+            {
+                "js-controller": ">=4.0.24"
+            }
+        ]
+    },
+    "native": {
+        "serialport": "/dev/ttyUSB0",
+        "baudrate": 57600,
+        "command": "",
+        "command_en": false,
+        "sensors": [
+            {
+                "sid": "18",
+                "usid": "1",
+                "stype": "emonTH",
+                "name": "example emonTH"
+            },
+            {
+                "sid": "0",
+                "usid": "2",
+                "stype": "LaCrosseBMP180",
+                "name": "example superjee"
+            },
+            {
+                "sid": "55",
+                "usid": "3",
+                "stype": "LaCrosseDTH",
+                "name": "example LaCrosseDTH"
+            }
+        ]
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "foundDevices",
+            "type": "channel",
+            "common": {
+                "name": "foundDevices",
+                "role": "device"
+            },
+            "native": {}
+        },
+        {
+            "_id": "foundDevices.state",
+            "type": "state",
+            "common": {
+                "name": "new Devices",
+                "type": "array",
+                "role": "list",
+                "read": true,
+                "write": true,
+                "desc": "new Devices"
+            },
+            "native": {}
+        }
+    ]
 }
