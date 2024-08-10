@@ -1,377 +1,140 @@
 {
-    "common": {
-        "name": "jeelink",
-        "version": "1.2.3",
-        "news": {
-            "1.2.3": {
-                "en": "serialport12, translation with adapter-dev",
-                "de": "Serialport12, Übersetzung mit Adapter-Dev",
-                "ru": "серийный порт12, перевод с помощью адаптера-dev",
-                "pt": "serialport12, tradução com adaptador-dev",
-                "nl": "serialport12, vertaling met adapter-dev",
-                "fr": "Serialport12, traduction avec adapter-dev",
-                "it": "serialport12, traduzione con adattatore-dev",
-                "es": "serialport12, traducción con adaptador-dev",
-                "pl": "serialport12, tłumaczenie za pomocą adapter-dev",
-                "uk": "serialport12, переклад за допомогою adapter-dev",
-                "zh-cn": "Serialport12，使用适配器开发进行翻译"
-            },
-            "1.2.2": {
-                "en": "more datapoints for Davis Vantage",
-                "de": "mehr Datenpunkte Davis Vantage",
-                "ru": "больше точек данных для Davis Vantage",
-                "pt": "mais pontos de dados para Davis Vantage",
-                "nl": "meer datapunten voor Davis Vantage",
-                "fr": "plus de points de données pour Davis Vantage",
-                "it": "più punti dati per Davis Vantage",
-                "es": "más puntos de datos para Davis Vantage",
-                "pl": "więcej punktów danych dla Davis Vantage",
-                "uk": "більше точок даних для Davis Vantage",
-                "zh-cn": "Davis Vantage 的更多数据点"
-            },
-            "1.2.1": {
-                "en": "corrections for Davis Vantage",
-                "de": "Verbesserung Davis Vantage",
-                "ru": "исправления для Davis Vantage",
-                "pt": "correções para Davis Vantage",
-                "nl": "correcties voor Davis Vantage",
-                "fr": "corrections pour Davis Vantage",
-                "it": "correzioni per Davis Vantage",
-                "es": "correcciones para Davis Vantage",
-                "pl": "poprawki dla Davisa Vantage'a",
-                "uk": "виправлення для Davis Vantage",
-                "zh-cn": "Davis Vantage 的更正"
-            },
-            "1.2.0": {
-                "en": "new device Davis Vantage",
-                "de": "neues Gerät Davis Vantage",
-                "ru": "новое устройство Davis Vantage",
-                "pt": "novo dispositivo Davis Vantage",
-                "nl": "nieuw apparaat Davis Vantage",
-                "fr": "nouvel appareil Davis Vantage",
-                "it": "nuovo dispositivo Davis Vantage",
-                "es": "nuevo dispositivo Davis Vantage",
-                "pl": "nowe urządzenie Davis Vantage",
-                "uk": "новий пристрій Davis Vantage",
-                "zh-cn": "新设备 Davis Vantage"
-            },
-            "1.1.1": {
-                "en": "changes in loglevel",
-                "de": "Änderungen im Loglevel",
-                "ru": "изменения в уровне журнала",
-                "pt": "mudanças no nível de log",
-                "nl": "veranderingen in logniveau",
-                "fr": "changements dans le niveau de journalisation",
-                "it": "cambiamenti nel livello di registro",
-                "es": "cambios en el nivel de registro",
-                "pl": "zmiany w poziomie logowania",
-                "uk": "зміни рівня журналу",
-                "zh-cn": "日志级别的变化"
-            },
-            "1.1.0": {
-                "en": "upgrade serialport 9 ->10",
-                "de": "aktualisierung serialport 9 ->10",
-                "ru": "обновление серийного порта 9 ->10",
-                "pt": "upgrade serialport 9 ->10",
-                "nl": "upgrade serialport 9 ->10",
-                "fr": "upgrade serialport 9 ->10",
-                "it": "aggiornamento serialport 9 ->10",
-                "es": "actualización serialport 9 ->10",
-                "pl": "modernizacja seryjna 9 ->10",
-                "uk": "оновлений серійний порт 9 -> 10",
-                "zh-cn": "b. 更新serialport 9 - 10"
-            },
-            "1.0.3": {
-                "en": "correction wrong type of baudRate config, causing adapter crash",
-                "de": "korrektur falsche Art von baudRate config, wodurch Adapter Crash",
-                "ru": "исправление неправильного типа baudRate config, вызывая адаптер аварии",
-                "pt": "correção tipo errado de baudRate config, causando falha do adaptador",
-                "nl": "correctie verkeerd typisch gematigde configuur veroorzaakte adapter crash",
-                "fr": "correction type incorrect de configuration de baudRate, causant le crash de l'adaptateur",
-                "it": "correzione tipo sbagliato di configurazione baudRate, causando crash dell'adattatore",
-                "es": "corrección tipo incorrecto de baudRate config, causante de choque del adaptador",
-                "pl": "konfiguracja niewłaściwego typu baudRate, powodująca rozbicie adaptatora",
-                "zh-cn": "纠正错误的偷窃行为,造成改装机事故",
-                "uk": "виправлення неправильного типу конфігурації BaudRate, що спричиняє збій адаптера"
-            },
-            "1.0.2": {
-                "en": "upper range temperature 50->70",
-                "de": "temperatur im oberen bereich 50->70",
-                "ru": "температура верхнего диапазона 50->70",
-                "pt": "temperatura da faixa superior 50->70",
-                "nl": "upperrange temperatuur 50-70",
-                "fr": "température supérieure 50-hépatite70",
-                "it": "temperatura dell'intervallo superiore 50->70",
-                "es": "temperatura de rango superior 50- título70",
-                "pl": "temperatura górna 50 >70",
-                "zh-cn": "高温 a. 导 言",
-                "uk": "температура верхнього діапазону 50->70"
-            },
-            "1.0.1": {
-                "en": "corrections in baudrate and rounding",
-                "de": "Korrekturen in Baudrate und Rundung",
-                "ru": "исправления в скорости передачи и округлении",
-                "pt": "correções na taxa de transmissão e arredondamento",
-                "nl": "correcties in baudrate en afronding",
-                "fr": "corrections de baudrate et d'arrondi",
-                "it": "correzioni in baudrate e arrotondamenti",
-                "es": "correcciones en baudios y redondeo",
-                "pl": "korekty szybkości transmisji i zaokrągleń",
-                "zh-cn": "波特率和舍入的更正",
-                "uk": "виправлення швидкості передачі та округлення"
-            },
-            "1.0.0": {
-                "en": "refactoring to classbased adapter, github actions",
-                "de": "Refactoring auf klassenbasierten Adapter, Github-Aktionen",
-                "ru": "рефакторинг для адаптера на основе классов, действия github",
-                "pt": "refatoração para adaptador baseado em classe, ações do github",
-                "nl": "refactoring naar klassegebaseerde adapter, github-acties",
-                "fr": "refactorisation vers un adaptateur basé sur les classes, actions github",
-                "it": "refactoring su adattatore basato su classi, azioni github",
-                "es": "refactorización a adaptador basado en clases, acciones de github",
-                "pl": "refaktoryzacja do adaptera klasowego, akcje github",
-                "zh-cn": "重构为基于类的适配器，github 操作",
-                "uk": "рефакторинг до адаптера на основі класів, дії github"
-            },
-            "0.1.4": {
-                "en": "nodejs14 compatibility",
-                "de": "nodejs14-Kompatibilität",
-                "ru": "nodejs14 совместимость",
-                "pt": "compatibilidade nodejs14",
-                "nl": "nodejs14 compatibiliteit",
-                "fr": "compatibilité nodejs14",
-                "it": "compatibilità nodejs14",
-                "es": "compatibilidad con nodejs14",
-                "pl": "Kompatybilność z nodejs14",
-                "zh-cn": "nodejs14 兼容性",
-                "uk": "сумісність nodejs14"
-            },
-            "0.1.3": {
-                "en": "new sensor with double temp",
-                "de": "neuer Sensor mit Doppeltemp",
-                "ru": "новый датчик с двойной температурой",
-                "pt": "novo sensor com dupla temperatura",
-                "nl": "nieuwe sensor met dubbele temp",
-                "fr": "nouveau capteur à double temp",
-                "it": "nuovo sensore con doppia temperatura",
-                "es": "nuevo sensor con doble temperatura",
-                "pl": "nowy czujnik z podwójną temperaturą",
-                "zh-cn": "新型双温传感器",
-                "uk": "новий датчик з подвійною температурою"
-            },
-            "0.1.2": {
-                "en": "correction in weather modul",
-                "de": "Korrektur im Wettermodul",
-                "ru": "коррекция погоды по модулю",
-                "pt": "correção no módulo do tempo",
-                "nl": "correctie in weermodul",
-                "fr": "correction dans le module météo",
-                "it": "correzione nel modulo meteorologico",
-                "es": "corrección en el módulo de tiempo",
-                "pl": "korekta w module pogodowym",
-                "zh-cn": "天气模块校正",
-                "uk": "корекція в модулі погоди"
-            },
-            "0.1.1": {
-                "en": "compatibility with NodeJS10, enhanced testing",
-                "ru": "совместимость с NodeJS10, расширенное тестирование",
-                "de": "Kompatibilität mit NodeJS10, erweitertes Testen",
-                "nl": "compatibiliteit met NodeJS10, verbeterde testen",
-                "fr": "compatibilité avec NodeJS10, tests améliorés",
-                "es": "compatibilidad con NodeJS10, pruebas mejoradas",
-                "it": "compatibilità con NodeJS10, test migliorati",
-                "pt": "compatibilidade com o NodeJS10, teste aprimorado",
-                "pl": "zgodność z NodeJS10, ulepszone testy",
-                "zh-cn": "与NodeJS10的兼容性，增强的测试",
-                "uk": "сумісність з NodeJS10, розширене тестування"
-            },
-            "0.1.0": {
-                "en": "compact mode",
-                "de": "Kompaktmodus",
-                "ru": "компактный режим",
-                "pt": "modo compacto",
-                "nl": "compacte modus",
-                "fr": "mode compact",
-                "it": "modalità compatta",
-                "es": "modo compacto",
-                "pl": "tryb kompaktowy",
-                "zh-cn": "紧凑模式",
-                "uk": "компактний режим"
-            },
-            "0.0.8": {
-                "en": "compact mode added",
-                "de": "Kompaktmodus hinzugefügt",
-                "ru": "добавлен компактный режим",
-                "pt": "modo compacto adicionado",
-                "nl": "compacte modus toegevoegd",
-                "fr": "mode compact ajouté",
-                "it": "modalità compatta aggiunta",
-                "es": "modo compacto agregado",
-                "pl": "dodano tryb kompaktowy",
-                "uk": "додано компактний режим",
-                "zh-cn": "添加了紧凑模式"
-            },
-            "0.0.7": {
-                "en": "level sensor added",
-                "de": "Füllstandssensor hinzugefügt",
-                "ru": "добавлен датчик уровня",
-                "pt": "sensor de nível adicionado",
-                "nl": "niveausensor toegevoegd",
-                "fr": "capteur de niveau ajouté",
-                "it": "sensore di livello aggiunto",
-                "es": "sensor de nivel agregado",
-                "pl": "dodano czujnik poziomu",
-                "uk": "додано датчик рівня",
-                "zh-cn": "添加了液位传感器"
-            },
-            "0.0.6": {
-                "en": "last version of node-serialport",
-                "de": "letzte Version von node-serialport",
-                "ru": "последняя версия node-serialport",
-                "pt": "última versão do node-serialport",
-                "nl": "laatste versie van node-serialport",
-                "fr": "dernière version de node-serialport",
-                "it": "ultima versione di node-serialport",
-                "es": "última versión del nodo-puerto serial",
-                "pl": "ostatnia wersja portu-portu szeregowego",
-                "uk": "остання версія node-serialport",
-                "zh-cn": "节点串行端口的最新版本"
-            },
-            "0.0.5": {
-                "en": "adminv3 improved (values2table)",
-                "de": "adminv3 verbessert (values2table)",
-                "ru": "adminv3 улучшен (values2table)",
-                "pt": "adminv3 melhorado (values2table)",
-                "nl": "adminv3 verbeterd (values2table)",
-                "fr": "adminv3 amélioré (values2table)",
-                "it": "adminv3 improved (values2table)",
-                "es": "adminv3 mejorado (values2table)",
-                "pl": "poprawiono adminv3 (values2table)",
-                "uk": "adminv3 покращено (values2table)",
-                "zh-cn": "adminv3 改进（values2table）"
-            },
-            "0.0.4": {
-                "en": "LaCrosseBMP180 added, adminv3",
-                "de": "LaCrosseBMP180 hinzugefügt, adminv3",
-                "ru": "Добавлен LaCrosseBMP180, adminv3",
-                "pt": "LaCrosseBMP180 adicionado, adminv3",
-                "nl": "LaCrosseBMP180 toegevoegd, adminv3",
-                "fr": "LaCrosseBMP180 ajouté, adminv3",
-                "it": "LaCrosseBMP180 aggiunto, adminv3",
-                "es": "LaCrosseBMP180 agregado, adminv3",
-                "pl": "Dodano LaCrosseBMP180, adminv3",
-                "uk": "Додано LaCrosseBMP180, adminv3",
-                "zh-cn": "添加君越BMP180，adminv3"
-            }
-        },
-        "title": "jeelink",
-        "titleLang": {
-            "en": "jeelink devices",
-            "de": "Jeelink-Geräte",
-            "ru": "джилинк устройства",
-            "pt": "dispositivos jeelink",
-            "nl": "jeelink-apparaten",
-            "fr": "appareils jeelink",
-            "it": "dispositivi jeelink",
-            "es": "dispositivos jeelink",
-            "pl": "urządzenia jeelink",
-            "zh-cn": "捷联设备",
-            "uk": "пристрої jeelink"
-        },
-        "desc": {
-            "en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
-            "de": "lese 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
-            "ru": "считывать датчики 868 МГц Technoline, emonTH, Lacrosse",
-            "pt": "ler sensores de 868Mhz de Technoline, emonTH, Lacrosse",
-            "nl": "lees 868Mhz sensoren van Technoline, emonTH, Lacrosse",
-            "fr": "lire les capteurs 868Mhz de Technoline, emonTH, Lacrosse",
-            "it": "leggere i sensori 868Mhz di Technoline, emonTH, Lacrosse",
-            "es": "leer sensores de 868Mhz de Technoline, emonTH, Lacrosse",
-            "pl": "odczytaj czujniki 868Mhz Technoline, emonTH, Lacrosse",
-            "zh-cn": "读取 Technoline、emonTH、Lacrosse 的 868Mhz 传感器",
-            "uk": "читати 868Mhz датчики Technoline, emonTH, Lacrosse"
-        },
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "main": "main.js",
-        "license": "MIT",
-        "keywords": [
-            "jeelink",
-            "openenergy",
-            "RFM",
-            "LaCrosse",
-            "emonTH"
-        ],
-        "type": "hardware",
-        "icon": "jeelab_logo.png",
-        "extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
-        "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
-        "loglevel": "info",
-        "materialize": true,
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "authors": [
-            {
-                "name": "foxthefox",
-                "email": "foxthefox@wysiwis.net"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ]
-    },
-    "native": {
-        "serialport": "/dev/ttyUSB0",
-        "baudrate": 57600,
-        "command": "",
-        "command_en": false,
-        "sensors": [
-            {
-                "sid": "18",
-                "usid": "1",
-                "stype": "emonTH",
-                "name": "example emonTH"
-            },
-            {
-                "sid": "0",
-                "usid": "2",
-                "stype": "LaCrosseBMP180",
-                "name": "example superjee"
-            },
-            {
-                "sid": "55",
-                "usid": "3",
-                "stype": "LaCrosseDTH",
-                "name": "example LaCrosseDTH"
-            }
-        ]
-    },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "foundDevices",
-            "type": "channel",
-            "common": {
-                "name": "foundDevices",
-                "role": "device"
-            },
-            "native": {}
-        },
-        {
-            "_id": "foundDevices.state",
-            "type": "state",
-            "common": {
-                "name": "new Devices",
-                "type": "array",
-                "role": "list",
-                "read": true,
-                "write": true,
-                "desc": "new Devices"
-            },
-            "native": {}
-        }
-    ]
+	"common": {
+		"name": "jeelink",
+		"version": "1.2.4",
+		"news": {
+			"1.2.4": {
+				"en": "IOB checker corrections",
+				"de": "Korrekturen des IOB-Checkers",
+				"ru": "Исправления проверки IOB",
+				"pt": "Correções do verificador IOB",
+				"nl": "IOB-checkercorrecties",
+				"fr": "Corrections du vérificateur IOB",
+				"it": "Correzioni del controllo IOB",
+				"es": "Correcciones del verificador IOB",
+				"pl": "Poprawki sprawdzania IOB",
+				"uk": "Виправлення перевірки IOB",
+				"zh-cn": "IOB 检查器更正"
+			},
+			"1.2.3": {
+				"en": "serialport12, translation with adapter-dev",
+				"de": "Serialport12, Übersetzung mit Adapter-Dev",
+				"ru": "серийный порт12, перевод с помощью адаптера-dev",
+				"pt": "serialport12, tradução com adaptador-dev",
+				"nl": "serialport12, vertaling met adapter-dev",
+				"fr": "Serialport12, traduction avec adapter-dev",
+				"it": "serialport12, traduzione con adattatore-dev",
+				"es": "serialport12, traducción con adaptador-dev",
+				"pl": "serialport12, tłumaczenie za pomocą adapter-dev",
+				"uk": "serialport12, переклад за допомогою adapter-dev",
+				"zh-cn": "Serialport12，使用适配器开发进行翻译"
+			}
+		},
+		"titleLang": {
+			"en": "jeelink devices",
+			"de": "Jeelink-Geräte",
+			"ru": "джилинк устройства",
+			"pt": "dispositivos jeelink",
+			"nl": "jeelink-apparaten",
+			"fr": "appareils jeelink",
+			"it": "dispositivi jeelink",
+			"es": "dispositivos jeelink",
+			"pl": "urządzenia jeelink",
+			"zh-cn": "捷联设备",
+			"uk": "пристрої jeelink"
+		},
+		"desc": {
+			"en": "read 868Mhz sensors of Technoline, emonTH, Lacrosse ",
+			"de": "lese 868Mhz Sensoren von Technoline, emonTH, Lacrosse",
+			"ru": "считывать датчики 868 МГц Technoline, emonTH, Lacrosse",
+			"pt": "ler sensores de 868Mhz de Technoline, emonTH, Lacrosse",
+			"nl": "lees 868Mhz sensoren van Technoline, emonTH, Lacrosse",
+			"fr": "lire les capteurs 868Mhz de Technoline, emonTH, Lacrosse",
+			"it": "leggere i sensori 868Mhz di Technoline, emonTH, Lacrosse",
+			"es": "leer sensores de 868Mhz de Technoline, emonTH, Lacrosse",
+			"pl": "odczytaj czujniki 868Mhz Technoline, emonTH, Lacrosse",
+			"zh-cn": "读取 Technoline、emonTH、Lacrosse 的 868Mhz 传感器",
+			"uk": "читати 868Mhz датчики Technoline, emonTH, Lacrosse"
+		},
+		"platform": "Javascript/Node.js",
+		"mode": "daemon",
+		"keywords": [ "jeelink", "openenergy", "RFM", "LaCrosse", "emonTH" ],
+		"type": "hardware",
+		"icon": "jeelab_logo.png",
+		"extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
+		"readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
+		"loglevel": "info",
+		"materialize": true,
+		"compact": true,
+		"tier": 3,
+		"licenseInformation": {
+			"license": "MIT",
+			"link": "https://opensource.org/license/mit/",
+			"type": "free"
+		},
+		"connectionType": "local",
+		"dataSource": "push",
+		"authors": [
+			{
+				"name": "foxthefox",
+				"email": "foxthefox@wysiwis.net"
+			}
+		],
+		"dependencies": [
+			{
+				"js-controller": ">=4.0.24"
+			}
+		]
+	},
+	"native": {
+		"serialport": "/dev/ttyUSB0",
+		"baudrate": 57600,
+		"command": "",
+		"command_en": false,
+		"sensors": [
+			{
+				"sid": "18",
+				"usid": "1",
+				"stype": "emonTH",
+				"name": "example emonTH"
+			},
+			{
+				"sid": "0",
+				"usid": "2",
+				"stype": "LaCrosseBMP180",
+				"name": "example superjee"
+			},
+			{
+				"sid": "55",
+				"usid": "3",
+				"stype": "LaCrosseDTH",
+				"name": "example LaCrosseDTH"
+			}
+		]
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "foundDevices",
+			"type": "channel",
+			"common": {
+				"name": "foundDevices",
+				"role": "device"
+			},
+			"native": {}
+		},
+		{
+			"_id": "foundDevices.state",
+			"type": "state",
+			"common": {
+				"name": "new Devices",
+				"type": "array",
+				"role": "list",
+				"read": true,
+				"write": true,
+				"desc": "new Devices"
+			},
+			"native": {}
+		}
+	]
 }
