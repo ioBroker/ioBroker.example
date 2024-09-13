@@ -17,7 +17,6 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "Template (JavaScript)",
         "titleLang": {
             "en": "Template (JavaScript)",
             "de": "Vorlage (JavaScript)",
@@ -53,13 +52,11 @@
             "Smart Home",
             "home automation"
         ],
-        "license": "MIT",
         "licenseInformation": {
             "type": "free",
             "license": "MIT"
         },
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "template.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
@@ -95,12 +92,12 @@
         "eraseOnUpload": true,
         "dependencies": [
             {
-                "js-controller": ">=3.3.22"
+                "js-controller": ">=6.0.11"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.0.0"
+                "admin": "7.0.23"
             }
         ]
     },

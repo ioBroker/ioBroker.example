@@ -17,7 +17,6 @@
 				"zh-cn": "首次出版"
 			}
 		},
-		"title": "Template (TypeScript with VIS)",
 		"titleLang": {
 			"en": "Template (TypeScript with VIS)",
 			"de": "Vorlage (TypeScript mit VIS)",
@@ -53,13 +52,11 @@
 			"Smart Home",
 			"home automation"
 		],
-		"license": "MIT",
 		"licenseInformation": {
 			"type": "free",
 			"license": "MIT"
 		},
 		"platform": "Javascript/Node.js",
-		"main": "build/main.js",
 		"icon": "template.png",
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
@@ -97,13 +94,13 @@
 		"supportCustoms": true,
 		"dependencies": [
 			{
-				"js-controller": ">=3.3.22"
+				"js-controller": ">=6.0.11"
 			},
 			"vis"
 		],
 		"globalDependencies": [
 			{
-				"admin": ">=5.1.13"
+				"admin": "7.0.23"
 			}
 		]
 	},
