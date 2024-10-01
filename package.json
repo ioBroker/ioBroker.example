@@ -32,7 +32,7 @@
 		"axios": "^1.7.7",
 		"chai": "^4.5.0",
 		"chai-as-promised": "^7.1.2",
-		"eslint": "^9.9.1",
+		"eslint": "^9.11.1",
 		"globals": "^15.9.0",
 		"mocha": "^10.7.0",
 		"proxyquire": "^2.1.3",
