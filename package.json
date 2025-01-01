@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@iobroker/adapter-core": "^3.2.3",
 		"@serialport/parser-readline": "^13.0.0",
-		"serialport": "^12.0.0"
+		"serialport": "^13.0.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.17.0",
