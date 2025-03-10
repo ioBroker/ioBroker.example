@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "1.2.5",
+        "version": "1.2.6",
         "news": {
+            "1.2.6": {
+                "en": "update dependencies",
+                "de": "Abhängigkeiten aktualisieren",
+                "ru": "обновить зависимости",
+                "pt": "Atualizar dependências",
+                "nl": "Update afhankelijkheden",
+                "fr": "Mettre à jour les dépendances",
+                "it": "Aggiorna dipendenze",
+                "es": "actualizar dependencias",
+                "pl": "Zaktualizuj zależności",
+                "uk": "Оновити залежності",
+                "zh-cn": "更新依赖项"
+            },
             "1.2.5": {
                 "en": "eslint upgrade and corrections",
                 "de": "Eslint-Upgrade und Korrekturen",

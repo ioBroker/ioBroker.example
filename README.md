@@ -48,6 +48,9 @@ to be done in admin
 
 ## Changelog:
 
+### 1.2.6 (npm)
+* (foxthefox) update dependencies
+
 ### 1.2.5 (npm)
 * (foxthefox) eslint upgrade and corrections
 
@@ -139,5 +142,5 @@ to be done in admin
 
 The MIT License (MIT)
 
-Copyright (c) 2016 - 2024 foxthefox <foxthefox@wysiwis.net>
-Copyright (c) 2024 foxthefox <foxthefox@wysiwis.net>
+Copyright (c) 2016 - 2025 foxthefox <foxthefox@wysiwis.net>
+Copyright (c) 2025 foxthefox <foxthefox@wysiwis.net>
