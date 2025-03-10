@@ -96,7 +96,6 @@
         "extIcon": "https://raw.githubusercontent.com/foxthefox/ioBroker.jeelink/master/admin/jeelab_logo.png",
         "readme": "https://github.com/foxthefox/ioBroker.jeelink/blob/master/README.md",
         "loglevel": "info",
-        "materialize": true,
         "compact": true,
         "tier": 3,
         "licenseInformation": {
@@ -112,6 +111,9 @@
                 "email": "foxthefox@wysiwis.net"
             }
         ],
+        "adminUI": {
+            "config": "json"
+        },
         "dependencies": [
             {
                 "js-controller": ">=5.0.19"

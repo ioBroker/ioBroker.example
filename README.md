@@ -50,13 +50,13 @@ to be done in admin
 
 ### 1.2.6 (npm)
 * (foxthefox) update dependencies
+* (foxthefox) UI with jsonConfig
 
 ### 1.2.5 (npm)
 * (foxthefox) eslint upgrade and corrections
 
 ### 1.2.4 (npm)
 * (foxthefox) IOB checker corrections
-
 
 ### 1.2.3 (npm)
 * (foxthefox) serialport 12

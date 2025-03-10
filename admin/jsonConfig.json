@@ -1,0 +1,228 @@
+{
+    "i18n": true,
+    "type": "tabs",
+    "tabsStyle": {
+        "width": "calc(100% - 100px)"
+    },
+    "items": {
+        "tab_1": {
+            "type": "panel",
+            "label": "Settings",
+            "items": {
+                "_stickdata": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Jeelink Settings",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "_settext": {
+                    "newLine": true,
+                    "type": "staticText",
+                    "text": "usually /dev/ttyUSB0 or /dev/ttyACME0 and 57600",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "serialport": {
+                    "type": "text",
+                    "label": "Serial Port",
+                    "newLine": false,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "xl": 4
+                },
+                "baudrate": {
+                    "type": "number",
+                    "label": "baud rate",
+                    "newLine": false,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "xl": 4
+                },
+                "_trial": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Jeelink Command (trial)",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "_conftext": {
+                    "newLine": true,
+                    "type": "staticText",
+                    "text": "experimental, both should be empty",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "command": {
+                    "newLine": true,
+                    "type": "text",
+                    "label": "command for stick setup",
+                    "text": "usually empty",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "command_en": {
+                    "type": "checkbox",
+                    "label": "enable command",
+                    "text": "usually empty",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "_table": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Sensor configuration",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "_tabletext": {
+                    "newLine": true,
+                    "type": "staticText",
+                    "text": "emonTH, emonWater, LaCrosseDTH, LaCrosseDTT, LaCrosseBMP180, HMS100T, LaCrosseWS, EC3000, EMT7110, level, DavisVantage",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "size": 3
+                },
+                "_test": {
+                    "type": "sendTo",
+                    "hidden": true,
+                    "label": "Get from adapter",
+                    "command": "test",
+                    "variant": "contained",
+                    "jsonData": "{\"id\": \"new\", \"stype\": \"LaCrosseDTH\", \"usid\": \"new\", \"name\": \"not really found :-)\"}",
+                    "xs": 3,
+                    "sm": 3,
+                    "md": 3,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "sensors": {
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
+                    "newLine": true,
+                    "type": "table",
+                    "items": [
+                        {
+                            "type": "text",
+                            "width": "15%",
+                            "title": "id",
+                            "attr": "sid",
+                            "filter": false,
+                            "sort": false
+                        },
+                        {
+                            "type": "select",
+                            "width": "10%",
+                            "options": [
+                                {
+                                    "value": "LaCrosseDTH",
+                                    "label": "LaCrosseDTH"
+                                },
+                                {
+                                    "value": "LaCrosseDTT",
+                                    "label": "LaCrosseDTT"
+                                },
+                                {
+                                    "value": "LaCrosseBMP180",
+                                    "label": "LaCrosseBMP180"
+                                },
+                                {
+                                    "value": "HMS100TF",
+                                    "label": "HMS100TF"
+                                },
+                                {
+                                    "value": "LaCrosseWS",
+                                    "label": "LaCrosseWS"
+                                },
+                                {
+                                    "value": "EC3000",
+                                    "label": "EC3000"
+                                },
+                                {
+                                    "value": "EMT7110",
+                                    "label": "EMT7110"
+                                },
+                                {
+                                    "value": "level",
+                                    "label": "level"
+                                },
+                                {
+                                    "value": "DavisVantage",
+                                    "label": "DavisVantage"
+                                },
+                                {
+                                    "value": "emonTH",
+                                    "label": "emonTH"
+                                },
+                                {
+                                    "value": "emonWater",
+                                    "label": "emonWater"
+                                }
+                            ],
+                            "title": "Sensor Type",
+                            "attr": "stype",
+                            "filter": false,
+                            "sort": false,
+                            "default": "none"
+                        },
+                        {
+                            "type": "text",
+                            "width": "15%",
+                            "title": "UID",
+                            "attr": "usid",
+                            "filter": false,
+                            "sort": false,
+                        },
+                        {
+                            "type": "text",
+                            "width": "25%",
+                            "title": "name",
+                            "attr": "name",
+                            "filter": false,
+                            "sort": false,
+                            "default": "sensor xyz"
+                        },
+                    ]
+                }
+            }
+        }
+    }
+}
