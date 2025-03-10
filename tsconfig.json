@@ -33,7 +33,7 @@
 	"include": [
 		"**/*.js",
 		"**/*.d.ts"
-	],
+, "test/integration.mjs"	],
 	"exclude": [
 		"node_modules/**"
 	]
