@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "jeelink",
-        "version": "1.2.6",
+        "version": "1.2.7",
         "news": {
+            "1.2.7": {
+                "en": "update dependencies, comply update checker",
+                "de": "Aktualisieren Sie die Abhängigkeiten, den Update -Checker entsprechen",
+                "ru": "Обновить зависимости, выполнить проверку обновления",
+                "pt": "Atualize as dependências, cumpra o verificador de atualização",
+                "nl": "Update afhankelijkheden, naleving van de checker.",
+                "fr": "Mettre à jour les dépendances, conforme à la mise à jour du vérificateur",
+                "it": "Aggiorna le dipendenze, rispetta l'aggiornamento del controllo",
+                "es": "Actualizar dependencias, cumplir actualizador de actualización",
+                "pl": "Zaktualizuj zależności, przestrzegaj sprawdzania aktualizacji",
+                "uk": "Оновити залежності, дотримуйтесь перевірки оновлення",
+                "zh-cn": "更新依赖项，遵守更新检查器"
+            },
             "1.2.6": {
                 "en": "update dependencies",
                 "de": "Abhängigkeiten aktualisieren",
@@ -116,12 +129,12 @@
         },
         "dependencies": [
             {
-                "js-controller": ">=5.0.19"
+                "js-controller": ">=6.0.11"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=6.17.14"
+                "admin": ">=7.6.17"
             }
         ]
     },

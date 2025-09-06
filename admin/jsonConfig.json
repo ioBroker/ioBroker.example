@@ -219,7 +219,7 @@
                             "filter": false,
                             "sort": false,
                             "default": "sensor xyz"
-                        },
+                        }
                     ]
                 }
             }
