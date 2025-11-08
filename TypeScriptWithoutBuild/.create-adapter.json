@@ -1,0 +1,36 @@
+{
+	"cli": true,
+	"target": "directory",
+	"adapterName": "template",
+	"description": "Template for adapter development",
+	"authorName": "Author",
+	"authorGithub": "Author",
+	"authorEmail": "author@mail.com",
+	"gitRemoteProtocol": "HTTPS",
+	"dependabot": "yes",
+	"license": "MIT License",
+	"releaseScript": "yes",
+	"gitCommit": "no",
+	"defaultBranch": "main",
+	"startMode": "daemon",
+	"features": [
+		"adapter"
+	],
+	"connectionIndicator": "no",
+	"type": "general",
+	"adminFeatures": [
+		"custom",
+		"tab"
+	],
+	"adminUi": "json",
+	"tabReact": "no",
+	"eslintConfig": "official",
+	"language": "TypeScript (without build)",
+	"title": "Template (TypeScript without build)",
+	"tools": [
+		"ESLint"
+	],
+	"indentation": "Tab",
+	"quotes": "double",
+	"creatorVersion": "3.0.0"
+}

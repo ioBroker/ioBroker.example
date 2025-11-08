@@ -24,6 +24,7 @@
 	],
 	"adminUi": "react",
 	"tabReact": "yes",
+	"eslintConfig": "official",
 	"language": "TypeScript",
 	"title": "Template (TypeScript with React)",
 	"tools": [
@@ -32,5 +33,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "2.6.5"
+	"creatorVersion": "3.0.0"
 }

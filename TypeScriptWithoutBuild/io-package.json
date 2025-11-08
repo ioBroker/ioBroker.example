@@ -1,0 +1,108 @@
+{
+	"common": {
+		"name": "template",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "Template (TypeScript without build)",
+			"de": "Vorlage (TypeScript ohne Build)",
+			"ru": "Шаблон (TypeScript без сборки)",
+			"pt": "Modelo (TypeScript sem compilação)",
+			"nl": "Sjabloon (TypeScript zonder build)",
+			"fr": "Modèle (TypeScript sans build)",
+			"it": "Modello (TypeScript senza build)",
+			"es": "Plantilla (TypeScript sin compilación)",
+			"pl": "Szablon (TypeScript bez kompilacji)",
+			"uk": "Шаблон (TypeScript без збірки)",
+			"zh-cn": "模板（无需构建的 TypeScript）"
+		},
+		"desc": {
+			"en": "Template for adapter development",
+			"de": "Vorlage für die Adapterentwicklung",
+			"ru": "Шаблон для разработки адаптера",
+			"pt": "Modelo para desenvolvimento de adaptador",
+			"nl": "Sjabloon voor adapterontwikkeling",
+			"fr": "Modèle pour le développement d'adaptateurs",
+			"it": "Modello per lo sviluppo dell'adattatore",
+			"es": "Plantilla para el desarrollo de adaptadores.",
+			"pl": "Szablon do opracowania adaptera",
+			"uk": "Шаблон для розробки адаптера",
+			"zh-cn": "适配器开发模板"
+		},
+		"authors": [
+			"Author <author@mail.com>"
+		],
+		"keywords": [
+			"template",
+			"automation",
+			"IoT",
+			"integration"
+		],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "template.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/Author/ioBroker.template/main/admin/template.png",
+		"readme": "https://github.com/Author/ioBroker.template/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "general",
+		"compact": true,
+		"adminUI": {
+			"config": "json",
+			"tab": "materialize"
+		},
+		"adminTab": {
+			"singleton": true,
+			"name": {
+				"en": "Template (TypeScript without build)",
+				"de": "Vorlage (TypeScript ohne Build)",
+				"ru": "Шаблон (TypeScript без сборки)",
+				"pt": "Modelo (TypeScript sem compilação)",
+				"nl": "Sjabloon (TypeScript zonder build)",
+				"fr": "Modèle (TypeScript sans build)",
+				"it": "Modello (TypeScript senza build)",
+				"es": "Plantilla (TypeScript sin compilación)",
+				"pl": "Szablon (TypeScript bez kompilacji)",
+				"uk": "Шаблон (TypeScript без збірки)",
+				"zh-cn": "模板（无需构建的 TypeScript）"
+			},
+			"link": ""
+		},
+		"supportCustoms": true,
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=7.0.23"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
+}
