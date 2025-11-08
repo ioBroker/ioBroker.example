@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- * Created with @iobroker/create-adapter v2.6.5
+ * Created with @iobroker/create-adapter v3.0.0
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
@@ -9,12 +9,11 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
-// const fs = require("fs");
+// const fs = require('fs');
 
 class Template extends utils.Adapter {
-
     /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options] - Adapter options
      */
     constructor(options) {
         super({
@@ -36,13 +35,17 @@ class Template extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('config option1: ' + this.config.option1);
-        this.log.info('config option2: ' + this.config.option2);
+        this.log.debug('config option1: ${this.config.option1}');
+        this.log.debug('config option2: ${this.config.option2}');
 
         /*
         For every state in the system there has to be also an object of type state
         Here a simple template for a boolean variable named "testVariable"
         Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
+
+        IMPORTANT: State roles should be chosen carefully based on the state's purpose.
+                   Please refer to the state roles documentation for guidance:
+                   https://www.iobroker.net/#en/documentation/dev/stateroles.md
         */
         await this.setObjectNotExistsAsync('testVariable', {
             type: 'state',
@@ -68,26 +71,27 @@ class Template extends utils.Adapter {
             you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
         */
         // the variable testVariable is set to true as command (ack=false)
-        await this.setStateAsync('testVariable', true);
+        await this.setState('testVariable', true);
 
         // same thing, but the value is flagged "ack"
         // ack should be always set to true if the value is received from or acknowledged from the target system
-        await this.setStateAsync('testVariable', { val: true, ack: true });
+        await this.setState('testVariable', { val: true, ack: true });
 
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
-        await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
+        await this.setState('testVariable', { val: true, ack: true, expire: 30 });
 
         // examples for the checkPassword/checkGroup functions
-        let result = await this.checkPasswordAsync('admin', 'iobroker');
-        this.log.info('check user admin pw iobroker: ' + result);
+        const pwdResult = await this.checkPasswordAsync('admin', 'iobroker');
+        this.log.info(`check user admin pw iobroker: ${pwdResult}`);
 
-        result = await this.checkGroupAsync('admin', 'admin');
-        this.log.info('check group user admin group admin: ' + result);
+        const groupResult = await this.checkGroupAsync('admin', 'admin');
+        this.log.info(`check group user admin group admin: ${groupResult}`);
     }
 
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
-     * @param {() => void} callback
+     *
+     * @param {() => void} callback - Callback function
      */
     onUnload(callback) {
         try {
@@ -98,7 +102,8 @@ class Template extends utils.Adapter {
             // clearInterval(interval1);
 
             callback();
-        } catch (e) {
+        } catch (error) {
+            this.log.error(`Error during unloading: ${error.message}`);
             callback();
         }
     }
@@ -122,19 +127,27 @@ class Template extends utils.Adapter {
 
     /**
      * Is called if a subscribed state changes
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
+     *
+     * @param {string} id - State ID
+     * @param {ioBroker.State | null | undefined} state - State object
      */
     onStateChange(id, state) {
         if (state) {
             // The state was changed
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+            if (state.ack === false) {
+                // This is a command from the user (e.g., from the UI or other adapter)
+                // and should be processed by the adapter
+                this.log.info(`User command received for ${id}: ${state.val}`);
+
+                // TODO: Add your control logic here
+            }
         } else {
-            // The state was deleted
+            // The object was deleted or the state value has expired
             this.log.info(`state ${id} deleted`);
         }
     }
-
     // If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
     // /**
     //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
@@ -152,15 +165,14 @@ class Template extends utils.Adapter {
     //         }
     //     }
     // }
-
 }
 
 if (require.main !== module) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options] - Adapter options
      */
-    module.exports = (options) => new Template(options);
+    module.exports = options => new Template(options);
 } else {
     // otherwise start the instance directly
     new Template();

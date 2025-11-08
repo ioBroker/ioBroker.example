@@ -1,0 +1,66 @@
+{
+  "name": "iobroker.template",
+  "version": "0.0.1",
+  "description": "Template for adapter development",
+  "author": {
+    "name": "Author",
+    "email": "author@mail.com"
+  },
+  "contributors": [],
+  "homepage": "https://github.com/Author/ioBroker.template",
+  "license": "MIT",
+  "keywords": [
+    "template",
+    "automation",
+    "IoT",
+    "integration"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Author/ioBroker.template.git"
+  },
+  "engines": {
+    "node": ">= 20"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.3.2"
+  },
+  "devDependencies": {
+    "@alcalzone/release-script": "^5.0.0",
+    "@alcalzone/release-script-plugin-iobroker": "^4.0.0",
+    "@alcalzone/release-script-plugin-license": "^4.0.0",
+    "@alcalzone/release-script-plugin-manual-review": "^4.0.0",
+    "@iobroker/adapter-dev": "^1.5.0",
+    "@iobroker/eslint-config": "^2.2.0",
+    "@iobroker/testing": "^5.2.2",
+    "@tsconfig/node20": "^20.1.6",
+    "@types/iobroker": "npm:@iobroker/types@^7.0.7",
+    "@types/node": "^20.19.24",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3"
+  },
+  "main": "src/main.ts",
+  "files": [
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "src/",
+    "www/",
+    "io-package.json",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test:ts": "mocha --config test/mocharc.custom.json src/**/*.test.ts",
+    "test:package": "mocha test/package --exit",
+    "test:integration": "mocha test/integration --exit",
+    "test": "npm run test:ts && npm run test:package",
+    "lint": "eslint -c eslint.config.mjs .",
+    "translate": "translate-adapter",
+    "release": "release-script"
+  },
+  "bugs": {
+    "url": "https://github.com/Author/ioBroker.template/issues"
+  },
+  "readmeFilename": "README.md"
+}

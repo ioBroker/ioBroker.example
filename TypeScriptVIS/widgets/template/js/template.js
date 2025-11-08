@@ -3,7 +3,7 @@
 
 	version: "0.0.1"
 
-	Copyright 2024 Author author@mail.com
+	Copyright 2025 Author author@mail.com
 */
 "use strict";
 
@@ -60,7 +60,7 @@ vis.binds["template"] = {
 		$("#" + widgetID).html(text);
 
 		// subscribe on updates of value
-		function onChange(e, newVal, oldVal) {
+		function onChange(e, newVal, _oldVal) {
 			$div.find(".template-value").html(newVal);
 		}
 		if (data.oid) {

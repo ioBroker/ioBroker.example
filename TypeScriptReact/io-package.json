@@ -47,10 +47,10 @@
 			"Author <author@mail.com>"
 		],
 		"keywords": [
-			"ioBroker",
 			"template",
-			"Smart Home",
-			"home automation"
+			"automation",
+			"IoT",
+			"integration"
 		],
 		"licenseInformation": {
 			"type": "free",
@@ -85,8 +85,7 @@
 				"uk": "Шаблон (TypeScript з React)",
 				"zh-cn": "模板（带有 React 的 TypeScript）"
 			},
-			"link": "",
-			"fa-icon": "info"
+			"link": ""
 		},
 		"supportCustoms": true,
 		"eraseOnUpload": true,
@@ -97,7 +96,7 @@
 		],
 		"globalDependencies": [
 			{
-				"admin": "7.0.23"
+				"admin": ">=7.0.23"
 			}
 		]
 	},

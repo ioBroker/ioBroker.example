@@ -24,6 +24,7 @@
 	],
 	"adminUi": "json",
 	"tabReact": "no",
+	"eslintConfig": "official",
 	"language": "TypeScript",
 	"title": "Template (TypeScript)",
 	"tools": [
@@ -32,5 +33,5 @@
 	],
 	"indentation": "Tab",
 	"quotes": "double",
-	"creatorVersion": "2.6.5"
+	"creatorVersion": "3.0.0"
 }

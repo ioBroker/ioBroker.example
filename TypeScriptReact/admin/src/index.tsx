@@ -12,7 +12,7 @@ function build(): void {
 		<MuiThemeProvider theme={theme(themeName)}>
 			<App
 				adapterName="template"
-				onThemeChange={(_theme) => {
+				onThemeChange={_theme => {
 					themeName = _theme;
 					build();
 				}}
