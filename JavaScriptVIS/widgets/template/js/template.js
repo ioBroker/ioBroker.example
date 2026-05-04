@@ -3,7 +3,7 @@
 
     version: "0.0.1"
 
-    Copyright 2025 Author author@mail.com
+    Copyright 2026 Author author@mail.com
 */
 'use strict';
 
