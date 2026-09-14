@@ -1,6 +1,6 @@
 # <img src="icon.png" width=48> ioBroker examples
 
-This is a collection of examples for ioBroker developers to create adapters or VIS widgets. You can use it to get an overview how ioBroker adapter code and structure looks like.
+This is a collection of examples for ioBroker developers to create adapters or VIS widgets. You can use it to get an overview of what ioBroker adapter code and structure look like.
 
 Please use [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter) to generate a custom skeleton based on your exact needs. We recommend that way if you start developing an adapter or widget.
 
@@ -26,7 +26,7 @@ Currently, the following templates are available:
 
 ## Features
 All templates come with the following features:
-* IntelliSense (auto completion and tooltips) in supporting editors
+* IntelliSense (auto-completion and tooltips) in supporting editors
 * JavaScript only:
   * [ESLint](https://github.com/eslint/eslint) for code quality
   * Type checking based on the ioBroker declarations
@@ -42,4 +42,4 @@ All templates come with the following features:
 The templates are automatically generated using [`@iobroker/create-adapter`](https://github.com/ioBroker/create-adapter). If you're missing a feature or found a bug, please open an issue in that repository. Or consider using the tool directly for much more configuration goodness.
 
 ## For developers
-Please don't edit these files directly (except this README). Instead the CI builds in the `create-adapter` repo should be updated.
+Please don't edit these files directly (except this README). Instead, the CI builds in the `create-adapter` repo should be updated.

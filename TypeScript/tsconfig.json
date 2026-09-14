@@ -2,18 +2,18 @@
 {
 	// To update the compilation target, install a different version of @tsconfig/node... and reference it here
 	// https://github.com/tsconfig/bases#node-20-tsconfigjson
-	"extends": "@tsconfig/node20/tsconfig.json",
+	"extends": "@tsconfig/node22/tsconfig.json",
 	"compilerOptions": {
-		// do not compile anything, this file is just to configure type checking
+		// do not compile anything; this file is just to configure type checking
 		// the compilation is configured in tsconfig.build.json
 		"noEmit": true,
 
-		// check JS files, but do not compile them => tsconfig.build.json
-		"allowJs": true,
-		"checkJs": true,
+		// check JS files but do not compile them => tsconfig.build.json
+		"allowJs": false,
 
 		"noEmitOnError": true,
 		"outDir": "./build/",
+		"rootDir": "./src",
 		"removeComments": false,
 
 		// This is necessary for the automatic typing of the adapter config
@@ -32,7 +32,8 @@
 		// "useUnknownInCatchVariables": false,
 
 		"sourceMap": true,
-		"inlineSourceMap": false
+		"inlineSourceMap": false,
+		"types": ["@iobroker/types", "node", "mocha"]
 	},
 	"include": [
 		"src/**/*.ts",

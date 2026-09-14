@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script>
+			const script = document.createElement("script");
+			window.registerSocketOnLoad = cb => {
+				window.socketLoadedHandler = cb;
+			};
+			const query = Object.fromEntries(new URLSearchParams(window.location.search));
+			script.onload = () => window.socketLoadedHandler?.();
+			script.src =
+				window.location.port === "3000"
+					? `${window.location.protocol}//${query.host || window.location.hostname}:${query.port || 8081}/lib/js/socket.io.js`
+					: "./../../lib/js/socket.io.js";
+			document.head.appendChild(script);
+		</script>
+		<title>ioBroker template</title>
+	</head>
+	<body>
+		<div class="m adapter-container" id="root"></div>
+		<script type="module" src="/src/index.tsx"></script>
+	</body>
+</html>

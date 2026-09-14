@@ -16,6 +16,12 @@ Thumbs.db
 # NYC coverage files
 coverage
 
+# Vite build output of the admin UI (created by "npm run build:react")
+src-admin/build
+admin/assets
+admin/index_m.html
+admin/tab_m.html
+
 # i18n intermediate files
 admin/i18n/flat.txt
 admin/i18n/*/flat.txt

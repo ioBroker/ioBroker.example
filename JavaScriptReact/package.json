@@ -20,35 +20,29 @@
     "url": "https://github.com/Author/ioBroker.template.git"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 22.19.0"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.3.2"
+    "@iobroker/adapter-core": "^3.4.3"
   },
   "devDependencies": {
-    "@alcalzone/release-script": "^5.1.1",
-    "@alcalzone/release-script-plugin-iobroker": "^5.1.2",
-    "@alcalzone/release-script-plugin-license": "^5.1.1",
-    "@alcalzone/release-script-plugin-manual-review": "^5.1.1",
+    "@alcalzone/release-script": "^5.2.1",
+    "@alcalzone/release-script-plugin-iobroker": "^5.2.0",
+    "@alcalzone/release-script-plugin-license": "^5.2.2",
+    "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
     "@iobroker/adapter-dev": "^1.5.0",
-    "@iobroker/adapter-react": "2.0.22",
-    "@iobroker/eslint-config": "^2.2.0",
-    "@iobroker/testing": "^5.2.2",
-    "@material-ui/core": "^4.12.4",
-    "@tsconfig/node20": "^20.1.9",
-    "@types/iobroker": "npm:@iobroker/types@^7.1.1",
-    "@types/node": "^20.19.39",
-    "@types/react": "^17.0.91",
-    "@types/react-dom": "^17.0.26",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "~5.9.3"
+    "@iobroker/build-tools": "^1.0.0",
+    "@iobroker/eslint-config": "^2.3.4",
+    "@iobroker/testing": "^6.2.1",
+    "@iobroker/types": "^7.2.2",
+    "@tsconfig/node22": "^22.0.6",
+    "@types/node": "^22.20.2",
+    "typescript": "~6.0.3"
   },
   "main": "main.js",
   "files": [
     "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
     "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
-    "admin/build/",
     "lib/",
     "www/",
     "io-package.json",
@@ -56,17 +50,20 @@
     "main.js"
   ],
   "scripts": {
-    "prebuild": "rimraf admin/build",
-    "build": "build-adapter react",
-    "watch": "build-adapter react --watch",
-    "prebuild:react": "rimraf admin/build",
-    "build:react": "build-adapter react",
-    "watch:react": "build-adapter react --watch",
+    "0-clean": "node tasks.js --0-clean",
+    "1-npm": "node tasks.js --1-npm",
+    "2-build": "node tasks.js --2-build",
+    "3-copy": "node tasks.js --3-copy",
+    "4-patch": "node tasks.js --4-patch",
+    "build": "node tasks.js",
+    "watch": "npm --prefix src-admin run start",
+    "build:react": "node tasks.js",
+    "watch:react": "npm --prefix src-admin run start",
     "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
     "test:package": "mocha test/package --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "check": "tsc --noEmit -p tsconfig.check.json",
+    "check": "tsc --noEmit -p tsconfig.check.json && tsc --noEmit -p src-admin/tsconfig.json",
     "lint": "eslint -c eslint.config.mjs .",
     "translate": "translate-adapter",
     "release": "release-script"

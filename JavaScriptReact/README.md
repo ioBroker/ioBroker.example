@@ -58,8 +58,8 @@ When creating state objects, it is important to use the correct role for the sta
 Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
 | Script name | Description |
 |-------------|-------------|
-| `build` | Compile the React sources. |
-| `watch` | Compile the React sources and watch for changes. |
+| `build` | Build the React admin UI in `src-admin` with Vite and copy it to `admin`. |
+| `watch` | Start the Vite dev server for the React admin UI on http://localhost:3000/index_m.html (connects to ioBroker admin on port 8081). |
 | `test:js` | Executes the tests you defined in `*.test.js` files. |
 | `test:package` | Ensures your `package.json` and `io-package.json` are valid. |
 | `test:integration` | Tests the adapter startup with an actual instance of ioBroker. |
@@ -70,9 +70,8 @@ Several npm scripts are predefined for your convenience. You can run them using 
 | `release` | Creates a new release, see [`@alcalzone/release-script`](https://github.com/AlCalzone/release-script#usage) for more details. |
 
 ### Configuring the compilation
-The adapter template uses [esbuild](https://esbuild.github.io/) to compile TypeScript and/or React code. You can configure many compilation settings 
-either in `tsconfig.json` or by changing options for the build tasks. These options are described in detail in the
-[`@iobroker/adapter-dev` documentation](https://github.com/ioBroker/adapter-dev#compile-adapter-files).
+The React admin UI lives in `src-admin` (a separate npm project) and is built with [Vite](https://vite.dev/).
+Its build is configured in `src-admin/vite.config.js`; `tasks.js` installs its dependencies, runs the build and copies the result to `admin`.
 
 ### Writing tests
 When done right, testing code is invaluable, because it gives you the 

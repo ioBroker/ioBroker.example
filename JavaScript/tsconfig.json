@@ -2,9 +2,9 @@
 {
     // To update the compilation target, install a different version of @tsconfig/node... and reference it here
     // https://github.com/tsconfig/bases#node-20-tsconfigjson
-    "extends": "@tsconfig/node20/tsconfig.json",
+    "extends": "@tsconfig/node22/tsconfig.json",
     "compilerOptions": {
-        // do not compile anything, this file is just to configure type checking
+        // do not compile anything; this file is just to configure type checking
         "noEmit": true,
 
         // check JS files
@@ -24,7 +24,7 @@
         // "noUnusedLocals": true,
         // "noUnusedParameters": true,
         "useUnknownInCatchVariables": false,
-
+        "types": ["@iobroker/types", "node", "mocha"]
     },
     "include": [
         "**/*.js",

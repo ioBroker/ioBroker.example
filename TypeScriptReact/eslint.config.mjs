@@ -5,6 +5,17 @@ import config from '@iobroker/eslint-config';
 export default [
 	...config,
 	{
+		languageOptions: {
+			parserOptions: {
+				projectService: {
+					// files that are not part of any tsconfig.json
+					allowDefaultProject: ['tasks.mts', 'src-admin/vite.config.ts'],
+				},
+				tsconfigRootDir: import.meta.dirname,
+			},
+		},
+	},
+	{
 		// specify files to exclude from linting here
 		ignores: [
 			'.dev-server/',
@@ -19,7 +30,8 @@ export default [
 			'admin/blockly.js',
 			'**/adapter-config.d.ts',
 			'widgets/**/*.js',
-			'admin/build'
+			'admin/assets',
+			'src-admin/build',
 		],
 	},
 	{

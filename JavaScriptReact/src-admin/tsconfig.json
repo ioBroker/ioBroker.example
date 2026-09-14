@@ -1,0 +1,20 @@
+// tsconfig for type-checking the admin UI (the build itself is done by Vite)
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
+        "allowJs": true,
+        "checkJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "useUnknownInCatchVariables": false,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx"
+    },
+    "include": ["src"]
+}
